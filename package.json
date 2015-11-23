@@ -1,0 +1,13 @@
+{
+  "name": "caliopen-ng-frontend",
+  "version": "0.1.0",
+  "description": "CaliOpen UI is the user interface for CaliOpen.",
+  "homepage": "https://caliopen.org/",
+  "private": true,
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "CaliOpen <contact@caliopen.org> (https://caliopen.org/)",
+  "license": "MIT"
+}
