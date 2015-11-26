@@ -3,6 +3,7 @@ var concat = require('gulp-concat');
 var webpack = require('gulp-webpack');
 var gulpSequence = require('gulp-sequence');
 var sass = require('gulp-sass');
+var conventionalChangelog = require('gulp-conventional-changelog');
 var path = require('path');
 var del = require('del');
 
@@ -65,7 +66,6 @@ gulp.task('clean', function() {
   return del(config.publicDirectory);
 });
 
-gulp.task('build', gulpSequence('clean', ['build:assets', 'build:vendor', 'build:sass', 'build:js']));
 
 gulp.task('watch', function() {
   gulp.watch(config.jsSourceFiles, ['build:js']);
@@ -74,4 +74,14 @@ gulp.task('watch', function() {
   gulp.watch(config.vendorFiles, ['build:vendor']);
 });
 
+gulp.task('release:changelog', function() {
+  return gulp.src('CHANGELOG.md')
+    .pipe(conventionalChangelog({
+      preset: 'angular'
+    }))
+    .pipe(gulp.dest('./'));
+});
+
+gulp.task('release', ['release:changelog']);
+gulp.task('build', gulpSequence('clean', ['build:assets', 'build:vendor', 'build:sass', 'build:js']));
 gulp.task('default', ['build']);

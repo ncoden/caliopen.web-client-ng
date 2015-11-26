@@ -9,7 +9,8 @@
     "test": "karma start test/unit/karma.conf.js",
     "ci": "karma start test/unit/karma.conf.js --single-run",
     "build": "gulp",
-    "dev": "gulp build watch"
+    "dev": "gulp build watch",
+    "release": "gulp release"
   },
   "author": "CaliOpen <contact@caliopen.org> (https://caliopen.org/)",
   "license": "MIT",
@@ -24,6 +25,7 @@
     "del": "^2.1.0",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
+    "gulp-conventional-changelog": "^0.7.0",
     "gulp-sass": "^2.1.0",
     "gulp-sequence": "^0.4.1",
     "gulp-webpack": "^1.5.0",
