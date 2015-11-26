@@ -6,7 +6,8 @@
   "private": true,
   "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "karma start test/unit/karma.conf.js",
+    "ci": "karma start test/unit/karma.conf.js --single-run",
     "build": "gulp",
     "dev": "gulp build watch"
   },
@@ -15,6 +16,7 @@
   "dependencies": {},
   "devDependencies": {
     "angular": "^1.4.8",
+    "angular-mocks": "^1.4.8",
     "angular-ui-router": "^0.2.15",
     "babel-core": "^6.2.1",
     "babel-loader": "^6.2.0",
@@ -25,6 +27,13 @@
     "gulp-sass": "^2.1.0",
     "gulp-sequence": "^0.4.1",
     "gulp-webpack": "^1.5.0",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.15",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-webpack": "^1.7.0",
+    "phantomjs": "^1.9.19",
     "webpack": "^1.12.9"
   },
   "babel": {
