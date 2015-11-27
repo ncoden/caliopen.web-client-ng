@@ -21,6 +21,7 @@ var config = {
     './node_modules/angular/angular.js',
     './node_modules/angular-ui-router/release/angular-ui-router.js'
   ],
+  assetsSource: 'src/assets/**/*',
   appDestFilename: 'app.js',
   // cssDestFilename: 'app.css',
   vendorDestFilename: 'vendor.js'
@@ -32,8 +33,15 @@ gulp.task('build:vendor', function() {
     .pipe(gulp.dest(config.publicJsDirectory));
 });
 
-gulp.task('build:assets', function() {
+gulp.task('build:assets', ['build:assetsIndex', 'build:assetsFiles']);
+
+gulp.task('build:assetsIndex', function() {
   return gulp.src(config.htmlSource)
+    .pipe(gulp.dest(config.publicDirectory));
+});
+
+gulp.task('build:assetsFiles', function() {
+  return gulp.src(config.assetsSource)
     .pipe(gulp.dest(config.publicDirectory));
 });
 
@@ -70,7 +78,8 @@ gulp.task('clean', function() {
 gulp.task('watch', function() {
   gulp.watch(config.jsSourceFiles, ['build:js']);
   gulp.watch(config.sassSourceFiles, ['build:sass']);
-  gulp.watch(config.htmlSource, ['build:assets']);
+  gulp.watch(config.htmlSource, ['build:assetsIndex']);
+  gulp.watch(config.assetsSource, ['build:assetsFiles']);
   gulp.watch(config.vendorFiles, ['build:vendor']);
 });
 
