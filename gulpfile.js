@@ -15,13 +15,21 @@ var config = {
   jsSource: 'src/js/app.js',
   jsSourceFiles: 'src/**/*.js',
   htmlSource: 'src/index.html',
-  sassSource: 'src/styles/main.scss',
-  sassSourceFiles: 'src/styles/**/*.scss',
-  vendorFiles: [
-    './node_modules/angular/angular.js',
-    './node_modules/angular-ui-router/release/angular-ui-router.js'
+  sassMainFile: 'main.scss',
+  sassSourceFiles: [
+    './src/styles/**/*.scss',
+    './node_modules/bootstrap-sass/assets/stylesheets/**/*.scss'
   ],
-  assetsSource: 'src/assets/**/*',
+  vendorFiles: [
+    './node_modules/jquery/dist/jquery.js',
+    './node_modules/angular/angular.js',
+    './node_modules/angular-ui-router/release/angular-ui-router.js',
+    './node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
+  ],
+  assetsSource: [
+    './src/assets/**/*',
+    './node_modules/bootstrap-sass/assets/@(fonts)/**/*',
+  ],
   appDestFilename: 'app.js',
   // cssDestFilename: 'app.css',
   vendorDestFilename: 'vendor.js'
@@ -45,10 +53,18 @@ gulp.task('build:assetsFiles', function() {
     .pipe(gulp.dest(config.publicDirectory));
 });
 
-gulp.task('build:sass', function () {
-  gulp.src(config.sassSource)
-    .pipe(sass()) //.on('error', sass.logError))
-    .pipe(gulp.dest(config.publicStylesDirectory));
+gulp.task('build:sass', gulpSequence('build:sassPrepare', 'build:sassCompile', 'build:sassClean'));
+gulp.task('build:sassPrepare', function () {
+  return gulp.src(config.sassSourceFiles)
+    .pipe(gulp.dest('tmp'));
+});
+gulp.task('build:sassCompile', function () {
+    return gulp.src('tmp/' + config.sassMainFile)
+      .pipe(sass())
+      .pipe(gulp.dest(config.publicStylesDirectory));
+});
+gulp.task('build:sassClean', function() {
+  del('tmp');
 });
 
 gulp.task('build:js', function() {
