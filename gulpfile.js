@@ -18,7 +18,8 @@ var config = {
   sassMainFile: 'main.scss',
   sassSourceFiles: [
     './src/styles/**/*.scss',
-    './node_modules/bootstrap-sass/assets/stylesheets/**/*.scss'
+    './node_modules/bootstrap-sass/assets/stylesheets/**/*.scss',
+    './node_modules/font-awesome/scss/**/*.scss',
   ],
   vendorFiles: [
     './node_modules/jquery/dist/jquery.js',
@@ -29,6 +30,7 @@ var config = {
   assetsSource: [
     './src/assets/**/*',
     './node_modules/bootstrap-sass/assets/@(fonts)/**/*',
+    './node_modules/font-awesome/@(fonts)/**/*',
   ],
   appDestFilename: 'app.js',
   // cssDestFilename: 'app.css',

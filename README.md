@@ -45,16 +45,17 @@ Please use caliopen.dev instructions. The followings commands are for informatio
 
 Scopes for [conventional changelog](https://github.com/ajoslin/conventional-changelog)
 
-| Scopes      | Descriptions           |
-|-------------|------------------------|
-| discussions | All about discussions  |
-| thread      | All about a thread     |
-| contact     | All about contacts     |
-| design      | All about design & UX  |
-| wording     | All about l10n or i18n |
-| pi-imp      | All about Privacy index or Importance level |
-| build       | All about tooling (used with **chore**)     |
-| test        | All about tests (used with  **chore**)      |
+| Scopes      | Descriptions                                        |
+|-------------|-----------------------------------------------------|
+| various     | Everything which does'nt feet to following scopes   |
+| discussions | All about discussions                               |
+| thread      | All about a thread                                  |
+| contact     | All about contacts                                  |
+| design      | All about design & UX                               |
+| wording     | All about l10n or i18n                              |
+| pi-imp      | All about Privacy index or Importance level         |
+| build       | All about tooling (used with **chore**)             |
+| test        | All about tests (used with  **chore**)              |
 
 ## Deploying
 

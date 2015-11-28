@@ -4,7 +4,7 @@ export /* @ngInject */ function RouterConfig ($stateProvider, $urlRouterProvider
       abstract: true,
       views: {
         'header': {
-          template: '<h1>Caliopen</h1>'
+          template: '<co-header></co-header>'
         }
       }
     })
@@ -12,7 +12,7 @@ export /* @ngInject */ function RouterConfig ($stateProvider, $urlRouterProvider
       url: '/',
       views: {
         '@': {
-          template: '<p>Hello world</p>'
+          template: '<co-discussions></co-discussions>'
         }
       }
     });
