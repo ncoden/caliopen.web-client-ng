@@ -37,8 +37,29 @@ Please use caliopen.dev instructions. The followings commands are for informatio
 
 * `npm run build`
 
-### Deploying
+### Commits and pull requests
 
-Specify what it takes to deploy your app.
+- start a new branch
+- commit your changes and create a pull request
+- once the feature or the fix has been validated squash your commits and edit the comment following conventional changelog with angular preset
+
+Scopes for [conventional changelog](https://github.com/ajoslin/conventional-changelog)
+
+| Scopes      | Descriptions           |
+|-------------|------------------------|
+| discussions | All about discussions  |
+| thread      | All about a thread     |
+| contact     | All about contacts     |
+| design      | All about design & UX  |
+| wording     | All about l10n or i18n |
+| pi-imp      | All about Privacy index or Importance level |
+| build       | All about tooling (used with **chore**)     |
+| test        | All about tests (used with  **chore**)      |
+
+## Deploying
+
+Update changelog then tag
+
+* `npm run release`
 
 ## Further Reading / Useful Links
