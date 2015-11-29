@@ -15,10 +15,14 @@ app
 
 // services
 
-import {HeaderDirective} from './directive/header.js';
-import {DiscussionsDirective} from './directive/discussions.js';
-
 // directives
+
+import {DiscussionsDirective} from './directive/discussions.js';
+import {HeaderDirective} from './directive/header.js';
+import {LayoutApplicationSwitcherDirective} from './directive/layout/application-switcher.js';
+
 app
+  .directive('coDiscussions', DiscussionsDirective)
   .directive('coHeader', HeaderDirective)
-  .directive('coDiscussions', DiscussionsDirective);
+  .directive('coLayoutApplicationSwitcher', LayoutApplicationSwitcherDirective)
+  ;
