@@ -24,7 +24,10 @@ var config = {
   vendorFiles: [
     './node_modules/jquery/dist/jquery.js',
     './node_modules/angular/angular.js',
+    './node_modules/angular-sanitize/angular-sanitize.js',
     './node_modules/angular-ui-router/release/angular-ui-router.js',
+    './node_modules/angular-translate/dist/angular-translate.js',
+    './node_modules/angular-translate/dist/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
     './node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
   ],
   assetsSource: [

@@ -1,12 +1,17 @@
 let app = angular.module('caliopenApp', [
-  'ui.router'
+  'ui.router',
+  'pascalprecht.translate',
+  'ngSanitize',
 ]);
 
 // config
 import {RouterConfig} from './config/router.js';
+import {TranslateConfig} from './config/translate.js';
 
 app
-  .config(RouterConfig);
+  .config(TranslateConfig)
+  .config(RouterConfig)
+  ;
 
 // services
 

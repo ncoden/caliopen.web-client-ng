@@ -18,6 +18,8 @@
   "devDependencies": {
     "angular": "^1.4.8",
     "angular-mocks": "^1.4.8",
+    "angular-sanitize": "^1.4.8",
+    "angular-translate": "^2.8.1",
     "angular-ui-router": "^0.2.15",
     "babel-core": "^6.2.1",
     "babel-loader": "^6.2.0",
