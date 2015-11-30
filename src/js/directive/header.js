@@ -1,4 +1,5 @@
 class HeaderController {
+  /* @ngInject */
   constructor() {
     this.session = { isAuthenticated: true };
   }

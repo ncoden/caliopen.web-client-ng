@@ -4,6 +4,7 @@ var webpack = require('gulp-webpack');
 var gulpSequence = require('gulp-sequence');
 var sass = require('gulp-sass');
 var conventionalChangelog = require('gulp-conventional-changelog');
+var ngAnnotate = require('gulp-ng-annotate');
 var path = require('path');
 var del = require('del');
 
@@ -88,6 +89,7 @@ gulp.task('build:js', function() {
         filename: config.appDestFilename,
       },
     }))
+    .pipe(ngAnnotate())
     .pipe(gulp.dest(config.publicJsDirectory));
 });
 
