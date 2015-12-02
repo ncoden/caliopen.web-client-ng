@@ -23,13 +23,6 @@ var config = {
     './node_modules/font-awesome/scss/**/*.scss',
   ],
   vendorFiles: [
-    './node_modules/jquery/dist/jquery.js',
-    './node_modules/angular/angular.js',
-    './node_modules/angular-sanitize/angular-sanitize.js',
-    './node_modules/angular-ui-router/release/angular-ui-router.js',
-    './node_modules/angular-translate/dist/angular-translate.js',
-    './node_modules/angular-translate/dist/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
-    './node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
   ],
   assetsSource: [
     './src/assets/**/*',
@@ -37,7 +30,6 @@ var config = {
     './node_modules/font-awesome/@(fonts)/**/*',
   ],
   appDestFilename: 'app.js',
-  // cssDestFilename: 'app.css',
   vendorDestFilename: 'vendor.js'
 };
 
@@ -59,7 +51,9 @@ gulp.task('build:assetsFiles', function() {
     .pipe(gulp.dest(config.publicDirectory));
 });
 
-gulp.task('build:sass', gulpSequence('build:sassPrepare', 'build:sassCompile', 'build:sassClean'));
+gulp.task('build:sass', function(cb) {
+  gulpSequence('build:sassPrepare', 'build:sassCompile', 'build:sassClean', cb);
+});
 gulp.task('build:sassPrepare', function () {
   return gulp.src(config.sassSourceFiles)
     .pipe(gulp.dest('tmp'));
@@ -81,7 +75,7 @@ gulp.task('build:js', function() {
           {
             test: /\.jsx?$/,
             exclude: /(node_modules|bower_components)/,
-            loader: 'babel' // 'babel-loader' is also a legal name to reference
+            loaders: ['babel'] // 'babel-loader' is also a legal name to reference
           }
         ]
       },

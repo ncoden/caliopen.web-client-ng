@@ -5,6 +5,7 @@ class LayoutApplicationSwitcherController {
 export function LayoutApplicationSwitcherDirective() {
   return {
     restrict: 'E',
+    scope: {},
     controller: LayoutApplicationSwitcherController,
     controllerAs: 'ctrl',
     bindToController: true,
