@@ -4,6 +4,7 @@ var webpack = require('gulp-webpack');
 var gulpSequence = require('gulp-sequence');
 var sass = require('gulp-sass');
 var conventionalChangelog = require('gulp-conventional-changelog');
+var ngAnnotate = require('gulp-ng-annotate');
 var path = require('path');
 var del = require('del');
 
@@ -15,15 +16,20 @@ var config = {
   jsSource: 'src/js/app.js',
   jsSourceFiles: 'src/**/*.js',
   htmlSource: 'src/index.html',
-  sassSource: 'src/styles/main.scss',
-  sassSourceFiles: 'src/styles/**/*.scss',
-  vendorFiles: [
-    './node_modules/angular/angular.js',
-    './node_modules/angular-ui-router/release/angular-ui-router.js'
+  sassMainFile: 'main.scss',
+  sassSourceFiles: [
+    './src/styles/**/*.scss',
+    './node_modules/bootstrap-sass/assets/stylesheets/**/*.scss',
+    './node_modules/font-awesome/scss/**/*.scss',
   ],
-  assetsSource: 'src/assets/**/*',
+  vendorFiles: [
+  ],
+  assetsSource: [
+    './src/assets/**/*',
+    './node_modules/bootstrap-sass/assets/@(fonts)/**/*',
+    './node_modules/font-awesome/@(fonts)/**/*',
+  ],
   appDestFilename: 'app.js',
-  // cssDestFilename: 'app.css',
   vendorDestFilename: 'vendor.js'
 };
 
@@ -45,10 +51,20 @@ gulp.task('build:assetsFiles', function() {
     .pipe(gulp.dest(config.publicDirectory));
 });
 
-gulp.task('build:sass', function () {
-  gulp.src(config.sassSource)
-    .pipe(sass()) //.on('error', sass.logError))
-    .pipe(gulp.dest(config.publicStylesDirectory));
+gulp.task('build:sass', function(cb) {
+  gulpSequence('build:sassPrepare', 'build:sassCompile', 'build:sassClean', cb);
+});
+gulp.task('build:sassPrepare', function () {
+  return gulp.src(config.sassSourceFiles)
+    .pipe(gulp.dest('tmp'));
+});
+gulp.task('build:sassCompile', function () {
+    return gulp.src('tmp/' + config.sassMainFile)
+      .pipe(sass())
+      .pipe(gulp.dest(config.publicStylesDirectory));
+});
+gulp.task('build:sassClean', function() {
+  del('tmp');
 });
 
 gulp.task('build:js', function() {
@@ -59,7 +75,7 @@ gulp.task('build:js', function() {
           {
             test: /\.jsx?$/,
             exclude: /(node_modules|bower_components)/,
-            loader: 'babel' // 'babel-loader' is also a legal name to reference
+            loaders: ['babel'] // 'babel-loader' is also a legal name to reference
           }
         ]
       },
@@ -67,6 +83,7 @@ gulp.task('build:js', function() {
         filename: config.appDestFilename,
       },
     }))
+    .pipe(ngAnnotate())
     .pipe(gulp.dest(config.publicJsDirectory));
 });
 

@@ -1,0 +1,86 @@
+{
+  "header": {
+    "menu": {
+      "discussions": "Discussions",
+      "messages": "Messages",
+      "contacts": "Contacts",
+      "compose": "Créer",
+      "action_default": "Action",
+      "action_dropdown": "Autres Actions",
+      "create_user": "Nouveau Contact",
+      "account": "Mon compte",
+      "settings": "Paramètres",
+      "signin": "Se connecter",
+      "signout": "Se déconnecter"
+    }
+  },
+  "application": {
+    "footer": {
+      "moto": "CaliOpen, Be Good"
+    }
+  },
+  "messages": {
+    "index": {
+      "title": "Messages",
+      "list_item": {
+        "importance_title": "Niveau d'importance",
+        "privacy_title": "Index de vie privée"
+      }
+    },
+    "show": {
+      "back": "Retour"
+    },
+    "compose": {
+      "title": "Créer un message"
+    }
+  },
+  "contacts": {
+    "tags": {
+      "all": "Tous les contacts",
+      "none": "Pas de tag personailisé"
+    },
+    "index": {
+      "title": "Contacts"
+    },
+    "show": {
+      "back": "Retour"
+    },
+    "new": {
+      "title": "Créer un Contact"
+    }
+  },
+  "settings": {
+    "account": {
+      "title": "Informations personelles",
+      "menu": {
+        "profile": "Profil",
+        "privacy": "Vie privée",
+        "security": "Securité"
+      },
+      "profile": {
+        "default": "This is the user profile for {username}"
+      },
+      "privacy": {
+        "default": "This is the privacy settings for {username}"
+      },
+      "security": {
+        "default": "This is the security settings for {username}"
+      }
+    },
+    "app": {
+      "title": "Application Settings",
+      "menu": {
+        "none": "No settings panel for now"
+      }
+    }
+  },
+  "login": {
+    "form": {
+      "errorlabel": "Error",
+      "title": "Sign In",
+      "username": "Username",
+      "password": "Password",
+      "submit": "Go"
+    }
+  }
+}

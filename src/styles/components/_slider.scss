@@ -1,0 +1,84 @@
+@mixin co-slider($color, $direction) {
+  $co-slider-width: 10px;
+  $co-strip-size: 2px;
+
+  .ui-slider-vertical,
+  .ui-slider-vertical .ui-slider-range {
+    width: $co-slider-width;
+  }
+
+  .ui-slider-horizontal,
+  .ui-slider-horizontal .ui-slider-range {
+    height: $co-slider-width;
+  }
+
+  .ui-slider-range {
+    border-radius: $co-slider-width;
+
+    background:
+      linear-gradient(
+        to $direction,
+        darken($color, 30),
+        lighten($color, 1)
+      );
+  }
+
+  .ui-widget-content {
+    border-radius: $co-slider-width;
+    @include gradient-striped(darken($color, 20));
+    background-size: 3px 3px;
+  }
+
+  .ui-slider-range {
+    background: none;
+    background-image: linear-gradient(
+      to $direction,
+      darken($color, 30),
+      lighten($color, 1)
+    );
+    box-shadow: none;
+  }
+}
+
+.caliopen-layout__block--importance {
+  @include co-slider($importance-color, top);
+}
+
+.caliopen-layout__main-topbar__block--privacy {
+  @include co-slider($privacy-color, left);
+}
+
+.caliopen-layout {
+  .ui-slider {
+    position: relative;
+  }
+
+  .ui-slider-range {
+    position: absolute;
+  }
+
+  .ui-slider-handle {
+    border-radius: 0 20px 20px 20px;
+    background-color: white;
+    display: inline-block;
+    height: 20px;
+    left: -5px;
+    outline: none;
+    position: absolute;
+    top: -5px;
+    width: 20px;
+  }
+
+  .ui-slider-vertical .ui-slider-handle:first-of-type {
+    transform: rotateZ(-135deg);
+  }
+  .ui-slider-vertical .ui-slider-handle:last-of-type {
+    transform: rotateZ(45deg);
+  }
+  .ui-slider-horizontal .ui-slider-handle:first-of-type {
+    transform: rotateZ(135deg);
+  }
+  .ui-slider-horizontal .ui-slider-handle:last-of-type {
+    transform: rotateZ(-45deg);
+  }
+}

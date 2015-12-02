@@ -4,17 +4,15 @@ export /* @ngInject */ function RouterConfig ($stateProvider, $urlRouterProvider
       abstract: true,
       views: {
         'header': {
-          template: '<h1>Caliopen</h1>'
+          template: '<co-header></co-header>'
+        },
+        '@': {
+          template: '<co-layout-application-wrapper></co-layout-application-wrapper>'
         }
       }
     })
     .state('front.discussions', {
       url: '/',
-      views: {
-        '@': {
-          template: '<p>Hello world</p>'
-        }
-      }
     });
 
     $urlRouterProvider.otherwise('/');
