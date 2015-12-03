@@ -4,6 +4,7 @@ const APPLICATION_CONTACT = 'contact';
 class LayoutApplicationWrapperController {
   /* @ngInject */
   constructor($state) {
+    this.currentStateName = $state.current.name;
     if ($state.includes('front.discussions')) {
       this.currentApplication = APPLICATION_DISCUSSION;
     }
@@ -49,11 +50,14 @@ export function LayoutApplicationWrapperDirective() {
           </div>
           <div class="caliopen-layout__block--container col-md-11 col-sm-12 col-xs-12">
             <co-layout-tab-list currentApplication=currentApplication remove="closeTab"></co-layout-tab-list>
-            <div class="caliopen-layout__main-content" ng-switch="ctrl.currentApplication">
-              <div ng-switch-when="discussion">
+            <div class="caliopen-layout__main-content" ng-switch="ctrl.currentStateName">
+              <div ng-switch-when="front.discussions">
                 <co-discussions></co-discussions>
               </div>
-              <div ng-switch-when="contact">
+              <div ng-switch-when="front.discussions.thread">
+                <co-thread></co-thread>
+              </div>
+              <div ng-switch-when="front.contacts">
                 <co-contacts></co-contacts>
               </div>
             </div>
