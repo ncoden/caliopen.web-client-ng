@@ -12,8 +12,12 @@ export /* @ngInject */ function RouterConfig ($stateProvider, $urlRouterProvider
       }
     })
     .state('front.discussions', {
-      url: '/',
-    });
+      url: '/'
+    })
+    .state('front.discussions.thread', {
+      url: 'thread/{threadId}'
+    })
+    ;
 
     $urlRouterProvider.otherwise('/');
 }

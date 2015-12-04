@@ -34,6 +34,8 @@ import {LayoutApplicationSwitcherDirective} from './directive/layout/application
 import {LayoutApplicationWrapperDirective} from './directive/layout/application-wrapper.js';
 import {LayoutPrivacyIndexSliderDirective} from './directive/layout/privacy-index-slider.js';
 import {LayoutImportanceLevelSliderDirective} from './directive/layout/importance-level-slider.js';
+import {ThreadDirective} from './directive/thread.js';
+import {ThreadMessageDirective} from './directive/thread/message.js';
 
 app
   .directive('coDiscussions', DiscussionsDirective)
@@ -42,4 +44,6 @@ app
   .directive('coLayoutApplicationWrapper', LayoutApplicationWrapperDirective)
   .directive('coLayoutPrivacyIndexSlider', LayoutPrivacyIndexSliderDirective)
   .directive('coLayoutImportanceLevelSlider', LayoutImportanceLevelSliderDirective)
+  .directive('coThread', ThreadDirective)
+  .directive('coThreadMessage', ThreadMessageDirective)
   ;
