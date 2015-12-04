@@ -8,6 +8,7 @@ class ThreadController {
 export function ThreadDirective() {
   return {
     restrict: 'E',
+    scope: {},
     controller: ThreadController,
     controllerAs: 'ctrl',
     bindToController: true,

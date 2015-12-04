@@ -5,6 +5,7 @@ class ThreadMessageController {
 export function ThreadMessageDirective() {
   return {
     restrict: 'E',
+    scope: {},
     controller: ThreadMessageController,
     controllerAs: 'ctrl',
     bindToController: true,
