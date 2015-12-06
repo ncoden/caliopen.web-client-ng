@@ -14,6 +14,7 @@ class LayoutApplicationWrapperController {
     }
   }
 }
+
 export function LayoutApplicationWrapperDirective() {
   return {
     scope: {},
@@ -36,7 +37,7 @@ export function LayoutApplicationWrapperDirective() {
               class="btn btn-info btn-lg"
               title="{{ 'header.menu.compose'|translate }}">
               <i class="fa fa-plus" />
-              {{ 'header.menu.compose'|translate }}
+              {{ 'header.menu.create_user'|translate }}
             </a>
           </div>
           <div class="caliopen-layout__main-topbar__block--privacy col-md-10">
@@ -59,6 +60,9 @@ export function LayoutApplicationWrapperDirective() {
               </div>
               <div ng-switch-when="front.contacts">
                 <co-contacts></co-contacts>
+              </div>
+              <div ng-switch-when="front.contacts.contact">
+                <co-contact></co-contact>
               </div>
             </div>
           </div>

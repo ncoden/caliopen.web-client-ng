@@ -8,6 +8,7 @@ class HeaderController {
 export function HeaderDirective () {
   return {
     restrict: 'E',
+    scope: {},
     controller: HeaderController,
     controllerAs: 'ctrl',
     bindToController: true,

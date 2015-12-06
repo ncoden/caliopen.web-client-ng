@@ -15,7 +15,13 @@ export /* @ngInject */ function RouterConfig ($stateProvider, $urlRouterProvider
       url: '/'
     })
     .state('front.discussions.thread', {
-      url: 'thread/{threadId}'
+      url: 'threads/{threadId}'
+    })
+    .state('front.contacts', {
+      url: '/contacts'
+    })
+    .state('front.contacts.contact', {
+      url: '{contactId}'
     })
     ;
 

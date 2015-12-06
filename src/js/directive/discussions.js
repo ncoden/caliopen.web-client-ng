@@ -5,6 +5,7 @@ class DiscussionsController {
 export function DiscussionsDirective() {
   return {
     restrict: 'E',
+    scope: {},
     controller: DiscussionsController,
     controllerAs: 'ctrl',
     bindToController: true,
