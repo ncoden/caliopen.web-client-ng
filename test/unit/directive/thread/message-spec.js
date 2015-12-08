@@ -1,0 +1,2 @@
+describe('Directive Thread Message', () => {
+});

@@ -129,6 +129,9 @@ $leftbar-width:     60px;
     padding-top: 45px;
   }
 
-.co-layout__privacy-slider, .co-layout__importance-slider {
-  margin: 10px;
+.co-layout__privacy-slider {
+  margin: 10px 20px 10px 0;
+}
+.co-layout__importance-slider {
+  margin: 0 10px 20px 10px;
 }
