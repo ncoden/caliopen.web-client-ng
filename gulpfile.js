@@ -5,6 +5,7 @@ var gulpSequence = require('gulp-sequence');
 var sass = require('gulp-sass');
 var conventionalChangelog = require('gulp-conventional-changelog');
 var ngAnnotate = require('gulp-ng-annotate');
+var eslint = require('gulp-eslint');
 var path = require('path');
 var del = require('del');
 
@@ -67,7 +68,7 @@ gulp.task('build:sassClean', function() {
   del('tmp');
 });
 
-gulp.task('build:js', function() {
+gulp.task('build:js', ['lint'], function() {
   return gulp.src(config.jsSource)
     .pipe(webpack({
       module: {
@@ -91,6 +92,12 @@ gulp.task('clean', function() {
   return del(config.publicDirectory);
 });
 
+gulp.task('lint', function () {
+  return gulp.src(config.jsSourceFiles)
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
 
 gulp.task('watch', function() {
   gulp.watch(config.jsSourceFiles, ['build:js']);
