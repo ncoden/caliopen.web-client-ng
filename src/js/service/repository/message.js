@@ -6,7 +6,7 @@ export class MessageRepository {
   }
 
   findByThreadId(threadId) {
-    return this.$http.get(`${this.ApiUrl}/threads/${threadId}`)
+    return this.$http.get(`${this.ApiUrl}/threads/${threadId}/messages`)
       .then(response => response.data);
   }
 }
