@@ -1,4 +1,4 @@
-export class DiscussionsContactsIconController {
+class DiscussionsContactsIconController {
   /*@ngInject*/
   constructor(ContactHelper) {
     if (this.thread.contacts.length > 4) {
@@ -34,3 +34,6 @@ export function DiscussionsContactsIconDirective () {
       </div>`
   };
 }
+
+// the solution in order to export a class that only has a constructor cf. https://github.com/olov/ng-annotate/issues/213
+exports.DiscussionsContactsIconController = DiscussionsContactsIconController;

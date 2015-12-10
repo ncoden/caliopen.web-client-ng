@@ -82,7 +82,7 @@ gulp.task('build:js', ['lint'], function() {
       },
       output: {
         filename: config.appDestFilename,
-      },
+      }
     }))
     .pipe(ngAnnotate())
     .pipe(gulp.dest(config.publicJsDirectory));

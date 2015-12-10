@@ -1,4 +1,4 @@
-export class WidgetContactAvatarLetterController {
+class WidgetContactAvatarLetterController {
   /* @ngInject */
   constructor(ContactHelper) {
     this.contactLetterStylesheetClass = ContactHelper.getContactStylesheetClass(this.contact);
@@ -20,3 +20,5 @@ export function WidgetContactAvatarLetterDirective() {
       </div>`
   };
 }
+
+exports.WidgetContactAvatarLetterController = WidgetContactAvatarLetterController;

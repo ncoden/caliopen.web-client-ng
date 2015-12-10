@@ -1,4 +1,6 @@
 export /* @ngInject */ function RouterConfig ($stateProvider, $urlRouterProvider) {
+  const uiView = { template: '<co-layout-application-wrapper></co-layout-application-wrapper>' };
+
   $stateProvider
     .state('front', {
       abstract: true,
@@ -6,22 +8,32 @@ export /* @ngInject */ function RouterConfig ($stateProvider, $urlRouterProvider
         'header': {
           template: '<co-header></co-header>'
         },
-        '@': {
-          template: '<co-layout-application-wrapper></co-layout-application-wrapper>'
-        }
+        '@': uiView
       }
     })
     .state('front.discussions', {
-      url: '/'
+      url: '/',
+      views: {
+        '@': uiView
+      }
     })
     .state('front.discussions.thread', {
-      url: 'threads/{threadId}'
+      url: 'threads/{threadId}',
+      views: {
+        '@': uiView
+      }
     })
     .state('front.contacts', {
-      url: '/contacts'
+      url: '/contacts',
+      views: {
+        '@': uiView
+      }
     })
     .state('front.contacts.contact', {
-      url: '{contactId}'
+      url: '{contactId}',
+      views: {
+        '@': uiView
+      }
     })
     ;
 
