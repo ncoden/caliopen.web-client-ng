@@ -41,14 +41,18 @@ app
   ;
 
 // services
+import {ContactsActions} from './action/contacts.js';
 import {DiscussionsActions} from './action/discussions.js';
 import {ContactHelper} from './service/helper/contact-helper.js';
+import {ContactRepository} from './service/repository/contact.js';
 import {MessageRepository} from './service/repository/message.js';
 import {ThreadRepository} from './service/repository/thread.js';
 
 app
+  .service('ContactsActions', ContactsActions)
   .service('DiscussionsActions', DiscussionsActions)
   .service('ContactHelper', ContactHelper)
+  .service('ContactRepository', ContactRepository)
   .service('MessageRepository', MessageRepository)
   .service('ThreadRepository', ThreadRepository)
   ;
