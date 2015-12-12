@@ -1,18 +1,16 @@
-export class DiscussionsController {
+import {createSelector} from 'reselect';
+
+const threadsSelector = createSelector(
+  state => state.threadReducer,
+  payload => {
+    return { threads: payload.threads };
+  });
+
+class DiscussionsController {
   /*@ngInject*/
   constructor($scope, $ngRedux, DiscussionsActions) {
-    this.mapStateToThis($ngRedux.getState());
-    const unsubscribe = $ngRedux.subscribe(() => this.mapStateToThis($ngRedux.getState()));
-    $scope.$on('$destroy', unsubscribe);
-
-    //init
+    $scope.$on('$destroy',$ngRedux.connect(threadsSelector)(this));
     $ngRedux.dispatch(DiscussionsActions.fetchThreads());
-  }
-
-  mapStateToThis(state) {
-    if (state.threadReducer.isFetching === false && !!state.threadReducer.threads) {
-      this.threads = state.threadReducer.threads;
-    }
   }
 }
 
@@ -29,3 +27,5 @@ export function DiscussionsDirective() {
       </div>`
   };
 }
+
+exports.DiscussionsController = DiscussionsController;

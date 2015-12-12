@@ -1,19 +1,18 @@
+import {createSelector} from 'reselect';
+
+const threadSelector = createSelector(
+  state => state.threadReducer,
+  payload => payload.threadId,
+  (payload, threadId) => {
+    return { messages: payload[threadId] };
+  });
+
 class ThreadController {
   /* @ngInject */
   constructor($scope, $state, $ngRedux, DiscussionsActions) {
     this.threadId = $state.params.threadId;
-    this.mapStateToThis($ngRedux.getState());
-    const unsubscribe = $ngRedux.subscribe(() => this.mapStateToThis($ngRedux.getState()));
-    $scope.$on('$destroy', unsubscribe);
-
-    //init
+    $scope.$on('$destroy', $ngRedux.connect(threadSelector)(this));
     $ngRedux.dispatch(DiscussionsActions.fetchMessages(this.threadId));
-  }
-
-  mapStateToThis(state) {
-    if (state.threadReducer.isFetching === false && !!state.threadReducer[this.threadId]) {
-      this.messages = state.threadReducer[this.threadId].messages;
-    }
   }
 }
 
