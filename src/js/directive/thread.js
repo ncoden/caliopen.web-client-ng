@@ -2,9 +2,13 @@ import {createSelector} from 'reselect';
 
 const threadSelector = createSelector(
   state => state.threadReducer,
-  payload => payload.threadId,
-  (payload, threadId) => {
-    return { messages: payload[threadId] };
+  state => state.threadReducer.selectedThread,
+  (threadState, threadId) => {
+    if (!!threadState[threadId]) {
+      return { messages: threadState[threadId].messages };
+    }
+
+    return { messages: [] };
   });
 
 class ThreadController {

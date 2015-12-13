@@ -1,5 +1,56 @@
-class LayoutApplicationSwitcherController {
+import {createSelector} from 'reselect';
 
+const APPLICATION_DISCUSSIONS = 'discussions';
+const APPLICATION_CONTACTS = 'contacts';
+
+const applicationSelector = createSelector(
+  state => state.applicationReducer,
+  payload => {
+    return {
+      currentApplicationKey: `header.menu.${payload.name}`,
+      currentApplicationRoute: payload.route
+    };
+  });
+
+export class LayoutApplicationSwitcherController {
+  /*@ngInject*/
+  constructor($scope, $state, $ngRedux, ApplicationActions) {
+    this.$state = $state;
+    this.$ngRedux = $ngRedux;
+    this.ApplicationActions = ApplicationActions;
+    $scope.$on('$destroy',$ngRedux.connect(applicationSelector)(this));
+    this.selectApplication(this.getCurrentApplicationName());
+  }
+
+  selectApplication(name) {
+    const application = this.getApplication(name);
+    this.$ngRedux.dispatch(this.ApplicationActions.selectApplication(application));
+    this.$state.go(application.route);
+  }
+
+  getApplication(name) {
+    switch(name) {
+      case APPLICATION_DISCUSSIONS:
+        return {
+          name: APPLICATION_DISCUSSIONS,
+          route: 'front.discussions'
+        };
+      case APPLICATION_CONTACTS:
+        return {
+          name: APPLICATION_CONTACTS,
+          route: 'front.contacts'
+        };
+    }
+  }
+
+  getCurrentApplicationName() {
+    switch(true) {
+      case (this.$state.includes('front.discussions')):
+        return APPLICATION_DISCUSSIONS;
+      case (this.$state.includes('front.contacts')):
+        return APPLICATION_CONTACTS;
+    }
+  }
 }
 
 export function LayoutApplicationSwitcherDirective() {
@@ -14,17 +65,17 @@ export function LayoutApplicationSwitcherDirective() {
         <li class="dropdown">
           <a href class="dropdown-toggle" data-toggle="dropdown"
              role="button" aria-haspopup="true" aria-expanded="false">
-            {{ctrl.currentApplication}} <span class="caret"></span>
+            {{ctrl.currentApplicationKey | translate}} <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a ui-sref="front.discussions">
+              <a href ng-click="ctrl.selectApplication('discussions')">
                 <i class="fa fa-envelope" />
                 {{ 'header.menu.discussions'|translate}}
               </a>
             </li>
             <li>
-              <a ui-sref="front.contacts">
+              <a href ng-click="ctrl.selectApplication('contacts')">
                 <i class="fa fa-users" />
                 {{ 'header.menu.contacts'|translate}}
               </a>
