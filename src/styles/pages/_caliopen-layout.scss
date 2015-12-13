@@ -89,6 +89,7 @@ $leftbar-width:     60px;
       margin-bottom: -1px;
       position: relative;
       display: block;
+      max-width: 200px;
     }
 
 
@@ -101,6 +102,9 @@ $leftbar-width:     60px;
         position: relative;
         display: block;
         padding: 10px 30px 10px 15px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
       .caliopen-layout__tabs__item__link--first {
         padding: 10px 15px;

@@ -9,9 +9,9 @@ describe('Directive Discussions Thread', () => {
     angular.mock.module('caliopenApp-test');
   });
 
-  beforeEach(inject(($controller) => {
+  beforeEach(inject(($controller, $state, $ngRedux, TabsActions) => {
     getController = (bindToController = {}) => {
-      return $controller('DiscussionsThreadController', { }, bindToController);
+      return $controller('DiscussionsThreadController', {$state, $ngRedux, TabsActions }, bindToController);
     };
   }));
 

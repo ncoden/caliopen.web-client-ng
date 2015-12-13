@@ -1,13 +1,21 @@
 export class DiscussionsThreadController {
   /*@ngInject*/
-  constructor($state) {
+  constructor($state, $ngRedux, TabsActions) {
     this.$state = $state;
+    this.$ngRedux = $ngRedux;
+    this.TabsActions = TabsActions;
     this.hasUnread = !!this.thread.unread_count && this.thread.unread_count > 0;
     this.fakeDate = new Date();
   }
 
   showThread() {
-    this.$state.go('front.discussions.thread', { threadId: this.thread.thread_id });
+    this.$ngRedux.dispatch(this.TabsActions.createTab({
+      route: 'front.discussions.thread',
+      routeOpts: { threadId: this.thread.thread_id },
+      label: this.thread.text
+    }));
+
+    return this.$state.go('front.discussions.thread', { threadId: this.thread.thread_id });
   }
 }
 

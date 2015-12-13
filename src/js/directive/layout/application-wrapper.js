@@ -1,17 +1,19 @@
-const APPLICATION_DISCUSSION = 'discussion';
-const APPLICATION_CONTACT = 'contact';
+import {createSelector} from 'reselect';
+
+const applicationSelector = createSelector(
+  state => state.applicationReducer,
+  payload => {
+    return {
+      currentApplication: payload.name
+    };
+  });
 
 class LayoutApplicationWrapperController {
   /* @ngInject */
-  constructor($state) {
+  constructor($scope, $state, $ngRedux) {
     this.currentStateName = $state.current.name;
-    if ($state.includes('front.discussions')) {
-      this.currentApplication = APPLICATION_DISCUSSION;
-    }
-
-    if ($state.includes('front.contacts')) {
-      this.currentApplication = APPLICATION_CONTACT;
-    }
+    this.$ngRedux = $ngRedux;
+    $scope.$on('$destroy',$ngRedux.connect(applicationSelector)(this));
   }
 }
 
@@ -25,14 +27,14 @@ export function LayoutApplicationWrapperDirective() {
       <section role="main" class="container-fluid caliopen-layout__main-container">
         <div class="caliopen-layout__main-topbar row">
           <div class="caliopen-layout__main-topbar__block--action col-md-2" ng-switch="ctrl.currentApplication">
-            <a ng-switch-when="discussion"
+            <a ng-switch-when="discussions"
               ui-sref="front.discussions.create"
               class="btn btn-info btn-lg"
               title="{{ 'header.menu.compose'|translate }}">
               <i class="fa fa-plus" />
               {{ 'header.menu.compose'|translate }}
             </a>
-            <a ng-switch-when="contact"
+            <a ng-switch-when="contacts"
               ui-sref="front.contacts.create"
               class="btn btn-info btn-lg"
               title="{{ 'header.menu.compose'|translate }}">
