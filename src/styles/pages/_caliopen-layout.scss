@@ -49,7 +49,7 @@ $leftbar-width:     60px;
   .caliopen-layout__block--importance {
     margin-top: 30px;
 
-    & .noUi-vertical {
+    & .co-layout__importance-slider {
       height: calc( 100vh - #{$header-height} - 50px - #{$topbar-height} );
       margin: auto;
     }
