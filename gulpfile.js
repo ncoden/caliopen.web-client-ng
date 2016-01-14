@@ -89,7 +89,7 @@ gulp.task('build:js', ['lint'], function() {
 });
 
 gulp.task('clean', function() {
-  return del(config.publicDirectory);
+  return del(config.publicDirectory + '/*');
 });
 
 gulp.task('lint', function () {
