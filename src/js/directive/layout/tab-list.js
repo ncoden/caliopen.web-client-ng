@@ -1,40 +1,51 @@
 import {createSelector} from 'reselect';
+import {stateGo} from 'redux-ui-router';
 
 const tabsSelector = createSelector(
-  state => state.tabReducer,
-  tabs => ({ tabs })
+  state => state.tabReducer.tabs,
+  state => state.tabReducer.selected,
+  (tabs, selectedTabId) => ({ tabs, selectedTabId })
 );
 
-const applicationSelector = createSelector(
-  state => state.applicationReducer,
-  payload => {
-    return {
-      currentApplicationKey: `header.menu.${payload.name}`,
-      currentApplicationRoute: payload.route
-    }
-  });
-
 export class LayoutTabListController {
-  constructor($scope, $state, $ngRedux, TabsActions) {
+  constructor($scope, $state, $ngRedux, TabsActions, ApplicationHelper) {
     'ngInject';
     this.$state = $state;
     this.$ngRedux = $ngRedux;
     this.TabsActions = TabsActions;
-    $scope.$on('$destroy', $ngRedux.connect(applicationSelector)(this));
+    $scope.$on('$destroy', $ngRedux.connect(() => {
+      let {name, route} = ApplicationHelper.getInfoForCurrentState();
+      return {
+        currentApplicationKey: `header.menu.${name}`,
+        currentApplicationRoute: route
+      };
+    })(this));
     $scope.$on('$destroy', $ngRedux.connect(tabsSelector)(this));
     $ngRedux.dispatch(TabsActions.requestTabs());
   }
 
   remove(tab) {
-    this.$ngRedux.dispatch(this.TabsActions.removeTab(tab));
+    this.$ngRedux.dispatch((dispatch) => {
+      dispatch(this.TabsActions.removeTab(tab));
+      if (this.isActive(tab)) {
+        dispatch(stateGo(this.currentApplicationRoute));
+      }
+    });
   }
 
   select(tab) {
-    return this.$state.go(tab.route, tab.routeOpts);
+    return this.$ngRedux.dispatch(this.TabsActions.selectTab(tab));
+  }
+
+  selectCurrentApplication() {
+    return this.$ngRedux.dispatch((dispatch) => {
+      dispatch(this.TabsActions.resetSelectedTab());
+      dispatch(stateGo(this.currentApplicationRoute));
+    });
   }
 
   isActive(tab) {
-    return this.$state.is(tab.route, tab.routeOpts);
+    return tab.id === this.selectedTabId;
   }
 }
 
@@ -49,7 +60,8 @@ export function LayoutTabListDirective() {
     template: `
       <ul class="caliopen-layout__tabs">
         <li class="caliopen-layout__tabs__item">
-          <a ng-if="ctrl.currentApplicationRoute" ui-sref="{{ ctrl.currentApplicationRoute }}" ui-sref-active-eq="caliopen-layout__tabs__item__link--active"
+          <a href ng-click="ctrl.selectCurrentApplication()"
+             ng-class="{ 'caliopen-layout__tabs__item__link--active': (ctrl.currentApplicationRoute | isState) }"
              class="caliopen-layout__tabs__item__link caliopen-layout__tabs__item__link--first">
             {{ ctrl.currentApplicationKey | translate }}
           </a>

@@ -1,3 +1,5 @@
+import {v1 as uuidV1} from 'uuid';
+
 export class DiscussionsThreadController {
   constructor($state, $ngRedux, TabsActions) {
     'ngInject';
@@ -9,13 +11,14 @@ export class DiscussionsThreadController {
   }
 
   showThread() {
-    this.$ngRedux.dispatch(this.TabsActions.createTab({
-      route: 'front.discussions.thread',
-      routeOpts: { threadId: this.thread.thread_id },
-      label: this.thread.text
-    }));
-
-    return this.$state.go('front.discussions.thread', { threadId: this.thread.thread_id });
+    this.$ngRedux.dispatch(dispatch => {
+      dispatch(this.TabsActions.addTab({
+        id: uuidV1(),
+        route: 'front.discussions.thread',
+        routeOpts: { threadId: this.thread.thread_id },
+        label: this.thread.text
+      }));
+    });
   }
 }
 

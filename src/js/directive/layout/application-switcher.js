@@ -1,55 +1,13 @@
-import {createSelector} from 'reselect';
-
-const APPLICATION_DISCUSSIONS = 'discussions';
-const APPLICATION_CONTACTS = 'contacts';
-
-const applicationSelector = createSelector(
-  state => state.applicationReducer,
-  payload => {
-    return {
-      currentApplicationKey: `header.menu.${payload.name}`,
-      currentApplicationRoute: payload.route
-    };
-  });
-
 export class LayoutApplicationSwitcherController {
-  constructor($scope, $state, $ngRedux, ApplicationActions) {
+  constructor($scope, $ngRedux, ApplicationHelper) {
     'ngInject';
-    this.$state = $state;
-    this.$ngRedux = $ngRedux;
-    this.ApplicationActions = ApplicationActions;
-    $scope.$on('$destroy',$ngRedux.connect(applicationSelector)(this));
-    this.selectApplication(this.getCurrentApplicationName());
-  }
-
-  selectApplication(name) {
-    const application = this.getApplication(name);
-    this.$ngRedux.dispatch(this.ApplicationActions.selectApplication(application));
-    this.$state.go(application.route);
-  }
-
-  getApplication(name) {
-    switch(name) {
-      case APPLICATION_DISCUSSIONS:
-        return {
-          name: APPLICATION_DISCUSSIONS,
-          route: 'front.discussions'
-        };
-      case APPLICATION_CONTACTS:
-        return {
-          name: APPLICATION_CONTACTS,
-          route: 'front.contacts'
-        };
-    }
-  }
-
-  getCurrentApplicationName() {
-    switch(true) {
-      case (this.$state.includes('front.discussions')):
-        return APPLICATION_DISCUSSIONS;
-      case (this.$state.includes('front.contacts')):
-        return APPLICATION_CONTACTS;
-    }
+    $scope.$on('$destroy', $ngRedux.connect(() => {
+      let {name, route} = ApplicationHelper.getInfoForCurrentState();
+      return {
+        currentApplicationKey: `header.menu.${name}`,
+        currentApplicationRoute: route
+      };
+    })(this));
   }
 }
 

@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux';
-import {applicationReducer} from './application-reducer.js';
 import {contactReducer} from './contact-reducer.js';
 import {tabReducer} from './tab-reducer.js';
 import {threadReducer} from './thread-reducer.js';
+import {router} from 'redux-ui-router';
 
 let reducers = combineReducers({
-  applicationReducer,
+  router,
   contactReducer,
   tabReducer,
   threadReducer,

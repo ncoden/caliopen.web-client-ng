@@ -11,12 +11,18 @@ const threadSelector = createSelector(
     return { messages: [] };
   });
 
+const routerSelector = createSelector(
+  state => state.router.currentParams.threadId,
+  threadId => ({ threadId })
+);
+
 class ThreadController {
   constructor($scope, $state, $ngRedux, DiscussionsActions) {
     'ngInject';
-    this.threadId = $state.params.threadId;
     $scope.$on('$destroy', $ngRedux.connect(threadSelector)(this));
-    $ngRedux.dispatch(DiscussionsActions.fetchMessages(this.threadId));
+    $scope.$on('$destroy', $ngRedux.connect(routerSelector)((payload) => {
+      $ngRedux.dispatch(DiscussionsActions.fetchMessages(payload.threadId));
+    }));
   }
 }
 

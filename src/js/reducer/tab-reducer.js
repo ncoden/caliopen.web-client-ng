@@ -1,17 +1,29 @@
+import {combineReducers} from 'redux';
 import * as actions from '../action/action-types.js';
 
-export function tabReducer(state = [], action = {}) {
+export const tabReducer = combineReducers({
+  tabs: tabsReducer,
+  selected: selectTabReducer
+});
+
+function tabsReducer(state = [], action = {}) {
   switch(action.type) {
-    case actions.CREATE_TAB:
-      let newStateOnCreation = state.slice();
-      newStateOnCreation.push(action.tab);
+    case actions.ADD_TAB:
+      let addState = state.slice();
+      addState.push(action.tab);
 
-      return newStateOnCreation;
+      return addState;
     case actions.REMOVE_TAB:
-      let newStateOnDeletion = state.filter(currentTab => currentTab !== action.tab);
-
-      return newStateOnDeletion;
+      return state.tabs.filter(currentTab => currentTab !== action.tab);
     default:
       return state;
   }
+}
+
+function selectTabReducer(state = null, action) {
+  if (action.type === actions.SELECT_TAB) {
+    return action.tabId;
+  }
+
+  return state;
 }
