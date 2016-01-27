@@ -69,14 +69,14 @@ export function LayoutApplicationSwitcherDirective() {
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a href ng-click="ctrl.selectApplication('discussions')">
-                <i class="fa fa-envelope" />
+              <a ui-sref="front.discussions">
+                <i class="fa fa-envelope"></i>
                 {{ 'header.menu.discussions'|translate}}
               </a>
             </li>
             <li>
-              <a href ng-click="ctrl.selectApplication('contacts')">
-                <i class="fa fa-users" />
+              <a ui-sref="front.contacts">
+                <i class="fa fa-users"></i>
                 {{ 'header.menu.contacts'|translate}}
               </a>
             </li>

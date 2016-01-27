@@ -35,7 +35,7 @@ export function ContactsDirective() {
           </div>
           <div class="col-xs-12 col-sm-11 col-sm-offset-1">
             <ul class="co-contact-list__card-icons">
-              <li ng-repeat="email in contact.emails"><i class="fa fa-envelope" /> {{email.address}}</li>
+              <li ng-repeat="email in contact.emails"><i class="fa fa-envelope"></i> {{email.address}}</li>
             </ul>
           </div>
         </div>
