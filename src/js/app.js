@@ -1,15 +1,17 @@
-window.jQuery = require('jquery');
-require('jquery-ui/slider');
-require('bootstrap-sass');
-require('babel-polyfill');
-require('angular');
-const ngSanitize = require('angular-sanitize');
-const uiRouter = require('angular-ui-router');
-const translate = require('angular-translate');
-require('angular-translate-loader-static-files');
-const uiSlider = require('angular-ui-slider');
-const ngRedux = require('ng-redux');
-const angularMoment = require('angular-moment');
+//jQuery must be loaded before angular
+//jQ cannot be use as well. jQuery is exposed to document (@see gulpfile)
+import * as jQ from 'jquery';
+import angular from 'angular';
+import slider from 'jquery-ui/slider';
+import bootstrapSass from 'bootstrap-sass';
+import babelPolyfill from 'babel-polyfill';
+import ngSanitize from 'angular-sanitize';
+import uiRouter from 'angular-ui-router';
+import translate from 'angular-translate';
+import angularTranslateLoaderStaticFiles from 'angular-translate-loader-static-files';
+import uiSlider from 'angular-ui-slider';
+import ngRedux from 'ng-redux';
+import angularMoment from 'angular-moment';
 
 let app = angular.module('caliopenApp', [
   uiRouter,
