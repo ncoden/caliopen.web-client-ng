@@ -16,3 +16,19 @@ export function ApiUrlFactory(BaseUrl) {
 
   return `${BaseUrl}/${API_NAMESPACE}`;
 }
+
+export function ApiInterceptorConfig($httpProvider) {
+  'ngInject';
+  $httpProvider.interceptors.push(function($q, $rootScope, $window, BaseUrl) {
+    'ngInject';
+    return {
+      responseError: rejection => {
+        if (rejection.status === 401) {
+          $window.location.href = BaseUrl;
+        }
+
+        return $q.reject(rejection);
+      }
+    };
+  });
+}
