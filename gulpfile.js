@@ -73,11 +73,12 @@ gulp.task('build:js', ['lint'], function() {
     .pipe(webpack({
       module: {
         loaders: [
+          { test: /jquery\.js$/, loader: 'expose?jQuery' },
           {
             test: /\.jsx?$/,
             exclude: /(node_modules|bower_components)/,
             loaders: ['babel'] // 'babel-loader' is also a legal name to reference
-          }
+          },
         ]
       },
       output: {

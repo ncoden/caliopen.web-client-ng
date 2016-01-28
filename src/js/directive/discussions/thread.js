@@ -39,11 +39,11 @@ export function DiscussionsThreadDirective() {
           </span>
         </div>
         <div class="col-md-1 col-sm-1 col-xs-1">
-          <i ng-if="ctrl.thread.file_attached" class="fa fa-paperclip" />
+          <i ng-if="ctrl.thread.file_attached" class="fa fa-paperclip"></i>
         </div>
         <div class="col-md-1 hidden-sm hidden-xs">
-          <i class="fa fa-exclamation-triangle" /> {{ctrl.thread.importance_level}}
-          <i class="fa fa-eye" /> {{ctrl.thread.privacy_index}}
+          <i class="fa fa-exclamation-triangle"></i> {{ctrl.thread.importance_level}}
+          <i class="fa fa-eye"></i> {{ctrl.thread.privacy_index}}
         </div>
         <div class="col-md-2 col-sm-2 hidden-xs">
           {{ ctrl.fakeDate | amDateFormat:'lll'}}

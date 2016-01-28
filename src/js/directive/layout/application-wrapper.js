@@ -31,14 +31,14 @@ export function LayoutApplicationWrapperDirective() {
               ui-sref="front.discussions.create"
               class="btn btn-info btn-lg"
               title="{{ 'header.menu.compose'|translate }}">
-              <i class="fa fa-plus" />
+              <i class="fa fa-plus"></i>
               {{ 'header.menu.compose'|translate }}
             </a>
             <a ng-switch-when="contacts"
               ui-sref="front.contacts.create"
               class="btn btn-info btn-lg"
               title="{{ 'header.menu.compose'|translate }}">
-              <i class="fa fa-plus" />
+              <i class="fa fa-plus"></i>
               {{ 'header.menu.create_user'|translate }}
             </a>
           </div>

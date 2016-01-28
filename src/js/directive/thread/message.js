@@ -30,11 +30,11 @@ export function ThreadMessageDirective() {
             {{ ctrl.message.date | amDateFormat:'lll'}}
           </div>
           <div class="col-xs-1 caliopen-messages__message--summary">
-            <i ng-if="ctrl.thread.file_attached" class="fa fa-paperclip" />
+            <i ng-if="ctrl.thread.file_attached" class="fa fa-paperclip"></i>
           </div>
           <div class="col-xs-4 col-sm-2 col-md-1 caliopen-messages__message--summary">
-            <i class="fa fa-exclamation-triangle" /> {{ctrl.message.importance_level}}
-            <i class="fa fa-eye" /> {{ctrl.message.privacy_index}}
+            <i class="fa fa-exclamation-triangle"></i> {{ctrl.message.importance_level}}
+            <i class="fa fa-eye"></i> {{ctrl.message.privacy_index}}
           </div>
           <div class="col-sm-1 hidden-xs caliopen-messages__message--summary">
             <span class="pull-right">
