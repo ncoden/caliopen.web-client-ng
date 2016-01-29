@@ -1,3 +1,4 @@
-export /*@ngInject*/ function MomentConfig (amMoment) {
+export function MomentConfig (amMoment) {
+  'ngInject';
   amMoment.changeLocale('en');
 }

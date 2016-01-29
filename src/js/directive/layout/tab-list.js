@@ -15,8 +15,8 @@ const applicationSelector = createSelector(
   });
 
 export class LayoutTabListController {
-  /*@ngInject*/
   constructor($scope, $state, $ngRedux, TabsActions) {
+    'ngInject';
     this.$state = $state;
     this.$ngRedux = $ngRedux;
     this.TabsActions = TabsActions;

@@ -1,6 +1,6 @@
 export class DiscussionsThreadController {
-  /*@ngInject*/
   constructor($state, $ngRedux, TabsActions) {
+    'ngInject';
     this.$state = $state;
     this.$ngRedux = $ngRedux;
     this.TabsActions = TabsActions;

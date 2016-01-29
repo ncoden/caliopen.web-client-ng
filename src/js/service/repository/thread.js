@@ -1,6 +1,6 @@
 export class ThreadRepository {
-  /* @ngInject */
   constructor($http, ApiUrl) {
+    'ngInject';
     this.$http = $http;
     this.ApiUrl = ApiUrl;
   }

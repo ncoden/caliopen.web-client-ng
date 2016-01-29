@@ -1,6 +1,6 @@
 class ContactController {
-  /* @ngInject */
   constructor($state) {
+    'ngInject';
     const contactId = $state.params.contactId;
   }
 }

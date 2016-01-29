@@ -1,8 +1,8 @@
 import * as action from './action-types.js';
 
 export class ContactsActions {
-  /* @ngInject */
   constructor(ContactRepository) {
+    'ngInject';
     this.ContactRepository = ContactRepository;
   }
 

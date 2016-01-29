@@ -13,8 +13,8 @@ const applicationSelector = createSelector(
   });
 
 export class LayoutApplicationSwitcherController {
-  /*@ngInject*/
   constructor($scope, $state, $ngRedux, ApplicationActions) {
+    'ngInject';
     this.$state = $state;
     this.$ngRedux = $ngRedux;
     this.ApplicationActions = ApplicationActions;

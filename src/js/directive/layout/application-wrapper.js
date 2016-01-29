@@ -9,8 +9,8 @@ const applicationSelector = createSelector(
   });
 
 class LayoutApplicationWrapperController {
-  /* @ngInject */
   constructor($scope, $state, $ngRedux) {
+    'ngInject';
     this.currentStateName = $state.current.name;
     this.$ngRedux = $ngRedux;
     $scope.$on('$destroy',$ngRedux.connect(applicationSelector)(this));

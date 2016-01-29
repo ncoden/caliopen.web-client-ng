@@ -6,9 +6,9 @@ const threadsSelector = createSelector(
     return { threads: payload.threads };
   });
 
-class DiscussionsController {
-  /*@ngInject*/
+export class DiscussionsController {
   constructor($scope, $ngRedux, DiscussionsActions) {
+    'ngInject';
     $scope.$on('$destroy',$ngRedux.connect(threadsSelector)(this));
     $ngRedux.dispatch(DiscussionsActions.fetchThreads());
   }
@@ -27,5 +27,3 @@ export function DiscussionsDirective() {
       </div>`
   };
 }
-
-exports.DiscussionsController = DiscussionsController;

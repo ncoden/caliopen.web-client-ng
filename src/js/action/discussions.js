@@ -1,8 +1,8 @@
 import * as action from './action-types.js';
 
 export class DiscussionsActions {
-  /* @ngInject */
   constructor(ThreadRepository, MessageRepository) {
+    'ngInject';
     this.ThreadRepository = ThreadRepository;
     this.MessageRepository = MessageRepository;
   }
