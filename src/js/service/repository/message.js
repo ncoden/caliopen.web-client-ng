@@ -1,6 +1,6 @@
 export class MessageRepository {
-  /* @ngInject */
   constructor($http, ApiUrl) {
+    'ngInject';
     this.$http = $http;
     this.ApiUrl = ApiUrl;
   }

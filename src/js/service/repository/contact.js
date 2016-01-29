@@ -1,6 +1,6 @@
 export class ContactRepository {
-  /* @ngInject */
   constructor($http, ApiUrl) {
+    'ngInject';
     this.$http = $http;
     this.ApiUrl = ApiUrl;
   }

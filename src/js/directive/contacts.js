@@ -6,9 +6,9 @@ const contactSelector = createSelector(
     return { contacts: payload.contacts };
   });
 
-class ContactsController {
-  /*@ngInject*/
+export class ContactsController {
   constructor($scope, $ngRedux, ContactsActions) {
+    'ngInject';
     $scope.$on('$destroy', $ngRedux.connect(contactSelector)(this));
     $ngRedux.dispatch(ContactsActions.fetchContacts());
   }
@@ -43,5 +43,3 @@ export function ContactsDirective() {
     </div>`
   };
 }
-
-exports.ContactsController = ContactsController;

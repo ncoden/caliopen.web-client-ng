@@ -1,4 +1,5 @@
-export /* @ngInject */ function TranslateConfig($translateProvider) {
+export function TranslateConfig($translateProvider) {
+  'ngInject';
   $translateProvider
     .useSanitizeValueStrategy('sanitize');
   $translateProvider.useStaticFilesLoader({

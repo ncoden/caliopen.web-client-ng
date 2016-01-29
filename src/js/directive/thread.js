@@ -12,8 +12,8 @@ const threadSelector = createSelector(
   });
 
 class ThreadController {
-  /* @ngInject */
   constructor($scope, $state, $ngRedux, DiscussionsActions) {
+    'ngInject';
     this.threadId = $state.params.threadId;
     $scope.$on('$destroy', $ngRedux.connect(threadSelector)(this));
     $ngRedux.dispatch(DiscussionsActions.fetchMessages(this.threadId));

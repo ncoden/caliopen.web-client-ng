@@ -1,6 +1,6 @@
-class DiscussionsContactsIconController {
-  /*@ngInject*/
+export class DiscussionsContactsIconController {
   constructor(ContactHelper) {
+    'ngInject';
     if (this.thread.contacts.length > 4) {
       let letters = this.thread.contacts.slice(0, 3).map(contact => ContactHelper.getContactStylesheetClass(contact));
       letters.push(ContactHelper.getStylesheetClass('plus'));
@@ -34,6 +34,3 @@ export function DiscussionsContactsIconDirective () {
       </div>`
   };
 }
-
-// the solution in order to export a class that only has a constructor cf. https://github.com/olov/ng-annotate/issues/213
-exports.DiscussionsContactsIconController = DiscussionsContactsIconController;

@@ -1,4 +1,5 @@
-export /* @ngInject */ function RouterConfig ($stateProvider, $urlRouterProvider) {
+export function RouterConfig ($stateProvider, $urlRouterProvider) {
+  'ngInject';
   const uiView = { template: '<co-layout-application-wrapper></co-layout-application-wrapper>' };
 
   $stateProvider

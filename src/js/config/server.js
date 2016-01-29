@@ -1,4 +1,5 @@
-export /*@ngInject*/ function BaseUrlFactory($location) {
+export function BaseUrlFactory($location) {
+  'ngInject';
   const defaultAssoc = { http: 80, https: 443 };
 
   let baseUrl = $location.protocol() + '://' + $location.host();
@@ -9,7 +10,8 @@ export /*@ngInject*/ function BaseUrlFactory($location) {
   return baseUrl + ':' + $location.port();
 }
 
-export /*@ngInject*/ function ApiUrlFactory(BaseUrl) {
+export function ApiUrlFactory(BaseUrl) {
+  'ngInject';
   const API_NAMESPACE = 'api/v1';
 
   return `${BaseUrl}/${API_NAMESPACE}`;

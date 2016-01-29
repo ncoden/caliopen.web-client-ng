@@ -36,7 +36,8 @@ const crashReporter = () => next => action => {
   }
 };
 
-export /* @ngInject */ function ReduxConfig($ngReduxProvider) {
+export function ReduxConfig($ngReduxProvider) {
+  'ngInject';
   $ngReduxProvider.createStoreWith(reducers, [
     thunk,
     promise,

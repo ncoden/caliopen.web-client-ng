@@ -2,10 +2,8 @@ module.exports = function(config) {
   config.set({
     frameworks: ['jasmine'],
     files: [
-      '../../node_modules/angular/angular.js',
-      '../../node_modules/angular-ui-router/release/angular-ui-router.js',
-      '../../node_modules/angular-mocks/angular-mocks.js',
       '../../src/js/app.js',
+      '../../node_modules/angular-mocks/angular-mocks.js',
       './**/*-spec.js'
     ],
     preprocessors: {
@@ -15,7 +13,10 @@ module.exports = function(config) {
     browsers: ['PhantomJS'],
     webpack: {
       module: {
-        loaders: [ { test: /\.js/, exclude: /node_modules/, loader: 'babel' } ]
+        loaders: [
+          { test: /jquery\.js$/, loader: 'expose?jQuery' },
+          { test: /\.js/, exclude: /node_modules/, loader: 'babel' }
+        ]
       },
       watch: true
     },
