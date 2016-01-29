@@ -26,12 +26,13 @@ let app = angular.module('caliopenApp', [
 import {ReduxConfig} from './config/redux.js';
 import {RouterConfig} from './config/router.js';
 import {TranslateConfig} from './config/translate.js';
-import {BaseUrlFactory, ApiUrlFactory} from './config/server.js';
+import {BaseUrlFactory, ApiUrlFactory, ApiInterceptorConfig} from './config/server.js';
 
 app
   .config(ReduxConfig)
   .config(RouterConfig)
   .config(TranslateConfig)
+  .config(ApiInterceptorConfig)
   .factory('BaseUrl', BaseUrlFactory)
   .factory('ApiUrl', ApiUrlFactory)
   ;
