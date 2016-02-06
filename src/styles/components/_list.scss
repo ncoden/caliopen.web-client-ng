@@ -1,0 +1,27 @@
+.co-list {
+  &__item {
+    padding: 10px 0;
+
+    background-color: $co-color-fg;
+    border-bottom: 1px solid $body-bg;
+    color: $co-color-fg-text;
+
+    &:first-child {
+      border-top: 1px solid $body-bg;
+    }
+  }
+
+  a.co-list__item,
+  .co-list__item--link {
+    cursor: pointer;
+
+    &:hover {
+      background-color: $co-color-fg--high;
+      color: $co-color-fg-text--high;
+    }
+    &:active {
+      background-color: $co-color-fg--low;
+      color: $co-color-fg-text--low;
+    }
+  }
+}

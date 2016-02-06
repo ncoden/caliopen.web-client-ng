@@ -1,0 +1,16 @@
+.row {
+  &__vertical-align {
+    display: table;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    & > [class^="col-"],
+    & > [class*=" col-"] {
+      display: table-cell;
+      vertical-align: middle;
+      float: none;
+    }
+  }
+}

@@ -1,0 +1,66 @@
+$co-avatars-radius: 40px;
+$co-avatars-letter-padding-size: 0px;
+
+.co-avatars {
+  display: inline-block;
+  vertical-align: middle;
+
+  position: relative;
+  width: $co-avatars-radius;
+  height: $co-avatars-radius;
+
+  background-color: $caliopen-color-3;
+  border-radius: 50%;
+  overflow: hidden;
+
+  .co-avatars__letter::before {
+    display: block;
+    float: left;
+
+    text-align: center;
+  }
+
+  .co-avatars__letter--1::before {
+    height: $co-avatars-radius;
+    line-height: $co-avatars-radius;
+    width: $co-avatars-radius;
+  }
+
+  .co-avatars__letter--2::before {
+    width: $co-avatars-radius * 0.5 - $co-avatars-letter-padding-size * 0.5;
+    height: $co-avatars-radius;
+    line-height: $co-avatars-radius;
+    font-size: $co-avatars-radius * 0.25;
+  }
+  .co-avatars__letter--2:first-child::before {
+    margin-right: $co-avatars-letter-padding-size;
+  }
+
+  .co-avatars__letter--3::before {
+    width: $co-avatars-radius * 0.5 - $co-avatars-letter-padding-size * 0.5;
+    height: $co-avatars-radius * 0.5;
+    line-height: $co-avatars-radius * 0.5;
+    font-size: $co-avatars-radius * 0.25;
+  }
+  .co-avatars__letter--3:first-child::before {
+    height: $co-avatars-radius;
+    line-height: $co-avatars-radius;
+    margin: 0 $co-avatars-letter-padding-size $co-avatars-letter-padding-size 0;
+  }
+  .co-avatars__letter--3:nth-child(2)::before {
+    margin-bottom: $co-avatars-letter-padding-size;
+  }
+
+  .co-avatars__letter--4::before {
+    width: $co-avatars-radius * 0.5 - $co-avatars-letter-padding-size * 0.5;
+    height: $co-avatars-radius * 0.5;
+    line-height: $co-avatars-radius * 0.5;
+    font-size: $co-avatars-radius * 0.25;
+  }
+  .co-avatars__letter--4:first-child::before {
+    margin: 0 $co-avatars-letter-padding-size $co-avatars-letter-padding-size 0;
+  }
+  .co-avatars__letter--4:nth-child(3)::before {
+    margin-right: $co-avatars-letter-padding-size;
+  }
+}

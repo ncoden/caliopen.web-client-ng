@@ -15,8 +15,8 @@ export function WidgetContactAvatarLetterDirective() {
     controllerAs: 'ctrl',
     bindToController: true,
     template: `
-      <div class="contact-avatar">
-        <i class="contact-icon__letter contact-avatar__letter" ng-class="ctrl.contactLetterStylesheetClass"></i>
+      <div class="co-avatar co-avatar--small">
+        <div class="co-avatar__letter" ng-class="ctrl.contactLetterStylesheetClass"></div>
       </div>`
   };
 }

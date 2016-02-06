@@ -1,0 +1,36 @@
+// bright colors
+$co-color-primary:          #1395ba;
+$co-color-primary--low:     darken($co-color-primary, 10%);
+$co-color-primary--high:    lighten($co-color-primary, 10%);
+
+$co-color-secondary:        #13ba95;
+$co-color-secondary--low:   darken($co-color-secondary, 10%);
+$co-color-secondary--high:  lighten($co-color-secondary, 10%);
+
+// foreground
+$co-color-fg:               #333333;
+$co-color-fg--low:          darken($co-color-fg, 2.5%);
+$co-color-fg--high:         lighten($co-color-fg, 5%);
+
+$co-color-fg-text:          #e8e8e8;
+$co-color-fg-text--low:     darken($co-color-fg-text, 10%);
+$co-color-fg-text--high:    lighten($co-color-fg-text, 10%);
+
+// background
+$co-color-bg:               #1d1d1d;
+$co-color-bg--low:          darken($co-color-bg, 2.5%);
+$co-color-bg--high:         lighten($co-color-bg, 5%);
+
+$co-color-bg-text:          #ffffff;
+$co-color-bg-text--low:     darken($co-color-bg-text, 10%);
+$co-color-bg-text--high:    lighten($co-color-bg-text, 10%);
+
+// basic palette
+$caliopen-color-1: #ffffff;
+$caliopen-color-2: #333333;
+$caliopen-color-3: #294f5c;
+$caliopen-color-4: #3386a2;
+$caliopen-color-5: #97b707;
+
+$importance-color: #d2bc00;
+$privacy-color: $caliopen-color-5;
