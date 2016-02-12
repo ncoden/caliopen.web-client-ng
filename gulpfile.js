@@ -23,6 +23,7 @@ var config = {
     './src/styles/**/*.scss',
     './node_modules/bootstrap-sass/assets/stylesheets/**/*.scss',
     './node_modules/font-awesome/scss/**/*.scss',
+    './node_modules/angular-pseudo-class/lib/scss/**/*.scss',
   ],
   vendorFiles: [
   ],

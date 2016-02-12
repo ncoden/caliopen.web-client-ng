@@ -15,11 +15,11 @@
   .co-list__item--link {
     cursor: pointer;
 
-    &:hover {
+    @include pseudo-class(hover) {
       background-color: $co-color-fg--high;
       color: $co-color-fg-text--high;
     }
-    &:active {
+    @include pseudo-class(active) {
       background-color: $co-color-fg--low;
       color: $co-color-fg-text--low;
     }

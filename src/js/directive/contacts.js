@@ -23,7 +23,7 @@ export function ContactsDirective() {
     bindToController: true,
     template: `
     <div class="container-fluid co-list">
-      <div ng-repeat="contact in ctrl.contacts" ng-click="ctrl.show(contact)" class="row co-list__item co-list__item--link">
+      <div ng-repeat="contact in ctrl.contacts" ng-click="ctrl.show(contact)" class="row co-list__item co-list__item--link" pseudo-class-ctrl>
         <div class="row__vertical-align">
           <div class="col-xs-12 col-sm-5">
             <span class="co-contacts__contact-icon">
@@ -34,19 +34,21 @@ export function ContactsDirective() {
             </span>
           </div>
           <div class="hidden-xs col-sm-7">
-            <span class="co-text--ellipsis">
-              {{contact.emails[0]}}
-            </span>
-            <span class="dropdown">
-              <span class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="caret"></span>
+            <span pseudo-class-scope>
+              <span class="co-text--ellipsis">
+                {{contact.emails[0]}}
               </span>
-              <ul class="dropdown-menu pull-right">
-                <li ng-repeat="email in contact.emails">
-                  <i class="fa fa-envelope"></i>
-                  {{email.address}}
-                </li>
-              </ul>
+              <span class="dropdown">
+                <span class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="caret"></span>
+                </span>
+                <ul class="dropdown-menu pull-right">
+                  <li ng-repeat="email in contact.emails">
+                    <i class="fa fa-envelope"></i>
+                    {{email.address}}
+                  </li>
+                </ul>
+              </span>
             </span>
           </div>
         </div>

@@ -13,6 +13,7 @@ import uiSlider from 'angular-ui-slider';
 import ngRedux from 'ng-redux';
 import reduxUiRouter from 'redux-ui-router';
 import angularMoment from 'angular-moment';
+import pseudoClass from 'angular-pseudo-class';
 
 let app = angular.module('caliopenApp', [
   uiRouter,
@@ -22,6 +23,7 @@ let app = angular.module('caliopenApp', [
   ngRedux,
   angularMoment.name,
   reduxUiRouter,
+  pseudoClass,
 ]);
 
 // config
