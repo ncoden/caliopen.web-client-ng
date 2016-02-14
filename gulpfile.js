@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var webpack = require('gulp-webpack');
 var gulpSequence = require('gulp-sequence');
+var gulpPlumber = require('gulp-plumber');
 var sass = require('gulp-sass');
 var conventionalChangelog = require('gulp-conventional-changelog');
 var ngAnnotate = require('gulp-ng-annotate');
@@ -61,6 +62,7 @@ gulp.task('build:sassPrepare', function () {
 });
 gulp.task('build:sassCompile', function () {
     return gulp.src('tmp/' + config.sassMainFile)
+      .pipe(gulpPlumber())
       .pipe(sass())
       .pipe(gulp.dest(config.publicStylesDirectory));
 });
