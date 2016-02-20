@@ -32,11 +32,7 @@ export function HeaderDirective () {
               <div ng-if="ctrl.session.isAuthenticated">
                 <co-layout-application-switcher
                   currentApplication="currentApplication"></co-layout-application-switcher>
-
-                <co-layout-user-menu
-                  user="user"
-                  currentApplication="currentApplication"
-                  logout="logout"></co-layout-user-menu>
+                <co-layout-user-menu></co-layout-user-menu>
               </div>
 
               <ul ng-if="!ctrl.session.isAuthenticated" class="nav navbar-nav navbar-right">
