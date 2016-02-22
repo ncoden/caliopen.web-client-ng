@@ -1,7 +1,17 @@
+import {createSelector} from 'reselect';
+
+const contactSelector = createSelector(
+  state => state.contactReducer,
+  payload => {
+    return {
+      contact: payload.selectedContact
+    };
+  });
+
 class ContactController {
   constructor($state) {
     'ngInject';
-    const contactId = $state.params.contactId;
+    $scope.$on('$destroy', $ngRedux.connect(contactSelector)(this));
   }
 }
 

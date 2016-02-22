@@ -1,19 +1,17 @@
 import {createSelector} from 'reselect';
 
-const applicationSelector = createSelector(
-  state => state.applicationReducer,
+const routerSelector = createSelector(
+  state => state.router,
   payload => {
     return {
-      currentApplication: payload.name
+      currentStateName: payload.currentState.name
     };
   });
 
 class LayoutApplicationWrapperController {
-  constructor($scope, $state, $ngRedux) {
+  constructor($scope, $state, $ngRedux, ApplicationHelper) {
     'ngInject';
-    this.currentStateName = $state.current.name;
-    this.$ngRedux = $ngRedux;
-    $scope.$on('$destroy',$ngRedux.connect(applicationSelector)(this));
+    $scope.$on('$destroy',$ngRedux.connect(routerSelector)(this));
   }
 }
 

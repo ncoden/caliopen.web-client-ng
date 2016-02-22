@@ -11,6 +11,7 @@ import translate from 'angular-translate';
 import angularTranslateLoaderStaticFiles from 'angular-translate-loader-static-files';
 import uiSlider from 'angular-ui-slider';
 import ngRedux from 'ng-redux';
+import reduxUiRouter from 'redux-ui-router';
 import angularMoment from 'angular-moment';
 
 let app = angular.module('caliopenApp', [
@@ -20,6 +21,7 @@ let app = angular.module('caliopenApp', [
   uiSlider,
   ngRedux,
   angularMoment.name,
+  reduxUiRouter,
 ]);
 
 // config
@@ -44,20 +46,20 @@ app
   ;
 
 // services
-import {ApplicationActions} from './action/application.js';
 import {ContactsActions} from './action/contacts.js';
 import {DiscussionsActions} from './action/discussions.js';
 import {TabsActions} from './action/tabs.js';
+import {ApplicationHelper} from './service/helper/application-helper.js';
 import {ContactHelper} from './service/helper/contact-helper.js';
 import {ContactRepository} from './service/repository/contact.js';
 import {MessageRepository} from './service/repository/message.js';
 import {ThreadRepository} from './service/repository/thread.js';
 
 app
-  .service('ApplicationActions', ApplicationActions)
   .service('ContactsActions', ContactsActions)
   .service('DiscussionsActions', DiscussionsActions)
   .service('TabsActions', TabsActions)
+  .service('ApplicationHelper', ApplicationHelper)
   .service('ContactHelper', ContactHelper)
   .service('ContactRepository', ContactRepository)
   .service('MessageRepository', MessageRepository)

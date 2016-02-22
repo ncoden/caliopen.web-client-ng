@@ -7,13 +7,6 @@ export class DiscussionsActions {
     this.MessageRepository = MessageRepository;
   }
 
-  selectThread(threadId) {
-    return {
-      type: action.SELECT_THREAD,
-      threadId
-    };
-  }
-
   requestMessages(threadId) {
     return {
       type: action.REQUEST_MESSAGES,
