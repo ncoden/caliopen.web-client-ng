@@ -12,7 +12,7 @@ export class DiscussionsContactsIconController {
         .map(contact => ContactHelper.getContactStylesheetClass(contact));
     }
 
-    this.iconClass = `contact-icon__letter--${this.lettersStylesheetClass.length}`;
+    this.iconClass = `co-avatars__letter--${this.lettersStylesheetClass.length}`;
   }
 }
 
@@ -26,11 +26,8 @@ export function DiscussionsContactsIconDirective () {
     controllerAs: 'ctrl',
     bindToController: true,
     template: `
-      <div class="contact-icon">
-        <div class="circle"></div>
-        <div class="circle-inner">
-          <i ng-repeat="letterClass in ctrl.lettersStylesheetClass" class="contact-icon__letter" ng-class="[letterClass, ctrl.iconClass]"></i>
-        </div>
+      <div class="co-avatars">
+        <div ng-repeat="letterClass in ctrl.lettersStylesheetClass" class="co-avatars__letter" ng-class="[letterClass, ctrl.iconClass]"></div>
       </div>`
   };
 }

@@ -1,0 +1,43 @@
+$co-avatar--small__size: 32px;
+$co-avatar--medium__size: 64px;
+$co-avatar--large__size: 128px;
+
+.co-avatar {
+  display: inline-block;
+  vertical-align: middle;
+
+  position: relative;
+  width: $co-avatar--medium__size;
+  height: $co-avatar--medium__size;
+
+  background-color: $co-color-fg;
+  border-radius: 2px;
+  overflow: hidden;
+
+  &__letter::before {
+    display: block;
+    line-height: $co-avatar--medium__size;
+
+    color: #ffffff;
+    font-size: $co-avatar--medium__size * 0.75;
+    text-align: center;
+  }
+
+  &--small {
+    width: $co-avatar--small__size;
+    height: $co-avatar--small__size;
+  }
+  &--small &__letter::before {
+    line-height: $co-avatar--small__size;
+    font-size: $co-avatar--small__size * 0.75;
+  }
+
+  &--large {
+    width: $co-avatar--large__size;
+    height: $co-avatar--large__size;
+  }
+  &--large &__letter::before {
+    line-height: $co-avatar--large__size;
+    font-size: $co-avatar--large__size * 0.75;
+  }
+}

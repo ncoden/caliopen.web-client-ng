@@ -22,21 +22,32 @@ export function ContactsDirective() {
     controllerAs: 'ctrl',
     bindToController: true,
     template: `
-    <div class="container-fluid">
-      <div class="co-contact-list">
-        <div ng-repeat="contact in ctrl.contacts" class="row co-contact-list__item">
-          <div class="col-xs-4 col-sm-1">
-            <widget-contact-avatar-letter contact="contact"></widget-contact-avatar-letter>
-          </div>
-          <div class="col-xs-8 col-sm-11">
-            <h3 class="co-contact-list__card-title" ng-click="ctrl.show(contact)">
+    <div class="container-fluid co-list">
+      <div ng-repeat="contact in ctrl.contacts" ng-click="ctrl.show(contact)" class="row co-list__item co-list__item--link">
+        <div class="row__vertical-align">
+          <div class="col-xs-12 col-sm-5">
+            <span class="co-contacts__contact-icon">
+              <widget-contact-avatar-letter contact="contact"></widget-contact-avatar-letter>
+            </span>
+            <span class="co-text--ellipsis">
               {{contact.title}}
-            </h3>
+            </span>
           </div>
-          <div class="col-xs-12 col-sm-11 col-sm-offset-1">
-            <ul class="co-contact-list__card-icons">
-              <li ng-repeat="email in contact.emails"><i class="fa fa-envelope"></i> {{email.address}}</li>
-            </ul>
+          <div class="hidden-xs col-sm-7">
+            <span class="co-text--ellipsis">
+              {{contact.emails[0]}}
+            </span>
+            <span class="dropdown">
+              <span class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+              </span>
+              <ul class="dropdown-menu pull-right">
+                <li ng-repeat="email in contact.emails">
+                  <i class="fa fa-envelope"></i>
+                  {{email.address}}
+                </li>
+              </ul>
+            </span>
           </div>
         </div>
       </div>
