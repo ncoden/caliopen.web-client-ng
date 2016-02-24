@@ -14,7 +14,7 @@ function tabsReducer(state = [], action = {}) {
 
       return addState;
     case actions.REMOVE_TAB:
-      return state.tabs.filter(currentTab => currentTab !== action.tab);
+      return state.filter(currentTab => currentTab !== action.tab);
     default:
       return state;
   }
