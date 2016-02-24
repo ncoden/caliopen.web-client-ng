@@ -49,21 +49,25 @@ app
 import {ContactsActions} from './action/contacts.js';
 import {DiscussionsActions} from './action/discussions.js';
 import {TabsActions} from './action/tabs.js';
+import {UserActions} from './action/user.js';
 import {ApplicationHelper} from './service/helper/application-helper.js';
 import {ContactHelper} from './service/helper/contact-helper.js';
 import {ContactRepository} from './service/repository/contact.js';
 import {MessageRepository} from './service/repository/message.js';
 import {ThreadRepository} from './service/repository/thread.js';
+import {UserRepository} from './service/repository/user.js';
 
 app
   .service('ContactsActions', ContactsActions)
   .service('DiscussionsActions', DiscussionsActions)
   .service('TabsActions', TabsActions)
+  .service('UserActions', UserActions)
   .service('ApplicationHelper', ApplicationHelper)
   .service('ContactHelper', ContactHelper)
   .service('ContactRepository', ContactRepository)
   .service('MessageRepository', MessageRepository)
   .service('ThreadRepository', ThreadRepository)
+  .service('UserRepository', UserRepository)
   ;
 
 // directives
@@ -78,6 +82,7 @@ import {LayoutApplicationWrapperDirective} from './directive/layout/application-
 import {LayoutPrivacyIndexSliderDirective} from './directive/layout/privacy-index-slider.js';
 import {LayoutImportanceLevelSliderDirective} from './directive/layout/importance-level-slider.js';
 import {LayoutTabListDirective} from './directive/layout/tab-list.js';
+import {LayoutUserMenuDirective} from './directive/layout/user-menu.js';
 import {ThreadDirective} from './directive/thread.js';
 import {ThreadMessageDirective} from './directive/thread/message.js';
 import {WidgetContactAvatarLetterDirective} from './directive/widget/contact/avatar-letter.js';
@@ -94,6 +99,7 @@ app
   .directive('coLayoutPrivacyIndexSlider', LayoutPrivacyIndexSliderDirective)
   .directive('coLayoutImportanceLevelSlider', LayoutImportanceLevelSliderDirective)
   .directive('coLayoutTabList', LayoutTabListDirective)
+  .directive('coLayoutUserMenu', LayoutUserMenuDirective)
   .directive('coThread', ThreadDirective)
   .directive('coThreadMessage', ThreadMessageDirective)
   .directive('widgetContactAvatarLetter', WidgetContactAvatarLetterDirective)
