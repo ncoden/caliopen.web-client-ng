@@ -81,6 +81,7 @@ import {LayoutApplicationSwitcherDirective} from './directive/layout/application
 import {LayoutApplicationWrapperDirective} from './directive/layout/application-wrapper.js';
 import {LayoutPrivacyIndexSliderDirective} from './directive/layout/privacy-index-slider.js';
 import {LayoutImportanceLevelSliderDirective} from './directive/layout/importance-level-slider.js';
+import {LayoutSearchFieldDirective} from './directive/layout/search-field.js';
 import {LayoutTabListDirective} from './directive/layout/tab-list.js';
 import {LayoutUserMenuDirective} from './directive/layout/user-menu.js';
 import {ThreadDirective} from './directive/thread.js';
@@ -98,6 +99,7 @@ app
   .directive('coLayoutApplicationWrapper', LayoutApplicationWrapperDirective)
   .directive('coLayoutPrivacyIndexSlider', LayoutPrivacyIndexSliderDirective)
   .directive('coLayoutImportanceLevelSlider', LayoutImportanceLevelSliderDirective)
+  .directive('coLayoutSearchField', LayoutSearchFieldDirective)
   .directive('coLayoutTabList', LayoutTabListDirective)
   .directive('coLayoutUserMenu', LayoutUserMenuDirective)
   .directive('coThread', ThreadDirective)
