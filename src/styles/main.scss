@@ -1,6 +1,7 @@
 // theme
 @import "base/base";
 @import "base/colors";
+@import "base/fonts";
 @import "base/bootstrap";
 
 // vendors
@@ -10,13 +11,6 @@
 // vendors extentions
 @import "bootstrap-extention/grid";
 
-// pages
-@import "pages/caliopen-layout";
-@import "pages/cor-login";
-@import "pages/caliopen-threads";
-@import "pages/caliopen-messages";
-@import "pages/caliopen-contacts";
-
 // components
 @import "components/avatar";
 @import "components/avatars";
@@ -25,4 +19,16 @@
 @import "components/slider";
 
 // utilities
-@import "utils/text"
+@import "utils/text";
+
+// application
+@import "layout/header";
+@import "layout/topbar";
+@import "layout/body";
+@import "layout/sliders";
+@import "layout/tabs";
+
+@import "pages/cor-login";
+@import "pages/threads";
+@import "pages/messages";
+@import "pages/contacts";

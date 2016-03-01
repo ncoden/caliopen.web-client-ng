@@ -19,6 +19,6 @@ describe('Directive Widget Contact AvatarLetter', () => {
   it('has css class', () => {
     let ctrl = getController({ contact: { title: 'Prof. Farnsworth'} });
 
-    expect(ctrl.contactLetterStylesheetClass).toEqual('caliopen-letter--P');
+    expect(ctrl.contactLetterStylesheetClass).toEqual('co-letter--P');
   });
 });

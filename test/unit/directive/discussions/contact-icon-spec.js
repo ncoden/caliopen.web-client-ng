@@ -21,7 +21,7 @@ describe('Directive Discussions contactIcon', () => {
       { title: 'Leela' },
       { title: 'Bender'},
     ] } });
-    expect(ctrl.lettersStylesheetClass).toEqual(['caliopen-letter--P', 'caliopen-letter--L', 'caliopen-letter--B']);
+    expect(ctrl.lettersStylesheetClass).toEqual(['co-letter--P', 'co-letter--L', 'co-letter--B']);
     expect(ctrl.iconClass).toEqual('contact-icon__letter--3')
   });
   it('thread has 4 contacts', inject((ThreadRepository, MessageRepository) => {
@@ -31,7 +31,7 @@ describe('Directive Discussions contactIcon', () => {
       { title: 'Bender'},
       { title: 'Fry' },
     ] } });
-    expect(ctrl.lettersStylesheetClass).toEqual(['caliopen-letter--P', 'caliopen-letter--L', 'caliopen-letter--B', 'caliopen-letter--F']);
+    expect(ctrl.lettersStylesheetClass).toEqual(['co-letter--P', 'co-letter--L', 'co-letter--B', 'co-letter--F']);
     expect(ctrl.iconClass).toEqual('contact-icon__letter--4')
   }));
   it('thread has many contacts', inject((ThreadRepository, MessageRepository) => {
@@ -42,7 +42,7 @@ describe('Directive Discussions contactIcon', () => {
       { title: 'Fry' },
       { title: 'Dr Zoïdberg'},
     ] } });
-    expect(ctrl.lettersStylesheetClass).toEqual(['caliopen-letter--P', 'caliopen-letter--L', 'caliopen-letter--B', 'caliopen-letter--plus']);
+    expect(ctrl.lettersStylesheetClass).toEqual(['co-letter--P', 'co-letter--L', 'co-letter--B', 'co-letter--plus']);
     expect(ctrl.iconClass).toEqual('contact-icon__letter--4')
   }));
 });

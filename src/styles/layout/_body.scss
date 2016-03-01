@@ -1,0 +1,18 @@
+.co-layout__body {
+  @media (min-width: $screen-md-min) {
+    &__block-importance {
+      width: 4%;
+    }
+  }
+
+  @media (min-width: $screen-md-min) {
+    &__block-container {
+      width: 96%;
+    }
+  }
+
+  &__content {
+    background-color: $caliopen-color-2;
+    padding-top: 45px;
+  }
+}

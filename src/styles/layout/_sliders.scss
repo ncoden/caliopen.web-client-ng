@@ -1,0 +1,12 @@
+$header-height:     65px;
+$topbar-height:     65px;
+
+.co-layout__privacy-slider {
+  margin: 10px 20px;
+}
+.co-layout__importance-slider {
+  height: 650px - $header-height - $topbar-height - 50px; // IE9
+  height: calc( 100vh - #{$header-height} - #{$topbar-height} - 50px );
+
+  margin: 20px 10px;
+}

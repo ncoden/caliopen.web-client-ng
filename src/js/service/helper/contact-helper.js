@@ -14,6 +14,6 @@ export class ContactHelper {
   }
 
   getStylesheetClass(letter = 'none') {
-    return `caliopen-letter--${letter}`;
+    return `co-letter--${letter}`;
   }
 }
