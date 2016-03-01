@@ -12,6 +12,12 @@ class LayoutApplicationWrapperController {
   constructor($scope, $state, $ngRedux, ApplicationHelper) {
     'ngInject';
     $scope.$on('$destroy',$ngRedux.connect(routerSelector)(this));
+    $scope.$on('$destroy', $ngRedux.connect(() => {
+      let {name, route} = ApplicationHelper.getInfoForCurrentState();
+      return {
+        currentApplication: name,
+      };
+    })(this));
   }
 }
 
