@@ -24,14 +24,13 @@ export function HeaderDirective () {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">
+              <a class="navbar-brand" ui-sref="front.discussions">
                 <img class="caliopen-layout__header__navbar-img--brand" src="images/brand.png" alt="CaliOpen" />
               </a>
             </div>
             <div class="collapse navbar-collapse" id="caliopenLayoutHeaderCollapse">
               <div ng-if="ctrl.session.isAuthenticated">
-                <co-layout-application-switcher
-                  currentApplication="currentApplication"></co-layout-application-switcher>
+                <co-layout-application-switcher></co-layout-application-switcher>
                 <co-layout-user-menu></co-layout-user-menu>
               </div>
 
