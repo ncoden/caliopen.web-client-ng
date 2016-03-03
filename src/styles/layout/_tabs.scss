@@ -1,0 +1,59 @@
+.co-layout__tabs {
+  background-color: $body-bg;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+
+  &::before,
+  &::after {
+    content: " ";
+    display: table;
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+.co-layout__tabs__item {
+  float: left;
+  margin-bottom: -1px;
+  position: relative;
+  display: block;
+  max-width: 200px;
+}
+
+.co-layout__tabs__item__link {
+  color: darken($caliopen-color-1, 50);
+  border-bottom: 4px solid $body-bg;
+  border-top: 4px solid $body-bg;
+  background-color: $caliopen-color-2;
+  margin-right: 2px;
+  position: relative;
+  display: block;
+  padding: 10px 30px 10px 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &--first {
+    padding: 10px 15px;
+  }
+  &:hover,
+  &:focus {
+    //reset bootstrap
+    text-decoration: none;
+    color: darken($caliopen-color-1, 30);
+  }
+
+  &--active {
+    color: $caliopen-color-1;
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid transparent;
+  }
+}
+
+.co-layout__tabs__item__del-btn {
+  position: absolute;
+  right: 10px;
+  top: 14px;
+}

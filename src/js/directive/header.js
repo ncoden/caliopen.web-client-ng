@@ -13,7 +13,7 @@ export function HeaderDirective () {
     controllerAs: 'ctrl',
     bindToController: true,
     template: `
-      <header class="caliopen-layout__header">
+      <header class="co-layout__header">
         <nav class="navbar navbar-inverse navbar-fixed-top">
           <div class="container-fluid">
             <div class="navbar-header">
@@ -25,7 +25,7 @@ export function HeaderDirective () {
                 <span class="icon-bar"></span>
               </button>
               <a class="navbar-brand" ui-sref="front.discussions">
-                <img class="caliopen-layout__header__navbar-img--brand" src="images/brand.png" alt="CaliOpen" />
+                <img class="co-layout__header__navbar-img--brand" src="images/brand.png" alt="CaliOpen" />
               </a>
             </div>
             <div class="collapse navbar-collapse" id="caliopenLayoutHeaderCollapse">

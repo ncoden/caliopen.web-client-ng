@@ -1,0 +1,8 @@
+.co-layout__header {
+  height: $navbar-height;
+  margin-bottom: $navbar-margin-bottom;
+
+  &__navbar-img--brand {
+    height: $line-height-computed;
+  }
+}

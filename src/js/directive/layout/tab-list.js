@@ -58,21 +58,21 @@ export function LayoutTabListDirective() {
     controllerAs: 'ctrl',
     bindToController: true,
     template: `
-      <ul class="caliopen-layout__tabs">
-        <li class="caliopen-layout__tabs__item">
+      <ul class="co-layout__tabs">
+        <li class="co-layout__tabs__item">
           <a href ng-click="ctrl.selectCurrentApplication()"
-             ng-class="{ 'caliopen-layout__tabs__item__link--active': (ctrl.currentApplicationRoute | isState) }"
-             class="caliopen-layout__tabs__item__link caliopen-layout__tabs__item__link--first">
+             ng-class="{ 'co-layout__tabs__item__link--active': (ctrl.currentApplicationRoute | isState) }"
+             class="co-layout__tabs__item__link co-layout__tabs__item__link--first">
             {{ ctrl.currentApplicationKey | translate }}
           </a>
         </li>
-        <li ng-repeat="tab in ctrl.tabs" class="caliopen-layout__tabs__item">
+        <li ng-repeat="tab in ctrl.tabs" class="co-layout__tabs__item">
           <a href ng-click="ctrl.select(tab)"
-             ng-class="{ 'caliopen-layout__tabs__item__link--active': ctrl.isActive(tab) }"
-             class="caliopen-layout__tabs__item__link">
+             ng-class="{ 'co-layout__tabs__item__link--active': ctrl.isActive(tab) }"
+             class="co-layout__tabs__item__link">
             {{tab.label | limitTo:200}}
           </a>
-          <a href ng-click="ctrl.remove(tab)" class="caliopen-layout__tabs__item__del-btn">
+          <a href ng-click="ctrl.remove(tab)" class="co-layout__tabs__item__del-btn">
             <i class="fa fa-close"></i>
           </a>
         </li>

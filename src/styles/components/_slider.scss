@@ -40,15 +40,15 @@
   }
 }
 
-.caliopen-layout__block--importance {
+.co-layout__body__block-importance {
   @include co-slider($importance-color, top);
 }
 
-.caliopen-layout__main-topbar__block--privacy {
+.co-layout__topbar__block-privacy {
   @include co-slider($privacy-color, left);
 }
 
-.caliopen-layout {
+.co-layout {
   .ui-slider {
     position: relative;
   }
