@@ -1,0 +1,6 @@
+html {
+  // Prevent BS font-size reset.
+  // Base font-size should be given by the browser
+  // https://teamtreehouse.com/community/note-bootstrap-may-reset-your-base-fontsize
+  font-size: 100%;
+}
