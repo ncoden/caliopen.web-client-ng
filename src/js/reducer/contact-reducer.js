@@ -5,6 +5,19 @@ export function contactReducer(state = {
   didInvalidate: false
 }, action = {}) {
   switch(action.type) {
+    case actions.REQUEST_CONTACT:
+      return Object.assign({}, state, {
+        isFetching: true,
+        didInvalidate: false,
+        selectedContact: action.contactId
+      });
+    case actions.RECEIVER_CONTACT:
+      return Object.assign({}, state, {
+        isFetching: false,
+        didInvalidate: false,
+        [action.contactId]: action.contact,
+        lastUpdated: action.receivedAt
+      });
     case actions.REQUEST_CONTACTS:
       return Object.assign({}, state, {
         isFetching: true,

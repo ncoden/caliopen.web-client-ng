@@ -9,4 +9,9 @@ export class ContactRepository {
     return this.$http.get(this.ApiUrl + '/contacts')
       .then(response => response.data);
   }
+
+  findByContactId(contactId) {
+    return this.$http.get(this.ApiUrl + '/contacts/' + contactId)
+      .then(response => response.data);
+  }
 }

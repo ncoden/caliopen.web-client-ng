@@ -1,4 +1,5 @@
 import {createSelector} from 'reselect';
+import {v1 as uuidV1} from 'uuid';
 
 const contactSelector = createSelector(
   state => state.contactReducer,
@@ -7,10 +8,23 @@ const contactSelector = createSelector(
   });
 
 export class ContactsController {
-  constructor($scope, $ngRedux, ContactsActions) {
+  constructor($scope, $ngRedux, ContactsActions, TabsActions) {
     'ngInject';
+    this.$ngRedux = $ngRedux;
+    this.TabsActions = TabsActions;
     $scope.$on('$destroy', $ngRedux.connect(contactSelector)(this));
     $ngRedux.dispatch(ContactsActions.fetchContacts());
+  }
+
+  showContact(contact) {
+    this.$ngRedux.dispatch(dispatch => {
+      dispatch(this.TabsActions.addTab({
+        id: uuidV1(),
+        route: 'front.contacts.contact',
+        routeOpts: { contactId: contact.contact_id },
+        label: contact.title
+      }));
+    });
   }
 }
 
@@ -23,7 +37,7 @@ export function ContactsDirective() {
     bindToController: true,
     template: `
     <div class="container-fluid co-list">
-      <div ng-repeat="contact in ctrl.contacts" ng-click="ctrl.show(contact)" class="row co-list__item co-list__item--link">
+      <div ng-repeat="contact in ctrl.contacts" ng-click="ctrl.showContact(contact)" class="row co-list__item co-list__item--link">
         <div class="row__vertical-align">
           <div class="col-xs-12 col-sm-5">
             <span class="co-contacts__contact-icon">
