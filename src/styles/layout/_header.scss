@@ -5,4 +5,7 @@
   &__navbar-img--brand {
     height: $line-height-computed;
   }
+  &__search-field {
+    width: $co-form__width--medium;
+  }
 }

@@ -31,6 +31,9 @@ export function HeaderDirective () {
             <div class="collapse navbar-collapse" id="caliopenLayoutHeaderCollapse">
               <div ng-if="ctrl.session.isAuthenticated">
                 <co-layout-application-switcher></co-layout-application-switcher>
+
+                <co-layout-search-field></co-layout-search-field>
+
                 <co-layout-user-menu></co-layout-user-menu>
               </div>
 
