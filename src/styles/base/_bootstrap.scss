@@ -1,20 +1,20 @@
 // --- base ---
 // colors
-$gray-base:     $caliopen-color-1;
+$gray-base:     #ffffff;
 $gray-lighter:  darken($gray-base, 13.5%);
 $gray-light:    darken($gray-base, 20%);
 $gray:          darken($gray-base, 33.5%);
 $gray-dark:     darken($gray-base, 46.7%);
 $gray-darker:   darken($gray-base, 93.5%);
-$brand-primary: $caliopen-color-4;
+$brand-primary: $co-color__primary;
 
 // fonts
 $font-family-sans-serif: open_sansregular, "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 
 // --- layout ---
-$body-bg: #1d1d1d;
-$body-color: $caliopen-color-1;
+$body-bg: $co-color__bg__back;
+$text-color: $co-color__bg__text;
 
 
 // --- components ---
@@ -22,22 +22,23 @@ $border-radius-base: 0px;
 $border-radius-small: 0px;
 $border-radius-large: 0px;
 
-$component-active-bg: $caliopen-color-4;
-$component-active-color: $gray-light;
+$component-active-bg: $co-color__primary;
+$component-active-color: $co-color__fg__text;
 
 // dropdown
-$dropdown-bg: #333333;
-$dropdown-link-hover-bg: lighten($caliopen-color-4, 5);
-$dropdown-divider-bg: $caliopen-color-2;
+$dropdown-bg: $co-color__fg__back;
+$dropdown-link-hover-bg: $co-color__primary;
+$dropdown-divider-bg: $co-color__fg__back;
 
-$dropdown-link-color: $gray-lighter;
-$dropdown-link-disabled-color: $gray-darker;
-$dropdown-link-hover-color: lighten($gray-lighter, 5%);
+$dropdown-link-color: $co-color__fg__text--higher;
+$dropdown-link-disabled-color: $co-color__fg__text--lower;
+$dropdown-link-hover-color: $co-color__fg__text;
 
 // navbar
-$navbar-inverse-bg: $caliopen-color-2;
-$navbar-inverse-link-active-bg: $caliopen-color-3;
-$navbar-inverse-link-hover-bg: lighten($caliopen-color-4, 5);
+$navbar-inverse-bg: $co-color__fg__back;
+$navbar-inverse-link-active-bg: $co-color__primary--lower;
+$navbar-inverse-link-hover-bg: $co-color__primary;
 
 // badge
-$badge-bg: $gray-darker;
+$badge-bg: $co-color__fg__back--high;
+$badge-color: $co-color__fg__text--low;

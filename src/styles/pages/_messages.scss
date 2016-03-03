@@ -10,7 +10,7 @@
 }
 
 .caliopen-messages__message--summary:hover {
-  color: lighten($caliopen-color-1, 5);
+  color: $co-color__fg__text--high;
   cursor: pointer;
 }
 
