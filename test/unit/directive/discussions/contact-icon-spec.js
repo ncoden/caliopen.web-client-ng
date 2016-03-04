@@ -22,7 +22,7 @@ describe('Directive Discussions contactIcon', () => {
       { title: 'Bender'},
     ] } });
     expect(ctrl.lettersStylesheetClass).toEqual(['co-letter--P', 'co-letter--L', 'co-letter--B']);
-    expect(ctrl.iconClass).toEqual('contact-icon__letter--3')
+    expect(ctrl.iconClass).toEqual('co-avatars__letter--3')
   });
   it('thread has 4 contacts', inject((ThreadRepository, MessageRepository) => {
     let ctrl = getController({ thread: { contacts: [
@@ -32,7 +32,7 @@ describe('Directive Discussions contactIcon', () => {
       { title: 'Fry' },
     ] } });
     expect(ctrl.lettersStylesheetClass).toEqual(['co-letter--P', 'co-letter--L', 'co-letter--B', 'co-letter--F']);
-    expect(ctrl.iconClass).toEqual('contact-icon__letter--4')
+    expect(ctrl.iconClass).toEqual('co-avatars__letter--4')
   }));
   it('thread has many contacts', inject((ThreadRepository, MessageRepository) => {
     let ctrl = getController({ thread: { contacts: [
@@ -43,6 +43,6 @@ describe('Directive Discussions contactIcon', () => {
       { title: 'Dr Zoïdberg'},
     ] } });
     expect(ctrl.lettersStylesheetClass).toEqual(['co-letter--P', 'co-letter--L', 'co-letter--B', 'co-letter--plus']);
-    expect(ctrl.iconClass).toEqual('contact-icon__letter--4')
+    expect(ctrl.iconClass).toEqual('co-avatars__letter--4')
   }));
 });
