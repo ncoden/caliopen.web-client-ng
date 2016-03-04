@@ -41,11 +41,11 @@
 }
 
 .co-layout__body__block-importance {
-  @include co-slider($importance-color, top);
+  @include co-slider($co-color__importance, top);
 }
 
 .co-layout__topbar__block-privacy {
-  @include co-slider($privacy-color, left);
+  @include co-slider($co-color__privacy, left);
 }
 
 .co-layout {

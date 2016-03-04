@@ -1,5 +1,5 @@
 .co-layout__tabs {
-  background-color: $body-bg;
+  background-color: $co-color__bg__back;
   margin-bottom: 0;
   padding-left: 0;
   list-style: none;
@@ -23,10 +23,10 @@
 }
 
 .co-layout__tabs__item__link {
-  color: darken($caliopen-color-1, 50);
-  border-bottom: 4px solid $body-bg;
-  border-top: 4px solid $body-bg;
-  background-color: $caliopen-color-2;
+  color: $co-color__fg__text--lower;
+  border-bottom: 4px solid $co-color__bg__back;
+  border-top: 4px solid $co-color__bg__back;
+  background-color: $co-color__fg__back;
   margin-right: 2px;
   position: relative;
   display: block;
@@ -42,11 +42,11 @@
   &:focus {
     //reset bootstrap
     text-decoration: none;
-    color: darken($caliopen-color-1, 30);
+    color: $co-color__fg__text;
   }
 
   &--active {
-    color: $caliopen-color-1;
+    color: $co-color__fg__text--higher;
     border-bottom: 4px solid transparent;
     border-top: 4px solid transparent;
   }
