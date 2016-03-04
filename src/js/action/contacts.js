@@ -6,6 +6,22 @@ export class ContactsActions {
     this.ContactRepository = ContactRepository;
   }
 
+  requestContact(contactId) {
+    return {
+      type: action.REQUEST_CONTACT,
+      contactId
+    };
+  }
+
+  receiveContact(contactId, json) {
+    return {
+      type: action.RECEIVER_CONTACT,
+      contactId,
+      contact: json.contacts,
+      receiveAt: Date.now()
+    };
+  }
+
   selectContact(contactId) {
     return {
       type: action.SELECT_CONTACT,
@@ -25,6 +41,14 @@ export class ContactsActions {
       contacts: json.contacts,
       total: json.total,
       receiveAt: Date.now()
+    };
+  }
+
+  fetchContact(contactId) {
+    return dispatch => {
+      dispatch(this.requestContact(contactId));
+      return this.ContactRepository.findByContactId(contactId)
+        .then(json => dispatch(this.receiveContact(contactId, json)));
     };
   }
 
