@@ -14,7 +14,7 @@ export class LayoutTabListController {
     this.$ngRedux = $ngRedux;
     this.TabsActions = TabsActions;
     $scope.$on('$destroy', $ngRedux.connect(() => {
-      let {name, route} = ApplicationHelper.getInfoForCurrentState();
+      let {name, route} = ApplicationHelper.getCurrentInfos();
       return {
         currentApplicationKey: `header.menu.${name}`,
         currentApplicationRoute: route
