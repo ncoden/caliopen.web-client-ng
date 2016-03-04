@@ -16,10 +16,10 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "angular": "~1.4.8",
-    "angular-mocks": "~1.4.8",
+    "angular": "~1.5.0",
+    "angular-mocks": "~1.5.0",
     "angular-moment": "^0.10.3",
-    "angular-sanitize": "^1.4.8",
+    "angular-sanitize": "~1.5.0",
     "angular-translate": "^2.8.1",
     "angular-translate-loader-static-files": "^2.8.1",
     "angular-ui-router": "^0.2.15",
@@ -52,7 +52,7 @@
     "ng-redux": "^3.1.1",
     "phantomjs": "^1.9.19",
     "redux": "^3.0.4",
-    "redux-ui-router": "^0.4.3",
+    "redux-ui-router": "^0.5.1",
     "reselect": "^2.0.1",
     "uuid": "^2.0.1",
     "webpack": "^1.12.9"
