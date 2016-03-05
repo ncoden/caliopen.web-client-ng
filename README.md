@@ -1,7 +1,7 @@
-# Caliopen.Frontend
+# Caliopen Web Client
 
 [![Build
-Status](https://travis-ci.org/CaliOpen/caliopen.ng-frontend.svg)](https://travis-ci.org/CaliOpen/caliopen.ng-frontend)
+Status](https://travis-ci.org/CaliOpen/caliopen.web-client-ng.svg)](https://travis-ci.org/CaliOpen/caliopen.web-client-ng)
 
 [CaliOpen](https://caliopen.org)'s User Interface project.
 
