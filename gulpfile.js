@@ -1,9 +1,12 @@
 var gulp = require('gulp');
+var util = require('gulp-util');
 var concat = require('gulp-concat');
 var webpack = require('gulp-webpack');
 var gulpSequence = require('gulp-sequence');
 var gulpPlumber = require('gulp-plumber');
 var sass = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer');
+var purifycss = require('gulp-purifycss');
 var conventionalChangelog = require('gulp-conventional-changelog');
 var ngAnnotate = require('gulp-ng-annotate');
 var eslint = require('gulp-eslint');
@@ -32,7 +35,12 @@ var config = {
     './node_modules/font-awesome/@(fonts)/**/*',
   ],
   appDestFilename: 'app.js',
-  vendorDestFilename: 'vendor.js'
+  vendorDestFilename: 'vendor.js',
+  sassPrefixs: {
+    browsers: ['last 2 versions'],
+    cascade: false
+  },
+  production: !!util.env.production
 };
 
 gulp.task('build:vendor', function() {
@@ -51,23 +59,6 @@ gulp.task('build:assetsIndex', function() {
 gulp.task('build:assetsFiles', function() {
   return gulp.src(config.assetsSource)
     .pipe(gulp.dest(config.publicDirectory));
-});
-
-gulp.task('build:sass', function(cb) {
-  gulpSequence('build:sassPrepare', 'build:sassCompile', 'build:sassClean', cb);
-});
-gulp.task('build:sassPrepare', function () {
-  return gulp.src(config.sassSourceFiles)
-    .pipe(gulp.dest('tmp'));
-});
-gulp.task('build:sassCompile', function () {
-    return gulp.src('tmp/' + config.sassMainFile)
-      .pipe(gulpPlumber())
-      .pipe(sass())
-      .pipe(gulp.dest(config.publicStylesDirectory));
-});
-gulp.task('build:sassClean', function() {
-  del('tmp');
 });
 
 gulp.task('build:js', ['lint'], function() {
@@ -89,6 +80,30 @@ gulp.task('build:js', ['lint'], function() {
     }))
     .pipe(ngAnnotate())
     .pipe(gulp.dest(config.publicJsDirectory));
+});
+
+gulp.task('build:sass', function(cb) {
+  gulpSequence('build:sassPrepare', 'build:sassCompile', 'build:sassClean', cb);
+});
+gulp.task('build:sassPrepare', function () {
+  return gulp.src(config.sassSourceFiles)
+    .pipe(gulp.dest(config.systemBuildDirectory));
+});
+gulp.task('build:sassCompile', function () {
+  return gulp.src(config.systemBuildDirectory + '/' + config.sassMainFile)
+    .pipe(gulpPlumber())
+    .pipe(sass())
+    .pipe(config.production ? autoprefixer(config.sassPrefixs) : util.noop())
+    .pipe(config.production ? purifycss([
+        config.publicJsDirectory + '/' + config.appDestFilename,
+        config.publicJsDirectory + '/' + config.htmlSource
+      ], {
+        minify: true
+      }) : util.noop())
+    .pipe(gulp.dest(config.publicStylesDirectory));
+});
+gulp.task('build:sassClean', function() {
+  del(config.systemBuildDirectory);
 });
 
 gulp.task('clean', function() {
@@ -119,5 +134,5 @@ gulp.task('release:changelog', function() {
 });
 
 gulp.task('release', ['release:changelog']);
-gulp.task('build', gulpSequence('clean', ['build:assets', 'build:vendor', 'build:sass', 'build:js']));
+gulp.task('build', gulpSequence('clean', ['build:assets', 'build:vendor', 'build:js', 'build:sass']));
 gulp.task('default', ['build']);
