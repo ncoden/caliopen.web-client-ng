@@ -1,28 +1,26 @@
-// theme
+// base
 @import "base/base";
-@import "base/colors";
 @import "base/fonts";
-@import "base/bootstrap";
+@import "base/theme/dark";
 
 // vendors
+@import "extension/bootstrap/custom";
 @import "bootstrap";
+@import "extension/bootstrap/grid";
+@import "extension/bootstrap/scaffolding";
+
 @import "font-awesome";
 
-// vendors extentions
-@import "bootstrap-extention/grid";
-@import "bootstrap-extention/scaffolding";
-
 // components
-@import "components/avatar";
-@import "components/avatars";
-@import "components/letters";
-@import "components/list";
-@import "components/slider";
-@import "components/search-field";
-@import "components/text-field";
+@import "component/list";
+@import "component/text-field";
+@import "component/search-field";
+@import "component/text";
 
-// utilities
-@import "utils/text";
+@import "component/avatar";
+@import "component/avatars";
+@import "component/letters";
+@import "component/slider";
 
 // application
 @import "layout/header";
@@ -31,7 +29,7 @@
 @import "layout/sliders";
 @import "layout/tabs";
 
-@import "pages/cor-login";
-@import "pages/threads";
-@import "pages/messages";
-@import "pages/contacts";
+@import "page/cor-login";
+@import "page/threads";
+@import "page/messages";
+@import "page/contacts";
