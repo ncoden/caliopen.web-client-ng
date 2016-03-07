@@ -22,7 +22,7 @@ export function DiscussionsDirective() {
     controllerAs: 'ctrl',
     bindToController: true,
     template: `
-      <div class="container-fluid">
+      <div class="container-fluid co-list">
         <co-discussions-thread thread="thread" ng-repeat="thread in ctrl.threads"></co-discussions-thread>
       </div>`
   };
