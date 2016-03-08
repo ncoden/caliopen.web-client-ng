@@ -73,6 +73,7 @@ app
 // directives
 import {ContactDirective} from './directive/contact.js';
 import {ContactsDirective} from './directive/contacts.js';
+import {ContactsContactDirective} from './directive/contacts/contact.js';
 import {DiscussionsDirective} from './directive/discussions.js';
 import {DiscussionsContactsIconDirective} from './directive/discussions/contacts-icon.js';
 import {DiscussionsThreadDirective} from './directive/discussions/thread.js';
@@ -91,6 +92,7 @@ import {WidgetContactAvatarLetterDirective} from './directive/widget/contact/ava
 app
   .directive('coContact', ContactDirective)
   .directive('coContacts', ContactsDirective)
+  .directive('coContactsContact', ContactsContactDirective)
   .directive('coDiscussions', DiscussionsDirective)
   .directive('coDiscussionsContactsIcon', DiscussionsContactsIconDirective)
   .directive('coDiscussionsThread', DiscussionsThreadDirective)

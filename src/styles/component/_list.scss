@@ -1,14 +1,12 @@
 .co-list {
+  border-top: 1px solid $body-bg;
+
   &__item {
     padding: 10px 0;
 
     background-color: $co-color__fg__back;
     border-bottom: 1px solid $body-bg;
     color: $co-color__fg__text;
-
-    &:first-child {
-      border-top: 1px solid $body-bg;
-    }
   }
 
   a.co-list__item,
