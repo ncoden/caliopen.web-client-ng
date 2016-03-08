@@ -6,6 +6,7 @@
   "private": true,
   "main": "src/app.js",
   "scripts": {
+    "check": "gulp run check",
     "test": "karma start test/unit/karma.conf.js",
     "ci": "karma start test/unit/karma.conf.js --single-run",
     "build": "gulp",
@@ -33,6 +34,7 @@
     "expose-loader": "^0.7.1",
     "font-awesome": "^4.4.0",
     "gulp": "^3.9.0",
+    "gulp-check-deps": "^1.3.0",
     "gulp-concat": "^2.6.0",
     "gulp-conventional-changelog": "^0.7.0",
     "gulp-eslint": "^1.1.1",
