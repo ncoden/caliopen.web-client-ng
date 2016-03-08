@@ -1,7 +1,6 @@
 language: node_js
 
 node_js:
-  - '0.10'
   - '0.12'
   - '4.2'
   - 'stable'
@@ -12,6 +11,6 @@ git:
   depth: 10
 
 script:
-  - npm run check
-  - npm test
+  - npm run check-deps
+  - npm run ci-test
   - npm run build
