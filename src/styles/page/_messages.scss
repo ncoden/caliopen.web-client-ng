@@ -1,28 +1,27 @@
-.caliopen-messages__message {
-  border-bottom: 1px solid $body-bg;
-  min-height: 60px;
-  margin-top: 20px;
-  padding-bottom: 10px;
-}
+.co-messages__message {
+  &__header {
+    padding: ($co-margin / 2) $co-margin;
 
-.caliopen-messages__message--summary {
-  transition: color .3s ease-out;
-}
+    background: $co-color__fg__back--higher;
+    border-bottom: 1px solid $co-color__fg__border--lower;
+  }
 
-.caliopen-messages__message--summary:hover {
-  color: $co-color__fg__text--high;
-  cursor: pointer;
-}
+  &__contact-icon {
+    margin-right: $co-margin;
+  }
 
-.caliopen-messages__message__subject {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+  &__summary {
+    cursor: pointer;
+    color: $co-color__fg__text--low;
+    font-size: .75rem;
 
-.caliopen-messages__message__message-body {
-  overflow: hidden;
-  margin-top: 10px;
-  text-overflow: ellipsis;
-  white-space: pre-wrap;
+    &:hover {
+      color: $co-color__fg__text--high;
+    }
+  }
+
+  &__body {
+    padding: 0 $co-margin;
+    white-space: pre-wrap;
+  }
 }
