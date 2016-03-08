@@ -2,9 +2,8 @@ export class LayoutApplicationSwitcherController {
   constructor($scope, $ngRedux, ApplicationHelper) {
     'ngInject';
     $scope.$on('$destroy', $ngRedux.connect(() => {
-      let {name, route} = ApplicationHelper.getInfoForCurrentState();
       return {
-        currentApplication: name,
+        currentApplication: ApplicationHelper.getCurrentInfos().name,
       };
     })(this));
   }
