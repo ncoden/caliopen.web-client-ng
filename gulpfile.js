@@ -123,7 +123,6 @@ gulp.task('release:changelog', function() {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('check', ['check:deps']);
 gulp.task('release', ['release:changelog']);
 gulp.task('build', gulpSequence('clean', ['build:assets', 'build:vendor', 'build:sass', 'build:js']));
 gulp.task('default', ['build']);
