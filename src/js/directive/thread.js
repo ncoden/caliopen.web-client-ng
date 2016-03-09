@@ -34,7 +34,7 @@ export function ThreadDirective() {
     controllerAs: 'ctrl',
     bindToController: true,
     template: `
-      <div class="container-fluid">
+      <div class="co-list">
         <co-thread-message ng-repeat="message in ctrl.messages" message="message"></co-thread-message>
       </div>`
   };
