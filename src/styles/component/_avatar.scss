@@ -1,14 +1,23 @@
-$co-avatar--small__size: 32px;
-$co-avatar--medium__size: 64px;
-$co-avatar--large__size: 128px;
+$co-avatar__size--small: 2rem;
+$co-avatar__size--medium: 4rem;
+$co-avatar__size--large: 8rem;
+
+@mixin co-avatar--size($modifier, $size) {
+  &#{$modifier} {
+    width: $size;
+    height: $size;
+  }
+
+  &#{$modifier} &__letter::before {
+    line-height: $size;
+    font-size: $size * 0.75;
+  }
+}
 
 .co-avatar {
   display: inline-block;
   vertical-align: middle;
-
   position: relative;
-  width: $co-avatar--medium__size;
-  height: $co-avatar--medium__size;
 
   background-color: $co-color__fg__back;
   border-radius: 2px;
@@ -16,28 +25,16 @@ $co-avatar--large__size: 128px;
 
   &__letter::before {
     display: block;
-    line-height: $co-avatar--medium__size;
 
     color: #ffffff;
-    font-size: $co-avatar--medium__size * 0.75;
     text-align: center;
   }
 
-  &--small {
-    width: $co-avatar--small__size;
-    height: $co-avatar--small__size;
-  }
-  &--small &__letter::before {
-    line-height: $co-avatar--small__size;
-    font-size: $co-avatar--small__size * 0.75;
-  }
+  // default
+  @include co-avatar--size('', $co-avatar__size--medium);
 
-  &--large {
-    width: $co-avatar--large__size;
-    height: $co-avatar--large__size;
-  }
-  &--large &__letter::before {
-    line-height: $co-avatar--large__size;
-    font-size: $co-avatar--large__size * 0.75;
-  }
+  // modifiers
+  @include co-avatar--size(--small, $co-avatar__size--small);
+  @include co-avatar--size(--medium, $co-avatar__size--medium);
+  @include co-avatar--size(--large, $co-avatar__size--large);
 }
