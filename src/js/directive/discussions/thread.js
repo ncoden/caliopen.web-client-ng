@@ -32,14 +32,14 @@ export function DiscussionsThreadDirective() {
     controllerAs: 'ctrl',
     bindToController: true,
     template: `
-      <div ng-click="ctrl.showThread()" class="row caliopen-threads__thread" ng-class="{ 'caliopen-threads__thread--unread': ctrl.hasUnread }">
+      <div ng-click="ctrl.showThread()" class="row co-list__item co-list__item--link co-threads__thread" ng-class="{ 'co-threads__thread--unread': ctrl.hasUnread }">
         <div class="col-md-1 col-sm-1 col-xs-2">
           <co-discussions-contacts-icon thread="ctrl.thread"></co-discussions-contacts-icon>
         </div>
         <div class="col-md-6 col-sm-8 col-xs-9">
-          <span class="caliopen-threads__thread__message-summary">
+          <div class="co-text--ellipsis">
             {{ctrl.thread.text}}
-          </span>
+          </div>
         </div>
         <div class="col-md-1 col-sm-1 col-xs-1">
           <i ng-if="ctrl.thread.file_attached" class="fa fa-paperclip"></i>
@@ -52,7 +52,7 @@ export function DiscussionsThreadDirective() {
           {{ ctrl.fakeDate | amDateFormat:'lll'}}
         </div>
         <div class="col-md-1 hidden-sm hidden-xs">
-          <span class="caliopen-threads__thread__nb-messages badge">
+          <span class="co-threads__thread__nb-messages badge">
             <span ng-if="ctrl.thread.unread_count">{{ctrl.thread.unread_count}}/</span>
             <span>{{ctrl.thread.total_count}}</span>
           </span>
