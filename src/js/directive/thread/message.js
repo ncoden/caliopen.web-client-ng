@@ -6,11 +6,12 @@ export function ThreadMessageDirective() {
   return {
     restrict: 'E',
     scope: {
-      message: '='
+      message: '=',
     },
     controller: ThreadMessageController,
     controllerAs: 'ctrl',
     bindToController: true,
+    /* eslint-disable max-len */
     template: `
       <div class="co-list__item co-messages__message__header clearfix">
         <div class="co-messages__message__contact-icon pull-left">
@@ -21,7 +22,7 @@ export function ThreadMessageDirective() {
             {{ ctrl.message.from_ }}
           </div>
           <div class="co-messages__message__summary">
-            {{ ctrl.message.date | amDateFormat:'lll'}} 
+            {{ ctrl.message.date | amDateFormat:'lll'}}
           </div>
         </span>
         <span class="co-messages__message--summary pull-right">
@@ -34,6 +35,7 @@ export function ThreadMessageDirective() {
       </div>
       <div class="co-list__item co-messages__message__body">
         <div ng-bind-html="ctrl.message.text"></div>
-      </div>`
+      </div>`,
+    /* eslint-enable max-len */
   };
 }

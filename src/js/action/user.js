@@ -9,7 +9,7 @@ export class UserActions {
 
   requestUser() {
     return {
-      type: action.REQUEST_USER
+      type: action.REQUEST_USER,
     };
   }
 
@@ -24,7 +24,7 @@ export class UserActions {
   receiveUser(user) {
     return {
       type: action.RECEIVE_USER,
-      user
+      user,
     };
   }
 }

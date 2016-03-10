@@ -9,7 +9,7 @@ export function WidgetContactAvatarLetterDirective() {
   return {
     restrict: 'E',
     scope: {
-      contact: '='
+      contact: '=',
     },
     controller: WidgetContactAvatarLetterController,
     controllerAs: 'ctrl',
@@ -17,6 +17,6 @@ export function WidgetContactAvatarLetterDirective() {
     template: `
       <div class="co-avatar co-avatar--small">
         <div class="co-avatar__letter" ng-class="ctrl.contactLetterStylesheetClass"></div>
-      </div>`
+      </div>`,
   };
 }

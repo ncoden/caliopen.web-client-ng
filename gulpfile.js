@@ -9,7 +9,6 @@ var ngAnnotate = require('gulp-ng-annotate');
 var eslint = require('gulp-eslint');
 var path = require('path');
 var del = require('del');
-var checkDeps = require('gulp-check-deps');
 
 var config = {
   publicDirectory: 'dist',
@@ -109,10 +108,6 @@ gulp.task('watch', function() {
   gulp.watch(config.htmlSource, ['build:assetsIndex']);
   gulp.watch(config.assetsSource, ['build:assetsFiles']);
   gulp.watch(config.vendorFiles, ['build:vendor']);
-});
-
-gulp.task('check:deps', function() {
-    return gulp.src('package.json').pipe(checkDeps());
 });
 
 gulp.task('release:changelog', function() {

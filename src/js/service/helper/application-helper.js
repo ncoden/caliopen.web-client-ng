@@ -1,6 +1,6 @@
 export const ApplicationRoutes = {
   discussions: 'front.discussions',
-  contacts: 'front.contacts'
+  contacts: 'front.contacts',
 };
 
 export class ApplicationHelper {
@@ -10,12 +10,12 @@ export class ApplicationHelper {
   }
 
   getCurrentInfos() {
-    let name = Object.keys(ApplicationRoutes).find(
-      name => this.$state.includes( ApplicationRoutes[name] )
-    );
+    const name = Object.keys(ApplicationRoutes)
+      .find(currentName => this.$state.includes(ApplicationRoutes[currentName]));
+
     return ({
       name,
-      route: ApplicationRoutes[name]
+      route: ApplicationRoutes[name],
     });
   }
 }

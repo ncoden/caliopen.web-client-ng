@@ -2,7 +2,8 @@ export class DiscussionsContactsIconController {
   constructor(ContactHelper) {
     'ngInject';
     if (this.thread.contacts.length > 4) {
-      let letters = this.thread.contacts.slice(0, 3).map(contact => ContactHelper.getContactStylesheetClass(contact));
+      const letters = this.thread.contacts.slice(0, 3)
+        .map(contact => ContactHelper.getContactStylesheetClass(contact));
       letters.push(ContactHelper.getStylesheetClass('plus'));
 
       this.lettersStylesheetClass = letters;
@@ -16,18 +17,20 @@ export class DiscussionsContactsIconController {
   }
 }
 
-export function DiscussionsContactsIconDirective () {
+export function DiscussionsContactsIconDirective() {
   return {
     restrict: 'E',
     scope: {
-      thread: '='
+      thread: '=',
     },
     controller: DiscussionsContactsIconController,
     controllerAs: 'ctrl',
     bindToController: true,
+    /* eslint-disable max-len */
     template: `
       <div class="co-avatars">
         <div ng-repeat="letterClass in ctrl.lettersStylesheetClass" class="co-avatars__letter" ng-class="[letterClass, ctrl.iconClass]"></div>
-      </div>`
+      </div>`,
+      /* eslint-enable max-len */
   };
 }

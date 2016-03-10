@@ -1,4 +1,4 @@
-import {createSelector} from 'reselect';
+import { createSelector } from 'reselect';
 
 const contactSelector = createSelector(
   state => state.contactReducer,
@@ -34,6 +34,6 @@ export function ContactDirective() {
     controllerAs: 'ctrl',
     bindToController: true,
     template: `
-      <h2>{{ctrl.contact.title}}</h2>`
+      <h2>{{ctrl.contact.title}}</h2>`,
   };
 }

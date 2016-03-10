@@ -4,12 +4,14 @@ class LayoutImportanceLevelSliderController {
     this.sliderOptions = {
       orientation: 'vertical',
       range: true,
+      /* eslint-disable */
       start: (event, ui) => {
         console.log('Slider start');
       },
       stop: (event, ui) => {
         console.log('Slider stop', this.range);
       }
+      /* eslint-enable */
     };
   }
 }
@@ -24,6 +26,6 @@ export function LayoutImportanceLevelSliderDirective() {
     template: `
       <div class="co-layout__importance-slider">
         <div ui-slider="ctrl.sliderOptions" ng-model="ctrl.range"></div>
-      </div>`
+      </div>`,
   };
 }

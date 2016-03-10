@@ -6,7 +6,7 @@ export class UserRepository {
   }
 
   getUser() {
-    return this.$http.get(this.BaseUrl + '/auth/user-info')
-      .then(response => response.data);;
+    return this.$http.get(`${this.BaseUrl}/auth/user-info`)
+      .then(response => response.data);
   }
 }

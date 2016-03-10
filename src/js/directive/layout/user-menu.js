@@ -1,4 +1,4 @@
-import {createSelector} from 'reselect';
+import { createSelector } from 'reselect';
 
 const userSelector = createSelector(
   state => state.userReducer.user,
@@ -21,6 +21,7 @@ export function LayoutUserMenuDirective() {
     controller: LayoutUserMenuController,
     controllerAs: 'ctrl',
     bindToController: true,
+    /* eslint-disable max-len */
     template: `
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -39,7 +40,7 @@ export function LayoutUserMenuDirective() {
             </li>
           </ul>
         </li>
-      </ul>
-    `
+      </ul>`,
+    /* eslint-enable max-len */
   };
 }

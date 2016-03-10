@@ -1,6 +1,4 @@
 class LayoutSearchFieldController {
-  constructor() {
-  }
 }
 
 export function LayoutSearchFieldDirective() {
@@ -21,6 +19,6 @@ export function LayoutSearchFieldDirective() {
             aria-label="{{'header.menu.search'|translate}}"
           ></button>
         </div>
-      </form>`
+      </form>`,
   };
 }

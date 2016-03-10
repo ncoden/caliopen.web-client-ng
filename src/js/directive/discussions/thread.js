@@ -1,4 +1,4 @@
-import {v1 as uuidV1} from 'uuid';
+import { v1 as uuidV1 } from 'uuid';
 
 export class DiscussionsThreadController {
   constructor($state, $ngRedux, TabsActions) {
@@ -16,7 +16,7 @@ export class DiscussionsThreadController {
         id: uuidV1(),
         route: 'front.discussions.thread',
         routeOpts: { threadId: this.thread.thread_id },
-        label: this.thread.text
+        label: this.thread.text,
       }));
     });
   }
@@ -26,11 +26,12 @@ export function DiscussionsThreadDirective() {
   return {
     restrict: 'E',
     scope: {
-      thread: '='
+      thread: '=',
     },
     controller: DiscussionsThreadController,
     controllerAs: 'ctrl',
     bindToController: true,
+    /* eslint-disable max-len */
     template: `
       <div ng-click="ctrl.showThread()" class="row co-list__item co-list__item--link co-threads__thread" ng-class="{ 'co-threads__thread--unread': ctrl.hasUnread }">
         <div class="col-md-1 col-sm-1 col-xs-2">
@@ -57,6 +58,7 @@ export function DiscussionsThreadDirective() {
             <span>{{ctrl.thread.total_count}}</span>
           </span>
         </div>
-      </div>`
+      </div>`,
+    /* eslint-enable max-len */
   };
 }

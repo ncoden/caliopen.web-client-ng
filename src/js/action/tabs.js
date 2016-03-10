@@ -1,10 +1,10 @@
 import * as action from './action-types.js';
-import {stateGo} from 'redux-ui-router';
+import { stateGo } from 'redux-ui-router';
 
 export class TabsActions {
   requestTabs() {
     return {
-      type: action.REQUEST_TABS
+      type: action.REQUEST_TABS,
     };
   }
 
@@ -12,7 +12,7 @@ export class TabsActions {
     return (dispatch) => {
       dispatch({
         type: action.ADD_TAB,
-        tab
+        tab,
       });
       dispatch(this.selectTab(tab));
     };
@@ -22,23 +22,23 @@ export class TabsActions {
     return (dispatch) => {
       dispatch({
         type: action.SELECT_TAB,
-        tabId: tab.id
+        tabId: tab.id,
       });
       dispatch(stateGo(tab.route, tab.routeOpts));
-    }
+    };
   }
 
   resetSelectedTab() {
     return {
       type: action.SELECT_TAB,
-      tabId: null
+      tabId: null,
     };
   }
 
   removeTab(tab) {
     return {
       type: action.REMOVE_TAB,
-      tab
+      tab,
     };
   }
 }

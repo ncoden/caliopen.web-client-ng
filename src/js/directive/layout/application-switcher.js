@@ -1,11 +1,9 @@
 export class LayoutApplicationSwitcherController {
   constructor($scope, $ngRedux, ApplicationHelper) {
     'ngInject';
-    $scope.$on('$destroy', $ngRedux.connect(() => {
-      return {
-        currentApplication: ApplicationHelper.getCurrentInfos().name,
-      };
-    })(this));
+    $scope.$on('$destroy', $ngRedux.connect(() => ({
+      currentApplication: ApplicationHelper.getCurrentInfos().name,
+    }))(this));
   }
 }
 
@@ -30,6 +28,6 @@ export function LayoutApplicationSwitcherDirective() {
             {{ 'header.menu.contacts'|translate}}
           </a>
         </li>
-      </ul>`
+      </ul>`,
   };
 }
