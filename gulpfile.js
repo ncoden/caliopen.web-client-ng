@@ -36,6 +36,12 @@ var config = {
   vendorDestFilename: 'vendor.js'
 };
 
+// Prevent watch end
+var onError = function (err) {
+  console.error(err);
+  this.emit('end');
+};
+
 gulp.task('build:vendor', function() {
   return gulp.src(config.vendorFiles)
     .pipe(concat(config.vendorDestFilename))
@@ -63,7 +69,7 @@ gulp.task('build:sassPrepare', function () {
 });
 gulp.task('build:sassCompile', function () {
     return gulp.src('tmp/' + config.sassMainFile)
-      .pipe(gulpPlumber())
+      .pipe(gulpPlumber({ errorHandler: onError }))
       .pipe(sass())
       .pipe(gulp.dest(config.publicStylesDirectory));
 });
@@ -102,6 +108,7 @@ gulp.task('lint', function () {
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
+
 
 gulp.task('watch', function() {
   gulp.watch(config.jsSourceFiles, ['build:js']);
