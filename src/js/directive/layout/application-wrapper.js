@@ -27,7 +27,7 @@ export function LayoutApplicationWrapperDirective() {
     bindToController: true,
     controllerAs: 'ctrl',
     template: `
-      <section role="main" class="container-fluid">
+      <section role="main" class="container">
         <div class="co-layout__topbar row">
           <div class="col-md-2" ng-switch="ctrl.currentApplication">
             <a ng-switch-when="discussions"
