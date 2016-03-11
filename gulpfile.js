@@ -9,17 +9,21 @@ var ngAnnotate = require('gulp-ng-annotate');
 var eslint = require('gulp-eslint');
 var path = require('path');
 var del = require('del');
+var iconfont = require('gulp-iconfont');
+var iconfontCss = require('gulp-iconfont-css');
 
 var config = {
   publicDirectory: 'dist',
   publicJsDirectory: 'dist/js',
   publicStylesDirectory: 'dist/css',
-  systemBuildDirectory: 'tmp',
+  publicFontsDirectory: 'dist/fonts',
+  systemBuildDirectory: '.build',
   jsSource: 'src/js/app.js',
   jsSourceFiles: 'src/**/*.js',
   htmlSource: 'src/index.html',
   sassMainFile: 'main.scss',
   sassSourceFiles: [
+    './.build/icons/**/*.scss',
     './src/styles/**/*.scss',
     './node_modules/bootstrap-sass/assets/stylesheets/**/*.scss',
     './node_modules/font-awesome/scss/**/*.scss',
@@ -27,13 +31,21 @@ var config = {
   vendorFiles: [
   ],
   assetsSource: [
-    './src/assets/**/*',
+    './src/assets/@(fonts)/**/*',
+    './src/assets/@(images)/**/*',
+    './src/assets/@(translations)/**/*',
     './node_modules/bootstrap-sass/assets/@(fonts)/**/*',
     './node_modules/font-awesome/@(fonts)/**/*',
   ],
+  iconsFontName: 'co_icons',
+  iconsSource: './src/assets/icons/**/*.svg',
+  iconsCssClass: 'co-icon',
+  iconsCssDestFilename: '_co-icons.scss',
   appDestFilename: 'app.js',
   vendorDestFilename: 'vendor.js'
 };
+
+var runTimestamp = Math.round(Date.now()/1000);
 
 // Prevent watch end
 var onError = function (err) {
@@ -47,13 +59,28 @@ gulp.task('build:vendor', function() {
     .pipe(gulp.dest(config.publicJsDirectory));
 });
 
-gulp.task('build:assets', ['build:assetsIndex', 'build:assetsFiles']);
-
+gulp.task('build:assets', function(cb) {
+  gulpSequence(['build:assetsIndex', 'build:assetsIcons', 'build:assetsFiles'], cb);
+});
 gulp.task('build:assetsIndex', function() {
   return gulp.src(config.htmlSource)
     .pipe(gulp.dest(config.publicDirectory));
 });
-
+gulp.task('build:assetsIcons', function () {
+  return gulp.src(config.iconsSource)
+    .pipe(iconfontCss({
+      cssClass: config.iconsCssClass,
+      fontName: config.iconsFontName,
+      fontPath: '../fonts/' + config.iconsFontName + '/',
+      targetPath: '../../../' + config.systemBuildDirectory + '/icons/' + config.iconsCssDestFilename
+    }))
+    .pipe(iconfont({
+      fontName: config.iconsFontName,
+      formats: ['ttf', 'eot', 'svg', 'woff', 'woff2'],
+      timestamp: runTimestamp, // recommended to get consistent builds when watching files 
+    }))
+    .pipe(gulp.dest(config.publicFontsDirectory + '/' + config.iconsFontName));
+});
 gulp.task('build:assetsFiles', function() {
   return gulp.src(config.assetsSource)
     .pipe(gulp.dest(config.publicDirectory));
@@ -64,16 +91,16 @@ gulp.task('build:sass', function(cb) {
 });
 gulp.task('build:sassPrepare', function () {
   return gulp.src(config.sassSourceFiles)
-    .pipe(gulp.dest('tmp'));
+    .pipe(gulp.dest(config.systemBuildDirectory + '/sass'));
 });
 gulp.task('build:sassCompile', function () {
-    return gulp.src('tmp/' + config.sassMainFile)
+    return gulp.src(config.systemBuildDirectory + '/sass/' + config.sassMainFile)
       .pipe(gulpPlumber({ errorHandler: onError }))
       .pipe(sass())
       .pipe(gulp.dest(config.publicStylesDirectory));
 });
 gulp.task('build:sassClean', function() {
-  del('tmp');
+  del(config.systemBuildDirectory + '/sass');
 });
 
 gulp.task('build:js', ['lint'], function() {
@@ -98,7 +125,8 @@ gulp.task('build:js', ['lint'], function() {
 });
 
 gulp.task('clean', function() {
-  return del(config.publicDirectory + '/*');
+  return del(config.publicDirectory + '/*')
+      && del(config.systemBuildDirectory);
 });
 
 gulp.task('lint', function () {
@@ -108,13 +136,13 @@ gulp.task('lint', function () {
     .pipe(eslint.failAfterError());
 });
 
-
 gulp.task('watch', function() {
-  gulp.watch(config.jsSourceFiles, ['build:js']);
-  gulp.watch(config.sassSourceFiles, ['build:sass']);
   gulp.watch(config.htmlSource, ['build:assetsIndex']);
   gulp.watch(config.assetsSource, ['build:assetsFiles']);
+  gulp.watch(config.iconsSource, ['build:assetsIcons', 'build:sass']);
   gulp.watch(config.vendorFiles, ['build:vendor']);
+  gulp.watch(config.sassSourceFiles, ['build:sass']);
+  gulp.watch(config.jsSourceFiles, ['build:js']);
 });
 
 gulp.task('release:changelog', function() {
@@ -126,5 +154,5 @@ gulp.task('release:changelog', function() {
 });
 
 gulp.task('release', ['release:changelog']);
-gulp.task('build', gulpSequence('clean', ['build:assets', 'build:vendor', 'build:sass', 'build:js']));
+gulp.task('build', gulpSequence('clean', 'build:assets', ['build:vendor', 'build:sass', 'build:js']));
 gulp.task('default', ['build']);
