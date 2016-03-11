@@ -1,41 +1,35 @@
-import * as action from '../action/action-types.js';
+import * as actions from '../action/action-types.js';
 
 export function threadReducer(state = {
   isFetching: false,
-  didInvalidate: false
+  didInvalidate: false,
 }, action = {}) {
-  switch(action.type) {
-    case 'INVALIDATE_THREAD':
-      return Object.assign({}, state, {
-        didInvalidate: true,
-        [action.threadId]: {
-        }
-      });
-    case 'REQUEST_THREADS':
+  switch (action.type) {
+    case actions.REQUEST_THREADS:
       return Object.assign({}, state, {
         isFetching: true,
         didInvalidate: false,
-        selectedThread: undefined
+        selectedThread: undefined,
       });
-    case 'RECEIVER_THREADS':
+    case actions.RECEIVER_THREADS:
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
         threads: action.threads,
         totalThreads: action.total,
-        lastUpdated: action.receivedAt
+        lastUpdated: action.receivedAt,
       });
-    case 'REQUEST_MESSAGES':
+    case actions.REQUEST_MESSAGES:
       return Object.assign({}, state, {
         isFetchingMessages: true,
-        selectedThread: action.threadId
+        selectedThread: action.threadId,
       });
-    case 'RECEIVER_MESSAGES':
+    case actions.RECEIVER_MESSAGES:
       return Object.assign({}, state, {
         isFetchingMessages: false,
         [action.threadId]: {
-          messages: action.messages
-        }
+          messages: action.messages,
+        },
       });
     default:
       return state;

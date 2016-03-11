@@ -9,7 +9,7 @@ export class ContactsActions {
   requestContact(contactId) {
     return {
       type: action.REQUEST_CONTACT,
-      contactId
+      contactId,
     };
   }
 
@@ -18,20 +18,20 @@ export class ContactsActions {
       type: action.RECEIVER_CONTACT,
       contactId,
       contact: json.contacts,
-      receiveAt: Date.now()
+      receiveAt: Date.now(),
     };
   }
 
   selectContact(contactId) {
     return {
       type: action.SELECT_CONTACT,
-      contactId
+      contactId,
     };
   }
 
   requestContacts() {
     return {
-      type: action.REQUEST_CONTACTS
+      type: action.REQUEST_CONTACTS,
     };
   }
 
@@ -40,13 +40,14 @@ export class ContactsActions {
       type: action.RECEIVER_CONTACTS,
       contacts: json.contacts,
       total: json.total,
-      receiveAt: Date.now()
+      receiveAt: Date.now(),
     };
   }
 
   fetchContact(contactId) {
     return dispatch => {
       dispatch(this.requestContact(contactId));
+
       return this.ContactRepository.findByContactId(contactId)
         .then(json => dispatch(this.receiveContact(contactId, json)));
     };
@@ -55,6 +56,7 @@ export class ContactsActions {
   fetchContacts() {
     return dispatch => {
       dispatch(this.requestContacts());
+
       return this.ContactRepository.findAll()
         .then(json => dispatch(this.receiveContacts(json)));
     };

@@ -6,12 +6,12 @@ export class ContactRepository {
   }
 
   findAll() {
-    return this.$http.get(this.ApiUrl + '/contacts')
+    return this.$http.get(`${this.ApiUrl}/contacts`)
       .then(response => response.data);
   }
 
   findByContactId(contactId) {
-    return this.$http.get(this.ApiUrl + '/contacts/' + contactId)
+    return this.$http.get(`${this.ApiUrl}/contacts/${contactId}`)
       .then(response => response.data);
   }
 }

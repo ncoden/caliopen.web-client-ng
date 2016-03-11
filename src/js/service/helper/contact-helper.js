@@ -1,6 +1,7 @@
 export class ContactHelper {
-  getContactStylesheetClass(contact, letter = 'none') {
+  getContactStylesheetClass(contact, defaultLetter = 'none') {
     const title = contact.title || contact.address;
+    let letter = defaultLetter;
 
     if (!!title) {
       letter = title.substr(0, 1).toUpperCase();

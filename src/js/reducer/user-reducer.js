@@ -11,7 +11,6 @@ export function userReducer(state = {}, action) {
         isFetching: false,
         user: action.user,
       });
-      break;
     default:
       return state;
   }

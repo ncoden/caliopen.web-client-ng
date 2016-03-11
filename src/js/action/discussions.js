@@ -10,7 +10,7 @@ export class DiscussionsActions {
   requestMessages(threadId) {
     return {
       type: action.REQUEST_MESSAGES,
-      threadId
+      threadId,
     };
   }
 
@@ -20,13 +20,13 @@ export class DiscussionsActions {
       threadId,
       messages: json.messages,
       total: json.total,
-      receiveAt: Date.now()
+      receiveAt: Date.now(),
     };
   }
 
   requestThreads() {
     return {
-      type: action.REQUEST_THREADS
+      type: action.REQUEST_THREADS,
     };
   }
 
@@ -35,13 +35,14 @@ export class DiscussionsActions {
       type: action.RECEIVER_THREADS,
       threads: json.threads,
       total: json.total,
-      receiveAt: Date.now()
+      receiveAt: Date.now(),
     };
   }
 
   fetchThreads() {
     return dispatch => {
       dispatch(this.requestThreads());
+
       return this.ThreadRepository.findAll()
         .then(json => dispatch(this.receiveThreads(json)));
     };

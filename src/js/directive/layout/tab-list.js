@@ -1,5 +1,5 @@
-import {createSelector} from 'reselect';
-import {stateGo} from 'redux-ui-router';
+import { createSelector } from 'reselect';
+import { stateGo } from 'redux-ui-router';
 
 const tabsSelector = createSelector(
   state => state.tabReducer.tabs,
@@ -14,10 +14,11 @@ export class LayoutTabListController {
     this.$ngRedux = $ngRedux;
     this.TabsActions = TabsActions;
     $scope.$on('$destroy', $ngRedux.connect(() => {
-      let {name, route} = ApplicationHelper.getCurrentInfos();
+      const { name, route } = ApplicationHelper.getCurrentInfos();
+
       return {
         currentApplicationKey: `header.menu.${name}`,
-        currentApplicationRoute: route
+        currentApplicationRoute: route,
       };
     })(this));
     $scope.$on('$destroy', $ngRedux.connect(tabsSelector)(this));
@@ -57,6 +58,7 @@ export function LayoutTabListDirective() {
     controller: LayoutTabListController,
     controllerAs: 'ctrl',
     bindToController: true,
+    /* eslint-disable max-len */
     template: `
       <ul class="co-layout__tabs">
         <li class="co-layout__tabs__item">
@@ -76,7 +78,7 @@ export function LayoutTabListDirective() {
             <i class="fa fa-close"></i>
           </a>
         </li>
-      </ul>
-    `
+      </ul>`,
+    /* eslint-enable max-len */
   };
 }

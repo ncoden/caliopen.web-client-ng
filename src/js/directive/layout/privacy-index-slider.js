@@ -4,12 +4,14 @@ class LayoutPrivacyIndexSliderController {
     this.sliderOptions = {
       orientation: 'horizontal',
       range: true,
+      /* eslint-disable */
       start: (event, ui) => {
         console.log('Slider start');
       },
       stop: (event, ui) => {
         console.log('Slider stop', this.range);
       }
+      /* eslint-enable */
     };
   }
 }
@@ -24,6 +26,6 @@ export function LayoutPrivacyIndexSliderDirective() {
     template: `
       <div class="co-layout__privacy-slider">
         <div ui-slider="ctrl.sliderOptions" ng-model="ctrl.range"></div>
-      </div>`
+      </div>`,
   };
 }

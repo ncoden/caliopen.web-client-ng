@@ -1,4 +1,4 @@
-import {v1 as uuidV1} from 'uuid';
+import { v1 as uuidV1 } from 'uuid';
 
 export class ContactsContactController {
   constructor($ngRedux, TabsActions) {
@@ -13,7 +13,7 @@ export class ContactsContactController {
         id: uuidV1(),
         route: 'front.contacts.contact',
         routeOpts: { contactId: this.contact.contact_id },
-        label: this.contact.title
+        label: this.contact.title,
       }));
     });
   }
@@ -23,11 +23,12 @@ export function ContactsContactDirective() {
   return {
     restrict: 'E',
     scope: {
-      contact: '='
+      contact: '=',
     },
     controller: ContactsContactController,
     controllerAs: 'ctrl',
     bindToController: true,
+    /* eslint-disable max-len */
     template: `
       <div ng-click="ctrl.showContact()" class="row co-list__item co-list__item--link">
         <div class="row__vertical-align">
@@ -56,6 +57,7 @@ export function ContactsContactDirective() {
             </span>
           </div>
         </div>
-      </div>`
+      </div>`,
+    /* eslint-enable max-len */
   };
 }

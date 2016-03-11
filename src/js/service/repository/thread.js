@@ -6,7 +6,7 @@ export class ThreadRepository {
   }
 
   findAll() {
-    return this.$http.get(this.ApiUrl + '/threads')
+    return this.$http.get(`${this.ApiUrl}/threads`)
       .then(response => response.data);
   }
 }

@@ -1,22 +1,17 @@
-import {createSelector} from 'reselect';
+import { createSelector } from 'reselect';
 
 const routerSelector = createSelector(
   state => state.router,
-  payload => {
-    return {
-      currentStateName: payload.currentState.name
-    };
-  });
+  payload => ({ currentStateName: payload.currentState.name })
+);
 
 class LayoutApplicationWrapperController {
   constructor($scope, $state, $ngRedux, ApplicationHelper) {
     'ngInject';
-    $scope.$on('$destroy',$ngRedux.connect(routerSelector)(this));
-    $scope.$on('$destroy', $ngRedux.connect(() => {
-      return {
-        currentApplication: ApplicationHelper.getCurrentInfos().name,
-      };
-    })(this));
+    $scope.$on('$destroy', $ngRedux.connect(routerSelector)(this));
+    $scope.$on('$destroy', $ngRedux.connect(() => ({
+      currentApplication: ApplicationHelper.getCurrentInfos().name,
+    }))(this));
   }
 }
 
@@ -26,6 +21,7 @@ export function LayoutApplicationWrapperDirective() {
     controller: LayoutApplicationWrapperController,
     bindToController: true,
     controllerAs: 'ctrl',
+    /* eslint-disable max-len */
     template: `
       <section role="main" class="container-fluid">
         <div class="co-layout__topbar row">
@@ -72,6 +68,7 @@ export function LayoutApplicationWrapperDirective() {
             </div>
           </div>
         </div>
-      </section>`
+      </section>`,
+    /* eslint-enable max-len */
   };
 }

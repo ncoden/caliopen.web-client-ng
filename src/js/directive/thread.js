@@ -1,4 +1,4 @@
-import {createSelector} from 'reselect';
+import { createSelector } from 'reselect';
 
 const threadSelector = createSelector(
   state => state.threadReducer,
@@ -33,9 +33,11 @@ export function ThreadDirective() {
     controller: ThreadController,
     controllerAs: 'ctrl',
     bindToController: true,
+    /* eslint-disable max-len */
     template: `
       <div class="co-list">
         <co-thread-message ng-repeat="message in ctrl.messages" message="message"></co-thread-message>
-      </div>`
+      </div>`,
+    /* eslint-enable max-len */
   };
 }

@@ -5,13 +5,14 @@ class HeaderController {
   }
 }
 
-export function HeaderDirective () {
+export function HeaderDirective() {
   return {
     restrict: 'E',
     scope: {},
     controller: HeaderController,
     controllerAs: 'ctrl',
     bindToController: true,
+    /* eslint-disable max-len */
     template: `
       <header class="co-layout__header">
         <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -45,6 +46,7 @@ export function HeaderDirective () {
             </div>
           </div>
         </nav>
-      </header>`
+      </header>`,
+    /* eslint-enable max-len */
   };
 }

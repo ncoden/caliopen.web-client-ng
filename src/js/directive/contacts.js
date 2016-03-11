@@ -1,10 +1,9 @@
-import {createSelector} from 'reselect';
+import { createSelector } from 'reselect';
 
 const contactsSelector = createSelector(
   state => state.contactReducer,
-  payload => {
-    return { contacts: payload.contacts };
-  });
+  payload => ({ contacts: payload.contacts })
+);
 
 export class ContactsController {
   constructor($scope, $ngRedux, ContactsActions) {
@@ -21,9 +20,11 @@ export function ContactsDirective() {
     controller: ContactsController,
     controllerAs: 'ctrl',
     bindToController: true,
+    /* eslint-disable max-len */
     template: `
       <div class="container-fluid co-list">
         <co-contacts-contact ng-repeat="contact in ctrl.contacts" contact="contact"></co-contacts-contact>
-      </div>`
+      </div>`,
+    /* eslint-enable max-len */
   };
 }

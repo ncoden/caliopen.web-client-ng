@@ -2,12 +2,12 @@ export function BaseUrlFactory($location) {
   'ngInject';
   const defaultAssoc = { http: 80, https: 443 };
 
-  let baseUrl = $location.protocol() + '://' + $location.host();
+  const baseUrl = `${$location.protocol()}://${$location.host()}`;
   if (defaultAssoc[$location.protocol()] === $location.port()) {
     return baseUrl;
   }
 
-  return baseUrl + ':' + $location.port();
+  return `${baseUrl}:${$location.port()}`;
 }
 
 export function ApiUrlFactory(BaseUrl) {
@@ -19,16 +19,17 @@ export function ApiUrlFactory(BaseUrl) {
 
 export function ApiInterceptorConfig($httpProvider) {
   'ngInject';
-  $httpProvider.interceptors.push(function($q, $rootScope, $window, BaseUrl) {
+  $httpProvider.interceptors.push(($q, $rootScope, $window, BaseUrl) => {
     'ngInject';
+
     return {
       responseError: rejection => {
         if (rejection.status === 401) {
-          $window.location.href = BaseUrl;
+          $window.location.href = BaseUrl; // eslint-disable-line no-param-reassign
         }
 
-        return $q.reject(rejection);
-      }
+        return $q.reject(rejection); // eslint-disable-line newline-before-return
+      },
     };
   });
 }
