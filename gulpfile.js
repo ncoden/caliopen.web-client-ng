@@ -1,110 +1,162 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var webpack = require('gulp-webpack');
-var gulpSequence = require('gulp-sequence');
-var gulpPlumber = require('gulp-plumber');
-var sass = require('gulp-sass');
-var conventionalChangelog = require('gulp-conventional-changelog');
-var ngAnnotate = require('gulp-ng-annotate');
-var eslint = require('gulp-eslint');
-var path = require('path');
-var del = require('del');
-var iconfont = require('gulp-iconfont');
-var iconfontCss = require('gulp-iconfont-css');
+// -------------------------------------
+//   Gulpfile
+// -------------------------------------
+// 
+//   'build' (default)  : create JS application with its css and assets
+//   'release'          : generate Changelog
+//   'watch'            : watch for source changes to compile them
+// 
+// -------------------------------------
+
+// --- Configuration ---
 
 var config = {
-  publicDirectory: 'dist',
-  publicJsDirectory: 'dist/js',
-  publicStylesDirectory: 'dist/css',
-  publicFontsDirectory: 'dist/fonts',
-  systemBuildDirectory: '.build',
-  jsSource: 'src/js/app.js',
-  jsSourceFiles: 'src/**/*.js',
-  htmlSource: 'src/index.html',
-  sassMainFile: 'main.scss',
-  sassSourceFiles: [
-    './.build/icons/**/*.scss',
-    './src/styles/**/*.scss',
-    './node_modules/bootstrap-sass/assets/stylesheets/**/*.scss',
-    './node_modules/font-awesome/scss/**/*.scss',
+  srcDirectory: 'src',
+  buildDirectory: '.build',
+  destDirectory: 'dist',
+
+  htmlMain: 'src/index.html',
+  jsMain: 'src/js/app.js',
+  jsFiles: 'src/js/**/*.js',
+  scssMain: 'src/styles/main.scss',
+  scssFiles: [
+    'src/styles/**/*.scss',
+    '.build/icons/**/*.scss',
   ],
-  vendorFiles: [
-  ],
-  assetsSource: [
+
+  iconsFiles: 'src/assets/icons/**/*.svg',
+  assetsFiles: [
     './src/assets/@(fonts)/**/*',
     './src/assets/@(images)/**/*',
     './src/assets/@(translations)/**/*',
+  ],
+
+  scssVendorsNamespace: 'vendor',
+  scssVendors: [
+    './node_modules/bootstrap-sass/assets/stylesheets/**/*.scss',
+    './node_modules/font-awesome/scss/**/*.scss',
+  ],
+  assetsVendorsNamespace: '',
+  assetsVendors: [
     './node_modules/bootstrap-sass/assets/@(fonts)/**/*',
     './node_modules/font-awesome/@(fonts)/**/*',
   ],
-  iconsFontName: 'co_icons',
-  iconsSource: './src/assets/icons/**/*.svg',
-  iconsCssClass: 'co-icon',
-  iconsCssDestFilename: '_co-icons.scss',
-  appDestFilename: 'app.js',
-  vendorDestFilename: 'vendor.js'
+
+  jsDestFile: 'dist/js/app.js',
+  cssDestFile: 'dist/css/main.css',
+  assetsDest: 'dist',
+  fontsDest: 'dist/fonts',
+
+  clientCssFontsPath: '../fonts',
 };
 
-var runTimestamp = Math.round(Date.now()/1000);
+var iconfontConfig = {
+  iconsFontName: 'co-icons',
+  iconsCssClass: 'co-icon',
+};
 
-// Prevent watch end
+
+// --- Dependencies ---
+
+// gulp and tasks
+var gulp = require('gulp');
+var gulpPlumber = require('gulp-plumber');
+var gulpSequence = require('gulp-sequence');
+
+// file management
+var del = require('del');
+var pathParse = require('path-parse');
+var rename = require("gulp-rename");
+
+// build (JS)
+var eslint = require('gulp-eslint');
+var ngAnnotate = require('gulp-ng-annotate');
+var webpack = require('gulp-webpack');
+// build (scss)
+var sass = require('gulp-sass');
+// build (assets)
+var iconfont = require('gulp-iconfont');
+var iconfontCss = require('gulp-iconfont-css');
+
+// release
+var conventionalChangelog = require('gulp-conventional-changelog');
+
+
+// --- Tasks ---
+
+gulp.task('default', ['build']);
+
+gulp.task('build', gulpSequence('clean', 'build:assets', ['build:scss', 'build:js']));
+gulp.task('release', ['release:changelog']);
+
+// config
 var onError = function (err) {
   console.error(err);
   this.emit('end');
 };
+var runTimestamp = Math.round(Date.now()/1000);
 
-gulp.task('build:vendor', function() {
-  return gulp.src(config.vendorFiles)
-    .pipe(concat(config.vendorDestFilename))
-    .pipe(gulp.dest(config.publicJsDirectory));
-});
-
+// Build
 gulp.task('build:assets', function(cb) {
-  gulpSequence(['build:assetsIndex', 'build:assetsIcons', 'build:assetsFiles'], cb);
+  gulpSequence(['build:assetsVendors', 'build:assetsIndex', 'build:assetsIcons', 'build:assetsFiles'], cb);
+});
+gulp.task('build:assetsVendors', function() {
+  return gulp.src(config.assetsVendors)
+    .pipe(gulp.dest(config.assetsDest + '/' + config.assetsVendorsNamespace));
 });
 gulp.task('build:assetsIndex', function() {
-  return gulp.src(config.htmlSource)
-    .pipe(gulp.dest(config.publicDirectory));
+  return gulp.src(config.htmlMain)
+    .pipe(gulp.dest(config.destDirectory));
 });
 gulp.task('build:assetsIcons', function () {
-  return gulp.src(config.iconsSource)
+  return gulp.src(config.iconsFiles)
     .pipe(iconfontCss({
-      cssClass: config.iconsCssClass,
-      fontName: config.iconsFontName,
-      fontPath: '../fonts/' + config.iconsFontName + '/',
-      targetPath: '../../../' + config.systemBuildDirectory + '/icons/' + config.iconsCssDestFilename
+      cssClass: iconfontConfig.iconsCssClass,
+      fontName: iconfontConfig.iconsFontName,
+      fontPath: config.clientCssFontsPath + '/' + iconfontConfig.iconsFontName + '/',
+      targetPath: '../../../' + config.buildDirectory + '/icons/' + iconfontConfig.iconsFontName + '.scss'
     }))
     .pipe(iconfont({
-      fontName: config.iconsFontName,
+      fontName: iconfontConfig.iconsFontName,
       formats: ['ttf', 'eot', 'svg', 'woff', 'woff2'],
       timestamp: runTimestamp, // recommended to get consistent builds when watching files 
     }))
-    .pipe(gulp.dest(config.publicFontsDirectory + '/' + config.iconsFontName));
+    .pipe(gulp.dest(config.fontsDest + '/' + iconfontConfig.iconsFontName));
 });
 gulp.task('build:assetsFiles', function() {
-  return gulp.src(config.assetsSource)
-    .pipe(gulp.dest(config.publicDirectory));
+  return gulp.src(config.assetsFiles)
+    .pipe(gulp.dest(config.assetsDest));
 });
 
-gulp.task('build:sass', function(cb) {
-  gulpSequence('build:sassPrepare', 'build:sassCompile', 'build:sassClean', cb);
+gulp.task('build:scss', function(cb) {
+  gulpSequence('build:scssVendors', 'build:scssPrepare', 'build:scssCompile', 'build:scssClean', cb);
 });
-gulp.task('build:sassPrepare', function () {
-  return gulp.src(config.sassSourceFiles)
-    .pipe(gulp.dest(config.systemBuildDirectory + '/sass'));
+gulp.task('build:scssVendors', function () {
+  return gulp.src(config.scssVendors)
+    .pipe(gulp.dest(config.buildDirectory + '/scss/' + config.scssVendorsNamespace));
 });
-gulp.task('build:sassCompile', function () {
-    return gulp.src(config.systemBuildDirectory + '/sass/' + config.sassMainFile)
-      .pipe(gulpPlumber({ errorHandler: onError }))
-      .pipe(sass())
-      .pipe(gulp.dest(config.publicStylesDirectory));
+gulp.task('build:scssPrepare', function () {
+  return gulp.src(config.scssFiles)
+    .pipe(gulp.dest(config.buildDirectory + '/scss'));
 });
-gulp.task('build:sassClean', function() {
-  del(config.systemBuildDirectory + '/sass');
+gulp.task('build:scssCompile', function () {
+  var srcPath = pathParse(config.scssMain);
+  var destPath = pathParse(config.cssDestFile);
+
+  return gulp.src(config.buildDirectory + '/scss/' + srcPath.base)
+    .pipe(gulpPlumber({ errorHandler: onError }))
+    .pipe(sass())
+    .pipe(rename(destPath.base))
+    .pipe(gulp.dest(destPath.dir));
+});
+gulp.task('build:scssClean', function() {
+  del(config.buildDirectory + '/scss');
 });
 
 gulp.task('build:js', ['lint'], function() {
-  return gulp.src(config.jsSource)
+  var path = pathParse(config.jsDestFile);
+
+  return gulp.src(config.jsMain)
     .pipe(webpack({
       module: {
         loaders: [
@@ -117,34 +169,26 @@ gulp.task('build:js', ['lint'], function() {
         ]
       },
       output: {
-        filename: config.appDestFilename,
+        filename: path.base
       }
     }))
     .pipe(ngAnnotate())
-    .pipe(gulp.dest(config.publicJsDirectory));
-});
-
-gulp.task('clean', function() {
-  return del(config.publicDirectory + '/*')
-      && del(config.systemBuildDirectory);
+    .pipe(gulp.dest(path.dir));
 });
 
 gulp.task('lint', function () {
-  return gulp.src(config.jsSourceFiles)
+  return gulp.src(config.jsFiles)
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('watch', function() {
-  gulp.watch(config.htmlSource, ['build:assetsIndex']);
-  gulp.watch(config.assetsSource, ['build:assetsFiles']);
-  gulp.watch(config.iconsSource, ['build:assetsIcons', 'build:sass']);
-  gulp.watch(config.vendorFiles, ['build:vendor']);
-  gulp.watch(config.sassSourceFiles, ['build:sass']);
-  gulp.watch(config.jsSourceFiles, ['build:js']);
+gulp.task('clean', function() {
+  return del(config.destDirectory + '/*')
+      && del(config.buildDirectory);
 });
 
+// Release
 gulp.task('release:changelog', function() {
   return gulp.src('CHANGELOG.md')
     .pipe(conventionalChangelog({
@@ -153,6 +197,11 @@ gulp.task('release:changelog', function() {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('release', ['release:changelog']);
-gulp.task('build', gulpSequence('clean', 'build:assets', ['build:vendor', 'build:sass', 'build:js']));
-gulp.task('default', ['build']);
+// Development
+gulp.task('watch', function() {
+  gulp.watch(config.htmlMain, ['build:assetsIndex']);
+  gulp.watch(config.assetsFiles, ['build:assetsFiles']);
+  gulp.watch(config.iconsFiles, ['build:assetsIcons', 'build:scss']);
+  gulp.watch(config.scssFiles, ['build:scss']);
+  gulp.watch(config.jsFiles, ['build:js']);
+});
