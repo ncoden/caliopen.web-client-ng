@@ -1,5 +1,4 @@
 import * as action from './action-types.js';
-import { stateGo } from 'redux-ui-router';
 
 export class TabsActions {
   requestTabs() {
@@ -19,12 +18,9 @@ export class TabsActions {
   }
 
   selectTab(tab) {
-    return (dispatch) => {
-      dispatch({
-        type: action.SELECT_TAB,
-        tabId: tab.id,
-      });
-      dispatch(stateGo(tab.route, tab.routeOpts));
+    return {
+      type: action.SELECT_TAB,
+      tabId: tab.id,
     };
   }
 

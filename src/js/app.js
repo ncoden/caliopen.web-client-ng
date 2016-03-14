@@ -29,6 +29,7 @@ import { ReduxConfig } from './config/redux.js';
 import { RouterConfig } from './config/router.js';
 import { TranslateConfig } from './config/translate.js';
 import { BaseUrlFactory, ApiUrlFactory, ApiInterceptorConfig } from './config/server.js';
+import { tabMiddleware } from './middleware/tab-middleware.js';
 
 app
   .config(ReduxConfig)
@@ -37,6 +38,7 @@ app
   .config(ApiInterceptorConfig)
   .factory('BaseUrl', BaseUrlFactory)
   .factory('ApiUrl', ApiUrlFactory)
+  .factory('tabMiddleware', tabMiddleware)
   ;
 
 import { MomentConfig } from './config/moment.js';

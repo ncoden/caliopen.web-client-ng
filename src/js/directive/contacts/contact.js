@@ -1,3 +1,4 @@
+import { stateGo } from 'redux-ui-router';
 import { v1 as uuidV1 } from 'uuid';
 
 export class ContactsContactController {
@@ -9,12 +10,14 @@ export class ContactsContactController {
 
   showContact() {
     this.$ngRedux.dispatch(dispatch => {
-      dispatch(this.TabsActions.addTab({
+      const tab = {
         id: uuidV1(),
         route: 'front.contacts.contact',
         routeOpts: { contactId: this.contact.contact_id },
         label: this.contact.title,
-      }));
+      };
+      dispatch(this.TabsActions.addTab(tab));
+      dispatch(stateGo(tab.route, tab.routeOpts));
     });
   }
 }

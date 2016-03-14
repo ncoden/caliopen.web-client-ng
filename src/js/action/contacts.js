@@ -22,13 +22,6 @@ export class ContactsActions {
     };
   }
 
-  selectContact(contactId) {
-    return {
-      type: action.SELECT_CONTACT,
-      contactId,
-    };
-  }
-
   requestContacts() {
     return {
       type: action.REQUEST_CONTACTS,

@@ -4,8 +4,8 @@ const threadSelector = createSelector(
   state => state.threadReducer,
   state => state.threadReducer.selectedThread,
   (threadState, threadId) => {
-    if (!!threadState[threadId]) {
-      return { messages: threadState[threadId].messages };
+    if (!!threadState.messagesByThreadsId[threadId]) {
+      return { messages: threadState.messagesByThreadsId[threadId] };
     }
 
     return { messages: [] };
@@ -21,7 +21,10 @@ class ThreadController {
     'ngInject';
     $scope.$on('$destroy', $ngRedux.connect(threadSelector)(this));
     $scope.$on('$destroy', $ngRedux.connect(routerSelector)((payload) => {
-      $ngRedux.dispatch(DiscussionsActions.fetchMessages(payload.threadId));
+      if (!!payload.threadId) {
+        $ngRedux.dispatch(DiscussionsActions.fetchThread(payload.threadId));
+        $ngRedux.dispatch(DiscussionsActions.fetchMessages(payload.threadId));
+      }
     }));
   }
 }

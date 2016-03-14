@@ -41,8 +41,10 @@ const crashReporter = () => next => action => {
 
 export function ReduxConfig($ngReduxProvider) {
   'ngInject';
+
   $ngReduxProvider.createStoreWith(reducers, [
     'ngUiRouterMiddleware',
+    'tabMiddleware',
     thunk,
     promise,
     logger,
