@@ -1,14 +1,15 @@
 $co-avatar__size--small: 2rem;
-$co-avatar__size--medium: 4rem;
-$co-avatar__size--large: 8rem;
+$co-avatar__size--medium: 3rem;
+$co-avatar__size--large: 4rem;
+$co-avatar__size--xlarge: 6rem;
 
 @mixin co-avatar--size($modifier, $size) {
-  &#{$modifier} {
+  .co-avatar#{$modifier} {
     width: $size;
     height: $size;
   }
 
-  &#{$modifier} &__letter::before {
+  .co-avatar#{$modifier} .co-avatar__letter::before {
     line-height: $size;
     font-size: $size * 0.75;
   }
@@ -29,12 +30,13 @@ $co-avatar__size--large: 8rem;
     color: #ffffff;
     text-align: center;
   }
-
-  // default
-  @include co-avatar--size('', $co-avatar__size--medium);
-
-  // modifiers
-  @include co-avatar--size(--small, $co-avatar__size--small);
-  @include co-avatar--size(--medium, $co-avatar__size--medium);
-  @include co-avatar--size(--large, $co-avatar__size--large);
 }
+
+// default
+@include co-avatar--size('', $co-avatar__size--medium);
+
+// modifiers
+@include co-avatar--size(--small, $co-avatar__size--small);
+@include co-avatar--size(--medium, $co-avatar__size--medium);
+@include co-avatar--size(--large, $co-avatar__size--large);
+@include co-avatar--size(--xlarge, $co-avatar__size--xlarge);
