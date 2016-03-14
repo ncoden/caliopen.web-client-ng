@@ -5,11 +5,13 @@
 
 // vendors
 @import "extension/bootstrap/custom";
-@import "bootstrap";
+@import "vendor/bootstrap";
 @import "extension/bootstrap/grid";
 @import "extension/bootstrap/scaffolding";
 
-@import "font-awesome";
+@import "vendor/font-awesome";
+
+// injected
 @import "co-icons";
 
 // components
