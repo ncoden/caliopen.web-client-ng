@@ -50,7 +50,10 @@ export function DiscussionsThreadDirective() {
           <i class="fa fa-eye"></i> {{ctrl.thread.privacy_index}}
         </div>
         <div class="col-md-2 col-sm-2 hidden-xs">
-          {{ ctrl.fakeDate | amDateFormat:'lll'}}
+          <time title="{{ ctrl.fakeDate | amDateFormat: 'LLL' }}">
+            <span class="co-text--ellipsis">{{ ctrl.fakeDate | amDateFormat: 'll' }}</span>
+            <span class="co-text--ellipsis">{{ ctrl.fakeDate | amDateFormat: 'LT' }}</span>
+          </time>
         </div>
         <div class="col-md-1 hidden-sm hidden-xs">
           <span class="co-threads__thread__nb-messages badge">
