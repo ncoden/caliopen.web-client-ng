@@ -10,6 +10,7 @@
 @import "extension/bootstrap/scaffolding";
 
 @import "font-awesome";
+@import "co-icons";
 
 // components
 @import "component/list";
@@ -21,6 +22,7 @@
 @import "component/avatars";
 @import "component/letters";
 @import "component/slider";
+@import "component/loading-icon";
 
 // application
 @import "layout/header";
