@@ -21,7 +21,9 @@ class ContactController {
     'ngInject';
     $scope.$on('$destroy', $ngRedux.connect(contactSelector)(this));
     $scope.$on('$destroy', $ngRedux.connect(routerSelector)((payload) => {
-      $ngRedux.dispatch(ContactsActions.fetchContact(payload.contactId));
+      if (!!payload.contactId) {
+        $ngRedux.dispatch(ContactsActions.fetchContact(payload.contactId));
+      }
     }));
   }
 }

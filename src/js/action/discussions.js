@@ -24,6 +24,22 @@ export class DiscussionsActions {
     };
   }
 
+  requestThread(threadId) {
+    return {
+      type: action.REQUEST_THREAD,
+      threadId,
+    };
+  }
+
+  receiveThread(threadId, json) {
+    return {
+      type: action.RECEIVER_THREAD,
+      threadId,
+      thread: json.thread,
+      receiveAt: Date.now(),
+    };
+  }
+
   requestThreads() {
     return {
       type: action.REQUEST_THREADS,
@@ -53,6 +69,14 @@ export class DiscussionsActions {
       dispatch(this.requestMessages(threadId));
       this.MessageRepository.findByThreadId(threadId)
         .then(json => dispatch(this.receiveMessages(threadId, json)));
+    };
+  }
+
+  fetchThread(threadId) {
+    return dispatch => {
+      dispatch(this.requestThread(threadId));
+      this.ThreadRepository.find(threadId)
+        .then(json => dispatch(this.receiveThread(threadId, json)));
     };
   }
 }

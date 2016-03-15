@@ -31,7 +31,7 @@ export function RouterConfig($stateProvider, $urlRouterProvider) {
       },
     })
     .state('front.contacts.contact', {
-      url: '{contactId}',
+      url: '/{contactId}',
       views: {
         '@': uiView,
       },

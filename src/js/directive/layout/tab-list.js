@@ -35,14 +35,14 @@ export class LayoutTabListController {
   }
 
   select(tab) {
-    return this.$ngRedux.dispatch(this.TabsActions.selectTab(tab));
+    return this.$ngRedux.dispatch(dispatch => {
+      dispatch(this.TabsActions.selectTab(tab));
+      dispatch(stateGo(tab.route, tab.routeOpts));
+    });
   }
 
   selectCurrentApplication() {
-    return this.$ngRedux.dispatch((dispatch) => {
-      dispatch(this.TabsActions.resetSelectedTab());
-      dispatch(stateGo(this.currentApplicationRoute));
-    });
+    return this.$ngRedux.dispatch(stateGo(this.currentApplicationRoute));
   }
 
   isActive(tab) {

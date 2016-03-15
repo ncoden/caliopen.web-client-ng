@@ -9,4 +9,9 @@ export class ThreadRepository {
     return this.$http.get(`${this.ApiUrl}/threads`)
       .then(response => response.data);
   }
+
+  find(threadId) {
+    return this.$http.get(`${this.ApiUrl}/threads/${threadId}`)
+      .then(response => response.data);
+  }
 }

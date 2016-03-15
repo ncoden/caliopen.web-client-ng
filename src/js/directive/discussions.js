@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 
 const threadsSelector = createSelector(
   state => state.threadReducer,
-  payload => ({ threads: payload.threads })
+  payload => ({ threads: payload.threads.map(threadId => payload.threadsById[threadId]) })
 );
 
 export class DiscussionsController {
