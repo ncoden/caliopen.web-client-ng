@@ -35,6 +35,12 @@
       "title": "Compose Message"
     }
   },
+  "contact": {
+    "message": "Message",
+    "groups": "Groups",
+    "accounts": "Accounts",
+    "coordinates": "Coordinates"
+  },
   "contacts": {
     "tags": {
       "all": "All contacts",

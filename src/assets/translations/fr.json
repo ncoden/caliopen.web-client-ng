@@ -35,6 +35,12 @@
       "title": "Créer un message"
     }
   },
+  "contact": {
+    "message": "Message",
+    "groups": "Groupes",
+    "accounts": "Comptes",
+    "coordinates": "Coordonnées"
+  },
   "contacts": {
     "tags": {
       "all": "Tous les contacts",

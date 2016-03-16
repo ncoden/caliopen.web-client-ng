@@ -16,15 +16,18 @@
 
 // components
 @import "component/list";
-@import "component/text-field";
-@import "component/search-field";
-@import "component/text";
+@import "component/text-list";
 
 @import "component/avatar";
 @import "component/avatars";
 @import "component/letters";
-@import "component/slider";
 @import "component/loading-icon";
+@import "component/text-field";
+@import "component/search-field";
+@import "component/slider";
+@import "component/tag";
+
+@import "component/text";
 
 // application
 @import "layout/header";
@@ -37,3 +40,4 @@
 @import "page/threads";
 @import "page/messages";
 @import "page/contacts";
+@import "page/contact";
