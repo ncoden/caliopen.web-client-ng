@@ -1,11 +1,11 @@
 // -------------------------------------
 //   Gulpfile
 // -------------------------------------
-// 
+//
 //   'build' (default)  : create JS application with its css and assets
 //   'release'          : generate Changelog
 //   'watch'            : watch for source changes to compile them
-// 
+//
 // -------------------------------------
 
 // --- Configuration ---
@@ -36,6 +36,9 @@ var config = {
     './node_modules/bootstrap-sass/assets/stylesheets/**/*.scss',
     './node_modules/font-awesome/scss/**/*.scss',
   ],
+  cssVendors: [
+    './node_modules/angular-loading-bar/src/loading-bar.css',
+  ],
   assetsVendorsNamespace: '',
   assetsVendors: [
     './node_modules/bootstrap-sass/assets/@(fonts)/**/*',
@@ -44,6 +47,7 @@ var config = {
 
   jsDestFile: 'dist/js/app.js',
   cssDestFile: 'dist/css/main.css',
+  cssVendorDestFile: 'dist/css/vendor.css',
   assetsDest: 'dist',
   fontsDest: 'dist/fonts',
 
@@ -62,6 +66,7 @@ var iconfontConfig = {
 var gulp = require('gulp');
 var gulpPlumber = require('gulp-plumber');
 var gulpSequence = require('gulp-sequence');
+var gulpConcat = require('gulp-concat');
 
 // file management
 var del = require('del');
@@ -86,7 +91,7 @@ var conventionalChangelog = require('gulp-conventional-changelog');
 
 gulp.task('default', ['build']);
 
-gulp.task('build', gulpSequence('clean', 'build:assets', ['build:scss', 'build:js']));
+gulp.task('build', gulpSequence('clean', 'build:assets', ['build:scss', 'build:cssVendor', 'build:js']));
 gulp.task('release', ['release:changelog']);
 
 // config
@@ -119,7 +124,7 @@ gulp.task('build:assetsIcons', function () {
     .pipe(iconfont({
       fontName: iconfontConfig.iconsFontName,
       formats: ['ttf', 'eot', 'svg', 'woff', 'woff2'],
-      timestamp: runTimestamp, // recommended to get consistent builds when watching files 
+      timestamp: runTimestamp, // recommended to get consistent builds when watching files
     }))
     .pipe(gulp.dest(config.fontsDest + '/' + iconfontConfig.iconsFontName));
 });
@@ -151,6 +156,14 @@ gulp.task('build:scssCompile', function () {
 });
 gulp.task('build:scssClean', function() {
   del(config.buildDirectory + '/scss');
+});
+
+gulp.task('build:cssVendor', function() {
+  var destPath = pathParse(config.cssVendorDestFile);
+
+  return gulp.src(config.cssVendors)
+    .pipe(gulpConcat(destPath.base))
+    .pipe(gulp.dest(destPath.dir));
 });
 
 gulp.task('build:js', ['lint'], function() {
