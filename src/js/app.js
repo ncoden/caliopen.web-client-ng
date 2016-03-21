@@ -13,6 +13,7 @@ import uiSlider from 'angular-ui-slider';
 import ngRedux from 'ng-redux';
 import reduxUiRouter from 'redux-ui-router';
 import angularMoment from 'angular-moment';
+import angularLoadingBar from 'angular-loading-bar';
 
 const app = angular.module('caliopenApp', [
   uiRouter,
@@ -22,9 +23,11 @@ const app = angular.module('caliopenApp', [
   ngRedux,
   angularMoment.name,
   reduxUiRouter,
+  angularLoadingBar,
 ]);
 
 // config
+import { LoadingBarConfig } from './config/loading-bar.js';
 import { ReduxConfig } from './config/redux.js';
 import { RouterConfig } from './config/router.js';
 import { TranslateConfig } from './config/translate.js';
@@ -32,6 +35,7 @@ import { BaseUrlFactory, ApiUrlFactory, ApiInterceptorConfig } from './config/se
 import { tabMiddleware } from './middleware/tab-middleware.js';
 
 app
+  .config(LoadingBarConfig)
   .config(ReduxConfig)
   .config(RouterConfig)
   .config(TranslateConfig)
