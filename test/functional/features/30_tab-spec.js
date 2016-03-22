@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const userUtil = require('../utils/user-util.js');
 const isTestEnv = process.env.NODE_ENV === 'test';
 
@@ -16,7 +17,6 @@ describe('Tab', () => {
   it('creates on threads', () => {
     browser.get('/');
     expect(element(by.css('.co-layout__tabs')).getText()).toContain('Discussions');
-
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " co-layout__tabs__item ")][2]')).isPresent()).toBe(false);
     element(by.xpath('//co-discussions-thread[1]/*[contains(@class, "co-threads__thread")]')).click();
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " co-layout__tabs__item ")][2]')).isPresent()).toBe(true);

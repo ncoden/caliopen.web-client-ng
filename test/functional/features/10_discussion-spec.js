@@ -19,7 +19,8 @@ describe('Discussions', () => {
       const fs = require('fs');
       fs.appendFile('list.png', data);
     });
-    element(by.xpath('//co-layout-application-switcher//a[contains(string(), "Discussions")]')).click();
+    element(by.xpath('//co-layout-application-switcher//a[contains(string(), "Discussions")]'))
+      .click();
     expect(element(by.css('.co-layout__tabs')).getText()).toContain('Discussions');
   });
 });
