@@ -15,7 +15,9 @@ import reduxUiRouter from 'redux-ui-router';
 import angularMoment from 'angular-moment';
 import angularLoadingBar from 'angular-loading-bar';
 
-const app = angular.module('caliopenApp', [
+export const moduleName = 'caliopenApp';
+
+const app = angular.module(moduleName, [
   uiRouter,
   translate,
   ngSanitize,

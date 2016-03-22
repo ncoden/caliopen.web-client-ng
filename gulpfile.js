@@ -16,7 +16,9 @@ var config = {
   destDirectory: 'dist',
 
   htmlMain: 'src/index.html',
+  htmlMainTest: 'test/functional/index.html',
   jsMain: 'src/js/app.js',
+  jsMainTest: 'test/functional/app_test.js',
   jsFiles: 'src/js/**/*.js',
   scssMain: 'src/styles/main.scss',
   scssFiles: [
@@ -58,6 +60,8 @@ var iconfontConfig = {
   iconsFontName: 'co-icons',
   iconsCssClass: 'co-icon',
 };
+
+var isTestEnv = (process.env.NODE_ENV === 'test');
 
 
 // --- Dependencies ---
@@ -110,7 +114,9 @@ gulp.task('build:assetsVendors', function() {
     .pipe(gulp.dest(config.assetsDest + '/' + config.assetsVendorsNamespace));
 });
 gulp.task('build:assetsIndex', function() {
-  return gulp.src(config.htmlMain)
+  const htmlMain = (!isTestEnv) ? config.htmlMain : config.htmlMainTest;
+
+  return gulp.src(htmlMain)
     .pipe(gulp.dest(config.destDirectory));
 });
 gulp.task('build:assetsIcons', function () {
@@ -168,8 +174,9 @@ gulp.task('build:cssVendor', function() {
 
 gulp.task('build:js', ['lint'], function() {
   var path = pathParse(config.jsDestFile);
+  var jsMain = (!isTestEnv) ? config.jsMain : config.jsMainTest;
 
-  return gulp.src(config.jsMain)
+  return gulp.src(jsMain)
     .pipe(webpack({
       module: {
         loaders: [
@@ -217,4 +224,8 @@ gulp.task('watch', function() {
   gulp.watch(config.iconsFiles, ['build:assetsIcons', 'build:scss']);
   gulp.watch(config.scssFiles, ['build:scss']);
   gulp.watch(config.jsFiles, ['build:js']);
+
+  if (isTestEnv) {
+    gulp.watch(config.jsMainTest, ['build:js']);
+  }
 });
