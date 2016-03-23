@@ -17,30 +17,32 @@
 // injected
 @import "co-icons";
 
-// components
-@import "component/list";
-@import "component/text-list";
+// modules
+@import "module/list";
+@import "module/text-list";
 
-@import "component/avatar";
-@import "component/avatars";
-@import "component/letters";
-@import "component/loading-icon";
-@import "component/text-field";
-@import "component/search-field";
-@import "component/slider";
-@import "component/tag";
+@import "module/avatar";
+@import "module/avatars";
+@import "module/letters";
+@import "module/loading-icon";
+@import "module/text-field";
+@import "module/search-field";
+@import "module/slider";
+@import "module/tag";
 
-@import "component/text";
+@import "module/text";
 
-// application
+// layout
 @import "layout/header";
 @import "layout/topbar";
 @import "layout/body";
 @import "layout/sliders";
 @import "layout/tabs";
 
-@import "page/cor-login";
-@import "page/threads";
-@import "page/messages";
-@import "page/contacts";
-@import "page/contact";
+
+// sections
+@import "section/cor-login";
+@import "section/threads";
+@import "section/messages";
+@import "section/contacts";
+@import "section/contact";
