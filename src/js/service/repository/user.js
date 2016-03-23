@@ -1,12 +1,12 @@
 export class UserRepository {
-  constructor($http, BaseUrl) {
+  constructor($http, ApiUrl) {
     'ngInject';
     this.$http = $http;
-    this.BaseUrl = BaseUrl;
+    this.ApiUrl = ApiUrl;
   }
 
   getUser() {
-    return this.$http.get(`${this.BaseUrl}/auth/user-info`)
+    return this.$http.get(`${this.ApiUrl}/me`)
       .then(response => response.data);
   }
 }
