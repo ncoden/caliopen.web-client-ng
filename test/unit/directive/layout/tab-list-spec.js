@@ -1,8 +1,10 @@
-import {LayoutTabListController} from '../../../../src/js/directive/layout/tab-list.js';
-import {v1 as uuidV1} from 'uuid';
+import { LayoutTabListController } from '../../../../src/js/directive/layout/tab-list.js';
+import { v1 as uuidV1 } from 'uuid';
 
 describe('Directive Layout TabList', () => {
-  let getController, fakeTab1, fakeTab2;
+  let getController;
+  let fakeTab1;
+  let fakeTab2;
 
   beforeEach(() => {
     angular.module('caliopenApp-test', ['caliopenApp'])
@@ -11,19 +13,20 @@ describe('Directive Layout TabList', () => {
       $translateProvider.translations('en', {});
       $translateProvider.preferredLanguage('en');
     });
-
   });
 
   beforeEach(inject(($controller, $state, $ngRedux, TabsActions) => {
-    getController = (scope, bindToController = {}) => {
-      return $controller('LayoutTabListController', { $scope: scope, $state, $ngRedux, TabsActions }, bindToController);
-    };
+    getController = (scope, bindToController = {}) =>
+      $controller(
+        'LayoutTabListController',
+        { $scope: scope, $state, $ngRedux, TabsActions },
+        bindToController);
 
-    fakeTab1  = {
+    fakeTab1 = {
       id: uuidV1(),
       route: 'front.discussions',
     };
-    fakeTab2  = {
+    fakeTab2 = {
       id: uuidV1(),
       route: 'front.contacts',
     };
@@ -31,29 +34,29 @@ describe('Directive Layout TabList', () => {
 
   describe('constructor', () => {
     it('has no tabs', inject(($rootScope) => {
-      let scope = $rootScope.$new();
-      let ctrl = getController(scope);
+      const scope = $rootScope.$new();
+      const ctrl = getController(scope);
       expect(ctrl.tabs).toEqual([]);
     }));
 
     it('has tabs', inject(($rootScope, $ngRedux, TabsActions) => {
-      $ngRedux.dispatch(TabsActions.addTab( fakeTab1 ));
-      $ngRedux.dispatch(TabsActions.addTab( fakeTab2 ));
+      $ngRedux.dispatch(TabsActions.addTab(fakeTab1));
+      $ngRedux.dispatch(TabsActions.addTab(fakeTab2));
 
-      let scope = $rootScope.$new();
-      let ctrl = getController(scope);
-      expect(ctrl.tabs).toEqual([ fakeTab1 ,  fakeTab2 ]);
+      const scope = $rootScope.$new();
+      const ctrl = getController(scope);
+      expect(ctrl.tabs).toEqual([fakeTab1, fakeTab2]);
     }));
   });
 
   it('remove', inject(($rootScope, $ngRedux, TabsActions) => {
-    let tab =  fakeTab1 ;
+    const tab = fakeTab1;
     $ngRedux.dispatch(TabsActions.addTab(tab));
-    $ngRedux.dispatch(TabsActions.addTab( fakeTab2 ));
+    $ngRedux.dispatch(TabsActions.addTab(fakeTab2));
 
-    let scope = $rootScope.$new();
-    let ctrl = getController(scope);
+    const scope = $rootScope.$new();
+    const ctrl = getController(scope);
     ctrl.remove(tab);
-    expect(ctrl.tabs).toEqual([ fakeTab2 ]);
+    expect(ctrl.tabs).toEqual([fakeTab2]);
   }));
 });

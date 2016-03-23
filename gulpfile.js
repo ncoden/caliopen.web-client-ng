@@ -8,9 +8,11 @@
 //
 // -------------------------------------
 
+/* eslint-disable no-console*/
+
 // --- Configuration ---
 
-var config = {
+const config = {
   srcDirectory: 'src',
   buildDirectory: '.build',
   destDirectory: 'dist',
@@ -56,125 +58,139 @@ var config = {
   clientCssFontsPath: '../fonts',
 };
 
-var iconfontConfig = {
+const iconfontConfig = {
   iconsFontName: 'co-icons',
   iconsCssClass: 'co-icon',
 };
 
-var isTestEnv = (process.env.NODE_ENV === 'test');
+const isTestEnv = (process.env.NODE_ENV === 'test');
 
 
 // --- Dependencies ---
 
 // gulp and tasks
-var gulp = require('gulp');
-var gulpPlumber = require('gulp-plumber');
-var gulpSequence = require('gulp-sequence');
-var gulpConcat = require('gulp-concat');
+const gulp = require('gulp');
+const gulpPlumber = require('gulp-plumber');
+const gulpSequence = require('gulp-sequence');
+const gulpConcat = require('gulp-concat');
 
 // file management
-var del = require('del');
-var pathParse = require('path-parse');
-var rename = require("gulp-rename");
+const del = require('del');
+const pathParse = require('path-parse');
+const rename = require('gulp-rename');
 
 // build (JS)
-var eslint = require('gulp-eslint');
-var ngAnnotate = require('gulp-ng-annotate');
-var webpack = require('gulp-webpack');
+const eslint = require('gulp-eslint');
+const ngAnnotate = require('gulp-ng-annotate');
+const webpack = require('gulp-webpack');
 // build (scss)
-var sass = require('gulp-sass');
+const sass = require('gulp-sass');
 // build (assets)
-var iconfont = require('gulp-iconfont');
-var iconfontCss = require('gulp-iconfont-css');
+const iconfont = require('gulp-iconfont');
+const iconfontCss = require('gulp-iconfont-css');
 
 // release
-var conventionalChangelog = require('gulp-conventional-changelog');
+const conventionalChangelog = require('gulp-conventional-changelog');
 
 
 // --- Tasks ---
 
 gulp.task('default', ['build']);
 
-gulp.task('build', gulpSequence('clean', 'build:assets', ['build:scss', 'build:cssVendor', 'build:js']));
+gulp.task('build', gulpSequence(
+  'clean',
+  'build:assets',
+  ['build:scss', 'build:cssVendor', 'build:js']));
+
 gulp.task('release', ['release:changelog']);
 
 // config
-var onError = function (err) {
+const onError = (err) => {
   console.error(err);
   this.emit('end');
 };
-var runTimestamp = Math.round(Date.now()/1000);
+const runTimestamp = Math.round(Date.now() / 1000);
 
 // Build
-gulp.task('build:assets', function(cb) {
-  gulpSequence(['build:assetsVendors', 'build:assetsIndex', 'build:assetsIcons', 'build:assetsFiles'], cb);
+gulp.task('build:assets', (cb) => {
+  gulpSequence(
+    ['build:assetsVendors', 'build:assetsIndex', 'build:assetsIcons', 'build:assetsFiles'],
+    cb);
 });
-gulp.task('build:assetsVendors', function() {
-  return gulp.src(config.assetsVendors)
-    .pipe(gulp.dest(config.assetsDest + '/' + config.assetsVendorsNamespace));
-});
-gulp.task('build:assetsIndex', function() {
+
+gulp.task('build:assetsVendors', () =>
+  gulp.src(config.assetsVendors)
+    .pipe(gulp.dest(`${config.assetsDest}/${config.assetsVendorsNamespace}`)));
+
+gulp.task('build:assetsIndex', () => {
   const htmlMain = (!isTestEnv) ? config.htmlMain : config.htmlMainTest;
 
   return gulp.src(htmlMain)
     .pipe(gulp.dest(config.destDirectory));
 });
-gulp.task('build:assetsIcons', function () {
-  return gulp.src(config.iconsFiles)
+
+gulp.task('build:assetsIcons', () =>
+  gulp.src(config.iconsFiles)
     .pipe(iconfontCss({
       cssClass: iconfontConfig.iconsCssClass,
       fontName: iconfontConfig.iconsFontName,
-      fontPath: config.clientCssFontsPath + '/' + iconfontConfig.iconsFontName + '/',
-      targetPath: '../../../' + config.buildDirectory + '/icons/' + iconfontConfig.iconsFontName + '.scss'
+      fontPath: `${config.clientCssFontsPath}/${iconfontConfig.iconsFontName}/`,
+      targetPath: `../../../${config.buildDirectory}/icons/${iconfontConfig.iconsFontName}.scss`,
     }))
     .pipe(iconfont({
       fontName: iconfontConfig.iconsFontName,
       formats: ['ttf', 'eot', 'svg', 'woff', 'woff2'],
       timestamp: runTimestamp, // recommended to get consistent builds when watching files
     }))
-    .pipe(gulp.dest(config.fontsDest + '/' + iconfontConfig.iconsFontName));
-});
-gulp.task('build:assetsFiles', function() {
-  return gulp.src(config.assetsFiles)
-    .pipe(gulp.dest(config.assetsDest));
+    .pipe(gulp.dest(`${config.fontsDest}/${iconfontConfig.iconsFontName}`)));
+
+gulp.task('build:assetsFiles', () =>
+  gulp.src(config.assetsFiles)
+    .pipe(gulp.dest(config.assetsDest)));
+
+gulp.task('build:scss', (cb) => {
+  gulpSequence(
+    'build:scssVendors',
+    'build:scssPrepare',
+    'build:scssCompile',
+    'build:scssClean',
+    cb);
 });
 
-gulp.task('build:scss', function(cb) {
-  gulpSequence('build:scssVendors', 'build:scssPrepare', 'build:scssCompile', 'build:scssClean', cb);
-});
-gulp.task('build:scssVendors', function () {
-  return gulp.src(config.scssVendors)
-    .pipe(gulp.dest(config.buildDirectory + '/scss/' + config.scssVendorsNamespace));
-});
-gulp.task('build:scssPrepare', function () {
-  return gulp.src(config.scssFiles)
-    .pipe(gulp.dest(config.buildDirectory + '/scss'));
-});
-gulp.task('build:scssCompile', function () {
-  var srcPath = pathParse(config.scssMain);
-  var destPath = pathParse(config.cssDestFile);
+gulp.task('build:scssVendors', () =>
+  gulp.src(config.scssVendors)
+    .pipe(gulp.dest(`${config.buildDirectory}/scss/${config.scssVendorsNamespace}`)));
 
-  return gulp.src(config.buildDirectory + '/scss/' + srcPath.base)
+gulp.task('build:scssPrepare', () =>
+  gulp.src(config.scssFiles)
+    .pipe(gulp.dest(`${config.buildDirectory}/scss`)));
+
+gulp.task('build:scssCompile', () => {
+  const srcPath = pathParse(config.scssMain);
+  const destPath = pathParse(config.cssDestFile);
+
+  return gulp.src(`${config.buildDirectory}/scss/${srcPath.base}`)
     .pipe(gulpPlumber({ errorHandler: onError }))
     .pipe(sass())
     .pipe(rename(destPath.base))
     .pipe(gulp.dest(destPath.dir));
 });
-gulp.task('build:scssClean', function() {
-  del(config.buildDirectory + '/scss');
+
+gulp.task('build:scssClean', () => {
+  del(`${config.buildDirectory}/scss`);
 });
 
-gulp.task('build:cssVendor', function() {
-  var destPath = pathParse(config.cssVendorDestFile);
+gulp.task('build:cssVendor', () => {
+  const destPath = pathParse(config.cssVendorDestFile);
 
   return gulp.src(config.cssVendors)
     .pipe(gulpConcat(destPath.base))
     .pipe(gulp.dest(destPath.dir));
 });
 
-gulp.task('build:js', ['lint'], function() {
-  var path = pathParse(config.jsDestFile);
-  var jsMain = (!isTestEnv) ? config.jsMain : config.jsMainTest;
+gulp.task('build:js', ['lint'], () => {
+  const path = pathParse(config.jsDestFile);
+  const jsMain = (!isTestEnv) ? config.jsMain : config.jsMainTest;
 
   return gulp.src(jsMain)
     .pipe(webpack({
@@ -184,41 +200,38 @@ gulp.task('build:js', ['lint'], function() {
           {
             test: /\.jsx?$/,
             exclude: /(node_modules|bower_components)/,
-            loaders: ['babel'] // 'babel-loader' is also a legal name to reference
+            loaders: ['babel'], // 'babel-loader' is also a legal name to reference
           },
-        ]
+        ],
       },
       output: {
-        filename: path.base
-      }
+        filename: path.base,
+      },
     }))
     .pipe(ngAnnotate())
     .pipe(gulp.dest(path.dir));
 });
 
-gulp.task('lint', function () {
-  return gulp.src(config.jsFiles)
+gulp.task('lint', () =>
+  gulp.src(config.jsFiles)
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
-});
+    .pipe(eslint.failAfterError()));
 
-gulp.task('clean', function() {
-  return del(config.destDirectory + '/*')
-      && del(config.buildDirectory);
-});
+gulp.task('clean', () =>
+  del(`${config.destDirectory}/*`)
+      && del(config.buildDirectory));
 
 // Release
-gulp.task('release:changelog', function() {
-  return gulp.src('CHANGELOG.md')
+gulp.task('release:changelog', () =>
+  gulp.src('CHANGELOG.md')
     .pipe(conventionalChangelog({
-      preset: 'angular'
+      preset: 'angular',
     }))
-    .pipe(gulp.dest('./'));
-});
+    .pipe(gulp.dest('./')));
 
 // Development
-gulp.task('watch', function() {
+gulp.task('watch', () => {
   gulp.watch(config.htmlMain, ['build:assetsIndex']);
   gulp.watch(config.assetsFiles, ['build:assetsFiles']);
   gulp.watch(config.iconsFiles, ['build:assetsIcons', 'build:scss']);

@@ -2,7 +2,6 @@ import { threadReducer } from '../../../src/js/reducer/thread-reducer.js';
 import * as actions from '../../../src/js/action/action-types.js';
 
 describe('Reducer Thread Reducer', () => {
-
   const initialState = threadReducer();
 
   it('init state', () => {

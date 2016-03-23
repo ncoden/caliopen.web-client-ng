@@ -1,17 +1,19 @@
-import {ApplicationHelper} from '../../../../src/js/service/helper/application-helper.js';
+import { ApplicationHelper } from '../../../../src/js/service/helper/application-helper.js';
 
 describe('Service Helper ApplicationHelper', () => {
   beforeEach(() => {
     angular.module('caliopenApp-test', ['caliopenApp'])
       .service('ApplicationHelper', ApplicationHelper);
-    angular.mock.module('caliopenApp-test', ($translateProvider) => {
 
+    angular.mock.module('caliopenApp-test', ($translateProvider) => {
       $translateProvider.translations('en', {});
       $translateProvider.preferredLanguage('en');
     });
   });
 
-  let applicationHelper, $state, $rootScope;
+  let applicationHelper;
+  let $state;
+  let $rootScope;
 
   beforeEach(inject((_ApplicationHelper_, _$state_, _$rootScope_) => {
     applicationHelper = _ApplicationHelper_;
@@ -20,13 +22,12 @@ describe('Service Helper ApplicationHelper', () => {
   }));
 
   describe('getCurrentInfos', () => {
-
     it('give default state infos', () => {
       $rootScope.$digest();
 
       expect(applicationHelper.getCurrentInfos()).toEqual({
         name: 'discussions',
-        route: 'front.discussions'
+        route: 'front.discussions',
       });
     });
 
@@ -36,7 +37,7 @@ describe('Service Helper ApplicationHelper', () => {
 
       expect(applicationHelper.getCurrentInfos()).toEqual({
         name: 'contacts',
-        route: 'front.contacts'
+        route: 'front.contacts',
       });
     });
   });

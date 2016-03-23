@@ -1,14 +1,13 @@
 // jQuery must be loaded before angular
-// jQ cannot be use as well. jQuery is exposed to document (@see gulpfile)
-import * as jQ from 'jquery'; // eslint-disable-line no-unused-vars
+import 'jquery';
 import angular from 'angular';
-import slider from 'jquery-ui/slider'; // eslint-disable-line no-unused-vars
-import bootstrapSass from 'bootstrap-sass'; // eslint-disable-line no-unused-vars
-import babelPolyfill from 'babel-polyfill'; // eslint-disable-line no-unused-vars
+import 'jquery-ui/slider';
+import 'bootstrap-sass';
+import 'babel-polyfill';
 import ngSanitize from 'angular-sanitize';
 import uiRouter from 'angular-ui-router';
 import translate from 'angular-translate';
-import angularTranslateLoaderStaticFiles from 'angular-translate-loader-static-files'; // eslint-disable-line max-len,no-unused-vars
+import 'angular-translate-loader-static-files';
 import uiSlider from 'angular-ui-slider';
 import ngRedux from 'ng-redux';
 import reduxUiRouter from 'redux-ui-router';
