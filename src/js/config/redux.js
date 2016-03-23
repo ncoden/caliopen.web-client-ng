@@ -1,14 +1,20 @@
 import reducers from '../reducer/reducers.js';
 
-const thunk = store => next => action =>
-  typeof action === 'function' ?
-    action(store.dispatch, store.getState) :
-    next(action);
+const thunk = store => next => action => {
+  if (typeof action === 'function') {
+    return action(store.dispatch, store.getState);
+  }
 
-const promise = store => next => action =>
-  typeof action.then === 'function' ?
-    action.then(resolved => store.dispatch(resolved)) :
-    next(action);
+  return next(action);
+};
+
+const promise = store => next => action => {
+  if (typeof action.then === 'function') {
+    return action.then(resolved => store.dispatch(resolved));
+  }
+
+  return next(action);
+};
 
 /**
  * Logs all actions and states after they are dispatched.
