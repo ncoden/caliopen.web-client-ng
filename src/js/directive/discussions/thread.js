@@ -1,5 +1,4 @@
 import { stateGo } from 'redux-ui-router';
-import { v1 as uuidV1 } from 'uuid';
 
 export class DiscussionsThreadController {
   constructor($state, $ngRedux, TabsActions) {
@@ -14,12 +13,11 @@ export class DiscussionsThreadController {
   showThread() {
     this.$ngRedux.dispatch(dispatch => {
       const tab = {
-        id: uuidV1(),
         route: 'front.discussions.thread',
         routeOpts: { threadId: this.thread.thread_id },
         label: this.thread.text,
       };
-      dispatch(this.TabsActions.addTab(tab));
+      dispatch(this.TabsActions.selectOrAdd(tab));
       dispatch(stateGo(tab.route, tab.routeOpts));
     });
   }
