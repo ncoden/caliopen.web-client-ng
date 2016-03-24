@@ -115,6 +115,7 @@ Scopes for [conventional changelog](https://github.com/ajoslin/conventional-chan
 | discussions | All about discussions                               |
 | thread      | All about a thread                                  |
 | contact     | All about contacts                                  |
+| user        | All about end user                                  |
 | design      | All about design & UX                               |
 | wording     | All about l10n or i18n                              |
 | pi-imp      | All about Privacy index or Importance level         |

@@ -27,11 +27,11 @@ export function LayoutUserMenuDirective() {
         <li class="dropdown">
           <a href class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-label="{{'header.menu.account'|translate}}">
             <i class="fa fa-user"></i>
-            <span class="visible-xs-inline">{{ ctrl.user.username }}</span>
+            <span class="visible-xs-inline">{{ ctrl.user.name }}</span>
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
-            <li class="dropdown-header hidden-xs">{{ ctrl.user.username }}</li>
+            <li class="dropdown-header hidden-xs">{{ ctrl.user.name }}</li>
             <li class="divider"></li>
             <li>
               <a href="/auth/logout">
