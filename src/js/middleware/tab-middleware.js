@@ -1,4 +1,3 @@
-import { v1 as uuidV1 } from 'uuid';
 import * as actions from '../action/action-types.js';
 
 export function tabMiddleware(TabsActions) {
@@ -11,6 +10,17 @@ export function tabMiddleware(TabsActions) {
     ];
     if (actionsRequiresResetTab.indexOf(action.type) !== -1) {
       store.dispatch(TabsActions.resetSelectedTab());
+    }
+
+    if (action.type === actions.SELECT_OR_ADD_TAB) {
+      const foundTab = store.getState().tabReducer.tabs
+        .find((tab) => angular.toJson(action.tab) === angular.toJson(tab));
+
+      if (!foundTab) {
+        store.dispatch(TabsActions.addTab(action.tab));
+      } else {
+        store.dispatch(TabsActions.selectTab(foundTab));
+      }
     }
 
     const result = next(action);
@@ -33,7 +43,6 @@ export function tabMiddleware(TabsActions) {
           break;
       }
       store.dispatch(TabsActions.addTab({
-        id: uuidV1(),
         route: nextState.router.currentState.name,
         routeOpts: nextState.router.currentParams,
         label: tabLabel,

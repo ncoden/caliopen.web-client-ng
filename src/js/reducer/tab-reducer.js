@@ -18,7 +18,7 @@ function tabsReducer(state = [], action = {}) {
 
 function selectTabReducer(state = null, action) {
   if (action.type === actions.SELECT_TAB) {
-    return action.tabId;
+    return action.tab;
   }
 
   return state;

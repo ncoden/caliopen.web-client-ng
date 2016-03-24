@@ -20,14 +20,21 @@ export class TabsActions {
   selectTab(tab) {
     return {
       type: action.SELECT_TAB,
-      tabId: tab.id,
+      tab,
+    };
+  }
+
+  selectOrAdd(tab) {
+    return {
+      type: action.SELECT_OR_ADD_TAB,
+      tab,
     };
   }
 
   resetSelectedTab() {
     return {
       type: action.SELECT_TAB,
-      tabId: null,
+      tab: null,
     };
   }
 

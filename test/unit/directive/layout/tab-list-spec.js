@@ -1,5 +1,4 @@
 import { LayoutTabListController } from '../../../../src/js/directive/layout/tab-list.js';
-import { v1 as uuidV1 } from 'uuid';
 
 describe('Directive Layout TabList', () => {
   let getController;
@@ -23,11 +22,9 @@ describe('Directive Layout TabList', () => {
         bindToController);
 
     fakeTab1 = {
-      id: uuidV1(),
       route: 'front.discussions',
     };
     fakeTab2 = {
-      id: uuidV1(),
       route: 'front.contacts',
     };
   }));

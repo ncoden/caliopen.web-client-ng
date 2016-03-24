@@ -4,7 +4,7 @@ import { stateGo } from 'redux-ui-router';
 const tabsSelector = createSelector(
   state => state.tabReducer.tabs,
   state => state.tabReducer.selected,
-  (tabs, selectedTabId) => ({ tabs, selectedTabId })
+  (tabs, selectedTab) => ({ tabs, selectedTab })
 );
 
 export class LayoutTabListController {
@@ -46,7 +46,7 @@ export class LayoutTabListController {
   }
 
   isActive(tab) {
-    return tab.id === this.selectedTabId;
+    return tab === this.selectedTab;
   }
 }
 
