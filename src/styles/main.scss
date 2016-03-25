@@ -4,15 +4,18 @@
 @import "base/theme/dark";
 
 // vendors
-@import "extension/bootstrap/custom";
-@import "vendor/bootstrap";
-@import "extension/bootstrap/grid";
-@import "extension/bootstrap/scaffolding";
+@import "vendor/bootstrap/custom";
+@import "bootstrap";
+@import "vendor/bootstrap/grid";
+@import "vendor/bootstrap/scaffolding";
 
-@import "extension/foundation/config";
-@import "vendor/foundation";
+@import "vendor/foundation-apps/config";
+@import "vendor/foundation-apps";
 
-@import "vendor/font-awesome";
+@import "vendor/foundation-sites/config";
+@import "vendor/foundation-sites";
+
+@import "font-awesome/scss/font-awesome";
 
 // injected
 @import "co-icons";
