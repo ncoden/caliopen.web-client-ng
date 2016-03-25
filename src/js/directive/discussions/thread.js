@@ -1,13 +1,22 @@
 import { stateGo } from 'redux-ui-router';
+import { createSelector } from 'reselect';
+
+const userSelector = createSelector(
+  state => state.userReducer.user,
+  user => ({ user })
+);
 
 export class DiscussionsThreadController {
-  constructor($state, $ngRedux, TabsActions) {
+  constructor($scope, $state, $ngRedux, TabsActions, threadContactsFilter) {
     'ngInject';
     this.$state = $state;
     this.$ngRedux = $ngRedux;
     this.TabsActions = TabsActions;
+    this.threadContactsFilter = threadContactsFilter;
     this.hasUnread = !!this.thread.unread_count && this.thread.unread_count > 0;
     this.fakeDate = new Date();
+
+    $scope.$on('$destroy', $ngRedux.connect(userSelector)(this));
   }
 
   showThread() {
@@ -15,7 +24,7 @@ export class DiscussionsThreadController {
       const tab = {
         route: 'front.discussions.thread',
         routeOpts: { threadId: this.thread.thread_id },
-        label: this.thread.text,
+        label: this.threadContactsFilter(this.thread, this.user),
       };
       dispatch(this.TabsActions.selectOrAdd(tab));
       dispatch(stateGo(tab.route, tab.routeOpts));
@@ -39,6 +48,9 @@ export function DiscussionsThreadDirective() {
           <co-discussions-contacts-icon thread="ctrl.thread"></co-discussions-contacts-icon>
         </div>
         <div class="col-md-6 col-sm-8 col-xs-9">
+          <div class="co-text--ellipsis">
+            {{ctrl.thread|threadContacts:ctrl.user}}
+          </div>
           <div class="co-text--ellipsis">
             {{ctrl.thread.text}}
           </div>
