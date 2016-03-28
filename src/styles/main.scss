@@ -23,7 +23,6 @@
 // modules
 @import "module/list";
 @import "module/text-list";
-
 @import "module/avatar";
 @import "module/avatars";
 @import "module/letters";
@@ -32,8 +31,10 @@
 @import "module/search-field";
 @import "module/slider";
 @import "module/tag";
-
 @import "module/text";
+
+@import "module/m-menu";
+@import "module/m-tabs";
 
 // layout
 @import "layout/header";
@@ -42,6 +43,9 @@
 @import "layout/sliders";
 @import "layout/tabs";
 
+@import "layout/l-header";
+@import "layout/l-topbar";
+@import "layout/l-body";
 
 // sections
 @import "section/cor-login";

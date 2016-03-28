@@ -64,33 +64,41 @@ export function LayoutTabListDirective() {
     bindToController: true,
     /* eslint-disable max-len */
     template: `
-      <ul class="co-layout__tabs">
-        <li class="co-layout__tabs__item">
+      <ul class="l-body__tabs m-tabs">
+        <li class="m-tabs__item">
           <a href ng-click="ctrl.selectCurrentApplication()"
-             ng-class="{ 'co-layout__tabs__item__link--active': (ctrl.currentApplicationRoute | isState) }"
-             class="co-layout__tabs__item__link co-layout__tabs__item__link--first">
+            ng-class="{ 'co-layout__tabs__item__link--active': (ctrl.currentApplicationRoute | isState) }"
+            class="co-layout__tabs__item__link co-layout__tabs__item__link--first"
+          >
             <i class="fa" ng-class="ctrl.currentApplicationIcon"></i>
             {{ ctrl.currentApplicationKey | translate }}
           </a>
         </li>
-        <li ng-repeat="tab in ctrl.tabs" class="co-layout__tabs__item" ng-switch="tab.type">
-          <a ng-switch-when="thread"
-             ui-sref="front.discussions.thread({ threadId: tab.item.thread_id })"
-             ui-sref-active-eq="co-layout__tabs__item__link--active"
-             title="{{ctrl.getThread(tab.item.thread_id)|threadContacts:ctrl.user}}"
-             class="co-layout__tabs__item__link">
-            <i class="fa fa-comments-o"></i>
-            {{ctrl.getThread(tab.item.thread_id)|threadContacts:ctrl.user|limitTo:200}}
-          </a>
-          <a ng-switch-when="contact"
-             ui-sref="front.contacts.contact({ contactId: tab.item.contact_id })"
-             ui-sref-active-eq="co-layout__tabs__item__link--active"
-             title="{{ctrl.getContact(tab.item.contact_id).title}}"
-             class="co-layout__tabs__item__link">
-            <i class="fa fa-user"></i>
-            {{ctrl.getContact(tab.item.contact_id).title|limitTo:200}}
-          </a>
-          <a href ng-click="ctrl.remove(tab)" class="co-layout__tabs__item__del-btn">
+
+        <li ng-repeat="tab in ctrl.tabs" class="m-tabs__item">
+          <span ng-switch="tab.type">
+            <a ng-switch-when="thread"
+              ui-sref="front.discussions.thread({ threadId: tab.item.thread_id })"
+              ui-sref-active-eq="is-active"
+              title="{{ctrl.getThread(tab.item.thread_id)|threadContacts:ctrl.user}}"
+              class="m-tabs__item__content m-tabs__item__content--with-btn"
+            >
+              <i class="fa fa-comments-o"></i>
+              {{ctrl.getThread(tab.item.thread_id)|threadContacts:ctrl.user|limitTo:200}}
+            </a>
+
+            <a ng-switch-when="contact"
+              ui-sref="front.contacts.contact({ contactId: tab.item.contact_id })"
+              ui-sref-active-eq="is-active"
+              title="{{ctrl.getContact(tab.item.contact_id).title}}"
+              class="m-tabs__item__content m-tabs__item__content--with-btn"
+            >
+              <i class="fa fa-user"></i>
+              {{ctrl.getContact(tab.item.contact_id).title|limitTo:200}}
+            </a>
+          </span>
+
+          <a href ng-click="ctrl.remove(tab)" class="m-tabs__item__btn">
             <i class="fa fa-close"></i>
           </a>
         </li>

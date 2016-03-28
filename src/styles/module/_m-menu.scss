@@ -1,0 +1,61 @@
+@mixin m-menu--inline {
+  .m-menu__item {
+    display: table-cell;
+  }
+  .m-menu__item-content {
+    display: inline-block;
+  }
+}
+@mixin m-menu--break {
+  .m-menu__item {
+    display: block;
+    white-space: nowrap;
+  }
+  .m-menu__item-content {
+    display: block;
+  }
+}
+
+.m-menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  &__item-content {
+    padding: 0 1rem;
+  }
+
+  // default
+  @include m-menu--inline;
+
+  // modifiers
+  &--inline {
+    @include m-menu--inline;
+  }
+  &--break {
+    @include m-menu--break;
+  }
+}
+
+a.m-menu__item-content,
+.m-menu__item-content--link {
+  cursor: pointer;
+  color: $co-color__fg__text--low;
+  text-decoration: none;
+
+  &:hover {
+    background-color: $co-color__primary;
+    color: $co-color__fg__text--high;
+  }
+
+  &:active {
+    background-color: $co-color__primary--lower;
+    color: $co-color__fg__text--high;
+  }
+
+  &.is-active {
+    cursor: default;
+    background-color: $co-color__primary--low;
+    color: $co-color__fg__text;
+  }
+}

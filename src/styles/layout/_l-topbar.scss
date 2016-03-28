@@ -1,0 +1,17 @@
+.l-topbar {
+  @include grid-block($wrap: true);
+  margin-bottom: 15px;
+
+  &__col-action { @include grid-content(12); }
+  &__col-slider { @include grid-content(12); }
+
+  @include breakpoint(medium) {
+    &__col-action { @include grid-content(2); }
+    &__col-slider { @include grid-content(10); }
+  }
+
+  &__slider {
+    @include co-slider($co-color__privacy, left);
+    margin: 10px 20px;
+  }
+}
