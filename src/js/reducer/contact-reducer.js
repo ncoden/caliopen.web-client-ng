@@ -1,8 +1,17 @@
 import * as actions from '../action/action-types.js';
 
+function contactByIdReducer(state = {}, action = {}) {
+  return action.contacts.reduce(
+    (previousState, contact) => Object.assign({}, previousState, { [contact.contact_id]: contact })
+    , state
+  );
+}
+
 export function contactReducer(state = {
   isFetching: false,
   didInvalidate: false,
+  contacts: [],
+  contactsById: {},
 }, action = {}) {
   switch (action.type) {
     case actions.REQUEST_CONTACT:
@@ -15,7 +24,7 @@ export function contactReducer(state = {
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
-        [action.contactId]: action.contact,
+        contactsById: contactByIdReducer(state.contactsById, { contacts: [action.contact] }),
         lastUpdated: action.receivedAt,
       });
     case actions.REQUEST_CONTACTS:
@@ -28,7 +37,8 @@ export function contactReducer(state = {
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
-        contacts: action.contacts,
+        contacts: action.contacts.map(contact => contact.contact_id),
+        contactsById: contactByIdReducer(state.contactsById, action),
         totalContacts: action.total,
         lastUpdated: action.receivedAt,
       });

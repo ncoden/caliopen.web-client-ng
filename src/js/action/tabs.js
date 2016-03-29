@@ -8,18 +8,8 @@ export class TabsActions {
   }
 
   addTab(tab) {
-    return (dispatch) => {
-      dispatch({
-        type: action.ADD_TAB,
-        tab,
-      });
-      dispatch(this.selectTab(tab));
-    };
-  }
-
-  selectTab(tab) {
     return {
-      type: action.SELECT_TAB,
+      type: action.ADD_TAB,
       tab,
     };
   }
@@ -28,13 +18,6 @@ export class TabsActions {
     return {
       type: action.SELECT_OR_ADD_TAB,
       tab,
-    };
-  }
-
-  resetSelectedTab() {
-    return {
-      type: action.SELECT_TAB,
-      tab: null,
     };
   }
 

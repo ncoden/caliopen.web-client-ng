@@ -22,10 +22,12 @@ describe('Directive Layout TabList', () => {
         bindToController);
 
     fakeTab1 = {
-      route: 'front.discussions',
+      type: 'thread',
+      item: { thread_id: 'foo' },
     };
     fakeTab2 = {
-      route: 'front.contacts',
+      type: 'contact',
+      item: { contact_id: 'bar' },
     };
   }));
 

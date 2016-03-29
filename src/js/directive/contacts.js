@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 
 const contactsSelector = createSelector(
   state => state.contactReducer,
-  payload => ({ contacts: payload.contacts })
+  payload => ({ contacts: payload.contacts.map(contactId => payload.contactsById[contactId]) })
 );
 
 export class ContactsController {

@@ -59,6 +59,7 @@ import { TabsActions } from './action/tabs.js';
 import { UserActions } from './action/user.js';
 import { ApplicationHelper } from './service/helper/application-helper.js';
 import { ContactHelper } from './service/helper/contact-helper.js';
+import { TabHelper } from './service/helper/tab-helper.js';
 import { ContactRepository } from './service/repository/contact.js';
 import { MessageRepository } from './service/repository/message.js';
 import { ThreadRepository } from './service/repository/thread.js';
@@ -71,6 +72,7 @@ app
   .service('UserActions', UserActions)
   .service('ApplicationHelper', ApplicationHelper)
   .service('ContactHelper', ContactHelper)
+  .service('TabHelper', TabHelper)
   .service('ContactRepository', ContactRepository)
   .service('MessageRepository', MessageRepository)
   .service('ThreadRepository', ThreadRepository)

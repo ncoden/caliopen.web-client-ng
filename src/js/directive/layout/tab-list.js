@@ -7,6 +7,16 @@ const tabsSelector = createSelector(
   (tabs, selectedTab) => ({ tabs, selectedTab })
 );
 
+const userSelector = createSelector(
+  state => state.userReducer.user,
+  user => ({ user })
+);
+
+const APPLICATION_ICONS = {
+  discussions: 'fa-comments',
+  contacts: 'fa-users',
+};
+
 export class LayoutTabListController {
   constructor($scope, $state, $ngRedux, TabsActions, ApplicationHelper) {
     'ngInject';
@@ -17,36 +27,30 @@ export class LayoutTabListController {
       const { name, route } = ApplicationHelper.getCurrentInfos();
 
       return {
+        currentApplicationIcon: APPLICATION_ICONS[name],
         currentApplicationKey: `header.menu.${name}`,
         currentApplicationRoute: route,
       };
     })(this));
     $scope.$on('$destroy', $ngRedux.connect(tabsSelector)(this));
+    $scope.$on('$destroy', $ngRedux.connect(userSelector)(this));
     $ngRedux.dispatch(TabsActions.requestTabs());
   }
 
   remove(tab) {
-    this.$ngRedux.dispatch((dispatch) => {
-      dispatch(this.TabsActions.removeTab(tab));
-      if (this.isActive(tab)) {
-        dispatch(stateGo(this.currentApplicationRoute));
-      }
-    });
-  }
-
-  select(tab) {
-    return this.$ngRedux.dispatch(dispatch => {
-      dispatch(this.TabsActions.selectTab(tab));
-      dispatch(stateGo(tab.route, tab.routeOpts));
-    });
+    this.$ngRedux.dispatch(this.TabsActions.removeTab(tab));
   }
 
   selectCurrentApplication() {
     return this.$ngRedux.dispatch(stateGo(this.currentApplicationRoute));
   }
 
-  isActive(tab) {
-    return tab === this.selectedTab;
+  getThread(threadId) {
+    return this.$ngRedux.getState().threadReducer.threadsById[threadId];
+  }
+
+  getContact(contactId) {
+    return this.$ngRedux.getState().contactReducer.contactsById[contactId];
   }
 }
 
@@ -65,15 +69,26 @@ export function LayoutTabListDirective() {
           <a href ng-click="ctrl.selectCurrentApplication()"
              ng-class="{ 'co-layout__tabs__item__link--active': (ctrl.currentApplicationRoute | isState) }"
              class="co-layout__tabs__item__link co-layout__tabs__item__link--first">
+            <i class="fa" ng-class="ctrl.currentApplicationIcon"></i>
             {{ ctrl.currentApplicationKey | translate }}
           </a>
         </li>
-        <li ng-repeat="tab in ctrl.tabs" class="co-layout__tabs__item">
-          <a href ng-click="ctrl.select(tab)"
-             ng-class="{ 'co-layout__tabs__item__link--active': ctrl.isActive(tab) }"
-             title="{{tab.label}}"
+        <li ng-repeat="tab in ctrl.tabs" class="co-layout__tabs__item" ng-switch="tab.type">
+          <a ng-switch-when="thread"
+             ui-sref="front.discussions.thread({ threadId: tab.item.thread_id })"
+             ui-sref-active-eq="co-layout__tabs__item__link--active"
+             title="{{ctrl.getThread(tab.item.thread_id)|threadContacts:ctrl.user}}"
              class="co-layout__tabs__item__link">
-            {{tab.label | limitTo:200}}
+            <i class="fa fa-comments-o"></i>
+            {{ctrl.getThread(tab.item.thread_id)|threadContacts:ctrl.user|limitTo:200}}
+          </a>
+          <a ng-switch-when="contact"
+             ui-sref="front.contacts.contact({ contactId: tab.item.contact_id })"
+             ui-sref-active-eq="co-layout__tabs__item__link--active"
+             title="{{ctrl.getContact(tab.item.contact_id).title}}"
+             class="co-layout__tabs__item__link">
+            <i class="fa fa-user"></i>
+            {{ctrl.getContact(tab.item.contact_id).title|limitTo:200}}
           </a>
           <a href ng-click="ctrl.remove(tab)" class="co-layout__tabs__item__del-btn">
             <i class="fa fa-close"></i>

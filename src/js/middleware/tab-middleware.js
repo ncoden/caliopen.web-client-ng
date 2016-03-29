@@ -1,25 +1,23 @@
 import * as actions from '../action/action-types.js';
+import { stateGo } from 'redux-ui-router';
 
-export function tabMiddleware(TabsActions, threadContactsFilter) {
+export function tabMiddleware(TabsActions, ApplicationHelper, $state, TabHelper) {
   'ngInject';
 
   return store => next => action => {
-    const actionsRequiresResetTab = [
-      actions.REQUEST_THREADS,
-      actions.REQUEST_CONTACTS,
-    ];
-    if (actionsRequiresResetTab.indexOf(action.type) !== -1) {
-      store.dispatch(TabsActions.resetSelectedTab());
-    }
-
     if (action.type === actions.SELECT_OR_ADD_TAB) {
       const foundTab = store.getState().tabReducer.tabs
         .find((tab) => angular.toJson(action.tab) === angular.toJson(tab));
 
       if (!foundTab) {
         store.dispatch(TabsActions.addTab(action.tab));
-      } else {
-        store.dispatch(TabsActions.selectTab(foundTab));
+      }
+    }
+
+    if (action.type === actions.REMOVE_TAB) {
+      const { route, params } = TabHelper.getRouteAndParamsForTab(action.tab);
+      if ($state.is(route, params)) {
+        store.dispatch(stateGo(ApplicationHelper.getCurrentInfos().route));
       }
     }
 
@@ -32,21 +30,25 @@ export function tabMiddleware(TabsActions, threadContactsFilter) {
     ];
     if (actionsRequiresTabOnReloading.indexOf(action.type) !== -1
       && nextState.tabReducer.tabs.length === 0) {
-      let tabLabel = undefined;
       switch (action.type) {
         case actions.RECEIVER_CONTACT:
-          tabLabel = action.contact.title;
+          store.dispatch(TabsActions.addTab({
+            type: 'contact',
+            item: {
+              contact_id: action.contact.contact_id,
+            },
+          }));
           break;
         default:
         case actions.RECEIVER_THREAD:
-          tabLabel = threadContactsFilter(action.thread, nextState.userReducer.user);
+          store.dispatch(TabsActions.addTab({
+            type: 'thread',
+            item: {
+              thread_id: action.thread.thread_id,
+            },
+          }));
           break;
       }
-      store.dispatch(TabsActions.addTab({
-        route: nextState.router.currentState.name,
-        routeOpts: nextState.router.currentParams,
-        label: tabLabel,
-      }));
     }
 
     return result;

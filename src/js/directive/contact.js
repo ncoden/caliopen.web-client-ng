@@ -3,9 +3,9 @@ import { createSelector } from 'reselect';
 const contactSelector = createSelector(
   state => state.contactReducer,
   state => state.router.currentParams.contactId,
-  (contactsState, contactId) => ({
-    contact: (contactsState[contactId] || {}),
-    isFetching: contactsState.isFetching,
+  (contactReducer, contactId) => ({
+    contact: (contactReducer.contactsById[contactId] || {}),
+    isFetching: contactReducer.isFetching,
   })
 );
 

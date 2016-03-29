@@ -16,15 +16,6 @@ function tabsReducer(state = [], action = {}) {
   }
 }
 
-function selectTabReducer(state = null, action) {
-  if (action.type === actions.SELECT_TAB) {
-    return action.tab;
-  }
-
-  return state;
-}
-
 export const tabReducer = combineReducers({
   tabs: tabsReducer,
-  selected: selectTabReducer,
 });
