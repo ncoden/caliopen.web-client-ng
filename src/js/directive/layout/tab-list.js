@@ -71,6 +71,7 @@ export function LayoutTabListDirective() {
         <li ng-repeat="tab in ctrl.tabs" class="co-layout__tabs__item">
           <a href ng-click="ctrl.select(tab)"
              ng-class="{ 'co-layout__tabs__item__link--active': ctrl.isActive(tab) }"
+             title="{{tab.label}}"
              class="co-layout__tabs__item__link">
             {{tab.label | limitTo:200}}
           </a>

@@ -43,7 +43,7 @@ cd caliopen/
 cd bin/
 docker-compose stop web-client-ng
 cd ../web-client-ng/
-sudo chown -R ${USER} .build/ dist/ node_modules/
+sudo chown -R ${USER}: .build/ dist/ node_modules/
 ```
 
 #### Unit tests

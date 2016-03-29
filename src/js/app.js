@@ -77,6 +77,12 @@ app
   .service('UserRepository', UserRepository)
   ;
 
+// filters
+import { threadContactsFilter } from './filter/thread-contacts.js';
+
+app
+  .filter('threadContacts', threadContactsFilter);
+
 // directives
 import { ContactDirective } from './directive/contact.js';
 import { ContactsDirective } from './directive/contacts.js';

@@ -1,6 +1,6 @@
 import * as actions from '../action/action-types.js';
 
-export function tabMiddleware(TabsActions) {
+export function tabMiddleware(TabsActions, threadContactsFilter) {
   'ngInject';
 
   return store => next => action => {
@@ -39,7 +39,7 @@ export function tabMiddleware(TabsActions) {
           break;
         default:
         case actions.RECEIVER_THREAD:
-          tabLabel = action.thread.text;
+          tabLabel = threadContactsFilter(action.thread, nextState.userReducer.user);
           break;
       }
       store.dispatch(TabsActions.addTab({
