@@ -17,7 +17,6 @@ export const RECEIVER_CONTACTS = 'RECEIVER_CONTACTS';
 export const REQUEST_TABS = 'REQUEST_TABS';
 export const ADD_TAB = 'ADD_TAB';
 export const REMOVE_TAB = 'REMOVE_TAB';
-export const SELECT_TAB = 'SELECT_TAB';
 export const SELECT_OR_ADD_TAB = 'SELECT_OR_ADD_TAB';
 
 export const REQUEST_USER = 'REQUEST_USER';

@@ -9,13 +9,13 @@ export class ContactsContactController {
 
   showContact() {
     this.$ngRedux.dispatch(dispatch => {
-      const tab = {
-        route: 'front.contacts.contact',
-        routeOpts: { contactId: this.contact.contact_id },
-        label: this.contact.title,
-      };
-      dispatch(this.TabsActions.selectOrAdd(angular.copy(tab)));
-      dispatch(stateGo(tab.route, tab.routeOpts));
+      dispatch(this.TabsActions.selectOrAdd({
+        type: 'contact',
+        item: {
+          contact_id: this.contact.contact_id,
+        },
+      }));
+      dispatch(stateGo('front.contacts.contact', { contactId: this.contact.contact_id }));
     });
   }
 }

@@ -22,12 +22,13 @@ export class DiscussionsThreadController {
   showThread() {
     this.$ngRedux.dispatch(dispatch => {
       const tab = {
-        route: 'front.discussions.thread',
-        routeOpts: { threadId: this.thread.thread_id },
-        label: this.threadContactsFilter(this.thread, this.user),
+        type: 'thread',
+        item: {
+          thread_id: this.thread.thread_id,
+        },
       };
       dispatch(this.TabsActions.selectOrAdd(tab));
-      dispatch(stateGo(tab.route, tab.routeOpts));
+      dispatch(stateGo('front.discussions.thread', { threadId: this.thread.thread_id }));
     });
   }
 }
