@@ -1,0 +1,56 @@
+.s-thread-list {
+  &__thread {
+    @include grid-block;
+    align-items: center;
+
+    &--unread {
+      position: relative;
+      background-color: $co-color__fg__back--higher;
+      color: $co-color__fg__text--higher;
+
+      &::before {
+        content: "";
+        display: block;
+
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+
+        background: $co-color__primary;
+      }
+    }
+  }
+
+  &__col-avatars {
+    @include grid-content(shrink);    
+  }
+  &__col-title {
+    @include grid-content(expand);
+  }
+  &__col-file {
+    @include grid-content(1);
+  }
+
+  &__col-indexes {
+    @include grid-content(1);
+    display: none;
+  }
+  &__col-dates {
+    @include grid-content(2);
+    display: none;
+  }
+  &__col-count {
+    @include grid-content(1);
+    display: none;
+  }
+
+  @include breakpoint(medium) {
+    &__col-indexes { display: block; }
+    &__col-dates { display: block; }
+  }
+
+  @include breakpoint(large) {
+    &__col-count { display: block; }
+  }
+}

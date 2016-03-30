@@ -1,0 +1,22 @@
+.s-contact-list {
+  &__contact {
+    @include grid-block;
+    align-items: baseline;
+  }
+
+  &__col-avatar {
+    @include grid-content(shrink);    
+  }
+  &__col-name {
+    @include grid-content(12);
+  }
+  &__col-datas {
+    @include grid-content(expand);
+    display: none;
+  }
+
+  @include breakpoint(medium) {
+    &__col-name { @include grid-size (5); }
+    &__col-datas { display: block; }
+  }
+}

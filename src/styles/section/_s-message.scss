@@ -1,0 +1,41 @@
+.s-message {
+  &__header {
+    @include clearfix;
+
+    padding: ($co-margin / 2) $co-margin;
+    background: $co-color__fg__back--higher;
+  }
+
+  &__col-avatar {
+    float: left;
+    margin-right: $co-margin;
+  }
+  &__col-summary {
+    float: left;
+  }
+  &__col-about {
+    float: right;
+  }
+
+  &__date {
+    cursor: pointer;
+    color: $co-color__fg__text--low;
+    font-size: .75rem;
+
+    &:hover {
+      color: $co-color__fg__text--high;
+    }
+  }
+  &__indexes {
+    display: none;
+  }
+
+  &__body {
+    padding: 0 $co-margin;
+    white-space: pre-wrap;
+  }
+
+  @include breakpoint(medium) {
+    &__indexes { display: block; }
+  }
+}

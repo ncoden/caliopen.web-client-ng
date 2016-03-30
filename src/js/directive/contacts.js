@@ -22,9 +22,11 @@ export function ContactsDirective() {
     bindToController: true,
     /* eslint-disable max-len */
     template: `
-      <div class="container-fluid co-list">
-        <co-contacts-contact ng-repeat="contact in ctrl.contacts" contact="contact"></co-contacts-contact>
-      </div>`,
+      <ul class="s-contact-list m-block-list">
+        <li class="m-block-list__item">
+          <co-contacts-contact ng-repeat="contact in ctrl.contacts" contact="contact"></co-contacts-contact>
+        </li>
+      </ul>`,
     /* eslint-enable max-len */
   };
 }

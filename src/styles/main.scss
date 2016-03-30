@@ -33,8 +33,14 @@
 @import "module/tag";
 @import "module/text";
 
+@import "module/m-avatar";
+@import "module/m-block-list";
+@import "module/m-contact-card";
+@import "module/m-inline-text";
 @import "module/m-menu";
+@import "module/m-subtitle";
 @import "module/m-tabs";
+@import "module/m-text-list";
 
 // layout
 @import "layout/header";
@@ -53,3 +59,9 @@
 @import "section/messages";
 @import "section/contacts";
 @import "section/contact";
+
+@import "section/s-contact";
+@import "section/s-contact-list";
+@import "section/s-message";
+@import "section/s-thread";
+@import "section/s-thread-list";

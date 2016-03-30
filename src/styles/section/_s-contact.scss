@@ -1,0 +1,40 @@
+.s-contact {
+  @include grid-block($wrap: true);
+  background-color: $co-color__fg__back--low;
+
+  &__col-datas-irl {
+    @include grid-content(12);
+    padding: $co-margin;
+    padding-top: 0;
+    background-color: $co-color__fg__back;
+  }
+  &__col-datas-online {
+    @include grid-content(12);
+    padding: $co-margin;
+  }
+
+  &__m-contact-card {
+    @include m-contact-card--size(large);
+    margin-bottom: $co-margin;
+    word-break: break-word;
+  }
+  &__message-button {
+    margin: 0;
+  }
+
+  @include breakpoint(medium) {
+    &__col-datas-irl { @include grid-size(5); }
+    &__col-datas-online { @include grid-size(7); }
+
+    &__m-contact-card {
+      @include m-contact-card--break;
+      @include m-contact-card--size(xlarge);
+      text-align: center;
+    }
+  }
+
+  @include breakpoint(large) {
+    &__col-datas-irl { @include grid-content(4); }
+    &__col-datas-online { @include grid-content(8); }
+  }
+}

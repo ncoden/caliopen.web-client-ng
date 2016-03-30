@@ -42,40 +42,47 @@ export function DiscussionsThreadDirective() {
     controller: DiscussionsThreadController,
     controllerAs: 'ctrl',
     bindToController: true,
-    /* eslint-disable max-len */
     template: `
-      <div ng-click="ctrl.showThread()" class="row co-list__item co-list__item--link co-threads__thread" ng-class="{ 'co-threads__thread--unread': ctrl.hasUnread }">
-        <div class="col-md-1 col-sm-1 col-xs-2">
+      <div ng-click="ctrl.showThread()"
+        class="s-thread-list__thread m-block-list__item-content m-block-list__item-content--link"
+        ng-class="{ 's-thread-list__thread--unread': ctrl.hasUnread }"
+      >
+        <div class="s-thread-list__col-avatars">
           <co-discussions-contacts-icon thread="ctrl.thread"></co-discussions-contacts-icon>
         </div>
-        <div class="col-md-6 col-sm-8 col-xs-9">
+        <div class="s-thread-list__col-title">
           <div class="co-text--ellipsis">
-            {{ctrl.thread|threadContacts:ctrl.user}}
+            {{ ctrl.thread|threadContacts:ctrl.user }}
           </div>
-          <div class="co-text--ellipsis">
-            {{ctrl.thread.text}}
+          <div class="m-inline-text">
+            {{ ctrl.thread.text }}
           </div>
         </div>
-        <div class="col-md-1 col-sm-1 col-xs-1">
+        <div class="s-thread-list__col-file">
           <i ng-if="ctrl.thread.file_attached" class="fa fa-paperclip"></i>
         </div>
-        <div class="col-md-1 hidden-sm hidden-xs">
-          <i class="fa fa-exclamation-triangle"></i> {{ctrl.thread.importance_level}}
-          <i class="fa fa-eye"></i> {{ctrl.thread.privacy_index}}
+        <div class="s-thread-list__col-indexes">
+          <span class="m-inline-text">
+            <i class="fa fa-exclamation-triangle"></i>
+            {{ ctrl.thread.importance_level }}
+          </span>
+          <span class="m-inline-text">
+            <i class="fa fa-eye"></i>
+            {{ ctrl.thread.privacy_index }}
+          </span>
         </div>
-        <div class="col-md-2 col-sm-2 hidden-xs">
+        <div class="s-thread-list__col-dates">
           <time title="{{ ctrl.fakeDate | amDateFormat: 'LLL' }}">
-            <span class="co-text--ellipsis">{{ ctrl.fakeDate | amDateFormat: 'll' }}</span>
-            <span class="co-text--ellipsis">{{ ctrl.fakeDate | amDateFormat: 'LT' }}</span>
+            <span class="m-inline-text">{{ ctrl.fakeDate | amDateFormat: 'll' }}</span>
+            <span class="m-inline-text">{{ ctrl.fakeDate | amDateFormat: 'LT' }}</span>
           </time>
         </div>
-        <div class="col-md-1 hidden-sm hidden-xs">
-          <span class="co-threads__thread__nb-messages badge">
-            <span ng-if="ctrl.thread.unread_count">{{ctrl.thread.unread_count}}/</span>
-            <span>{{ctrl.thread.total_count}}</span>
+        <div class="s-thread-list__col-count">
+          <span class="badge">
+            <span ng-if="ctrl.thread.unread_count">{{ ctrl.thread.unread_count }}/</span>
+            <span>{{ ctrl.thread.total_count }}</span>
           </span>
         </div>
       </div>`,
-    /* eslint-enable max-len */
   };
 }

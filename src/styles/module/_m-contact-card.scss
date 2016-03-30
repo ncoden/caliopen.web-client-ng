@@ -1,0 +1,36 @@
+@mixin m-contact-card--inline {
+  .m-contact-card__m-avatar_ .m-avatar {
+    float: left;
+    margin-right: $co-margin;
+  }
+}
+
+@mixin m-contact-card--break {
+  .m-contact-card__m-avatar_ .m-avatar {
+    float: none;
+    margin-right: 0;
+  }
+}
+
+@mixin m-contact-card--size($size) {
+  .m-contact-card__m-avatar_ .m-avatar {
+    @include m-avatar--size($size);
+  }
+}
+
+.m-contact-card {
+  @include m-contact-card--inline;
+
+  &__title {
+    display: block;
+
+    color: $co-color__fg__text--high;
+  }
+
+  &--inline {
+    @include m-contact-card--inline;
+  }
+  &--break {
+    @include m-contact-card--break;
+  }
+}

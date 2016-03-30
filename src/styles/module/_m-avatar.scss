@@ -1,0 +1,54 @@
+$m-avatar__size: (
+  small:  2rem,
+  medium: 3rem,
+  large:  4rem,
+  xlarge: 6rem
+);
+
+@mixin m-avatar--size($size) {
+  @if type-of($size) == string {
+    $size: map-get($m-avatar__size, $size);
+  }
+
+  width: $size;
+  height: $size;
+
+  .m-avatar__letter::before {
+    line-height: $size;
+    font-size: $size * 0.75;
+  }
+}
+
+.m-avatar {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+
+  background-color: $co-color__fg__back;
+  border-radius: 2px;
+  overflow: hidden;
+
+  &__letter::before {
+    display: block;
+
+    color: #ffffff;
+    text-align: center;
+  }
+
+  // default
+  @include m-avatar--size(medium);
+
+  // modifiers
+  &--small {
+    @include m-avatar--size(small);
+  }
+  &--medium {
+    @include m-avatar--size(medium);
+  }
+  &--large {
+    @include m-avatar--size(large);
+  }
+  &--xlarge {
+    @include m-avatar--size(xlarge);
+  }
+}

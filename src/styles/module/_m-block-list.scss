@@ -1,0 +1,32 @@
+.m-block-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  border-top: 1px solid $body-bg;
+
+  &__item {
+    padding: 0;
+  }
+
+  &__item-content {
+    padding: .5rem 0;
+
+    background-color: $co-color__fg__back;
+    border-bottom: 1px solid $body-bg;
+    color: $co-color__fg__text;
+  }
+
+  &__item-content--link {
+    cursor: pointer;
+
+    &:hover {
+      background-color: $co-color__fg__back--high;
+      color: $co-color__fg__text--high;
+    }
+    &:active {
+      background-color: $co-color__fg__back--low;
+      color: $co-color__fg__text--low;
+    }
+  }
+}

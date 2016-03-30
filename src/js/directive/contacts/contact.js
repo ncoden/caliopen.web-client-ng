@@ -31,32 +31,28 @@ export function ContactsContactDirective() {
     bindToController: true,
     /* eslint-disable max-len */
     template: `
-      <div ng-click="ctrl.showContact()" class="row co-list__item co-list__item--link">
-        <div class="row__vertical-align">
-          <div class="col-xs-12 col-sm-5">
-            <span class="co-contacts__contact-icon">
-              <widget-contact-avatar-letter contact="ctrl.contact"></widget-contact-avatar-letter>
+      <div ng-click="ctrl.showContact()" class="s-contact-list__contact m-block-list__item-content m-block-list__item-content--link">
+        <div class="s-contact-list__col-avatar">
+          <widget-contact-avatar-letter contact="ctrl.contact"></widget-contact-avatar-letter>
+        </div>
+        <div class="s-contact-list__col-name m-inline-text">
+          {{ ctrl.contact.title }}
+        </div>
+        <div class="s-contact-list__col-datas">
+          <span class="m-inline-text">
+            {{ ctrl.contact.emails[0] }}
+          </span>
+          <span class="dropdown">
+            <span class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="caret"></span>
             </span>
-            <span class="co-text--ellipsis">
-              {{ ctrl.contact.title }}
-            </span>
-          </div>
-          <div class="hidden-xs col-sm-7">
-            <span class="co-text--ellipsis">
-              {{ ctrl.contact.emails[0] }}
-            </span>
-            <span class="dropdown">
-              <span class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="caret"></span>
-              </span>
-              <ul class="dropdown-menu pull-right">
-                <li ng-repeat="email in ctrl.contact.emails">
-                  <i class="fa fa-envelope"></i>
-                  {{email.address}}
-                </li>
-              </ul>
-            </span>
-          </div>
+            <ul class="dropdown-menu pull-right">
+              <li ng-repeat="email in ctrl.contact.emails">
+                <i class="fa fa-envelope"></i>
+                {{email.address}}
+              </li>
+            </ul>
+          </span>
         </div>
       </div>`,
     /* eslint-enable max-len */
