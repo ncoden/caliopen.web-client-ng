@@ -54,7 +54,7 @@ export function DiscussionsThreadDirective() {
           <div class="co-text--ellipsis">
             {{ ctrl.thread|threadContacts:ctrl.user }}
           </div>
-          <div class="m-inline-text">
+          <div class="m-text-line">
             {{ ctrl.thread.text }}
           </div>
         </div>
@@ -62,19 +62,19 @@ export function DiscussionsThreadDirective() {
           <i ng-if="ctrl.thread.file_attached" class="fa fa-paperclip"></i>
         </div>
         <div class="s-thread-list__col-indexes">
-          <span class="m-inline-text">
+          <span class="m-text-word">
             <i class="fa fa-exclamation-triangle"></i>
             {{ ctrl.thread.importance_level }}
           </span>
-          <span class="m-inline-text">
+          <span class="m-text-word">
             <i class="fa fa-eye"></i>
             {{ ctrl.thread.privacy_index }}
           </span>
         </div>
         <div class="s-thread-list__col-dates">
           <time title="{{ ctrl.fakeDate | amDateFormat: 'LLL' }}">
-            <span class="m-inline-text">{{ ctrl.fakeDate | amDateFormat: 'll' }}</span>
-            <span class="m-inline-text">{{ ctrl.fakeDate | amDateFormat: 'LT' }}</span>
+            <span class="m-text-word">{{ ctrl.fakeDate | amDateFormat: 'll' }}</span>
+            <span class="m-text-word">{{ ctrl.fakeDate | amDateFormat: 'LT' }}</span>
           </time>
         </div>
         <div class="s-thread-list__col-count">

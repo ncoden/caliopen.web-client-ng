@@ -83,7 +83,7 @@ export function ContactDirective() {
           <ul class="m-text-list">
             <li ng-repeat="email in ctrl.contact.emails"
               class="m-text-list__item m-text-list__item--link">
-              <span class="m-text-inline">
+              <span class="m-text-line">
                 <span class="m-text-list__icon fa fa-envelope"></span>
                 {{ email.address }}
               </span>
@@ -91,7 +91,7 @@ export function ContactDirective() {
 
             <li ng-repeat="phone in ctrl.contact.phones"
               class="m-text-list__item m-text-list__item--link">
-              <span class="m-text-inline">
+              <span class="m-text-line">
                 <span class="m-text-list__icon fa fa-phone"></span>
                 {{ phone.number }}
               </span>
@@ -99,7 +99,7 @@ export function ContactDirective() {
 
             <li ng-repeat="ims in ctrl.contact.ims"
               class="m-text-list__item m-text-list__item--link">
-              <span class="m-text-inline">
+              <span class="m-text-line">
                 <span class="m-text-list__icon fa fa-comment"></span>
                 {{ ims.address }}
               </span>
@@ -112,7 +112,7 @@ export function ContactDirective() {
           <ul class="m-text-list">
             <li ng-repeat="identity in ctrl.contact.identities"
               class="m-text-list__item m-text-list__item--link">
-              <span class="m-text-inline">
+              <span class="m-text-line">
                 <span class="fa fa-at"></span>
                 {{ identity }}
               </span>

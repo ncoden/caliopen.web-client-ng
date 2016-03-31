@@ -20,7 +20,7 @@ export function ThreadMessageDirective() {
           </div>
 
           <div class="s-message__col-summary">
-            <div class="m-inline-text">
+            <div class="m-text-line">
               {{ ctrl.message.from_ }}
             </div>
             <div class="s-message__date">

@@ -35,11 +35,11 @@ export function ContactsContactDirective() {
         <div class="s-contact-list__col-avatar">
           <widget-contact-avatar-letter contact="ctrl.contact"></widget-contact-avatar-letter>
         </div>
-        <div class="s-contact-list__col-name m-inline-text">
+        <div class="s-contact-list__col-name m-text-line">
           {{ ctrl.contact.title }}
         </div>
         <div class="s-contact-list__col-datas">
-          <span class="m-inline-text">
+          <span class="m-text-line">
             {{ ctrl.contact.emails[0] }}
           </span>
           <span class="dropdown">
