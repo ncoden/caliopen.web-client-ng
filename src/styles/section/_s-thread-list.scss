@@ -1,6 +1,6 @@
 .s-thread-list {
   &__thread {
-    @include grid-block;
+    @include flex-grid-row;
     align-items: center;
 
     &--unread {
@@ -23,25 +23,26 @@
   }
 
   &__col-avatars {
-    @include grid-content(shrink);    
+    @include flex-grid-column(shrink);    
   }
   &__col-title {
-    @include grid-content(expand);
+    @include flex-grid-column;
+    min-width: 0; // https://github.com/zurb/foundation-sites/pull/8511
   }
   &__col-file {
-    @include grid-content(1);
+    @include flex-grid-column(1);
   }
 
   &__col-indexes {
-    @include grid-content(1);
+    @include flex-grid-column(1);
     display: none;
   }
   &__col-dates {
-    @include grid-content(2);
+    @include flex-grid-column(2);
     display: none;
   }
   &__col-count {
-    @include grid-content(1);
+    @include flex-grid-column(1);
     display: none;
   }
 

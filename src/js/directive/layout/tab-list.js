@@ -67,8 +67,8 @@ export function LayoutTabListDirective() {
       <ul class="l-body__tabs m-tabs">
         <li class="m-tabs__item">
           <a href ng-click="ctrl.selectCurrentApplication()"
-            ng-class="{ 'co-layout__tabs__item__link--active': (ctrl.currentApplicationRoute | isState) }"
-            class="co-layout__tabs__item__link co-layout__tabs__item__link--first"
+            ng-class="{ 'is-active': (ctrl.currentApplicationRoute | isState) }"
+            class="m-tabs__item__content"
           >
             <i class="fa" ng-class="ctrl.currentApplicationIcon"></i>
             {{ ctrl.currentApplicationKey | translate }}

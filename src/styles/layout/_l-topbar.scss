@@ -1,13 +1,13 @@
 .l-topbar {
-  @include grid-block($wrap: true);
+  @include flex-grid-row;
   margin-bottom: 15px;
 
-  &__col-action { @include grid-content(12); }
-  &__col-slider { @include grid-content(12); }
+  &__col-action { @include flex-grid-column(12); }
+  &__col-slider { @include flex-grid-column(12); }
 
   @include breakpoint(medium) {
-    &__col-action { @include grid-content(2); }
-    &__col-slider { @include grid-content(10); }
+    &__col-action { @include flex-grid-size(2); }
+    &__col-slider { @include flex-grid-size(10); }
   }
 
   &__slider {

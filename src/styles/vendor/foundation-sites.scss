@@ -54,22 +54,14 @@
 
 // CSS Exports
 
-$flex: true;
+$global-flexbox: true !global;
 
-// @if $flex {
-//   $global-flexbox: true !global;
-// }
-
-// @include foundation-global-styles;
-// @if not $flex {
-//   @include foundation-grid;
-// }
-// @else {
-//   @include foundation-flex-grid;
-// }
+   @include foundation-global-styles;
+// @include foundation-grid;
+// @include foundation-flex-grid;
 // @include foundation-typography;
 // @include foundation-forms;
-// @include foundation-button;
+   @include foundation-button;
 // @include foundation-accordion;
 // @include foundation-accordion-menu;
 // @include foundation-badge;
@@ -78,7 +70,7 @@ $flex: true;
 // @include foundation-callout;
 // @include foundation-close-button;
 // @include foundation-menu;
-@include foundation-menu-icon;
+   @include foundation-menu-icon;
 // @include foundation-drilldown-menu;
 // @include foundation-dropdown;
 // @include foundation-dropdown-menu;
@@ -101,7 +93,4 @@ $flex: true;
 // @include foundation-top-bar;
 // @include foundation-visibility-classes;
 // @include foundation-float-classes;
-
-// @if $flex {
-//   @include foundation-flex-classes;
-// }
+// @include foundation-flex-classes;

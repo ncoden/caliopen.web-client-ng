@@ -51,7 +51,7 @@ export function DiscussionsThreadDirective() {
           <co-discussions-contacts-icon thread="ctrl.thread"></co-discussions-contacts-icon>
         </div>
         <div class="s-thread-list__col-title">
-          <div class="co-text--ellipsis">
+          <div class="m-text-line">
             {{ ctrl.thread|threadContacts:ctrl.user }}
           </div>
           <div class="m-text-line">

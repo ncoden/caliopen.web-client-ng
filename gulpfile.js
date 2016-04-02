@@ -39,7 +39,6 @@ const config = {
   scssVendors: [
     './node_modules/bootstrap-sass/assets/stylesheets/**/*.scss',
     './node_modules/@(font-awesome)/scss/**/*.scss',
-    './node_modules/@(foundation-apps)/scss/**/*.scss',
     './node_modules/@(foundation-sites)/scss/**/*.scss',
   ],
   cssVendors: [

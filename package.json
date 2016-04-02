@@ -43,7 +43,6 @@
     "eslint-config-airbnb": "^6.1.0",
     "expose-loader": "^0.7.1",
     "font-awesome": "^4.4.0",
-    "foundation-apps": "^1.2.0",
     "foundation-sites": "^6.2.0",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",

@@ -9,13 +9,13 @@
 @import "vendor/bootstrap/grid";
 @import "vendor/bootstrap/scaffolding";
 
-@import "vendor/foundation-apps/config";
-@import "vendor/foundation-apps";
-
 @import "vendor/foundation-sites/config";
 @import "vendor/foundation-sites";
 
 @import "font-awesome/scss/font-awesome";
+
+// vendors extensions
+@import "vendor/foundation-sites/flex-grid";
 
 // injected
 @import "co-icons";
