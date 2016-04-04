@@ -6,12 +6,10 @@
 
 // vendors
 @import "vendor/foundation-sites/config";
+@import "vendor/foundation-sites/flex-grid";
 @import "vendor/foundation-sites";
 
 @import "font-awesome/scss/font-awesome";
-
-// vendors extensions
-@import "vendor/foundation-sites/flex-grid";
 
 // injected
 @import "co-icons";
@@ -20,18 +18,6 @@
 @import "util/u-gradient";
 
 // modules
-@import "module/list";
-@import "module/text-list";
-@import "module/avatar";
-@import "module/avatars";
-@import "module/letters";
-@import "module/loading-icon";
-@import "module/text-field";
-@import "module/search-field";
-@import "module/slider";
-@import "module/tag";
-@import "module/text";
-
 @import "module/m-avatar";
 @import "module/m-avatars";
 @import "module/m-block-list";
@@ -51,22 +37,12 @@
 @import "module/m-text-field";
 
 // layout
-@import "layout/header";
-@import "layout/topbar";
-@import "layout/body";
-@import "layout/sliders";
-@import "layout/tabs";
-
 @import "layout/l-header";
 @import "layout/l-topbar";
 @import "layout/l-body";
 
 // sections
 @import "section/cor-login";
-@import "section/threads";
-@import "section/messages";
-@import "section/contacts";
-@import "section/contact";
 
 @import "section/s-contact";
 @import "section/s-contact-list";
