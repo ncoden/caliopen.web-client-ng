@@ -11,7 +11,7 @@
   }
 
   &__slider {
-    @include co-slider($co-color__privacy, left);
+    @include m-slider($co-color__privacy, left);
     margin: 10px 20px;
   }
 }

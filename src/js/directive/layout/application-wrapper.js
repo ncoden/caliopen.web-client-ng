@@ -28,14 +28,14 @@ export function LayoutApplicationWrapperDirective() {
           <div class="l-topbar__col-action" ng-switch="ctrl.currentApplication">
             <a ng-switch-when="discussions"
               ui-sref="front.discussions.create"
-              class="btn btn-info btn-lg"
+              class="button"
               title="{{ 'header.menu.compose'|translate }}">
               <i class="fa fa-plus"></i>
               {{ 'header.menu.compose'|translate }}
             </a>
             <a ng-switch-when="contacts"
               ui-sref="front.contacts.create"
-              class="btn btn-info btn-lg"
+              class="button"
               title="{{ 'header.menu.compose'|translate }}">
               <i class="fa fa-plus"></i>
               {{ 'header.menu.create_user'|translate }}

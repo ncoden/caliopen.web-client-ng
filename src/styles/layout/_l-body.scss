@@ -36,7 +36,7 @@ $topbar-height:     65px;
 
 .l-body {
   &__slider {
-    @include co-slider($co-color__importance, top);
+    @include m-slider($co-color__importance, top);
 
     height: 650px - $header-height - $topbar-height - 50px; // IE9
     height: calc( 100vh - #{$header-height} - #{$topbar-height} - 50px );

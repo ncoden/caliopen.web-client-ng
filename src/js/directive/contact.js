@@ -35,8 +35,8 @@ export function ContactDirective() {
     bindToController: true,
     /* eslint-disable max-len */
     template: `
-      <div ng-if="ctrl.isFetching" class="co-loading">
-        <span class="co-loading__icon">
+      <div ng-if="ctrl.isFetching" class="m-loading">
+        <span class="m-loading__icon">
       </div>
       <div ng-if="!ctrl.isFetching" class="s-contact">
         <div class="s-contact__col-datas-irl">
@@ -62,7 +62,7 @@ export function ContactDirective() {
             <h3 class="m-subtitle">
               {{ 'contact.groups'|translate }}
             </h3>
-            <div ng-repeat="tag in ctrl.contact.tags" class="co-tag">
+            <div ng-repeat="tag in ctrl.contact.tags" class="m-tag">
               {{ tag }}
             </div>
           </p>

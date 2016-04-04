@@ -1,18 +1,43 @@
 @mixin m-menu--inline {
-  .m-menu__item {
+  &__item {
     display: table-cell;
+    width: auto;
   }
-  .m-menu__item-content {
+  &__item-content {
     display: inline-block;
+    width: auto;
+  }
+  &__separator {
+    display: table-cell;
+    margin: 0 ($co-margin / 4);
+    width: 1px;
+    height: auto;
   }
 }
 @mixin m-menu--break {
-  .m-menu__item {
+  &__item,
+  &__item-content {
     display: block;
-    white-space: nowrap;
+    width: 100%
   }
-  .m-menu__item-content {
+  &__separator {
     display: block;
+    margin: ($co-margin / 4) 0;
+    width: auto;
+    height: 1px;
+  }
+}
+
+@mixin m-menu--height($height) {
+  @if (map-has-key($co-form__height, $height)) {
+    $height: map-get($co-form__height, $height);
+  }
+
+  &__item {
+    min-height: $height;
+  }
+  &__item-content {
+    line-height: $height;
   }
 }
 
@@ -21,20 +46,29 @@
   margin: 0;
   padding: 0;
 
+  &__item {
+    line-height: inherit;
+    white-space: nowrap;
+  }
   &__item-content {
     padding: 0 1rem;
+    line-height: inherit;
+  }
+  &__separator {
+    background-color: $co-color__fg__border;
   }
 
   // default
   @include m-menu--inline;
+  @include m-menu--height(medium);
 
   // modifiers
-  &--inline {
-    @include m-menu--inline;
-  }
-  &--break {
-    @include m-menu--break;
-  }
+  &--inline { @include m-menu--inline;  }
+  &--break  { @include m-menu--break;   }
+
+  &--small  { @include m-menu--height(small);   }
+  &--medium { @include m-menu--height(medium);  }
+  &--large  { @include m-menu--height(large);   }
 }
 
 a.m-menu__item-content,

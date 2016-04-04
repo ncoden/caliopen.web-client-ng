@@ -61,7 +61,7 @@ const config = {
 
 const iconfontConfig = {
   iconsFontName: 'co-icons',
-  iconsCssClass: 'co-icon',
+  iconsCssClass: 'm-icon',
 };
 
 const isTestEnv = (process.env.NODE_ENV === 'test');

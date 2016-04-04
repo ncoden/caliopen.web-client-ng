@@ -296,8 +296,8 @@
 // 16. Dropdown
 // ------------
 
-// $dropdown-padding: 1rem;
-// $dropdown-border: 1px solid $medium-gray;
+   $dropdown-padding: 0; // default: 1rem
+   $dropdown-border: 1px solid $co-color__fg__border; // default: 1px solid $medium-gray
 // $dropdown-font-size: 1rem;
 // $dropdown-width: 300px;
 // $dropdown-radius: $global-radius;
