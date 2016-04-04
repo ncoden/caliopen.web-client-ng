@@ -37,7 +37,6 @@ const config = {
 
   scssVendorsNamespace: '',
   scssVendors: [
-    './node_modules/bootstrap-sass/assets/stylesheets/**/*.scss',
     './node_modules/@(font-awesome)/scss/**/*.scss',
     './node_modules/@(foundation-sites)/scss/**/*.scss',
   ],
@@ -46,7 +45,6 @@ const config = {
   ],
   assetsVendorsNamespace: '',
   assetsVendors: [
-    './node_modules/bootstrap-sass/assets/@(fonts)/**/*',
     './node_modules/font-awesome/@(fonts)/**/*',
   ],
 

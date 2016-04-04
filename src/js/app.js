@@ -2,7 +2,6 @@
 import 'jquery';
 import angular from 'angular';
 import 'jquery-ui/slider';
-import 'bootstrap-sass';
 import 'foundation-sites';
 import 'babel-polyfill';
 import ngSanitize from 'angular-sanitize';
