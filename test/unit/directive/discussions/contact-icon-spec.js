@@ -21,7 +21,7 @@ describe('Directive Discussions contactIcon', () => {
       { title: 'Leela' },
       { title: 'Bender' },
     ] } });
-    expect(ctrl.lettersStylesheetClass).toEqual(['co-letter--P', 'co-letter--L', 'co-letter--B']);
+    expect(ctrl.lettersStylesheetClass).toEqual(['m-letter--P', 'm-letter--L', 'm-letter--B']);
     expect(ctrl.iconClass).toEqual('co-avatars__letter--3');
   });
 
@@ -33,10 +33,10 @@ describe('Directive Discussions contactIcon', () => {
       { title: 'Fry' },
     ] } });
     expect(ctrl.lettersStylesheetClass).toEqual([
-      'co-letter--P',
-      'co-letter--L',
-      'co-letter--B',
-      'co-letter--F',
+      'm-letter--P',
+      'm-letter--L',
+      'm-letter--B',
+      'm-letter--F',
     ]);
     expect(ctrl.iconClass).toEqual('co-avatars__letter--4');
   }));
@@ -50,10 +50,10 @@ describe('Directive Discussions contactIcon', () => {
       { title: 'Dr Zoïdberg' },
     ] } });
     expect(ctrl.lettersStylesheetClass).toEqual([
-      'co-letter--P',
-      'co-letter--L',
-      'co-letter--B',
-      'co-letter--plus',
+      'm-letter--P',
+      'm-letter--L',
+      'm-letter--B',
+      'm-letter--plus',
     ]);
     expect(ctrl.iconClass).toEqual('co-avatars__letter--4');
   }));
