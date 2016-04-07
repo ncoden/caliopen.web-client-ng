@@ -25,22 +25,16 @@
     position: absolute;
     right: 0;
 
-    height: 100%;
     width: 2rem;
+    height: 100%;
 
     border: 0;
     background: transparent;
     color: $co-color__fg__text--lower;
 
-    &:hover {
-        color: $co-color__fg__text--high;
-    }
-    &:active {
-        color: $co-color__fg__text--lower;
-    }
-    &:focus {
-        outline: 0;
-    }
+    &:hover   { color: $co-color__fg__text--high; }
+    &:active  { color: $co-color__fg__text--lower; }
+    &:focus   { outline: 0; }
   }
 
   // default

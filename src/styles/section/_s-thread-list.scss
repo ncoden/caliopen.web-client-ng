@@ -9,8 +9,8 @@
       color: $co-color__fg__text--higher;
 
       &::before {
-        content: "";
         display: block;
+        content: '';
 
         position: absolute;
         top: 0;
@@ -25,10 +25,12 @@
   &__col-avatars {
     @include flex-grid-column(shrink);    
   }
+
   &__col-title {
     @include flex-grid-column;
     min-width: 0; // https://github.com/zurb/foundation-sites/pull/8511
   }
+
   &__col-file {
     @include flex-grid-column(1);
   }
@@ -37,10 +39,12 @@
     @include flex-grid-column(1);
     display: none;
   }
+
   &__col-dates {
     @include flex-grid-column(2);
     display: none;
   }
+
   &__col-count {
     @include flex-grid-column(1);
     display: none;

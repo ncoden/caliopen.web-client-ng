@@ -7,9 +7,11 @@
   &__col-avatar {
     @include flex-grid-column(shrink);    
   }
+
   &__col-name {
     @include flex-grid-column(12);
   }
+
   &__col-datas {
     @include flex-grid-column;
     display: none;

@@ -1,51 +1,58 @@
-// base
-@import "base/base";
-@import "base/fonts";
-@import "base/reset";
-@import "base/theme/dark";
+// --- Config ---
+@import 'base/config';
+@import 'base/theme/dark';
 
+
+// --- Dependencies ---
 // vendors
-@import "vendor/foundation-sites/config";
-@import "vendor/foundation-sites/flex-grid";
-@import "vendor/foundation-sites";
+@import 'vendor/foundation-sites/config';
+@import 'vendor/foundation-sites/flex-grid';
+@import 'vendor/foundation-sites';
 
-@import "font-awesome/scss/font-awesome";
+@import 'compass-mixins/lib/compass';
+@import 'font-awesome/scss/font-awesome';
 
 // injected
-@import "co-icons";
+@import 'co-icons';
+
+
+// --- Components ---
+// base
+@import 'base/fonts';
+@import 'base/reset';
 
 // utils
-@import "util/u-gradient";
+@import 'util/u-gradient';
 
 // modules
-@import "module/m-avatar";
-@import "module/m-avatars";
-@import "module/m-block-list";
-@import "module/m-contact-card";
-@import "module/m-dropdown";
-@import "module/m-letter";
-@import "module/m-loading";
-@import "module/m-menu";
-@import "module/m-search-field";
-@import "module/m-slider";
-@import "module/m-subtitle";
-@import "module/m-tabs";
-@import "module/m-tag";
-@import "module/m-text-line";
-@import "module/m-text-list";
-@import "module/m-text-word";
-@import "module/m-text-field";
+@import 'module/m-avatar';
+@import 'module/m-avatars';
+@import 'module/m-block-list';
+@import 'module/m-contact-card';
+@import 'module/m-dropdown';
+@import 'module/m-letter';
+@import 'module/m-loading';
+@import 'module/m-menu';
+@import 'module/m-search-field';
+@import 'module/m-slider';
+@import 'module/m-subtitle';
+@import 'module/m-tabs';
+@import 'module/m-tag';
+@import 'module/m-text-line';
+@import 'module/m-text-list';
+@import 'module/m-text-word';
+@import 'module/m-text-field';
 
 // layout
-@import "layout/l-header";
-@import "layout/l-topbar";
-@import "layout/l-body";
+@import 'layout/l-header';
+@import 'layout/l-topbar';
+@import 'layout/l-body';
 
 // sections
-@import "section/cor-login";
+@import 'section/cor-login';
 
-@import "section/s-contact";
-@import "section/s-contact-list";
-@import "section/s-message";
-@import "section/s-thread";
-@import "section/s-thread-list";
+@import 'section/s-contact';
+@import 'section/s-contact-list';
+@import 'section/s-message';
+@import 'section/s-thread';
+@import 'section/s-thread-list';

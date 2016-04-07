@@ -8,6 +8,7 @@
     padding-top: 0;
     background-color: $co-color__fg__back;
   }
+
   &__col-datas-online {
     @include flex-grid-column(12);
     padding: $co-margin;
@@ -18,6 +19,7 @@
     margin-bottom: $co-margin;
     word-break: break-word;
   }
+
   &__message-button {
     margin: 0;
   }

@@ -2,15 +2,15 @@
   display: inline-block;
   padding: ($co-margin / 3) ($co-margin / 2);
 
-  background-color: $co-color__fg__back--low;
   border: 1px solid $co-color__fg__border;
   border-radius: 3px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, .25) inset;
+  background-color: $co-color__fg__back--low;
+  box-shadow: $co-shadow inset;
   color: $co-color__fg__text--low;
 
   &:focus {
-    box-shadow: 0 1px 5px rgba(0, 0, 0, .25) inset;
     border-color: $co-color__fg__border--high;
+    box-shadow: $co-shadow inset;
     color: $co-color__fg__text;
   }
 }

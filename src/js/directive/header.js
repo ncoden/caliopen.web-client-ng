@@ -34,7 +34,7 @@ export function HeaderDirective() {
               <co-layout-user-menu ng-if="ctrl.session.isAuthenticated"></co-layout-user-menu>
 
               <span ng-if="!ctrl.session.isAuthenticated" class="l-header__m-menu__item m-menu__item">
-                <a href="/auth/login" translate="header.menu.signin" class="l-header__m-menu__item-content m-menu__item-content"></a>
+                <a href="/auth/login" translate="header.menu.signin" class="l-header__m-menu__item-content m-menu__item-content m-menu__item-content--link"></a>
               </span>
             </li>
           </ul>

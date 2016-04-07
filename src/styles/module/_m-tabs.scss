@@ -15,24 +15,22 @@
     margin-right: .25rem;
     padding: 0 1rem;
 
-    background-color: $co-color__fg__back;
     border-bottom: .25rem solid $co-color__bg__back;
-
-    color: $co-color__fg__text--low;
-    text-decoration: none;
+    background-color: $co-color__fg__back;
 
     overflow: hidden;
     text-overflow: ellipsis;
+    color: $co-color__fg__text--low;
+    text-decoration: none;
     white-space: nowrap;
 
-    &:hover { color: $co-color__fg__text--high; }
-    &:active { color: $co-color__fg__text--lower; }
+    &:hover   { color: $co-color__fg__text--high; }
+    &:active  { color: $co-color__fg__text--lower; }
 
     &.is-active {
-      cursor: default;
       border-bottom-color: transparent;
-
       color: $co-color__fg__text--higher;
+      cursor: default;
     }
   }
 
@@ -41,15 +39,13 @@
   }
 }
 
-/* Shame
-**
-** Because we must have a delete button, which is *visually* inside the
-** tab item, *outside* it but in the DOM to not trigger the clic event.
-**
-** This situation can (and SHOULD) be resolved with angular-pseudo-class.
-**
-** Below: the better fix I found without this package.
-*/
+// --- Shame ---
+// Because we must have a delete button, which is *visually* inside the
+// tab item, *outside* it but in the DOM to not trigger the clic event.
+//
+// This situation can (and SHOULD) be resolved with angular-pseudo-class.
+//
+// Below: the better fix I found without this package.
 
 .m-tabs {
   &__item {

@@ -13,42 +13,37 @@ $m-avatar__size: (
   width: $size;
   height: $size;
 
-  .m-avatar__letter::before {
-    line-height: $size;
-    font-size: $size * 0.75;
+  &__letter {
+    &::before {
+      font-size: $size * .75;
+      line-height: $size;
+    }
   }
 }
 
 .m-avatar {
   display: inline-block;
-  vertical-align: middle;
-  position: relative;
 
+  position: relative;
+  vertical-align: middle;
+
+  border-radius: $co-radius;
   background-color: $co-color__fg__back;
-  border-radius: 2px;
   overflow: hidden;
 
-  &__letter::before {
-    display: block;
+  &__letter {
+    &::before {
+      display: block;
 
-    color: #ffffff;
-    text-align: center;
+      color: $co-color__fg__text--high;
+      text-align: center;
+    }
   }
 
-  // default
   @include m-avatar--size(medium);
 
-  // modifiers
-  &--small {
-    @include m-avatar--size(small);
-  }
-  &--medium {
-    @include m-avatar--size(medium);
-  }
-  &--large {
-    @include m-avatar--size(large);
-  }
-  &--xlarge {
-    @include m-avatar--size(xlarge);
-  }
+  &--small  { @include m-avatar--size(small);  }
+  &--medium { @include m-avatar--size(medium); }
+  &--large  { @include m-avatar--size(large);  }
+  &--xlarge { @include m-avatar--size(xlarge); }
 }

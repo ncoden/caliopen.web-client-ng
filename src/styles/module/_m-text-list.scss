@@ -8,21 +8,16 @@
     color: $co-color__fg__text--low;
     font-size: 1rem;
     line-height: 1.33rem;
+
+    &--link {
+      cursor: pointer;
+
+      &:hover   { color: $co-color__fg__text--high; }
+      &:active  { color: $co-color__fg__text--lower; }
+    }
   }
 
   &__icon {
     margin-right: $co-margin / 4;
-  }
-}
-
-a.m-text-list__item,
-.m-text-list__item--link {
-  cursor: pointer;
-
-  &:hover {
-    color: $co-color__fg__text--high;
-  }
-  &:active {
-    color: $co-color__fg__text--lower;
   }
 }

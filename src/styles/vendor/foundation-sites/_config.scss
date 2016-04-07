@@ -55,17 +55,17 @@
 //   warning: #ffae00,
 //   alert: #ec5840,
 // );
-   $foundation-palette: (
-     primary: $co-color__primary,
-     secondary: $co-color__secondary,
-   );
+$foundation-palette: (
+  primary: $co-color__primary,
+  secondary: $co-color__secondary,
+);
 // $light-gray: #e6e6e6;
 // $medium-gray: #cacaca;
 // $dark-gray: #8a8a8a;
 // $black: #0a0a0a;
 // $white: #fefefe;
-   $body-background: $co-color__bg__back; // default: $white
-   $body-font-color: $co-color__bg__text; // default: $black
+$body-background: $co-color__bg__back; // default: $white
+$body-font-color: $co-color__bg__text; // default: $black
 // $body-font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 // $body-antialiased: true;
 // $global-margin: 1rem;
@@ -296,8 +296,8 @@
 // 16. Dropdown
 // ------------
 
-   $dropdown-padding: 0; // default: 1rem
-   $dropdown-border: 1px solid $co-color__fg__border; // default: 1px solid $medium-gray
+$dropdown-padding: 0; // default: 1rem
+$dropdown-border: 1px solid $co-color__fg__border; // default: 1px solid $medium-gray
 // $dropdown-font-size: 1rem;
 // $dropdown-width: 300px;
 // $dropdown-radius: $global-radius;

@@ -44,7 +44,7 @@ export function LayoutUserMenuDirective() {
             </li>
             <li class="m-menu__separator m-menu--break__separator show-for-medium"></li>
             <li class="m-menu__item m-menu--break__item">
-              <a class="m-menu__item-content m-menu--break__item-content" href="/auth/logout">
+              <a class="m-menu__item-content m-menu--break__item-content m-menu__item-content--link" href="/auth/logout">
                 {{'header.menu.signout'|translate}}
               </a>
             </li>

@@ -10,7 +10,8 @@
   font-size: 1rem;
   text-align: center;
 
-  &__icon, &-icon {
+  &__icon,
+  &-icon {
     @extend .m-icon;
     @extend .m-icon-loading;
 

@@ -1,4 +1,6 @@
-// Remove Chrome focus blue shadow
-*:focus {
-  outline: none;
+* {
+  // Remove Chrome focus blue shadow
+  &:focus {
+    outline: none;
+  }
 }

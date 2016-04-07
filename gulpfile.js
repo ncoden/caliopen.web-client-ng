@@ -25,7 +25,6 @@ const config = {
   scssMain: 'src/styles/main.scss',
   scssFiles: [
     'src/styles/**/*.scss',
-    '.build/icons/**/*.scss',
   ],
 
   iconsFiles: 'src/assets/icons/**/*.svg',
@@ -37,6 +36,8 @@ const config = {
 
   scssVendorsNamespace: '',
   scssVendors: [
+    '.build/icons/**/*.scss',
+    './node_modules/@(compass-mixins)/lib/**/*.scss',
     './node_modules/@(font-awesome)/scss/**/*.scss',
     './node_modules/@(foundation-sites)/scss/**/*.scss',
   ],
@@ -74,8 +75,8 @@ const gulpSequence = require('gulp-sequence');
 const gulpConcat = require('gulp-concat');
 
 // file management
-const del = require('del');
 const pathParse = require('path-parse');
+const del = require('del');
 const rename = require('gulp-rename');
 
 // build (JS)
@@ -83,6 +84,7 @@ const eslint = require('gulp-eslint');
 const ngAnnotate = require('gulp-ng-annotate');
 const webpack = require('gulp-webpack');
 // build (scss)
+const sassLint = require('gulp-sass-lint');
 const sass = require('gulp-sass');
 // build (assets)
 const iconfont = require('gulp-iconfont');
@@ -101,6 +103,7 @@ gulp.task('build', gulpSequence(
   'build:assets',
   ['build:scss', 'build:cssVendor', 'build:js']));
 
+gulp.task('lint', ['lint:scss', 'lint:js']);
 gulp.task('release', ['release:changelog']);
 
 // config
@@ -147,7 +150,7 @@ gulp.task('build:assetsFiles', () =>
   gulp.src(config.assetsFiles)
     .pipe(gulp.dest(config.assetsDest)));
 
-gulp.task('build:scss', (cb) => {
+gulp.task('build:scss', ['lint:scss'], (cb) => {
   gulpSequence(
     'build:scssVendors',
     'build:scssPrepare',
@@ -187,7 +190,7 @@ gulp.task('build:cssVendor', () => {
     .pipe(gulp.dest(destPath.dir));
 });
 
-gulp.task('build:js', ['lint'], () => {
+gulp.task('build:js', ['lint:js'], () => {
   const path = pathParse(config.jsDestFile);
   const jsMain = (!isTestEnv) ? config.jsMain : config.jsMainTest;
 
@@ -211,15 +214,23 @@ gulp.task('build:js', ['lint'], () => {
     .pipe(gulp.dest(path.dir));
 });
 
-gulp.task('lint', () =>
+gulp.task('clean', () =>
+  del(`${config.destDirectory}/*`)
+      && del(config.buildDirectory));
+
+// Lint
+gulp.task('lint:scss', () => {
+  gulp.src(config.scssFiles)
+    .pipe(sassLint())
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError())
+});
+
+gulp.task('lint:js', () =>
   gulp.src(config.jsFiles)
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError()));
-
-gulp.task('clean', () =>
-  del(`${config.destDirectory}/*`)
-      && del(config.buildDirectory));
 
 // Release
 gulp.task('release:changelog', () =>

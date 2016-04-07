@@ -3,28 +3,32 @@
     display: table-cell;
     width: auto;
   }
+
   &__item-content {
     display: inline-block;
     width: auto;
   }
+
   &__separator {
     display: table-cell;
-    margin: 0 ($co-margin / 4);
     width: 1px;
     height: auto;
+    margin: 0 ($co-margin / 4);
   }
 }
+
 @mixin m-menu--break {
   &__item,
   &__item-content {
     display: block;
-    width: 100%
+    width: 100%;
   }
+
   &__separator {
     display: block;
-    margin: ($co-margin / 4) 0;
     width: auto;
     height: 1px;
+    margin: ($co-margin / 4) 0;
   }
 }
 
@@ -36,6 +40,7 @@
   &__item {
     min-height: $height;
   }
+
   &__item-content {
     line-height: $height;
   }
@@ -50,46 +55,45 @@
     line-height: inherit;
     white-space: nowrap;
   }
+
   &__item-content {
     padding: 0 1rem;
     line-height: inherit;
+
+    &--link {
+      color: $co-color__fg__text--low;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $co-color__primary;
+        color: $co-color__fg__text--high;
+      }
+
+      &:active {
+        background-color: $co-color__primary--lower;
+        color: $co-color__fg__text--high;
+      }
+
+      &.is-active {
+        background-color: $co-color__primary--low;
+        color: $co-color__fg__text;
+        cursor: default;
+      }
+    }
   }
+
   &__separator {
     background-color: $co-color__fg__border;
   }
 
-  // default
   @include m-menu--inline;
   @include m-menu--height(medium);
 
-  // modifiers
   &--inline { @include m-menu--inline;  }
   &--break  { @include m-menu--break;   }
 
   &--small  { @include m-menu--height(small);   }
   &--medium { @include m-menu--height(medium);  }
   &--large  { @include m-menu--height(large);   }
-}
-
-a.m-menu__item-content,
-.m-menu__item-content--link {
-  cursor: pointer;
-  color: $co-color__fg__text--low;
-  text-decoration: none;
-
-  &:hover {
-    background-color: $co-color__primary;
-    color: $co-color__fg__text--high;
-  }
-
-  &:active {
-    background-color: $co-color__primary--lower;
-    color: $co-color__fg__text--high;
-  }
-
-  &.is-active {
-    cursor: default;
-    background-color: $co-color__primary--low;
-    color: $co-color__fg__text;
-  }
 }
