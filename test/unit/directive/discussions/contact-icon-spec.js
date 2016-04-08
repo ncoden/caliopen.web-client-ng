@@ -21,8 +21,8 @@ describe('Directive Discussions contactIcon', () => {
       { title: 'Leela' },
       { title: 'Bender' },
     ] } });
-    expect(ctrl.lettersStylesheetClass).toEqual(['m-letter--P', 'm-letter--L', 'm-letter--B']);
-    expect(ctrl.iconClass).toEqual('co-avatars__letter--3');
+    expect(ctrl.lettersStylesheetClass).toEqual(['m-letter--p', 'm-letter--l', 'm-letter--b']);
+    expect(ctrl.iconClass).toEqual('m-avatars__letter--3');
   });
 
   it('thread has 4 contacts', inject(() => {
@@ -33,12 +33,12 @@ describe('Directive Discussions contactIcon', () => {
       { title: 'Fry' },
     ] } });
     expect(ctrl.lettersStylesheetClass).toEqual([
-      'm-letter--P',
-      'm-letter--L',
-      'm-letter--B',
-      'm-letter--F',
+      'm-letter--p',
+      'm-letter--l',
+      'm-letter--b',
+      'm-letter--f',
     ]);
-    expect(ctrl.iconClass).toEqual('co-avatars__letter--4');
+    expect(ctrl.iconClass).toEqual('m-avatars__letter--4');
   }));
 
   it('thread has many contacts', inject(() => {
@@ -50,11 +50,11 @@ describe('Directive Discussions contactIcon', () => {
       { title: 'Dr Zoïdberg' },
     ] } });
     expect(ctrl.lettersStylesheetClass).toEqual([
-      'm-letter--P',
-      'm-letter--L',
-      'm-letter--B',
+      'm-letter--p',
+      'm-letter--l',
+      'm-letter--b',
       'm-letter--plus',
     ]);
-    expect(ctrl.iconClass).toEqual('co-avatars__letter--4');
+    expect(ctrl.iconClass).toEqual('m-avatars__letter--4');
   }));
 });

@@ -42,7 +42,7 @@ export function ContactDirective() {
         <div class="s-contact__col-datas-irl">
 
           <div class="s-contact__m-contact-card m-contact-card">
-            <div class="m-contact-card__m-avatar_">
+            <div class="s-contact__m-contact-card__m-avatar_ m-contact-card__m-avatar_">
               <widget-contact-avatar-letter contact="ctrl.contact"></widget-contact-avatar-letter>
             </div>
             <h3 class="m-contact-card__title">

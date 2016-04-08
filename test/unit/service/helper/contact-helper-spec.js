@@ -4,7 +4,7 @@ describe('Service Helper ContactHelper', () => {
   const contactHelper = new ContactHelper();
   describe('getContactStylesheetClass', () => {
     it('make stylesheet class from standard letter', () => {
-      expect(contactHelper.getContactStylesheetClass({ title: 'fry' })).toEqual('m-letter--F');
+      expect(contactHelper.getContactStylesheetClass({ title: 'fry' })).toEqual('m-letter--f');
     });
 
     it('make stylesheet class from non-standard letter', () => {
