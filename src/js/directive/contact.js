@@ -14,15 +14,36 @@ const routerSelector = createSelector(
   contactId => ({ contactId })
 );
 
+//---------
+// Backend constants. cf. backend component base.user.parameters.contact
+// FIXME: add [Organization | Phone | Social]
+// const ORG_TYPES = ['work', 'home'];
+//
+// const PHONE_TYPES = ['assistant', 'callback', 'car', 'company_main',
+//                'fax', 'home', 'home_fax', 'isdn', 'main', 'mobile',
+//                'other', 'other_fax', 'pager', 'radio', 'telex',
+//                'tty_tdd', 'work', 'work_fax', 'work_mobile', 'work_pager'];
+// const SOCIAL_TYPES = ['facebook', 'twitter', 'google', 'github', 'bitbucket',
+//                 'linkedin', 'ello', 'instagram', 'tumblr', 'skype'];
+//----------
+
 class ContactController {
   constructor($scope, $ngRedux, ContactsActions) {
     'ngInject';
+    this.$ngRedux = $ngRedux;
+    this.ContactsActions = ContactsActions;
     $scope.$on('$destroy', $ngRedux.connect(contactSelector)(this));
     $scope.$on('$destroy', $ngRedux.connect(routerSelector)((payload) => {
       if (!!payload.contactId) {
         $ngRedux.dispatch(ContactsActions.fetchContact(payload.contactId));
       }
     }));
+    this.editMode = false;
+  }
+
+  deleteContactDetail(type, entity) {
+    const contactId = this.contact.contact_id;
+    this.$ngRedux.dispatch(this.ContactsActions.deleteContactDetail(type, contactId, entity));
   }
 }
 
@@ -58,9 +79,11 @@ export function ContactDirective() {
             </button>
           </div>
 
-          <h3 class="m-subtitle">
-            {{ 'contact.groups'|translate }}
-          </h3>
+          <div class="m-subtitle">
+            <h3 class="m-subtitle__text">
+              {{ 'contact.groups'|translate }}
+            </h3>
+          </div>
           <p>
             <div ng-repeat="tag in ctrl.contact.tags" class="m-tag">
               {{ tag }}
@@ -77,43 +100,96 @@ export function ContactDirective() {
         </div>
         <div class="s-contact__col-datas-online">
 
-          <h3 class="m-subtitle">
-            {{ 'contact.coordinates'|translate }}
-          </h3>
-          <ul class="m-text-list">
-            <li ng-repeat="email in ctrl.contact.emails"
-              class="m-text-list__item m-text-list__item--link">
+          <div class="s-contact__m-subtitle m-subtitle m-subtitle--hr">
+            <h3 class="m-subtitle__text">
+              {{ 'contact.contact_details'|translate }}
+            </h3>
+
+            <button class="m-subtitle__m-inline-button m-inline-button pull-right"
+              ng-class="{ 'active': !!ctrl.editMode }"
+              ng-click="ctrl.editMode = !ctrl.editMode">
+              <i class="fa fa-edit"></i>
+              <span class="show-for-sr">{{ 'contact.action.edit_contact_details'|translate }}</span>
+            </button>
+          </div>
+
+          <ul class="m-text-list s-contact__m-contact-detail-list">
+            <li ng-repeat="email in ctrl.contact.emails|orderBy:'address'"
+                class="m-text-list__item">
               <span class="m-text-line">
                 <span class="m-text-list__icon fa fa-envelope"></span>
-                {{ email.address }}
+                <span ng-switch="!!email.is_primary">
+                  <span ng-switch-when="true" ng-title="'contact.primary'|translate"><strong>{{ email.address }}</strong></span>
+                  <span ng-switch-default>{{ email.address }}</span>
+                </span>
+                <small><em>{{ ('contact.email_type.' + email.type)|translate}}</em></small>
+                <button ng-if="ctrl.editMode" ng-click="ctrl.deleteContactDetail('email', email)"
+                        class="m-inline-button m-inline-button--alert"><i class="fa fa-remove"></i>
+                  <span class="show-for-sr">{{ 'contact.action.delete_contact_detail'|translate }}</span>
+                </button>
               </span>
+            </li>
+
+            <li ng-if="!!ctrl.editMode" class="m-text-list__item">
+              <add-email-form contact="ctrl.contact"></add-email-form>
             </li>
 
             <li ng-repeat="phone in ctrl.contact.phones"
-              class="m-text-list__item m-text-list__item--link">
+              class="m-text-list__item">
               <span class="m-text-line">
                 <span class="m-text-list__icon fa fa-phone"></span>
                 {{ phone.number }}
+                <button ng-if="ctrl.editMode" ng-click="ctrl.deleteContactDetail('phone', phone)"
+                        class="m-inline-button m-inline-button--alert"><i class="fa fa-remove"></i>
+                  <span class="show-for-sr">{{ 'contact.action.delete_contact_detail'|translate }}</span>
+                </button>
               </span>
             </li>
 
-            <li ng-repeat="ims in ctrl.contact.ims"
-              class="m-text-list__item m-text-list__item--link">
+            <li ng-repeat="im in ctrl.contact.ims"
+              class="m-text-list__item">
               <span class="m-text-line">
                 <span class="m-text-list__icon fa fa-comment"></span>
-                {{ ims.address }}
+                {{ im.address }}
+                <small><em>{{ ('contact.im_type.' + im.type)|translate }}</em></small>
+                <button ng-if="ctrl.editMode" ng-click="ctrl.deleteContactDetail('im', im)"
+                        class="m-inline-button m-inline-button--alert"><i class="fa fa-remove"></i>
+                  <span class="show-for-sr">{{ 'contact.action.delete_contact_detail'|translate }}</span>
+                </button>
               </span>
+            </li>
+            <li ng-if="!!ctrl.editMode" class="m-text-list__item">
+              <add-im-form contact="ctrl.contact"></add-im-form>
+            </li>
+
+            <li ng-repeat="address in ctrl.contact.addresses"
+              class="m-text-list__item m-text-line">
+              <span class="m-text-list__icon fa fa-map-marker"></span>
+              <address>
+                {{ address.street }}, {{ address.postal_code }} {{ address.city }}
+                {{ address.country }} {{ address.region }}
+              </adddress>
+              <small><em>({{ address.label }} {{ ('contact.address_type.' + address.type)|translate}})</em></small>
+              <button ng-if="ctrl.editMode" ng-click="ctrl.deleteContactDetail('address', address)"
+                      class="m-inline-button m-inline-button--alert"><i class="fa fa-remove"></i>
+                <span class="show-for-sr">{{ 'contact.action.delete_contact_detail'|translate }}</span>
+              </button>
+            </li>
+            <li ng-if="!!ctrl.editMode" class="m-text-list__item">
+              <add-address-form contact="ctrl.contact"></add-address-form>
             </li>
           </ul>
 
-          <h3 class="m-subtitle">
-            {{ 'contact.accounts'|translate }}
-          </h3>
+          <div class="s-contact__m-subtitle m-subtitle m-subtitle--hr">
+            <h3 class="m-subtitle__text">
+              {{ 'contact.accounts'|translate }}
+            </h3>
+          </div>
           <ul class="m-text-list">
             <li ng-repeat="identity in ctrl.contact.identities"
-              class="m-text-list__item m-text-list__item--link">
+              class="m-text-list__item">
               <span class="m-text-line">
-                <span class="fa fa-at"></span>
+                <span class="m-text-list__icon fa fa-at"></span>
                 {{ identity }}
               </span>
             </li>

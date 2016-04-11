@@ -1,9 +1,25 @@
+$m-subtitle__height: 2.6rem !default;
+
 .m-subtitle {
   display: block;
-  margin-top: 0;
+  margin-bottom: 1rem;
+  line-height: $m-subtitle__height;
 
-  color: $co-color__fg__text--lower;
-  font-size: .75rem;
-  font-weight: bold;
-  text-transform: uppercase;
+  &__text {
+    display: inline;
+    color: $co-color__fg__text--lower;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  &__m-inline-button {
+    line-height: $m-subtitle__height - rem-calc($m-inline-button__border-size * 2);
+  }
+
+  &--hr {
+    border-width: 1px 0;
+    border-style: solid;
+    border-color: $co-color__fg__border--lower;
+    background-color: lighten($co-color__bg__back--higher, 10%);
+  }
 }
