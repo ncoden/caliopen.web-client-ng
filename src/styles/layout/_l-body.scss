@@ -3,6 +3,7 @@ $topbar-height:     65px;
 
 .l-body {
   @include flex-grid-row;
+  max-width: none;
 
   &__col-slider {
     @include flex-grid-column(1);
@@ -18,10 +19,6 @@ $topbar-height:     65px;
     &__col-content { @include flex-grid-size(11); }
   }
 
-  &__tabs {
-    line-height: 40px;
-  }
-
   &__content {
     padding-top: 45px;
     background-color: $co-color__fg__back;
@@ -31,7 +28,7 @@ $topbar-height:     65px;
 // --- Shame ---
 // The slider must take all the remaining height. It is nor fixed, not
 // proportionnal.
-// 
+//
 // Possible solution: move the slider to a semantic bloc.
 
 .l-body {

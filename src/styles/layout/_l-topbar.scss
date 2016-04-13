@@ -1,5 +1,6 @@
 .l-topbar {
   @include flex-grid-row;
+  max-width: none;
   margin-bottom: 15px;
 
   &__col-action { @include flex-grid-column(12); }

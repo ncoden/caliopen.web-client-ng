@@ -78,7 +78,7 @@ export function DiscussionsThreadDirective() {
           </time>
         </div>
         <div class="s-thread-list__col-count">
-          <span class="badge">
+          <span class="m-badge">
             <span ng-if="ctrl.thread.unread_count">{{ ctrl.thread.unread_count }}/</span>
             <span>{{ ctrl.thread.total_count }}</span>
           </span>

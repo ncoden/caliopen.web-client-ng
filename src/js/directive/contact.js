@@ -47,7 +47,7 @@ export function ContactDirective() {
             </div>
             <h3 class="m-contact-card__title">
               {{ ctrl.contact.title }}
-              <span class="badge">
+              <span class="m-badge">
                 <span class="fa fa-lock"></span>
                 <!-- Privacy Index -->
               </span>
@@ -58,10 +58,10 @@ export function ContactDirective() {
             </button>
           </div>
 
+          <h3 class="m-subtitle">
+            {{ 'contact.groups'|translate }}
+          </h3>
           <p>
-            <h3 class="m-subtitle">
-              {{ 'contact.groups'|translate }}
-            </h3>
             <div ng-repeat="tag in ctrl.contact.tags" class="m-tag">
               {{ tag }}
             </div>

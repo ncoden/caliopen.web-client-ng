@@ -1,5 +1,6 @@
 .s-contact {
   @include flex-grid-row;
+  max-width: none;
   background-color: $co-color__fg__back--low;
 
   &__col-datas-irl {
@@ -29,7 +30,7 @@
     &__col-datas-online { @include flex-grid-size(7); }
 
     &__m-contact-card {
-      @include m-contact-card--break;
+      @include m-contact-card--horizontal;
       @include m-contact-card--size(xlarge);
       text-align: center;
     }

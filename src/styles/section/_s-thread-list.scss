@@ -2,6 +2,7 @@
   &__thread {
     @include flex-grid-row;
     align-items: center;
+    max-width: none;
 
     &--unread {
       position: relative;

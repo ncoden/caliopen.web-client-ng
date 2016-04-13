@@ -33,7 +33,7 @@ $l-header__margin: ($co-margin / 2) !default;
   }
 
   &__m-menu {
-    @include m-menu--break;
+    @include m-menu--horizontal;
     @include m-menu--height($l-header__height);
   }
 
@@ -43,7 +43,7 @@ $l-header__margin: ($co-margin / 2) !default;
 
   @include breakpoint(medium) {
     &__brand { float: left; }
-    &__m-menu { @include m-menu--inline; }
+    &__m-menu { @include m-menu--vertical; }
     &__m-search-field { @include m-search-field--width(medium); }
     &__user { float: right; }
   }

@@ -2,14 +2,15 @@
   &__contact {
     @include flex-grid-row;
     align-items: baseline;
+    max-width: none;
   }
 
   &__col-avatar {
-    @include flex-grid-column(shrink);    
+    @include flex-grid-column(shrink);
   }
 
   &__col-name {
-    @include flex-grid-column(12);
+    @include flex-grid-column;
   }
 
   &__col-datas {

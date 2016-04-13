@@ -1,31 +1,23 @@
-@mixin m-menu--inline {
+@mixin m-menu--vertical {
   &__item {
-    display: table-cell;
-    width: auto;
-  }
-
-  &__item-content {
-    display: inline-block;
-    width: auto;
+    float: left;
   }
 
   &__separator {
-    display: table-cell;
+    float: left;
     width: 1px;
     height: auto;
     margin: 0 ($co-margin / 4);
   }
 }
 
-@mixin m-menu--break {
-  &__item,
-  &__item-content {
-    display: block;
-    width: 100%;
+@mixin m-menu--horizontal {
+  &__item {
+    float: none;
   }
 
   &__separator {
-    display: block;
+    float: none;
     width: auto;
     height: 1px;
     margin: ($co-margin / 4) 0;
@@ -37,26 +29,24 @@
     $height: map-get($co-form__height, $height);
   }
 
-  &__item {
-    min-height: $height;
-  }
-
-  &__item-content {
-    line-height: $height;
-  }
+  &__item { min-height: $height; }
+  &__item-content { line-height: $height; }
 }
 
 .m-menu {
+  @include clearfix;
+
   list-style-type: none;
   margin: 0;
   padding: 0;
 
   &__item {
-    line-height: inherit;
+    display: block;
     white-space: nowrap;
   }
 
   &__item-content {
+    display: block;
     padding: 0 1rem;
     line-height: inherit;
 
@@ -87,13 +77,13 @@
     background-color: $co-color__fg__border;
   }
 
-  @include m-menu--inline;
+  @include m-menu--vertical;
   @include m-menu--height(medium);
 
-  &--inline { @include m-menu--inline;  }
-  &--break  { @include m-menu--break;   }
+  &--vertical   { @include m-menu--vertical; }
+  &--horizontal { @include m-menu--horizontal; }
 
-  &--small  { @include m-menu--height(small);   }
-  &--medium { @include m-menu--height(medium);  }
-  &--large  { @include m-menu--height(large);   }
+  &--small  { @include m-menu--height(small); }
+  &--medium { @include m-menu--height(medium); }
+  &--large  { @include m-menu--height(large); }
 }

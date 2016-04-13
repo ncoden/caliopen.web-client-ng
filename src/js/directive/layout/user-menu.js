@@ -36,15 +36,15 @@ export function LayoutUserMenuDirective() {
           data-auto-focus="true"
           id="user-menu-dropdown"
         >
-          <ul class="m-menu m-menu--break">
-            <li class="m-menu__item m-menu--break__item show-for-medium">
-              <div class="m-menu__item-content m-menu--break__item-content">
+          <ul class="m-menu m-menu--horizontal">
+            <li class="m-menu__item m-menu--horizontal__item show-for-medium">
+              <div class="m-menu__item-content m-menu--horizontal__item-content">
                 {{ ctrl.user.name }}
               </div>
             </li>
-            <li class="m-menu__separator m-menu--break__separator show-for-medium"></li>
-            <li class="m-menu__item m-menu--break__item">
-              <a class="m-menu__item-content m-menu--break__item-content m-menu__item-content--link" href="/auth/logout">
+            <li class="m-menu__separator m-menu--horizontal__separator show-for-medium"></li>
+            <li class="m-menu__item m-menu--horizontal__item">
+              <a class="m-menu__item-content m-menu--horizontal__item-content m-menu__item-content--link" href="/auth/logout">
                 {{'header.menu.signout'|translate}}
               </a>
             </li>

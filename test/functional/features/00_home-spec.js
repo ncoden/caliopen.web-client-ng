@@ -10,7 +10,7 @@ describe('Home', () => {
     it('Log In', () => {
       userUtil.login();
       browser.get('/');
-      expect(element(by.css('.l-body__tabs')).getText()).toContain('Discussions');
+      expect(element(by.xpath('//co-layout-tab-list')).getText()).toContain('Discussions');
     });
 
     it('Requires authentication', () => {
@@ -24,7 +24,7 @@ describe('Home', () => {
 
     it('Log out', () => {
       userUtil.login();
-      expect(element(by.css('.l-body__tabs')).getText()).toContain('Discussions');
+      expect(element(by.xpath('//co-layout-tab-list')).getText()).toContain('Discussions');
       browser.ignoreSynchronization = true;
       element(by.xpath('//co-layout-user-menu//a[@aria-label="Account"]')).click();
       element(by.xpath('//co-layout-user-menu//a[contains(string(), "Log Out")]')).click();

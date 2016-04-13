@@ -1,4 +1,4 @@
-@mixin m-contact-card--inline {
+@mixin m-contact-card--vertical {
   &__m-avatar_ {
     .m-avatar {
       float: left;
@@ -7,7 +7,7 @@
   }
 }
 
-@mixin m-contact-card--break {
+@mixin m-contact-card--horizontal {
   &__m-avatar_ {
     .m-avatar {
       float: none;
@@ -30,8 +30,8 @@
     color: $co-color__fg__text--high;
   }
 
-  @include m-contact-card--inline;
+  @include m-contact-card--vertical;
 
-  &--inline { @include m-contact-card--inline; }
-  &--break  { @include m-contact-card--break; }
+  &--vertical { @include m-contact-card--vertical; }
+  &--horizontal  { @include m-contact-card--horizontal; }
 }

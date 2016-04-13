@@ -17,6 +17,6 @@ describe('Contact', () => {
     browser.get('/');
     element(by.xpath('//co-layout-application-switcher//a[contains(string(), "Contacts")]'))
       .click();
-    expect(element(by.css('.l-body__tabs')).getText()).toContain('Contacts');
+    expect(element(by.xpath('//co-layout-tab-list')).getText()).toContain('Contacts');
   });
 });
