@@ -33,24 +33,24 @@
   &__item-content { line-height: $height; }
 }
 
-.m-menu {
+@include b(m-menu) {
   @include clearfix;
 
   list-style-type: none;
   margin: 0;
   padding: 0;
 
-  &__item {
+  @include e(item) {
     display: block;
     white-space: nowrap;
   }
 
-  &__item-content {
+  @include e(item-content) {
     display: block;
     padding: 0 1rem;
     line-height: inherit;
 
-    &--link {
+    @include m(link) {
       color: $co-color__fg__text--low;
       text-decoration: none;
       cursor: pointer;
@@ -73,17 +73,17 @@
     }
   }
 
-  &__separator {
+  @include e(separator) {
     background-color: $co-color__fg__border;
   }
 
   @include m-menu--vertical;
   @include m-menu--height(medium);
 
-  &--vertical   { @include m-menu--vertical; }
-  &--horizontal { @include m-menu--horizontal; }
+  @include m(vertical)   { @include m-menu--vertical; }
+  @include m(horizontal) { @include m-menu--horizontal; }
 
-  &--small  { @include m-menu--height(small); }
-  &--medium { @include m-menu--height(medium); }
-  &--large  { @include m-menu--height(large); }
+  @include m(small)  { @include m-menu--height(small); }
+  @include m(medium) { @include m-menu--height(medium); }
+  @include m(large)  { @include m-menu--height(large); }
 }

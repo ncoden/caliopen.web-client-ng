@@ -1,0 +1,23 @@
+@mixin bem_block($name) {
+  @include object_declare($name) {
+    @content;
+  }
+}
+
+@mixin bem_element($name) {
+  @include object_declare(__#{$name}) {
+    @content;
+  }
+}
+
+@mixin bem_modifier($name) {
+  @include object_declare(--#{$name}) {
+    @content;
+  }
+}
+
+// Aliases
+
+@mixin b($name) { @include bem_block($name) { @content } }
+@mixin e($name) { @include bem_element($name) { @content } }
+@mixin m($name) { @include bem_modifier($name) { @content } }

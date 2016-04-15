@@ -1,0 +1,48 @@
+$_object_base: null !global;
+$_object_subobjects-list: () !global;
+
+@function _object_declare-subobject($name, $subobject) {
+  $list: map-get($_object_subobjects-list, $name);
+
+  @if ($list == null) {
+    $list: ();
+  }
+
+  $list: append($list, $subobject);
+  $_object_subobjects-list: map-set($_object_subobjects-list, $name, $list) !global;
+
+  @return null;
+}
+
+@function _object_get-subobjects($name) {
+  @return map-get($_object_subobjects-list, $name);
+}
+
+@mixin object_declare($name, $base: $_object_base) {
+  $_object_base: #{$base}#{$name} !global;
+
+  @if ($base != null) {
+    $x: _object_declare-subobject($base, $name);
+    $name: #{$base}#{$name};
+  }
+
+  @at-root {
+    %#{$name} { @content; }
+    .#{$name} { @extend %#{$name}; }
+  }
+
+  $_object_base: $base !global;
+}
+
+@mixin object_extend($name, $base: null) {
+  $name: #{$base}#{$name};
+  $subobjects: _object_get-subobjects($name);
+
+  @extend %#{$name};
+
+  @each $subobject in $subobjects {
+    @include object_declare($subobject, $_object_base) {
+      @include object_extend($subobject, $name);
+    }
+  }
+}

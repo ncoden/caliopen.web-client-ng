@@ -16,11 +16,18 @@
 @import 'co-icons';
 
 
-// --- Components ---
-// base
+// --- Base ---
+// features
+@import 'base/sass/map';
+@import 'base/component/object';
+@import 'base/component/bem';
+
+// global rules
 @import 'base/fonts';
 @import 'base/reset';
 
+
+// --- Components ---
 // utils
 @import 'util/u-gradient';
 
