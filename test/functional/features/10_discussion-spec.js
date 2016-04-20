@@ -17,7 +17,7 @@ describe('Discussions', () => {
     browser.get('/');
     element(by.xpath('//co-layout-application-switcher//a[contains(string(), "Discussions")]'))
       .click();
-    expect(element(by.css('.co-layout__tabs')).getText()).toContain('Discussions');
+    expect(element(by.xpath('//co-layout-tab-list')).getText()).toContain('Discussions');
     expect(element(by.xpath('//co-discussions-thread[1]')).getText())
       .toContain('caliopdev@caliop.net, laurent@brainstorm.fr');
     expect(element.all(by.css('co-discussions-thread')).count()).toEqual(7);
@@ -29,7 +29,7 @@ describe('Discussions', () => {
       element(by.xpath('//co-layout-application-switcher//a[contains(string(), "Discussions")]'))
         .click();
       element(by.xpath('//co-discussions-thread[1]')).click();
-      expect(element(by.css('.co-layout__tabs__item__link--active')).getText())
+      expect(element(by.css('.m-tab.is-active .m-tab__link')).getText())
         .toEqual('');
         // FIXME: https://github.com/CaliOpen/Caliopen/issues/12
         // .toContain('caliopdev@caliop.net, laurent@brainstorm.fr');

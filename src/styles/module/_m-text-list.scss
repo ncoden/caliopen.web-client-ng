@@ -1,0 +1,23 @@
+.m-text-list {
+  list-style: none;
+  margin: 0;
+  margin-bottom: $co-margin / 2;
+  padding: 0;
+
+  &__item {
+    color: $co-color__fg__text--low;
+    font-size: 1rem;
+    line-height: 1.33rem;
+
+    &--link {
+      cursor: pointer;
+
+      &:hover   { color: $co-color__fg__text--high; }
+      &:active  { color: $co-color__fg__text--lower; }
+    }
+  }
+
+  &__icon {
+    margin-right: $co-margin / 4;
+  }
+}

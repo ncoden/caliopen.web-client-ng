@@ -1,0 +1,18 @@
+.l-topbar {
+  @include flex-grid-row;
+  max-width: none;
+  margin-bottom: 15px;
+
+  &__col-action { @include flex-grid-column(12); }
+  &__col-slider { @include flex-grid-column(12); }
+
+  @include breakpoint(medium) {
+    &__col-action { @include flex-grid-size(2); }
+    &__col-slider { @include flex-grid-size(10); }
+  }
+
+  &__slider {
+    @include m-slider($co-color__privacy, left);
+    margin: 10px 20px;
+  }
+}

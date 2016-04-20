@@ -24,7 +24,7 @@ export function LayoutImportanceLevelSliderDirective() {
     controllerAs: 'ctrl',
     bindToController: true,
     template: `
-      <div class="co-layout__importance-slider">
+      <div class="l-body__slider">
         <div ui-slider="ctrl.sliderOptions" ng-model="ctrl.range"></div>
       </div>`,
   };

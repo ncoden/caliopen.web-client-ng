@@ -14,20 +14,26 @@ export function LayoutApplicationSwitcherDirective() {
     controller: LayoutApplicationSwitcherController,
     controllerAs: 'ctrl',
     bindToController: true,
+    /* eslint-disable max-len */
     template: `
-      <ul class="nav navbar-nav">
-        <li ng-class="{active: (ctrl.currentApplication === 'discussions')}">
-          <a ui-sref="front.discussions">
-            <i class="fa fa-envelope"></i>
-            {{ 'header.menu.discussions'|translate}}
-          </a>
-        </li>
-        <li ng-class="{active: (ctrl.currentApplication === 'contacts')}">
-          <a ui-sref="front.contacts">
-            <i class="fa fa-users"></i>
-            {{ 'header.menu.contacts'|translate}}
-          </a>
-        </li>
-      </ul>`,
+      <li class="l-header__m-menu__item m-menu__item">
+        <a ui-sref="front.discussions"
+          class="l-header__m-menu__item-content m-menu__item-content m-menu__item-content--link"
+          ng-class="{'is-active': (ctrl.currentApplication === 'discussions')}"
+        >
+          <i class="fa fa-envelope"></i>
+          {{ 'header.menu.discussions'|translate}}
+        </a>
+      </li>
+      <li class="l-header__m-menu__item m-menu__item">
+        <a ui-sref="front.contacts"
+          class="l-header__m-menu__item-content m-menu__item-content m-menu__item-content--link"
+          ng-class="{'is-active': (ctrl.currentApplication === 'contacts')}"
+        >
+          <i class="fa fa-users"></i>
+          {{ 'header.menu.contacts'|translate}}
+        </a>
+      </li>`,
+    /* eslint-enable max-len */
   };
 }

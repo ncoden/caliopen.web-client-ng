@@ -1,0 +1,20 @@
+$_m-panel__back: #fff;
+$_m-panel__header-border: darken(#fff, 30%);
+$_m-panel__header-back: darken(#fff, 10%);
+
+.m-panel {
+  @include callout-base;
+  @include callout-style($color: $_m-panel__back);
+  padding: 0;
+
+  &__header {
+    padding: 0 1rem;
+    border-bottom: 1px solid $_m-panel__header-border;
+    background-color: $_m-panel__header-back;
+    overflow: auto;
+  }
+
+  &__content {
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,12 @@
+.m-tag {
+  display: inline-block;
+  padding: 3px 7px;
+
+  border: 1px solid $co-color__fg__border--lower;
+  border-radius: 3px;
+  background: $co-color__fg__back--lower;
+
+  color: $co-color__fg__text--low;
+  font-size: .75rem;
+  text-transform: uppercase;
+}

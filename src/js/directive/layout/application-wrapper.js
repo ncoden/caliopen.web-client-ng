@@ -23,36 +23,36 @@ export function LayoutApplicationWrapperDirective() {
     controllerAs: 'ctrl',
     /* eslint-disable max-len */
     template: `
-      <section role="main" class="container-fluid">
-        <div class="co-layout__topbar row">
-          <div class="col-md-2" ng-switch="ctrl.currentApplication">
+      <section role="main">
+        <div class="l-topbar">
+          <div class="l-topbar__col-action" ng-switch="ctrl.currentApplication">
             <a ng-switch-when="discussions"
               ui-sref="front.discussions.create"
-              class="btn btn-info btn-lg"
+              class="button"
               title="{{ 'header.menu.compose'|translate }}">
               <i class="fa fa-plus"></i>
               {{ 'header.menu.compose'|translate }}
             </a>
             <a ng-switch-when="contacts"
               ui-sref="front.contacts.create"
-              class="btn btn-info btn-lg"
+              class="button"
               title="{{ 'header.menu.compose'|translate }}">
               <i class="fa fa-plus"></i>
               {{ 'header.menu.create_user'|translate }}
             </a>
           </div>
-          <div class="co-layout__topbar__block-privacy col-md-10">
+          <div class="l-topbar__col-slider">
             <co-layout-privacy-index-slider></co-layout-privacy-index-slider>
           </div>
         </div>
 
-        <div class="co-layout__body row">
-          <div class="co-layout__body__block-importance col-md-1 hidden-sm hidden-xs">
+        <div class="l-body">
+          <div class="l-body__col-slider">
             <co-layout-importance-level-slider></co-layout-importance-level-slider>
           </div>
-          <div class="co-layout__body__block-container col-md-11 col-sm-12 col-xs-12">
+          <div class="l-body__col-content">
             <co-layout-tab-list currentApplication=currentApplication remove="closeTab"></co-layout-tab-list>
-            <div class="co-layout__body__content" ng-switch="ctrl.currentStateName">
+            <div class="l-body__content" ng-switch="ctrl.currentStateName">
               <div ng-switch-when="front.discussions">
                 <co-discussions></co-discussions>
               </div>

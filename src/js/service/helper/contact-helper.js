@@ -4,10 +4,10 @@ export class ContactHelper {
     let letter = defaultLetter;
 
     if (!!title) {
-      letter = title.substr(0, 1).toUpperCase();
+      letter = title.substr(0, 1).toLowerCase();
     }
 
-    if ('abcdefghijklmnopqrstuvwxyz'.toUpperCase().indexOf(letter) === -1) {
+    if ('abcdefghijklmnopqrstuvwxyz'.indexOf(letter) === -1) {
       letter = 'none';
     }
 
@@ -15,6 +15,6 @@ export class ContactHelper {
   }
 
   getStylesheetClass(letter = 'none') {
-    return `co-letter--${letter}`;
+    return `m-letter--${letter}`;
   }
 }

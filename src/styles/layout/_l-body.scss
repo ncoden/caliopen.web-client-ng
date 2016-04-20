@@ -1,0 +1,42 @@
+$header-height:     65px;
+$topbar-height:     65px;
+
+.l-body {
+  @include flex-grid-row;
+  max-width: none;
+
+  &__col-slider {
+    @include flex-grid-column(1);
+    display: none;
+  }
+
+  &__col-content {
+    @include flex-grid-column(12);
+  }
+
+  @media screen and (min-width: 40em) {
+    &__col-slider { display: block; }
+    &__col-content { @include flex-grid-size(11); }
+  }
+
+  &__content {
+    padding-top: 45px;
+    background-color: $co-color__fg__back;
+  }
+}
+
+// --- Shame ---
+// The slider must take all the remaining height. It is nor fixed, not
+// proportionnal.
+//
+// Possible solution: move the slider to a semantic bloc.
+
+.l-body {
+  &__slider {
+    @include m-slider($co-color__importance, top);
+
+    height: 650px - $header-height - $topbar-height - 50px; // IE9
+    height: calc(100vh - #{$header-height} - #{$topbar-height} - 50px);
+    margin: 20px 10px;
+  }
+}

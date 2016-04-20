@@ -1,0 +1,90 @@
+$m-avatars__size: 40px;
+$m-avatars__padding: 0;
+
+.m-avatars {
+  display: inline-block;
+  vertical-align: middle;
+
+  width: $m-avatars__size;
+  height: $m-avatars__size;
+
+  border-radius: 50%;
+  background-color: $co-color__primary--low;
+  overflow: hidden;
+
+  &__letter {
+    &::before {
+      display: block;
+      float: left;
+
+      text-align: center;
+    }
+  }
+
+  &__letter--1 {
+    &::before {
+      width: $m-avatars__size;
+      height: $m-avatars__size;
+      line-height: $m-avatars__size;
+    }
+  }
+
+  &__letter--2 {
+    &::before {
+      width: $m-avatars__size * .5 - $m-avatars__padding * .5;
+      height: $m-avatars__size;
+      font-size: $m-avatars__size * .25;
+      line-height: $m-avatars__size;
+    }
+
+    &:first-child {
+      &::before {
+        margin-right: $m-avatars__padding;
+      }
+    } 
+  }
+
+  &__letter--3 {
+    &::before {
+      width: $m-avatars__size * .5 - $m-avatars__padding * .5;
+      height: $m-avatars__size * .5;
+      font-size: $m-avatars__size * .25;
+      line-height: $m-avatars__size * .5;
+    }
+
+    &:first-child {
+      &::before {
+        height: $m-avatars__size;
+        margin: 0 $m-avatars__padding $m-avatars__padding 0;
+        line-height: $m-avatars__size;
+      }
+    }
+
+    &:nth-child(2) {
+      &::before {
+        margin-bottom: $m-avatars__padding;
+      }
+    }
+  }
+
+  &__letter--4 {
+    &::before {
+      width: $m-avatars__size * .5 - $m-avatars__padding * .5;
+      height: $m-avatars__size * .5;
+      font-size: $m-avatars__size * .25;
+      line-height: $m-avatars__size * .5;
+    }
+
+    &:first-child {
+      &::before {
+        margin: 0 $m-avatars__padding $m-avatars__padding 0;
+      }
+    }
+
+    &:nth-child(3) {
+      &::before {
+        margin-right: $m-avatars__padding;
+      }
+    }
+  }
+}
