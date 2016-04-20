@@ -1,43 +1,63 @@
-// base
-@import "base/base";
-@import "base/fonts";
-@import "base/theme/dark";
+// --- Config ---
+@import 'config/config';
+@import 'config/theme/dark';
 
+
+// --- Dependencies ---
 // vendors
-@import "extension/bootstrap/custom";
-@import "vendor/bootstrap";
-@import "extension/bootstrap/grid";
-@import "extension/bootstrap/scaffolding";
+@import 'vendor/foundation-sites/config';
+@import 'vendor/foundation-sites/flex-grid';
+@import 'vendor/foundation-sites';
 
-@import "vendor/font-awesome";
+@import 'compass-mixins/lib/compass';
+@import 'font-awesome/scss/font-awesome';
 
 // injected
-@import "co-icons";
+@import 'co-icons';
 
-// components
-@import "component/list";
-@import "component/text-list";
 
-@import "component/avatar";
-@import "component/avatars";
-@import "component/letters";
-@import "component/loading-icon";
-@import "component/text-field";
-@import "component/search-field";
-@import "component/slider";
-@import "component/tag";
+// --- Base ---
+// global rules
+@import 'base/fonts';
+@import 'base/reset';
 
-@import "component/text";
 
-// application
-@import "layout/header";
-@import "layout/topbar";
-@import "layout/body";
-@import "layout/sliders";
-@import "layout/tabs";
+// --- Components ---
+// utils
+@import 'util/u-gradient';
 
-@import "page/cor-login";
-@import "page/threads";
-@import "page/messages";
-@import "page/contacts";
-@import "page/contact";
+// modules
+@import 'module/m-menu';
+
+@import 'module/m-avatar';
+@import 'module/m-avatars';
+@import 'module/m-badge';
+@import 'module/m-block-list';
+@import 'module/m-contact-card';
+@import 'module/m-dropdown';
+@import 'module/m-letter';
+@import 'module/m-loading';
+@import 'module/m-panel';
+@import 'module/m-search-field';
+@import 'module/m-slider';
+@import 'module/m-subtitle';
+@import 'module/m-tab';
+@import 'module/m-tag';
+@import 'module/m-text-line';
+@import 'module/m-text-list';
+@import 'module/m-text-word';
+@import 'module/m-text-field';
+
+// layout
+@import 'layout/l-header';
+@import 'layout/l-topbar';
+@import 'layout/l-body';
+
+// sections
+@import 'section/s-login';
+
+@import 'section/s-contact';
+@import 'section/s-contact-list';
+@import 'section/s-message';
+@import 'section/s-thread';
+@import 'section/s-thread-list';

@@ -1,0 +1,43 @@
+.s-contact {
+  @include flex-grid-row;
+  max-width: none;
+  background-color: $co-color__fg__back--low;
+
+  &__col-datas-irl {
+    @include flex-grid-column(12);
+    padding: $co-margin;
+    padding-top: 0;
+    background-color: $co-color__fg__back;
+  }
+
+  &__col-datas-online {
+    @include flex-grid-column(12);
+    padding: $co-margin;
+  }
+
+  &__m-contact-card {
+    @include m-contact-card--size(large);
+    margin-bottom: $co-margin;
+    word-break: break-word;
+  }
+
+  &__message-button {
+    margin: 0;
+  }
+
+  @include breakpoint(medium) {
+    &__col-datas-irl { @include flex-grid-size(5); }
+    &__col-datas-online { @include flex-grid-size(7); }
+
+    &__m-contact-card {
+      @include m-contact-card--vertical;
+      @include m-contact-card--size(xlarge);
+      text-align: center;
+    }
+  }
+
+  @include breakpoint(large) {
+    &__col-datas-irl { @include flex-grid-size(4); }
+    &__col-datas-online { @include flex-grid-size(8); }
+  }
+}

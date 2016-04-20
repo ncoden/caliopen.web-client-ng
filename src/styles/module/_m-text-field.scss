@@ -1,0 +1,44 @@
+$_m-text-field--light__back: darken(#fff, 5%);
+$_m-text-field--light__border: darken(#fff, 30%);
+$_m-text-field--light__border--low: darken($_m-text-field--light__border, 10%);
+$_m-text-field--light__text: #1a1a1a;
+$_m-text-field--light__text--high: lighten($_m-text-field--light__text, 10%);
+
+@mixin m-text-field--dark {
+  border-color: $co-color__fg__border;
+  background-color: $co-color__fg__back--low;
+  color: $co-color__fg__text--low;
+
+  &:focus {
+    border-color: $co-color__fg__border--high;
+    color: $co-color__fg__text;
+  }
+}
+
+@mixin m-text-field--light {
+  border-color: $_m-text-field--light__border;
+  background-color: $_m-text-field--light__back;
+  color: $_m-text-field--light__text--high;
+
+  &:focus {
+    border-color: $_m-text-field--light__border--low;
+    color: $_m-text-field--light__text;
+  }
+}
+
+.m-text-field {
+  display: inline-block;
+  padding: ($co-margin / 3) ($co-margin / 2);
+
+  border: 1px solid;
+  border-radius: 3px;
+  box-shadow: $co-shadow inset;
+
+  &:focus {
+    box-shadow: $co-shadow inset;
+  }
+
+  &,
+  &--dark   { @include m-text-field--dark; }
+  &--light  { @include m-text-field--light; }
+}

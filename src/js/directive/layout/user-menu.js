@@ -23,24 +23,32 @@ export function LayoutUserMenuDirective() {
     bindToController: true,
     /* eslint-disable max-len */
     template: `
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-label="{{'header.menu.account'|translate}}">
-            <i class="fa fa-user"></i>
-            <span class="visible-xs-inline">{{ ctrl.user.name }}</span>
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <li class="dropdown-header hidden-xs">{{ ctrl.user.name }}</li>
-            <li class="divider"></li>
-            <li>
-              <a href="/auth/logout">
-                {{'header.menu.signout'|translate}}
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>`,
+      <div class="l-header__m-menu__item m-menu__item">
+        <button class="l-header__m-menu__item-content m-menu__item-content m-menu__item-content--link" type="button" data-toggle="co-user-menu__dropdown">
+          <i class="fa fa-user"></i>
+          <span class="show-for-small-only">{{ ctrl.user.name }}</span>
+          <i class="fa fa-caret-down"></i>
+        </button>
+
+        <ul class="l-header__m-dropdown m-dropdown"
+          data-dropdown
+          data-position-class="bottom"
+          data-auto-focus="true"
+          id="co-user-menu__dropdown"
+        >
+          <li class="m-dropdown__item show-for-medium">
+            <div class="m-dropdown__item-content">
+              {{ ctrl.user.name }}
+            </div>
+          </li>
+          <li class="m-dropdown__separator show-for-medium"></li>
+          <li class="m-dropdown__item">
+            <a class="m-dropdown__item-content m-dropdown__item-content--link" href="/auth/logout">
+              {{'header.menu.signout'|translate}}
+            </a>
+          </li>
+        </ul>
+      </div>`,
     /* eslint-enable max-len */
   };
 }

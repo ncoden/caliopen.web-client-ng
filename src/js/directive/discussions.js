@@ -22,9 +22,11 @@ export function DiscussionsDirective() {
     bindToController: true,
     /* eslint-disable max-len */
     template: `
-      <div class="container-fluid co-list">
-        <co-discussions-thread thread="thread" ng-repeat="thread in ctrl.threads"></co-discussions-thread>
-      </div>`,
+      <ul class="s-thread-list m-block-list">
+        <li ng-repeat="thread in ctrl.threads" class="m-block-list__item">
+          <co-discussions-thread thread="thread"></co-discussions-thread>
+        </li>
+      </ul>`,
     /* eslint-enable max-len */
   };
 }

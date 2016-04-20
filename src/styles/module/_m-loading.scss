@@ -1,0 +1,23 @@
+@keyframes m-loading__spin {
+  from { transform: scale(1) rotate(0deg);}
+  to { transform: scale(1) rotate(360deg);}
+}
+
+.m-loading {
+  padding: ($co-margin / 2);
+
+  color: $co-color__fg__text--higher;
+  font-size: 1rem;
+  text-align: center;
+
+  &__icon,
+  &-icon {
+    @extend .m-icon;
+    @extend .m-icon-loading;
+
+    display: inline-block;
+    font-size: 1rem;
+
+    animation: m-loading__spin .5s infinite linear;
+  }
+}

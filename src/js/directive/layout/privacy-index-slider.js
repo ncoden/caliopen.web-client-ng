@@ -21,10 +21,10 @@ export function LayoutPrivacyIndexSliderDirective() {
     restrict: 'E',
     scope: {},
     controller: LayoutPrivacyIndexSliderController,
-    bindToController: true,
     controllerAs: 'ctrl',
+    bindToController: true,
     template: `
-      <div class="co-layout__privacy-slider">
+      <div class="l-topbar__slider">
         <div ui-slider="ctrl.sliderOptions" ng-model="ctrl.range"></div>
       </div>`,
   };

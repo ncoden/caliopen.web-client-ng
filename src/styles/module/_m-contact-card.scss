@@ -1,0 +1,37 @@
+@mixin m-contact-card--horizontal {
+  &__m-avatar_ {
+    .m-avatar {
+      float: left;
+      margin-right: $co-margin;
+    }
+  }
+}
+
+@mixin m-contact-card--vertical {
+  &__m-avatar_ {
+    .m-avatar {
+      float: none;
+      margin-right: 0;
+    }
+  }
+}
+
+@mixin m-contact-card--size($size) {
+  &__m-avatar_ {
+    .m-avatar {
+      @include m-avatar--size($size);
+    }
+  }
+}
+
+.m-contact-card {
+  &__title {
+    display: block;
+    color: $co-color__fg__text--high;
+  }
+
+  @include m-contact-card--horizontal;
+
+  &--horizontal { @include m-contact-card--horizontal; }
+  &--vertical  { @include m-contact-card--vertical; }
+}

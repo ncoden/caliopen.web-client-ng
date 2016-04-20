@@ -14,38 +14,31 @@ export function HeaderDirective() {
     bindToController: true,
     /* eslint-disable max-len */
     template: `
-      <header class="co-layout__header">
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse"
-                data-target="#caliopenLayoutHeaderCollapse" aria-expanded="false" aria-controls="caliopenLayoutHeaderCollapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" ui-sref="front.discussions">
-                <img class="co-layout__header__navbar-img--brand" src="images/brand.png" alt="CaliOpen" />
-              </a>
-            </div>
-            <div class="collapse navbar-collapse" id="caliopenLayoutHeaderCollapse">
-              <div ng-if="ctrl.session.isAuthenticated">
-                <co-layout-application-switcher></co-layout-application-switcher>
+      <header class="l-header">
+        <div class="l-header__wrapper">
+          <span class="l-header__brand">
+            <span data-responsive-toggle="co-header-menu" data-hide-for="medium">
+              <button class="l-header__menu-icon menu-icon" type="button" data-toggle></button>
+            </span>
 
-                <co-layout-search-field></co-layout-search-field>
+            <a ui-sref="front.discussions">
+              <img class="l-header__brand-icon" src="images/brand.png" alt="CaliOpen" />
+            </a>
+          </span>
 
-                <co-layout-user-menu></co-layout-user-menu>
-              </div>
+          <ul class="l-header__m-menu m-menu" id="co-header-menu">
+            <co-layout-application-switcher ng-if="ctrl.session.isAuthenticated"></co-layout-application-switcher>
+            <co-layout-search-field ng-if="ctrl.session.isAuthenticated"></co-layout-search-field>
 
-              <ul ng-if="!ctrl.session.isAuthenticated" class="nav navbar-nav navbar-right">
-                <li>
-                  <a href="/auth/login" translate="header.menu.signin"></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+            <li class="l-header__user">
+              <co-layout-user-menu ng-if="ctrl.session.isAuthenticated"></co-layout-user-menu>
+
+              <span ng-if="!ctrl.session.isAuthenticated" class="l-header__m-menu__item m-menu__item">
+                <a href="/auth/login" translate="header.menu.signin" class="l-header__m-menu__item-content m-menu__item-content m-menu__item-content--link"></a>
+              </span>
+            </li>
+          </ul>
+        </div>
       </header>`,
     /* eslint-enable max-len */
   };

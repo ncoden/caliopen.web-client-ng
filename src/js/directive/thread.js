@@ -38,9 +38,11 @@ export function ThreadDirective() {
     bindToController: true,
     /* eslint-disable max-len */
     template: `
-      <div class="co-list">
-        <co-thread-message ng-repeat="message in ctrl.messages" message="message"></co-thread-message>
-      </div>`,
+      <ul class="m-block-list">
+        <li ng-repeat="message in ctrl.messages" class="m-block-list__item">
+          <co-thread-message message="message"></co-thread-message>
+        </li>
+      </ul>`,
     /* eslint-enable max-len */
   };
 }

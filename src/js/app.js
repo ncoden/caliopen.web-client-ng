@@ -2,7 +2,7 @@
 import 'jquery';
 import angular from 'angular';
 import 'jquery-ui/slider';
-import 'bootstrap-sass';
+import 'foundation-sites';
 import 'babel-polyfill';
 import ngSanitize from 'angular-sanitize';
 import uiRouter from 'angular-ui-router';
@@ -46,9 +46,11 @@ app
   .factory('tabMiddleware', tabMiddleware)
   ;
 
+import { FoundationConfig } from './config/foundation.js';
 import { MomentConfig } from './config/moment.js';
 
 app
+  .run(FoundationConfig)
   .run(MomentConfig)
   ;
 
