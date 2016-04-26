@@ -68,6 +68,8 @@ export function LayoutApplicationWrapperDirective() {
             </div>
           </div>
         </div>
+
+        <co-layout-flash-message-list></co-layout-flash-message-list>
       </section>`,
     /* eslint-enable max-len */
   };

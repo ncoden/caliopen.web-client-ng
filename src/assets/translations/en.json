@@ -1,4 +1,9 @@
 {
+  "general": {
+    "action": {
+      "close": "Close"
+    }
+  },
   "header": {
     "menu": {
       "discussions": "Discussions",

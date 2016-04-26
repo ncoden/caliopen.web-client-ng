@@ -50,7 +50,24 @@ $co-color__bg__text--low:       darken($co-color__bg__text, 15%);
 $co-color__bg__text--high:      lighten($co-color__bg__text, 10%);
 $co-color__bg__text--higher:    lighten($co-color__bg__text, 20%);
 
-// semantic colors
+// semantic
+$co-color__success:             #3adb76;
+$co-color__success--low:        darken($co-color__success, 10%);
+$co-color__success--high:       lighten($co-color__success, 10%);
+
+$co-color__info:                #39badb;
+$co-color__info--low:           darken($co-color__info, 10%);
+$co-color__info--high:          lighten($co-color__info, 10%);
+
+$co-color__warning:             #ffae00;
+$co-color__warning--low:        darken($co-color__warning, 10%);
+$co-color__warning--high:       lighten($co-color__warning, 10%);
+
+$co-color__alert:               #ec5840;
+$co-color__alert--low:          darken($co-color__alert, 10%);
+$co-color__alert--high:         lighten($co-color__alert, 10%);
+
+
 $co-color__importance:          #d2bc00;
 $co-color__privacy:             #97b707;
 

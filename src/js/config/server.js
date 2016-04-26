@@ -19,13 +19,20 @@ export function ApiUrlFactory(BaseUrl) {
 
 export function ApiInterceptorConfig($httpProvider) {
   'ngInject';
-  $httpProvider.interceptors.push(($q, $rootScope, $window, BaseUrl) => {
+  $httpProvider.interceptors.push(($q, $rootScope, $window, BaseUrl, FlashMessageHelper) => {
     'ngInject';
 
     return {
       responseError: rejection => {
-        if (rejection.status === 401) {
-          $window.location.href = BaseUrl; // eslint-disable-line no-param-reassign
+        switch (rejection.status) {
+          case 401:
+            $window.location.href = BaseUrl; // eslint-disable-line no-param-reassign
+            break;
+          case 500:
+            FlashMessageHelper.alert('Internal Server Error');
+            break;
+          default:
+            break;
         }
 
         return $q.reject(rejection); // eslint-disable-line newline-before-return
