@@ -1,4 +1,5 @@
 $_m-text-field--light__back: darken(#fff, 5%);
+$_m-text-field--light__back--high: #fff;
 $_m-text-field--light__border: darken(#fff, 30%);
 $_m-text-field--light__border--low: darken($_m-text-field--light__border, 10%);
 $_m-text-field--light__text: #1a1a1a;
@@ -12,6 +13,7 @@ $_m-text-field--light__text--high: lighten($_m-text-field--light__text, 10%);
   &:focus {
     border-color: $co-color__fg__border--high;
     color: $co-color__fg__text;
+    background-color: $co-color__fg__back;
   }
 }
 
@@ -23,6 +25,7 @@ $_m-text-field--light__text--high: lighten($_m-text-field--light__text, 10%);
   &:focus {
     border-color: $_m-text-field--light__border--low;
     color: $_m-text-field--light__text;
+    background-color: $_m-text-field--light__back--high;
   }
 }
 
