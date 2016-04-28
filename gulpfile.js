@@ -223,7 +223,7 @@ gulp.task('lint:scss', () => {
   gulp.src(config.scssFiles)
     .pipe(sassLint())
     .pipe(sassLint.format())
-    .pipe(sassLint.failOnError())
+    .pipe(sassLint.failOnError());
 });
 
 gulp.task('lint:js', () =>
