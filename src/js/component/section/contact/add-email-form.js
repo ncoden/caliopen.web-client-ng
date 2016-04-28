@@ -44,8 +44,8 @@ export const AddEmailFormComponent = {
   template: `
     <form ng-submit="$ctrl.addContactDetail()"
       class="s-contact-detail-form" name="email_form">
-      <fieldset>
-        <legend>
+      <fieldset class="m-fieldset">
+        <legend class="m-fieldset__legend">
           <span class="m-text-list__icon fa fa-envelope"></span>
           {{ 'contact.email_form.legend'|translate}}
         </legend>
@@ -59,7 +59,7 @@ export const AddEmailFormComponent = {
             </label>
             <input ng-model="$ctrl.contactDetail.address"
               type="email"
-              class="m-text-field m-text-field--dark s-contact__m-text-field"
+              class="m-text-field m-text-field--dark m-text-field--expanded"
               id="email_form_address" required />
           </div>
           <div class="s-contact-detail-form__group s-contact-detail-form__group--shrink">

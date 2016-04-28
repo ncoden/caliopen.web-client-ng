@@ -1,0 +1,62 @@
+.s-discussion-draft {
+  &__top-row,
+  &__recipients-row,
+  &__body-row,
+  &__bottom-row {
+    @include flex-grid-row($width: none);
+    margin-top: map-get($co-form__spacing, medium);
+  }
+
+  &__m-action-bar {
+    @include flex-grid-column(12);
+    margin-bottom: $co-component__spacing;
+  }
+
+  &__pi {
+    @include flex-grid-column(12);
+  }
+
+  &__pi-label {
+    display: inline-block;
+    float: left;
+    width: 1.5rem;
+  }
+
+  &__m-pi-progress {
+    margin-bottom: 0;
+    margin-left: 1.5rem;
+  }
+
+  &__recipients {
+    @include flex-grid-column;
+  }
+
+  &__body {
+    @include flex-grid-column;
+  }
+
+  &__body-input {
+    min-height: 5rem;
+    resize: vertical;
+  }
+
+  &__m-flash-message {
+    @include flex-grid-column(12);
+    width: auto;
+  }
+
+  @include breakpoint(medium) {
+    &__m-action-bar {
+      @include flex-grid-column;
+    }
+
+    &__pi {
+      @include flex-grid-column(3);
+      @include flex-align-self(middle);
+    }
+
+    &__body-input {
+      min-height: 10rem;
+    }
+  }
+}

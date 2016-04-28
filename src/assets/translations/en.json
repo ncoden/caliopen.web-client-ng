@@ -2,7 +2,8 @@
   "general": {
     "action": {
       "close": "Close",
-      "load_more": "Load more"
+      "load_more": "Load more",
+      "remove": "Remove"
     }
   },
   "navigation": {
@@ -44,7 +45,40 @@
       "back": "Back"
     },
     "compose": {
-      "title": "Compose Message"
+      "title": "Compose Message",
+      "privacy_index": {
+        "title": "Privacy Index"
+      },
+      "privacy_comparison": {
+        "equal": "Same privacy",
+        "better": "Better privacy",
+        "lower": "Lower privacy"
+      },
+      "protocol": {
+        "unknown": "Unknown",
+        "sms": "SMS",
+        "email": "Email",
+        "facebook": "Facebook"
+      },
+      "action": {
+        "send": "Send",
+        "save": "Save",
+        "remove-recipient": "Remove",
+        "edit-recipient": "Edit",
+        "toggle-recipient-options": "Toggle recipient options"
+      },
+      "form": {
+        "to": {
+          "label": "To:"
+        },
+        "recipient": {
+          "options": "Options"
+        },
+        "body": {
+          "label": "Body:",
+          "placeholder": "Enter a message"
+        }
+      }
     }
   },
   "contact": {

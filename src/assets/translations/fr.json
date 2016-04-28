@@ -44,7 +44,40 @@
       "back": "Retour"
     },
     "compose": {
-      "title": "Créer un message"
+      "title": "Créer un message",
+      "privacy_index": {
+        "title": "Index de confidentialité"
+      },
+      "privacy_comparison": {
+        "equal": "Même confidentialité",
+        "better": "Améliore la confidentialité",
+        "lower": "Diminue la confidentialité"
+      },
+      "protocol": {
+        "unknown": "Inconnu",
+        "sms": "SMS",
+        "email": "Email",
+        "facebook": "Facebook"
+      },
+      "action": {
+        "send": "Envoyer",
+        "save": "Sauvegarder",
+        "remove-recipient": "Supprimer",
+        "edit-recipient": "Éditer",
+        "toggle-recipient-options": "Afficher les options du destinataire"
+      },
+      "form": {
+        "to": {
+          "label": "Pour :"
+        },
+        "recipient": {
+          "options": "Options"
+        },
+        "body": {
+          "label": "Contenu :",
+          "placeholder": "Entrer un message"
+        }
+      }
     }
   },
   "contact": {

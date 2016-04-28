@@ -49,6 +49,27 @@ function contactDetailFormsByIdReducer(state = {}, action) {
   }
 }
 
+function protocolsReducer(state = [], action) {
+  switch (action.type) {
+    case actions.RECEIVER_CONTACT_PROTOCOLS:
+      return action.protocols;
+    default:
+      return state;
+  }
+}
+
+function protocolsByIdReducer(state = {}, action) {
+  switch (action.type) {
+    case actions.RECEIVER_CONTACT_PROTOCOLS:
+    case actions.REQUEST_CONTACT_PROTOCOLS:
+      return Object.assign({}, state, {
+        [action.contactId]: protocolsReducer(state[action.contactId], action),
+      });
+    default:
+      return state;
+  }
+}
+
 function contactByIdReducer(state = {}, action = {}) {
   return action.contacts.reduce((previousState, contact) => Object.assign({}, previousState, {
     [contact.contact_id]: contact,
@@ -81,12 +102,31 @@ export function getNextOffset(state) {
   return state.contacts.length;
 }
 
+export function getAvailableContactDetails(contact) {
+  const availableContactDetails = [];
+
+  if (!!contact.emails) {
+    contact.emails.forEach((email) => {
+      const { type, address } = email;
+      availableContactDetails.push({ protocol: 'email', type, address });
+    });
+  }
+
+  if (!!contact.phones) {
+    contact.phones.forEach((phone) => {
+      const { type, number: address } = phone;
+      availableContactDetails.push({ protocol: 'sms', type, address });
+    });
+  }
+}
+
 export function contactReducer(state = {
   isFetching: false,
   didInvalidate: false,
   contacts: [],
   contactsById: {},
   contactDetailFormsById: {},
+  protocolsById: {},
   totalContacts: 0,
 }, action = {}) {
   switch (action.type) {
@@ -123,6 +163,16 @@ export function contactReducer(state = {
     case actions.ADD_CONTACT_DETAIL_SUCCEEDED:
       return Object.assign({}, state, {
         contactDetailFormsById: contactDetailFormsByIdReducer(state.contactDetailFormsById, action),
+      });
+    case actions.REQUEST_CONTACT_PROTOCOLS:
+      return Object.assign({}, state, {
+        isFetching: true,
+        protocolsById: protocolsByIdReducer(state.protocolsById, action),
+      });
+    case actions.RECEIVER_CONTACT_PROTOCOLS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        protocolsById: protocolsByIdReducer(state.protocolsById, action),
       });
     default:
       return state;

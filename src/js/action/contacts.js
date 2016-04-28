@@ -46,11 +46,11 @@ export class ContactsActions {
     };
   }
 
-  fetchContacts(offset = 0, limit = 1000) {
+  fetchContacts(offset = 0, limit = 1000, source) {
     return dispatch => {
       dispatch(this.requestContacts());
 
-      return this.ContactRepository.findAll(offset, limit)
+      return this.ContactRepository.findAll(offset, limit, source)
         .then(json => dispatch(this.receiveContacts(json)));
     };
   }
@@ -126,6 +126,23 @@ export class ContactsActions {
       contactId,
       contactDetailType,
       errors,
+    };
+  }
+
+  fetchProtocols(contactId, source) {
+    return dispatch => {
+      dispatch({
+        type: action.REQUEST_CONTACT_PROTOCOLS,
+        contactId,
+      });
+
+      return this.ContactRepository
+        .findProtocolsByContactId(contactId, source)
+        .then(({ protocols }) => dispatch({
+          type: action.RECEIVER_CONTACT_PROTOCOLS,
+          contactId,
+          protocols,
+        }));
     };
   }
 }

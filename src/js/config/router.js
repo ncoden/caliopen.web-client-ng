@@ -27,6 +27,13 @@ export function RouterConfig($stateProvider, $urlRouterProvider) {
         '@': uiView,
       },
     })
+    // TODO: API needs to support draft
+    .state('front.discussions.draft', {
+      url: 'thread-draft/{messageId}',
+      views: {
+        '@': uiView,
+      },
+    })
     .state('front.contacts', {
       url: '/contacts',
       views: {

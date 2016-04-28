@@ -43,6 +43,7 @@ const config = {
   ],
   cssVendors: [
     './node_modules/angular-loading-bar/src/loading-bar.css',
+    './node_modules/ui-select/dist/select.css',
   ],
   assetsVendorsNamespace: '',
   assetsVendors: [
