@@ -3,7 +3,10 @@
   max-width: none;
   margin-bottom: 15px;
 
-  &__col-action { @include flex-grid-column(12); }
+  &__col-action {
+    white-space: nowrap;
+    @include flex-grid-column(12);
+  }
   &__col-slider { @include flex-grid-column(12); }
 
   @include breakpoint(medium) {
