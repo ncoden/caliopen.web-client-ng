@@ -45,7 +45,70 @@
     "message": "Message",
     "groups": "Groupes",
     "accounts": "Comptes",
-    "coordinates": "Coordonnées"
+    "contact_details": "Coordonnées",
+    "action": {
+      "edit_contact_details": "Éditer les coordonnées",
+      "add_contact_detail": "Ajouter",
+      "delete_contact_detail": "Supprimer"
+    },
+    "email_type": {
+      "work": "Professionel",
+      "home": "Personnel",
+      "other": "Autre"
+    },
+    "address_type": {
+      "work": "Professionel",
+      "home": "Personnel",
+      "other": "Autre"
+    },
+    "im_type": {
+      "work": "Professionel",
+      "home": "Personnel",
+      "other": "Autre",
+      "netmeeting": "Netmeeting"
+    },
+    "email_form":  {
+      "legend": "Email",
+      "address": {
+        "label": "Adresse"
+      },
+      "email_type": {
+        "label": "Type"
+      },
+      "is_primary": {
+        "label": "Principale"
+      }
+    },
+    "address_form": {
+      "legend": "Adresse postale",
+      "street": {
+        "label": "Rue"
+      },
+      "postal_code": {
+        "label": "Code Postal"
+      },
+      "city": {
+        "label": "Ville"
+      },
+      "country": {
+        "label": "Pays"
+      },
+      "region": {
+        "label": "Region"
+      },
+      "type": {
+        "label": "Type"
+      }
+    },
+    "im_form":  {
+      "legend": "Messagerie instantanée",
+      "address": {
+        "label": "Adresse"
+      },
+      "im_type": {
+        "label": "Type"
+      }
+    }
   },
   "contacts": {
     "tags": {

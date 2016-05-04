@@ -54,4 +54,72 @@ export class ContactsActions {
         .then(json => dispatch(this.receiveContacts(json)));
     };
   }
+
+  addContactDetail(contactId, contactDetailType, contactDetail) {
+    return dispatch => {
+      dispatch({
+        type: action.ADD_CONTACT_DETAIL,
+        contactId,
+        contactDetailType,
+        contactDetail,
+      });
+
+      return this.ContactRepository.addContactDetail(contactId, contactDetailType, contactDetail)
+        .then(json => dispatch(this.addContactDetailSucceeded(contactId, contactDetailType, json)))
+        .catch(json =>
+          dispatch(this.addContactDetailFailed(contactId, contactDetailType, json.errors)));
+    };
+  }
+
+  addContactDetailSucceeded(contactId, contactDetailType, contactDetail) {
+    return {
+      type: action.ADD_CONTACT_DETAIL_SUCCEEDED,
+      contactId,
+      contactDetailType,
+      contactDetail,
+    };
+  }
+
+  addContactDetailFailed(contactId, contactDetailType, errors) {
+    return {
+      type: action.ADD_CONTACT_DETAIL_FAILED,
+      contactId,
+      contactDetailType,
+      errors,
+    };
+  }
+
+  deleteContactDetail(contactDetailType, contactId, contactDetail) {
+    return dispatch => {
+      dispatch({
+        type: action.DELETE_CONTACT_DETAIL,
+        contactDetailType,
+        contactDetail,
+      });
+
+      return this.ContactRepository.deleteContactDetail(contactDetailType, contactId, contactDetail)
+        .then(() =>
+          dispatch(this.deleteContactDetailSucceeded(contactId, contactDetailType, contactDetail)))
+        .catch(json =>
+          dispatch(this.deleteContactDetailFailed(contactId, contactDetailType, json)));
+    };
+  }
+
+  deleteContactDetailSucceeded(contactId, contactDetailType, contactDetail) {
+    return {
+      type: action.DELETE_CONTACT_DETAIL_SUCCEEDED,
+      contactId,
+      contactDetailType,
+      contactDetail,
+    };
+  }
+
+  deleteContactDetailFailed(contactId, contactDetailType, errors) {
+    return {
+      type: action.DELETE_CONTACT_DETAIL_FAILED,
+      contactId,
+      contactDetailType,
+      errors,
+    };
+  }
 }

@@ -45,7 +45,70 @@
     "message": "Message",
     "groups": "Groups",
     "accounts": "Accounts",
-    "coordinates": "Coordinates"
+    "contact_details": "Contact details",
+    "action": {
+      "edit_contact_details": "Edit contact details",
+      "add_contact_detail": "Add",
+      "delete_contact_detail": "Delete"
+    },
+    "email_type": {
+      "work": "Professional",
+      "home": "Personal",
+      "other": "Other"
+    },
+    "address_type": {
+      "work": "Professional",
+      "home": "Personal",
+      "other": "Other"
+    },
+    "im_type": {
+      "work": "Professional",
+      "home": "Personal",
+      "other": "Other",
+      "netmeeting": "Netmeeting"
+    },
+    "email_form":  {
+      "legend": "Email",
+      "address": {
+        "label": "Address"
+      },
+      "email_type": {
+        "label": "Type"
+      },
+      "is_primary": {
+        "label": "Primary"
+      }
+    },
+    "address_form": {
+      "legend": "Postal address",
+      "street": {
+        "label": "Street"
+      },
+      "postal_code": {
+        "label": "Postal code"
+      },
+      "city": {
+        "label": "City"
+      },
+      "country": {
+        "label": "Country"
+      },
+      "region": {
+        "label": "Region"
+      },
+      "type": {
+        "label": "Type"
+      }
+    },
+    "im_form":  {
+      "legend": "Instant messaging",
+      "address": {
+        "label": "Address"
+      },
+      "im_type": {
+        "label": "Type"
+      }
+    }
   },
   "contacts": {
     "tags": {

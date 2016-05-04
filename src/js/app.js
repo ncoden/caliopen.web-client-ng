@@ -36,6 +36,7 @@ import { ReduxConfig } from './config/redux.js';
 import { RouterConfig } from './config/router.js';
 import { TranslateConfig } from './config/translate.js';
 import { BaseUrlFactory, ApiUrlFactory, ApiInterceptorConfig } from './config/server.js';
+import { contactMiddleware } from './middleware/contact-middleware.js';
 import { tabMiddleware } from './middleware/tab-middleware.js';
 
 app
@@ -47,6 +48,7 @@ app
   .config(ApiInterceptorConfig)
   .factory('BaseUrl', BaseUrlFactory)
   .factory('ApiUrl', ApiUrlFactory)
+  .factory('contactMiddleware', contactMiddleware)
   .factory('tabMiddleware', tabMiddleware)
   ;
 
@@ -95,6 +97,9 @@ app
 
 // directives
 import { ContactDirective } from './directive/contact.js';
+import { AddAddressFormComponent } from './directive/contact/add-address-form.js';
+import { AddEmailFormComponent } from './directive/contact/add-email-form.js';
+import { AddImFormComponent } from './directive/contact/add-im-form.js';
 import { ContactsDirective } from './directive/contacts.js';
 import { ContactsContactDirective } from './directive/contacts/contact.js';
 import { DiscussionsDirective } from './directive/discussions.js';
@@ -115,6 +120,9 @@ import { WidgetContactAvatarLetterDirective } from './directive/widget/contact/a
 
 app
   .directive('coContact', ContactDirective)
+  .component('addAddressForm', AddAddressFormComponent)
+  .component('addEmailForm', AddEmailFormComponent)
+  .component('addImForm', AddImFormComponent)
   .directive('coContacts', ContactsDirective)
   .directive('coContactsContact', ContactsContactDirective)
   .directive('coDiscussions', DiscussionsDirective)

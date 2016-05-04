@@ -1,0 +1,46 @@
+$s-contact-detail-form__line-height: 2.6rem !default;
+
+.s-contact-detail-form {
+  &__row {
+    @include flex-grid-row;
+  }
+
+  &__checkbox-label {
+    line-height: $s-contact-detail-form__line-height;
+  }
+
+  &__group {
+    @include flex-grid-column(12, 0);
+    display: block;
+
+    @include breakpoint(medium) {
+
+      padding-right: map_get($co-form__spacing, 'medium');
+
+      &--small {
+        @include flex-grid-column(4, 0);
+      }
+
+      &--medium {
+        @include flex-grid-column(6, 0);
+      }
+
+      &--large {
+        @include flex-grid-column(8, 0);
+      }
+
+      &--shrink {
+        @include flex-grid-column(shrink, 0);
+      }
+    }
+  }
+
+  &__button {
+    @include flex-grid-column(12, 0);
+    display: block;
+
+    @include breakpoint(medium) {
+      @include flex-grid-column(shrink, 0);
+    }
+  }
+}

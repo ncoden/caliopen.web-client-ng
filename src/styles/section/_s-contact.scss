@@ -11,8 +11,11 @@
   }
 
   &__col-datas-online {
-    @include flex-grid-column(12);
-    padding: $co-margin;
+    @include flex-grid-column(12, 0);
+  }
+
+  &__m-contact-detail-list {
+    padding: 0 $co-margin;
   }
 
   &__m-contact-card {
@@ -23,6 +26,10 @@
 
   &__message-button {
     margin: 0;
+  }
+
+  &__m-subtitle {
+    padding: 0 $co-margin;
   }
 
   @include breakpoint(medium) {
