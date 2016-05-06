@@ -25,7 +25,7 @@ describe('Contact', () => {
       browser.get('/');
       element(by.xpath('//co-layout-application-switcher//a[contains(string(), "Contacts")]'))
         .click();
-      element(by.xpath('//co-contacts-contact[contains(string(), "mric")]')).click();
+      element(by.xpath('//co-contact-list-contact[contains(string(), "mric")]')).click();
       expect(element(by.css('co-layout-tab-list')).getText()).toContain('Contacts');
     });
 
@@ -33,7 +33,7 @@ describe('Contact', () => {
       it('renders forms', () => {
         browser.get('/');
         element(by.cssContainingText('co-layout-application-switcher a', 'Contacts')).click();
-        element(by.cssContainingText('co-contacts-contact', 'mric')).click();
+        element(by.cssContainingText('co-contact-list-contact', 'mric')).click();
         element(by.cssContainingText('co-contact button', 'Edit')).click();
         expect(element(by.css('form[name=email_form]')).isPresent()).toBe(true);
         expect(element(by.css('form[name=address_form]')).isPresent()).toBe(true);
@@ -44,11 +44,11 @@ describe('Contact', () => {
         const email = 'foo@bar.tld';
         browser.get('/');
         element(by.cssContainingText('co-layout-application-switcher a', 'Contacts')).click();
-        element(by.cssContainingText('co-contacts-contact', 'mric')).click();
+        element(by.cssContainingText('co-contact-list-contact', 'mric')).click();
         element(by.cssContainingText('co-contact button', 'Edit')).click();
         element(by.css('input#email_form_address')).sendKeys(email);
-        element(by.cssContainingText('add-email-form button', 'Add')).click();
-        expect(element(by.css('add-email-form .callout.alert')).getText())
+        element(by.cssContainingText('co-add-email-form button', 'Add')).click();
+        expect(element(by.css('co-add-email-form .callout.alert')).getText())
           .toEqual('type is missing');
       });
 
@@ -57,11 +57,11 @@ describe('Contact', () => {
         const type = 'Professional';
         browser.get('/');
         element(by.cssContainingText('co-layout-application-switcher a', 'Contacts')).click();
-        element(by.cssContainingText('co-contacts-contact', 'mric')).click();
+        element(by.cssContainingText('co-contact-list-contact', 'mric')).click();
         element(by.cssContainingText('co-contact button', 'Edit')).click();
         element(by.css('input#email_form_address')).sendKeys(email);
         element(by.cssContainingText('select#email_form_type option', type)).click();
-        element(by.cssContainingText('add-email-form button', 'Add')).click();
+        element(by.cssContainingText('co-add-email-form button', 'Add')).click();
         expect(element(by.css('.s-contact__col-datas-online')).getText()).toContain(email);
         element(by.cssContainingText('co-contact button', 'Delete')).click();
         expect(element(by.css('.s-contact__col-datas-online')).getText()).not.toContain(email);

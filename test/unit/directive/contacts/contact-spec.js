@@ -1,2 +1,0 @@
-describe('Directive Contacts Contact', () => {
-});

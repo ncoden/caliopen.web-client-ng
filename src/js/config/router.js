@@ -7,7 +7,7 @@ export function RouterConfig($stateProvider, $urlRouterProvider) {
       abstract: true,
       views: {
         header: {
-          template: '<co-header></co-header>',
+          template: '<co-layout-header></co-layout-header>',
         },
         '@': uiView,
       },

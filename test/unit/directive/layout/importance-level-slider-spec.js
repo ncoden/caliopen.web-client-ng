@@ -1,2 +1,0 @@
-describe('Directive Layout ImportanceLevelSlider', () => {
-});

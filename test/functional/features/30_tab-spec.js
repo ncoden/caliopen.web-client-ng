@@ -30,7 +30,7 @@ describe('Tab', () => {
     browser.get('/');
     element(by.xpath('//co-layout-application-switcher//a[contains(string(), "Contacts")]')).click();
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][2]')).isPresent()).toBe(false);
-    element(by.xpath('//co-contacts-contact[1]/*[contains(@class, "m-block-list__item-content")]')).click();
+    element(by.xpath('//co-contact-list-contact[1]/*[contains(@class, "m-block-list__item-content")]')).click();
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][2]')).isPresent()).toBe(true);
   });
 
@@ -38,7 +38,7 @@ describe('Tab', () => {
     browser.get('/');
     element(by.cssContainingText('.s-thread-list__thread', 'discussion IRC')).click();
     element(by.xpath('//co-layout-application-switcher//a[contains(string(), "Contacts")]')).click();
-    element(by.xpath('//co-contacts-contact[1]/*[contains(@class, "m-block-list__item-content")]')).click();
+    element(by.xpath('//co-contact-list-contact[1]/*[contains(@class, "m-block-list__item-content")]')).click();
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][2]')).isPresent()).toBe(true);
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][3]')).isPresent()).toBe(true);
   });
