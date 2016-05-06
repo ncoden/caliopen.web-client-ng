@@ -17,20 +17,15 @@ export class DiscussionsContactsIconController {
   }
 }
 
-export function DiscussionsContactsIconDirective() {
-  return {
-    restrict: 'E',
-    scope: {
-      thread: '=',
-    },
-    controller: DiscussionsContactsIconController,
-    controllerAs: 'ctrl',
-    bindToController: true,
-    /* eslint-disable max-len */
-    template: `
-      <div class="m-avatars">
-        <div ng-repeat="letterClass in ctrl.lettersStylesheetClass" class="m-avatars__letter" ng-class="[letterClass, ctrl.iconClass]"></div>
-      </div>`,
-      /* eslint-enable max-len */
-  };
-}
+export const DiscussionsContactsIconComponent = {
+  bindings: {
+    thread: '<',
+  },
+  controller: DiscussionsContactsIconController,
+  /* eslint-disable max-len */
+  template: `
+    <div class="m-avatars">
+      <div ng-repeat="letterClass in $ctrl.lettersStylesheetClass" class="m-avatars__letter" ng-class="[letterClass, $ctrl.iconClass]"></div>
+    </div>`,
+    /* eslint-enable max-len */
+};

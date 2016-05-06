@@ -96,48 +96,48 @@ app
   .filter('threadContacts', threadContactsFilter);
 
 // directives
-import { ContactDirective } from './directive/contact.js';
 import { AddAddressFormComponent } from './directive/contact/add-address-form.js';
 import { AddEmailFormComponent } from './directive/contact/add-email-form.js';
 import { AddImFormComponent } from './directive/contact/add-im-form.js';
-import { ContactsDirective } from './directive/contacts.js';
-import { ContactsContactDirective } from './directive/contacts/contact.js';
-import { DiscussionsDirective } from './directive/discussions.js';
-import { DiscussionsContactsIconDirective } from './directive/discussions/contacts-icon.js';
-import { DiscussionsThreadDirective } from './directive/discussions/thread.js';
-import { HeaderDirective } from './directive/header.js';
-import { LayoutApplicationSwitcherDirective } from './directive/layout/application-switcher.js';
-import { LayoutApplicationWrapperDirective } from './directive/layout/application-wrapper.js';
+import { ContactComponent } from './directive/contact.js';
+import { ContactsComponent } from './directive/contacts.js';
+import { ContactsContactComponent } from './directive/contacts/contact.js';
+import { DiscussionsComponent } from './directive/discussions.js';
+import { DiscussionsContactsIconComponent } from './directive/discussions/contacts-icon.js';
+import { DiscussionsThreadComponent } from './directive/discussions/thread.js';
+import { HeaderComponent } from './directive/header.js';
+import { LayoutApplicationSwitcherComponent } from './directive/layout/application-switcher.js';
+import { LayoutApplicationWrapperComponent } from './directive/layout/application-wrapper.js';
 import { LayoutFlashMessageListComponent } from './directive/layout/flash-message-list.js';
-import { LayoutPrivacyIndexSliderDirective } from './directive/layout/privacy-index-slider.js';
-import { LayoutImportanceLevelSliderDirective } from './directive/layout/importance-level-slider.js'; // eslint-disable-line max-len
-import { LayoutSearchFieldDirective } from './directive/layout/search-field.js';
-import { LayoutTabListDirective } from './directive/layout/tab-list.js';
-import { LayoutUserMenuDirective } from './directive/layout/user-menu.js';
-import { ThreadDirective } from './directive/thread.js';
-import { ThreadMessageDirective } from './directive/thread/message.js';
-import { WidgetContactAvatarLetterDirective } from './directive/widget/contact/avatar-letter.js';
+import { LayoutPrivacyIndexSliderComponent } from './directive/layout/privacy-index-slider.js';
+import { LayoutImportanceLevelSliderComponent } from './directive/layout/importance-level-slider.js'; // eslint-disable-line max-len
+import { LayoutSearchFieldComponent } from './directive/layout/search-field.js';
+import { LayoutTabListComponent } from './directive/layout/tab-list.js';
+import { LayoutUserMenuComponent } from './directive/layout/user-menu.js';
+import { ThreadComponent } from './directive/thread.js';
+import { ThreadMessageComponent } from './directive/thread/message.js';
+import { WidgetContactAvatarLetterComponent } from './directive/widget/contact/avatar-letter.js';
 
 app
-  .directive('coContact', ContactDirective)
-  .component('addAddressForm', AddAddressFormComponent)
-  .component('addEmailForm', AddEmailFormComponent)
-  .component('addImForm', AddImFormComponent)
-  .directive('coContacts', ContactsDirective)
-  .directive('coContactsContact', ContactsContactDirective)
-  .directive('coDiscussions', DiscussionsDirective)
-  .directive('coDiscussionsContactsIcon', DiscussionsContactsIconDirective)
-  .directive('coDiscussionsThread', DiscussionsThreadDirective)
-  .directive('coHeader', HeaderDirective)
-  .directive('coLayoutApplicationSwitcher', LayoutApplicationSwitcherDirective)
-  .directive('coLayoutApplicationWrapper', LayoutApplicationWrapperDirective)
+  .component('coAddAddressForm', AddAddressFormComponent)
+  .component('coAddEmailForm', AddEmailFormComponent)
+  .component('coAddImForm', AddImFormComponent)
+  .component('coContact', ContactComponent)
+  .component('coContacts', ContactsComponent)
+  .component('coContactsContact', ContactsContactComponent)
+  .component('coDiscussions', DiscussionsComponent)
+  .component('coDiscussionsContactsIcon', DiscussionsContactsIconComponent)
+  .component('coDiscussionsThread', DiscussionsThreadComponent)
+  .component('coHeader', HeaderComponent)
+  .component('coLayoutApplicationSwitcher', LayoutApplicationSwitcherComponent)
+  .component('coLayoutApplicationWrapper', LayoutApplicationWrapperComponent)
   .component('coLayoutFlashMessageList', LayoutFlashMessageListComponent)
-  .directive('coLayoutPrivacyIndexSlider', LayoutPrivacyIndexSliderDirective)
-  .directive('coLayoutImportanceLevelSlider', LayoutImportanceLevelSliderDirective)
-  .directive('coLayoutSearchField', LayoutSearchFieldDirective)
-  .directive('coLayoutTabList', LayoutTabListDirective)
-  .directive('coLayoutUserMenu', LayoutUserMenuDirective)
-  .directive('coThread', ThreadDirective)
-  .directive('coThreadMessage', ThreadMessageDirective)
-  .directive('widgetContactAvatarLetter', WidgetContactAvatarLetterDirective)
+  .component('coLayoutPrivacyIndexSlider', LayoutPrivacyIndexSliderComponent)
+  .component('coLayoutImportanceLevelSlider', LayoutImportanceLevelSliderComponent)
+  .component('coLayoutSearchField', LayoutSearchFieldComponent)
+  .component('coLayoutTabList', LayoutTabListComponent)
+  .component('coLayoutUserMenu', LayoutUserMenuComponent)
+  .component('coThread', ThreadComponent)
+  .component('coThreadMessage', ThreadMessageComponent)
+  .component('widgetContactAvatarLetter', WidgetContactAvatarLetterComponent)
   ;

@@ -16,16 +16,10 @@ class LayoutImportanceLevelSliderController {
   }
 }
 
-export function LayoutImportanceLevelSliderDirective() {
-  return {
-    restrict: 'E',
-    scope: {},
-    controller: LayoutImportanceLevelSliderController,
-    controllerAs: 'ctrl',
-    bindToController: true,
-    template: `
-      <div class="l-body__slider">
-        <div ui-slider="ctrl.sliderOptions" ng-model="ctrl.range"></div>
-      </div>`,
-  };
-}
+export const LayoutImportanceLevelSliderComponent = {
+  controller: LayoutImportanceLevelSliderController,
+  template: `
+    <div class="l-body__slider">
+      <div ui-slider="$ctrl.sliderOptions" ng-model="$ctrl.range"></div>
+    </div>`,
+};

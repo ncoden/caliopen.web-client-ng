@@ -16,16 +16,10 @@ class LayoutPrivacyIndexSliderController {
   }
 }
 
-export function LayoutPrivacyIndexSliderDirective() {
-  return {
-    restrict: 'E',
-    scope: {},
-    controller: LayoutPrivacyIndexSliderController,
-    controllerAs: 'ctrl',
-    bindToController: true,
-    template: `
-      <div class="l-topbar__slider">
-        <div ui-slider="ctrl.sliderOptions" ng-model="ctrl.range"></div>
-      </div>`,
-  };
-}
+export const LayoutPrivacyIndexSliderComponent = {
+  controller: LayoutPrivacyIndexSliderController,
+  template: `
+    <div class="l-topbar__slider">
+      <div ui-slider="$ctrl.sliderOptions" ng-model="$ctrl.range"></div>
+    </div>`,
+};

@@ -13,20 +13,14 @@ export class DiscussionsController {
   }
 }
 
-export function DiscussionsDirective() {
-  return {
-    restrict: 'E',
-    scope: {},
-    controller: DiscussionsController,
-    controllerAs: 'ctrl',
-    bindToController: true,
-    /* eslint-disable max-len */
-    template: `
-      <ul class="s-thread-list m-block-list">
-        <li ng-repeat="thread in ctrl.threads" class="m-block-list__item">
-          <co-discussions-thread thread="thread"></co-discussions-thread>
-        </li>
-      </ul>`,
-    /* eslint-enable max-len */
-  };
-}
+export const DiscussionsComponent = {
+  controller: DiscussionsController,
+  /* eslint-disable max-len */
+  template: `
+    <ul class="s-thread-list m-block-list">
+      <li ng-repeat="thread in $ctrl.threads" class="m-block-list__item">
+        <co-discussions-thread thread="thread"></co-discussions-thread>
+      </li>
+    </ul>`,
+  /* eslint-enable max-len */
+};

@@ -13,20 +13,14 @@ export class ContactsController {
   }
 }
 
-export function ContactsDirective() {
-  return {
-    restrict: 'E',
-    scope: {},
-    controller: ContactsController,
-    controllerAs: 'ctrl',
-    bindToController: true,
-    /* eslint-disable max-len */
-    template: `
-      <ul class="s-contact-list m-block-list">
-        <li ng-repeat="contact in ctrl.contacts" class="m-block-list__item">
-          <co-contacts-contact contact="contact"></co-contacts-contact>
-        </li>
-      </ul>`,
-    /* eslint-enable max-len */
-  };
-}
+export const ContactsComponent = {
+  controller: ContactsController,
+  /* eslint-disable max-len */
+  template: `
+    <ul class="s-contact-list m-block-list">
+      <li ng-repeat="contact in $ctrl.contacts" class="m-block-list__item">
+        <co-contacts-contact contact="contact"></co-contacts-contact>
+      </li>
+    </ul>`,
+  /* eslint-enable max-len */
+};

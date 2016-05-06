@@ -5,21 +5,16 @@ export class WidgetContactAvatarLetterController {
   }
 }
 
-export function WidgetContactAvatarLetterDirective() {
-  return {
-    restrict: 'E',
-    scope: {
-      contact: '=',
-    },
-    controller: WidgetContactAvatarLetterController,
-    controllerAs: 'ctrl',
-    bindToController: true,
-    template: `
-      <div class="m-avatar m-avatar--small">
-        <div
-          class="m-avatar__letter m-avatar--small__letter"
-          ng-class="ctrl.contactLetterStylesheetClass"
-        ></div>
-      </div>`,
-  };
-}
+export const WidgetContactAvatarLetterComponent = {
+  bindings: {
+    contact: '<',
+  },
+  controller: WidgetContactAvatarLetterController,
+  template: `
+    <div class="m-avatar m-avatar--small">
+      <div
+        class="m-avatar__letter m-avatar--small__letter"
+        ng-class="$ctrl.contactLetterStylesheetClass"
+      ></div>
+    </div>`,
+};
