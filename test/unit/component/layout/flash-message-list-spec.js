@@ -1,0 +1,2 @@
+describe('component Layout FlashMessageList', () => {
+});

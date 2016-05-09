@@ -95,49 +95,55 @@ import { threadContactsFilter } from './filter/thread-contacts.js';
 app
   .filter('threadContacts', threadContactsFilter);
 
-// directives
-import { ContactDirective } from './directive/contact.js';
-import { AddAddressFormComponent } from './directive/contact/add-address-form.js';
-import { AddEmailFormComponent } from './directive/contact/add-email-form.js';
-import { AddImFormComponent } from './directive/contact/add-im-form.js';
-import { ContactsDirective } from './directive/contacts.js';
-import { ContactsContactDirective } from './directive/contacts/contact.js';
-import { DiscussionsDirective } from './directive/discussions.js';
-import { DiscussionsContactsIconDirective } from './directive/discussions/contacts-icon.js';
-import { DiscussionsThreadDirective } from './directive/discussions/thread.js';
-import { HeaderDirective } from './directive/header.js';
-import { LayoutApplicationSwitcherDirective } from './directive/layout/application-switcher.js';
-import { LayoutApplicationWrapperDirective } from './directive/layout/application-wrapper.js';
-import { LayoutFlashMessageListComponent } from './directive/layout/flash-message-list.js';
-import { LayoutPrivacyIndexSliderDirective } from './directive/layout/privacy-index-slider.js';
-import { LayoutImportanceLevelSliderDirective } from './directive/layout/importance-level-slider.js'; // eslint-disable-line max-len
-import { LayoutSearchFieldDirective } from './directive/layout/search-field.js';
-import { LayoutTabListDirective } from './directive/layout/tab-list.js';
-import { LayoutUserMenuDirective } from './directive/layout/user-menu.js';
-import { ThreadDirective } from './directive/thread.js';
-import { ThreadMessageDirective } from './directive/thread/message.js';
-import { WidgetContactAvatarLetterDirective } from './directive/widget/contact/avatar-letter.js';
+// components
+// -- layout
+import { LayoutApplicationSwitcherComponent } from './component/layout/header/application-switcher.js'; // eslint-disable-line max-len
+import { LayoutSearchFieldComponent } from './component/layout/header/search-field.js';
+import { LayoutUserMenuComponent } from './component/layout/header/user-menu.js';
+import { LayoutApplicationWrapperComponent } from './component/layout/application-wrapper.js';
+import { LayoutFlashMessageListComponent } from './component/layout/flash-message-list.js';
+import { LayoutHeaderComponent } from './component/layout/header.js';
+import { LayoutImportanceLevelSliderComponent } from './component/layout/importance-level-slider.js'; // eslint-disable-line max-len
+import { LayoutPrivacyIndexSliderComponent } from './component/layout/privacy-index-slider.js';
+import { LayoutTabListComponent } from './component/layout/tab-list.js';
+// -- module
+import { avatarLetterComponent } from './component/module/avatar-letter.js';
+// -- section
+import { AddAddressFormComponent } from './component/section/contact/add-address-form.js';
+import { AddEmailFormComponent } from './component/section/contact/add-email-form.js';
+import { AddImFormComponent } from './component/section/contact/add-im-form.js';
+import { ContactComponent } from './component/section/contact.js';
+import { ContactListComponent } from './component/section/contact-list.js';
+import { ContactListContactComponent } from './component/section/contact-list/contact.js';
+import { DiscussionsComponent } from './component/section/discussions.js';
+import { DiscussionsContactsIconComponent } from './component/section/discussions/contacts-icon.js';
+import { DiscussionsThreadComponent } from './component/section/discussions/thread.js';
+import { ThreadComponent } from './component/section/thread.js';
+import { ThreadMessageComponent } from './component/section/thread/message.js';
 
 app
-  .directive('coContact', ContactDirective)
-  .component('addAddressForm', AddAddressFormComponent)
-  .component('addEmailForm', AddEmailFormComponent)
-  .component('addImForm', AddImFormComponent)
-  .directive('coContacts', ContactsDirective)
-  .directive('coContactsContact', ContactsContactDirective)
-  .directive('coDiscussions', DiscussionsDirective)
-  .directive('coDiscussionsContactsIcon', DiscussionsContactsIconDirective)
-  .directive('coDiscussionsThread', DiscussionsThreadDirective)
-  .directive('coHeader', HeaderDirective)
-  .directive('coLayoutApplicationSwitcher', LayoutApplicationSwitcherDirective)
-  .directive('coLayoutApplicationWrapper', LayoutApplicationWrapperDirective)
+  // -- layout
+  .component('coLayoutApplicationSwitcher', LayoutApplicationSwitcherComponent)
+  .component('coLayoutSearchField', LayoutSearchFieldComponent)
+  .component('coLayoutUserMenu', LayoutUserMenuComponent)
+  .component('coLayoutApplicationWrapper', LayoutApplicationWrapperComponent)
   .component('coLayoutFlashMessageList', LayoutFlashMessageListComponent)
-  .directive('coLayoutPrivacyIndexSlider', LayoutPrivacyIndexSliderDirective)
-  .directive('coLayoutImportanceLevelSlider', LayoutImportanceLevelSliderDirective)
-  .directive('coLayoutSearchField', LayoutSearchFieldDirective)
-  .directive('coLayoutTabList', LayoutTabListDirective)
-  .directive('coLayoutUserMenu', LayoutUserMenuDirective)
-  .directive('coThread', ThreadDirective)
-  .directive('coThreadMessage', ThreadMessageDirective)
-  .directive('widgetContactAvatarLetter', WidgetContactAvatarLetterDirective)
+  .component('coLayoutHeader', LayoutHeaderComponent)
+  .component('coLayoutImportanceLevelSlider', LayoutImportanceLevelSliderComponent)
+  .component('coLayoutPrivacyIndexSlider', LayoutPrivacyIndexSliderComponent)
+  .component('coLayoutTabList', LayoutTabListComponent)
+  // -- module
+  .component('coAvatarLetter', avatarLetterComponent)
+  // -- section
+  .component('coAddAddressForm', AddAddressFormComponent)
+  .component('coAddEmailForm', AddEmailFormComponent)
+  .component('coAddImForm', AddImFormComponent)
+  .component('coContact', ContactComponent)
+  .component('coContactList', ContactListComponent)
+  .component('coContactListContact', ContactListContactComponent)
+  .component('coDiscussions', DiscussionsComponent)
+  .component('coDiscussionsContactsIcon', DiscussionsContactsIconComponent)
+  .component('coDiscussionsThread', DiscussionsThreadComponent)
+  .component('coThread', ThreadComponent)
+  .component('coThreadMessage', ThreadMessageComponent)
   ;
