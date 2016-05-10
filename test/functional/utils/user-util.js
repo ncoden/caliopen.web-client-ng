@@ -1,6 +1,6 @@
 module.exports = {
   login: (login, password) => {
-    const loginKeys = login || 'julien.muetton@gandi.net';
+    const loginKeys = login || 'test@caliopen.local';
     const passwordKeys = password || '123456';
     const ignoreSync = browser.ignoreSynchronization;
     browser.ignoreSynchronization = true;
