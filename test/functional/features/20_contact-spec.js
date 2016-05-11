@@ -1,4 +1,5 @@
 const userUtil = require('../utils/user-util.js');
+const switchApplication = require('../utils/switch-application.js');
 const isTestEnv = process.env.NODE_ENV === 'test';
 
 describe('Contact', () => {
@@ -15,24 +16,22 @@ describe('Contact', () => {
 
   it('list', () => {
     browser.get('/');
-    element(by.xpath('//co-layout-application-switcher//a[contains(string(), "Contacts")]'))
-      .click();
+    switchApplication.switch('Contacts');
     expect(element(by.css('co-layout-tab-list')).getText()).toContain('Contacts');
   });
 
   describe('contact card', () => {
     it('render', () => {
       browser.get('/');
-      element(by.xpath('//co-layout-application-switcher//a[contains(string(), "Contacts")]'))
-        .click();
-      element(by.xpath('//co-contact-list-contact[contains(string(), "zoidberg")]')).click();
+      switchApplication.switch('Contacts');
+      element(by.cssContainingText('co-contact-list-contact', 'zoidberg')).click();
       expect(element(by.css('co-layout-tab-list')).getText()).toContain('Contacts');
     });
 
     describe('edit contact details', () => {
       it('renders forms', () => {
         browser.get('/');
-        element(by.cssContainingText('co-layout-application-switcher a', 'Contacts')).click();
+        switchApplication.switch('Contacts');
         element(by.cssContainingText('co-contact-list-contact', 'bender')).click();
         element(by.cssContainingText('co-contact button', 'Edit')).click();
         expect(element(by.css('form[name=email_form]')).isPresent()).toBe(true);
@@ -43,7 +42,7 @@ describe('Contact', () => {
       it('fails to add an email', () => {
         const email = 'foo@bar.tld';
         browser.get('/');
-        element(by.cssContainingText('co-layout-application-switcher a', 'Contacts')).click();
+        switchApplication.switch('Contacts');
         element(by.cssContainingText('co-contact-list-contact', 'bender')).click();
         element(by.cssContainingText('co-contact button', 'Edit')).click();
         element(by.css('input#email_form_address')).sendKeys(email);
@@ -56,7 +55,7 @@ describe('Contact', () => {
         const email = 'foo@bar.tld';
         const type = 'Professional';
         browser.get('/');
-        element(by.cssContainingText('co-layout-application-switcher a', 'Contacts')).click();
+        switchApplication.switch('Contacts');
         element(by.cssContainingText('co-contact-list-contact', 'bender')).click();
         element(by.cssContainingText('co-contact button', 'Edit')).click();
         element(by.css('input#email_form_address')).sendKeys(email);

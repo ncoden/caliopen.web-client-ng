@@ -1,7 +1,5 @@
 .m-dropdown {
   @include dropdown-container;
-  @include m-menu;
-  @include m-menu--vertical;
 
   background-color: $co-color__fg__back;
   box-shadow: $co-shadow;

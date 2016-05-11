@@ -12,9 +12,19 @@
     <script src="js/app.js"></script>
   </head>
   <body>
-    <div class="l-layout">
-      <div ui-view="header"></div>
-      <div ui-view></div>
+    <div class="off-canvas-wrapper">
+      <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+        <div class="off-canvas position-left" id="left_off_canvas" data-off-canvas>
+          <div ui-view="off-canvas"></div>
+        </div>
+
+        <div class="off-canvas-content" data-off-canvas-content>
+          <div class="l-layout">
+            <div ui-view="header"></div>
+            <div ui-view></div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

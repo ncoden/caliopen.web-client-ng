@@ -52,11 +52,9 @@ app
   .factory('tabMiddleware', tabMiddleware)
   ;
 
-import { FoundationConfig } from './config/foundation.js';
 import { MomentConfig } from './config/moment.js';
 
 app
-  .run(FoundationConfig)
   .run(MomentConfig)
   ;
 
