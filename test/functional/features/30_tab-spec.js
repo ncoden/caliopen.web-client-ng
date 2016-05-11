@@ -18,11 +18,11 @@ describe('Tab', () => {
     browser.get('/');
     expect(element(by.css('co-layout-tab-list')).getText()).toContain('Discussions');
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][2]')).isPresent()).toBe(false);
-    element(by.cssContainingText('.s-thread-list__thread', 'discussion IRC')).click();
+    element(by.cssContainingText('.s-thread-list__thread', 'It\'s okay, Bender')).click();
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][2]')).isPresent()).toBe(true);
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][3]')).isPresent()).toBe(false);
     element(by.xpath('//co-layout-application-switcher//a[contains(string(), "Discussions")]')).click();
-    element(by.cssContainingText('.s-thread-list__thread', 'R=C3=A9union CaliOpen')).click();
+    element(by.cssContainingText('.s-thread-list__thread', 'Shut up and take my money')).click();
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][3]')).isPresent()).toBe(true);
   });
 
@@ -36,7 +36,7 @@ describe('Tab', () => {
 
   it('Tab mixes contacts and threads', () => {
     browser.get('/');
-    element(by.cssContainingText('.s-thread-list__thread', 'discussion IRC')).click();
+    element(by.cssContainingText('.s-thread-list__thread', 'Shut up and take my money')).click();
     element(by.xpath('//co-layout-application-switcher//a[contains(string(), "Contacts")]')).click();
     element(by.xpath('//co-contact-list-contact[1]/*[contains(@class, "m-block-list__item-content")]')).click();
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][2]')).isPresent()).toBe(true);
@@ -44,7 +44,7 @@ describe('Tab', () => {
   });
   it('Tab is Active', () => {
     browser.get('/');
-    element(by.cssContainingText('.s-thread-list__thread', 'discussion IRC')).click();
+    element(by.cssContainingText('.s-thread-list__thread', 'Shut up and take my money')).click();
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][2][contains(@class, "is-active")]')).isPresent()).toBe(true);
     element(by.xpath('//co-layout-tab-list//a[contains(string(), "Discussions")]')).click();
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][2][contains(@class, "is-active")]')).isPresent()).toBe(false);
@@ -55,14 +55,14 @@ describe('Tab', () => {
   });
   it('Tab deletion', () => {
     browser.get('/');
-    element(by.cssContainingText('.s-thread-list__thread', 'discussion IRC')).click();
+    element(by.cssContainingText('.s-thread-list__thread', 'Shut up and take my money')).click();
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][2]')).isPresent()).toBe(true);
     element(by.xpath('//co-layout-tab-list//*[contains(@class, "m-tab__button")]')).click();
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][2]')).isPresent()).toBe(false);
   });
   it('Reload app creates tab on the fly', () => {
     browser.get('/');
-    element(by.cssContainingText('.s-thread-list__thread', 'discussion IRC')).click();
+    element(by.cssContainingText('.s-thread-list__thread', 'It\'s okay, Bender')).click();
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][2][contains(@class, "is-active")]')).isPresent()).toBe(true);
     browser.refresh();
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][2][contains(@class, "is-active")]')).isPresent()).toBe(true);

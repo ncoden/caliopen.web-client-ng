@@ -23,4 +23,5 @@ script:
   - npm run lint
   - npm run check-deps
   - npm run build
+  - npm run e2e-init
   - npm run test-functional

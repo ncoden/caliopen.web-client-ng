@@ -19,8 +19,8 @@ describe('Discussions', () => {
       .click();
     expect(element(by.xpath('//co-layout-tab-list')).getText()).toContain('Discussions');
     expect(element(by.xpath('//co-discussions-thread[1]')).getText())
-      .toContain('caliopdev@caliop.net, laurent@brainstorm.fr');
-    expect(element.all(by.css('co-discussions-thread')).count()).toEqual(7);
+      .toContain('test@caliopen.local, zoidberg@caliopen.local');
+    expect(element.all(by.css('co-discussions-thread')).count()).toEqual(2);
   });
 
   describe('thread', () => {
@@ -30,9 +30,7 @@ describe('Discussions', () => {
         .click();
       element(by.xpath('//co-discussions-thread[1]')).click();
       expect(element(by.css('.m-tab.is-active .m-tab__link')).getText())
-        .toEqual('');
-        // FIXME: https://github.com/CaliOpen/Caliopen/issues/12
-        // .toContain('caliopdev@caliop.net, laurent@brainstorm.fr');
+        .toContain('test@caliopen.local, zoidberg@caliopen.local');
     });
   });
 });
