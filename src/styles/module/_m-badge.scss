@@ -3,9 +3,8 @@ $m-badge__height: 1.5rem !default;
 .m-badge {
   display: inline-block;
   height: $m-badge__height;
-  padding: 0 ($m-badge__height / 4);
+  padding: 0 ($m-badge__height / 2);
 
-  border: 1px solid $co-color__fg__border--lower;
   border-radius: ($m-badge__height / 2);
   background: $co-color__fg__back--low;
 
@@ -13,4 +12,9 @@ $m-badge__height: 1.5rem !default;
   font-size: ($m-badge__height / 2);
   line-height: $m-badge__height;
   white-space: nowrap;
+
+  &--low {
+    background: $co-color__fg__back--lower;
+    color: $co-color__fg__text--lower;
+  }
 }

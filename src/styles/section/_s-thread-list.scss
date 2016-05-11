@@ -24,7 +24,7 @@
   }
 
   &__col-avatars {
-    @include flex-grid-column(shrink);    
+    @include flex-grid-column(shrink);
   }
 
   &__col-title {
@@ -49,6 +49,7 @@
   &__col-count {
     @include flex-grid-column(1);
     display: none;
+    text-align: right;
   }
 
   @include breakpoint(medium) {
