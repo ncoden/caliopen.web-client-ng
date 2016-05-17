@@ -4,6 +4,9 @@
       "close": "Close"
     }
   },
+  "navigation": {
+    "close": "Close navigation"
+  },
   "header": {
     "menu": {
       "discussions": "Discussions",

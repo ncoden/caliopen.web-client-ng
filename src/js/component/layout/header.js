@@ -1,7 +1,13 @@
 class HeaderController {
-  constructor() {
+  constructor($window) {
     'ngInject';
+    this.$window = $window;
     this.session = { isAuthenticated: true };
+  }
+
+  $postLink() {
+    // eslint-disable-next-line no-new
+    new this.$window.Foundation.OffCanvas(angular.element('#left_off_canvas'), {});
   }
 }
 
@@ -16,6 +22,7 @@ export const LayoutHeaderComponent = {
             <button
               class="l-header__menu-icon menu-icon"
               type="button"
+              data-toggle="left_off_canvas"
               aria-label="{{ 'header.menu.toggle-navigation'|translate }}"
             ></button>
           </span>

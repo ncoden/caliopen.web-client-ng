@@ -20,7 +20,10 @@ describe('component Contact Add Im Form', () => {
       .controller('AddImFormController', AddContactDetailFormController);
 
     angular.mock.module('caliopenApp-test', ($provide, $translateProvider) => {
+      $translateProvider.translations('en', {});
+      $translateProvider.preferredLanguage('en');
       $provide.decorator('$httpBackend', ($delegate, ApiUrl) => {
+        $delegate.whenRoute('GET', `${ApiUrl}/me`).respond(200, { });
         $delegate.when('POST', `${ApiUrl}/contacts/${contact.contact_id}/ims`).respond((method, url, data, headers, params) => {
           const entity = JSON.parse(data);
           if (JSON.stringify(entity) === JSON.stringify(successfulContactDetail)) {
@@ -36,9 +39,6 @@ describe('component Contact Add Im Form', () => {
 
         return $delegate;
       });
-
-      $translateProvider.translations('en', {});
-      $translateProvider.preferredLanguage('en');
     });
   });
 

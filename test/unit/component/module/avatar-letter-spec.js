@@ -7,7 +7,13 @@ describe('component AvatarLetter', () => {
   beforeEach(() => {
     angular.module('caliopenApp-test', ['caliopenApp'])
       .controller('avatarLetterController', avatarLetterController);
-    angular.mock.module('caliopenApp-test');
+    angular.mock.module('caliopenApp-test', ($provide, $translateProvider) => {
+      $provide.decorator('$httpBackend', ($delegate, ApiUrl) => {
+        $delegate.whenRoute('GET', `${ApiUrl}/me`).respond(200, { });
+
+        return $delegate;
+      });
+    });
   });
 
   beforeEach(inject(($controller, ContactHelper) => {

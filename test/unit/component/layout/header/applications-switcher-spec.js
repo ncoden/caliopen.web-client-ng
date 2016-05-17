@@ -10,6 +10,11 @@ describe('component Layout Application Switcher', () => {
     angular.mock.module('caliopenApp-test', ($provide, $translateProvider) => {
       $translateProvider.translations('en', {});
       $translateProvider.preferredLanguage('en');
+      $provide.decorator('$httpBackend', ($delegate, ApiUrl) => {
+        $delegate.whenRoute('GET', `${ApiUrl}/me`).respond(200, { });
+
+        return $delegate;
+      });
     });
   });
 

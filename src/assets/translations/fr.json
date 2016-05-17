@@ -4,6 +4,9 @@
       "close": "Fermer"
     }
   },
+  "navigation": {
+    "close": "Fermer la navigation"
+  },
   "header": {
     "menu": {
       "discussions": "Discussions",

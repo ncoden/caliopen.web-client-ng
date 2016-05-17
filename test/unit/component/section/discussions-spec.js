@@ -8,14 +8,14 @@ describe('component Discussions', () => {
       .controller('DiscussionsController', DiscussionsController);
 
     angular.mock.module('caliopenApp-test', ($provide, $translateProvider) => {
-      $provide.decorator('$httpBackend', ($delegate) => {
+      $translateProvider.translations('en', {});
+      $translateProvider.preferredLanguage('en');
+      $provide.decorator('$httpBackend', ($delegate, ApiUrl) => {
+        $delegate.whenRoute('GET', `${ApiUrl}/me`).respond(200, { });
         $delegate.when('GET', /threads/).respond(200, { threads: [{ foo: 'bar' }] });
 
         return $delegate;
       });
-
-      $translateProvider.translations('en', {});
-      $translateProvider.preferredLanguage('en');
     });
   });
 

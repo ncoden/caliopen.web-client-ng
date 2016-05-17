@@ -6,11 +6,10 @@ const userSelector = createSelector(
 );
 
 export class LayoutUserMenuController {
-  constructor($scope, $ngRedux, UserActions, $window) {
+  constructor($scope, $ngRedux, $window) {
     'ngInject';
     this.$window = $window;
     $scope.$on('$destroy', $ngRedux.connect(userSelector)(this));
-    $ngRedux.dispatch(UserActions.fetchUser());
   }
 
   $postLink() {
