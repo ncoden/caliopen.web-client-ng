@@ -8,14 +8,14 @@ describe('component Contacts', () => {
       .controller('ContactListController', ContactListController);
 
     angular.mock.module('caliopenApp-test', ($provide, $translateProvider) => {
-      $provide.decorator('$httpBackend', ($delegate) => {
+      $translateProvider.translations('en', {});
+      $translateProvider.preferredLanguage('en');
+      $provide.decorator('$httpBackend', ($delegate, ApiUrl) => {
         $delegate.when('GET', /contacts/).respond(200, { contacts: [{ foo: 'bar' }] });
+        $delegate.whenRoute('GET', `${ApiUrl}/me`).respond(200, { });
 
         return $delegate;
       });
-
-      $translateProvider.translations('en', {});
-      $translateProvider.preferredLanguage('en');
     });
   });
 

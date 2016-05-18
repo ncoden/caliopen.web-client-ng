@@ -6,17 +6,18 @@ $l-header__margin: ($co-margin / 2) !default;
   margin-bottom: $l-header__margin;
 
   &__wrapper {
+    @include flex-grid-row($width: none);
     position: fixed;
     z-index: 1000;
 
     width: 100%;
     min-height: $l-header__height;
-
     background: $co-color__fg__back;
     box-shadow: $co-shadow;
   }
 
   &__brand {
+    @include flex-grid-column;
     padding: 0 $co-margin;
     line-height: $l-header__height;
   }
@@ -32,19 +33,46 @@ $l-header__margin: ($co-margin / 2) !default;
     height: $co-font__line-height;
   }
 
-  &__m-menu {
-    @include m-menu--vertical;
-    @include m-menu--height($l-header__height);
+  &__application-switcher,
+  &__search,
+  &__user {
+    display: none;
+    height: $l-header__height;
+    line-height: $l-header__height;
+  }
+
+  &__search {
+    &--as-dropdown {
+      @include flex-grid-column(12);
+      display: block;
+    }
+  }
+
+  &__search-toggler {
+    @include flex-grid-column(shrink);
+    height: $l-header__height;
+    line-height: $l-header__height;
   }
 
   &__m-search-field {
-    @include m-search-field--width(block);
+    max-width: 45rem;
+  }
+
+  &__m-menu {
+    @include m-menu--height($l-header__height);
   }
 
   @include breakpoint(medium) {
-    &__brand { float: left; }
-    &__m-menu { @include m-menu--horizontal; }
-    &__m-search-field { @include m-search-field--width(medium); }
-    &__user { float: right; }
+    &__brand { @include flex-grid-column(shrink); }
+    &__application-switcher { @include flex-grid-column(shrink); }
+    &__search { @include flex-grid-column; }
+    &__user { @include flex-grid-column(shrink); }
+
+    &__application-switcher,
+    &__search,
+    &__user {
+      display: block;
+      padding: 0 $co-margin;
+    }
   }
 }

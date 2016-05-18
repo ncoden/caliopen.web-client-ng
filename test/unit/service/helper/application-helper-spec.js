@@ -5,9 +5,14 @@ describe('Service Helper ApplicationHelper', () => {
     angular.module('caliopenApp-test', ['caliopenApp'])
       .service('ApplicationHelper', ApplicationHelper);
 
-    angular.mock.module('caliopenApp-test', ($translateProvider) => {
+    angular.mock.module('caliopenApp-test', ($translateProvider, $provide) => {
       $translateProvider.translations('en', {});
       $translateProvider.preferredLanguage('en');
+      $provide.decorator('$httpBackend', ($delegate, ApiUrl) => {
+        $delegate.whenRoute('GET', `${ApiUrl}/me`).respond(200, { });
+
+        return $delegate;
+      });
     });
   });
 

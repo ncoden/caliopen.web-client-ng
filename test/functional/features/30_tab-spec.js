@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 const userUtil = require('../utils/user-util.js');
+const switchApplication = require('../utils/switch-application.js');
 const isTestEnv = process.env.NODE_ENV === 'test';
 
 describe('Tab', () => {
@@ -21,14 +22,14 @@ describe('Tab', () => {
     element(by.cssContainingText('.s-thread-list__thread', 'It\'s okay, Bender')).click();
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][2]')).isPresent()).toBe(true);
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][3]')).isPresent()).toBe(false);
-    element(by.xpath('//co-layout-application-switcher//a[contains(string(), "Discussions")]')).click();
+    element(by.cssContainingText('co-layout-tab-list .m-tab__link', 'Discussions')).click();
     element(by.cssContainingText('.s-thread-list__thread', 'Shut up and take my money')).click();
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][3]')).isPresent()).toBe(true);
   });
 
   it('creates on contacts', () => {
     browser.get('/');
-    element(by.xpath('//co-layout-application-switcher//a[contains(string(), "Contacts")]')).click();
+    switchApplication.switch('Contacts');
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][2]')).isPresent()).toBe(false);
     element(by.xpath('//co-contact-list-contact[1]/*[contains(@class, "m-block-list__item-content")]')).click();
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][2]')).isPresent()).toBe(true);
@@ -37,7 +38,7 @@ describe('Tab', () => {
   it('Tab mixes contacts and threads', () => {
     browser.get('/');
     element(by.cssContainingText('.s-thread-list__thread', 'Shut up and take my money')).click();
-    element(by.xpath('//co-layout-application-switcher//a[contains(string(), "Contacts")]')).click();
+    switchApplication.switch('Contacts');
     element(by.xpath('//co-contact-list-contact[1]/*[contains(@class, "m-block-list__item-content")]')).click();
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][2]')).isPresent()).toBe(true);
     expect(element(by.xpath('//co-layout-tab-list//*[contains(concat(" ", normalize-space(@class), " "), " m-tab ")][3]')).isPresent()).toBe(true);

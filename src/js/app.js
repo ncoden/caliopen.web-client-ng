@@ -52,12 +52,12 @@ app
   .factory('tabMiddleware', tabMiddleware)
   ;
 
-import { FoundationConfig } from './config/foundation.js';
 import { MomentConfig } from './config/moment.js';
+import { UserConfig } from './config/user.js';
 
 app
-  .run(FoundationConfig)
   .run(MomentConfig)
+  .run(UserConfig)
   ;
 
 // services
@@ -104,6 +104,7 @@ import { LayoutApplicationWrapperComponent } from './component/layout/applicatio
 import { LayoutFlashMessageListComponent } from './component/layout/flash-message-list.js';
 import { LayoutHeaderComponent } from './component/layout/header.js';
 import { LayoutImportanceLevelSliderComponent } from './component/layout/importance-level-slider.js'; // eslint-disable-line max-len
+import { LayoutNavigationAltComponent } from './component/layout/navigation-alt.js';
 import { LayoutPrivacyIndexSliderComponent } from './component/layout/privacy-index-slider.js';
 import { LayoutTabListComponent } from './component/layout/tab-list.js';
 // -- module
@@ -130,6 +131,7 @@ app
   .component('coLayoutFlashMessageList', LayoutFlashMessageListComponent)
   .component('coLayoutHeader', LayoutHeaderComponent)
   .component('coLayoutImportanceLevelSlider', LayoutImportanceLevelSliderComponent)
+  .component('coLayoutNavigationAlt', LayoutNavigationAltComponent)
   .component('coLayoutPrivacyIndexSlider', LayoutPrivacyIndexSliderComponent)
   .component('coLayoutTabList', LayoutTabListComponent)
   // -- module

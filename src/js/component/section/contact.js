@@ -100,7 +100,7 @@ export const ContactComponent = {
             {{ 'contact.contact_details'|translate }}
           </h3>
 
-          <button class="m-subtitle__m-inline-button m-inline-button pull-right"
+          <button class="m-subtitle__m-inline-button m-link m-link--button pull-right"
             ng-class="{ 'active': !!$ctrl.editMode }"
             ng-click="$ctrl.editMode = !$ctrl.editMode">
             <i class="fa fa-edit"></i>

@@ -21,6 +21,7 @@ describe('component Contact Add Address Form', () => {
 
     angular.mock.module('caliopenApp-test', ($provide, $translateProvider) => {
       $provide.decorator('$httpBackend', ($delegate, ApiUrl) => {
+        $delegate.whenRoute('GET', `${ApiUrl}/me`).respond(200, { });
         $delegate.when('POST', `${ApiUrl}/contacts/${contact.contact_id}/addresses`).respond((method, url, data, headers, params) => {
           const entity = JSON.parse(data);
           if (JSON.stringify(entity) === JSON.stringify(successfulContactDetail)) {

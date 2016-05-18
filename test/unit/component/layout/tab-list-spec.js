@@ -8,9 +8,14 @@ describe('component Layout TabList', () => {
   beforeEach(() => {
     angular.module('caliopenApp-test', ['caliopenApp'])
       .controller('LayoutTabListController', LayoutTabListController);
-    angular.mock.module('caliopenApp-test', ($translateProvider) => {
+    angular.mock.module('caliopenApp-test', ($translateProvider, $provide) => {
       $translateProvider.translations('en', {});
       $translateProvider.preferredLanguage('en');
+      $provide.decorator('$httpBackend', ($delegate, ApiUrl) => {
+        $delegate.whenRoute('GET', `${ApiUrl}/me`).respond(200, { });
+
+        return $delegate;
+      });
     });
   });
 

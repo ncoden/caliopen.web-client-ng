@@ -9,6 +9,9 @@ export function RouterConfig($stateProvider, $urlRouterProvider) {
         header: {
           template: '<co-layout-header></co-layout-header>',
         },
+        'off-canvas': {
+          template: '<co-layout-navigation-alt></co-layout-navigation-alt>',
+        },
         '@': uiView,
       },
     })

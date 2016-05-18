@@ -6,10 +6,15 @@ const userSelector = createSelector(
 );
 
 export class LayoutUserMenuController {
-  constructor($scope, $ngRedux, UserActions) {
+  constructor($scope, $ngRedux, $window) {
     'ngInject';
+    this.$window = $window;
     $scope.$on('$destroy', $ngRedux.connect(userSelector)(this));
-    $ngRedux.dispatch(UserActions.fetchUser());
+  }
+
+  $postLink() {
+    // eslint-disable-next-line no-new
+    new this.$window.Foundation.Dropdown(angular.element('#co-user-menu__dropdown'), {});
   }
 }
 
@@ -17,27 +22,30 @@ export const LayoutUserMenuComponent = {
   controller: LayoutUserMenuController,
   /* eslint-disable max-len */
   template: `
-    <div class="l-header__m-menu__item m-menu__item">
-      <button class="l-header__m-menu__item-content m-menu__item-content m-menu__item-content--link" type="button" data-toggle="co-user-menu__dropdown">
+    <div>
+      <a class="l-header__m-link m-link m-link--button float-right"
+        data-toggle="co-user-menu__dropdown"
+      >
         <i class="fa fa-user"></i>
         <span class="show-for-small-only">{{ $ctrl.user.name }}</span>
         <i class="fa fa-caret-down"></i>
-      </button>
+      </a>
 
-      <ul class="l-header__m-dropdown m-dropdown"
-        data-dropdown
-        data-position-class="bottom"
-        data-auto-focus="true"
+      <ul class="l-header__m-menu m-dropdown m-menu bottom"
+        data-close-on-click="true"
         id="co-user-menu__dropdown"
       >
-        <li class="m-dropdown__item show-for-medium">
-          <div class="m-dropdown__item-content">
+        <li class="l-header__m-menu__item m-menu__item m-menu--vertical__item">
+          <div class="l-header__m-menu__item-content m-menu__item-content">
             {{ $ctrl.user.name }}
           </div>
         </li>
-        <li class="m-dropdown__separator show-for-medium"></li>
-        <li class="m-dropdown__item">
-          <a class="m-dropdown__item-content m-dropdown__item-content--link" href="/auth/logout">
+        <li class="m-menu__separator show-for-medium"></li>
+        <li class="l-header__m-menu__item m-menu__item m-menu--vertical__item">
+          <a
+            class="l-header__m-menu__item-content m-menu__item-content m-link"
+            href="/auth/logout"
+          >
             {{'header.menu.signout'|translate}}
           </a>
         </li>

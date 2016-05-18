@@ -7,7 +7,13 @@ describe('component Discussions contactIcon', () => {
   beforeEach(() => {
     angular.module('caliopenApp-test', ['caliopenApp'])
       .controller('DiscussionsContactsIconController', DiscussionsContactsIconController);
-    angular.mock.module('caliopenApp-test');
+    angular.mock.module('caliopenApp-test', ($provide, $translateProvider) => {
+      $provide.decorator('$httpBackend', ($delegate, ApiUrl) => {
+        $delegate.whenRoute('GET', `${ApiUrl}/me`).respond(200, { });
+
+        return $delegate;
+      });
+    });
   });
 
   beforeEach(inject(($controller, ContactHelper) => {

@@ -4,6 +4,9 @@
       "close": "Close"
     }
   },
+  "navigation": {
+    "close": "Close navigation"
+  },
   "header": {
     "menu": {
       "discussions": "Discussions",
@@ -15,6 +18,8 @@
       "create_user": "New Contact",
       "account": "Account",
       "search": "Search",
+      "toggle-navigation": "Toggle navigation",
+      "toggle-search-form": "Toggle search form",
       "account": "Account",
       "settings": "Settings",
       "signin": "Log In",
