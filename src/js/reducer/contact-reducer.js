@@ -55,12 +55,39 @@ function contactByIdReducer(state = {}, action = {}) {
   }), state);
 }
 
+function contactIdsReducer(state = [], action = {}) {
+  if (action.type === actions.RECEIVER_CONTACTS) {
+    const ids = state.slice();
+
+    return ids
+      .concat(action.contacts.map(contact => contact.contact_id))
+      .reduce((prev, curr) => {
+        if (prev.indexOf(curr) === -1) {
+          prev.push(curr);
+        }
+
+        return prev;
+      }, []);
+  }
+
+  return state;
+}
+
+export function hasMore(state) {
+  return state.totalContacts > state.contacts.length;
+}
+
+export function getNextOffset(state) {
+  return state.contacts.length;
+}
+
 export function contactReducer(state = {
   isFetching: false,
   didInvalidate: false,
   contacts: [],
   contactsById: {},
   contactDetailFormsById: {},
+  totalContacts: 0,
 }, action = {}) {
   switch (action.type) {
     case actions.REQUEST_CONTACT:
@@ -86,7 +113,7 @@ export function contactReducer(state = {
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
-        contacts: action.contacts.map(contact => contact.contact_id),
+        contacts: contactIdsReducer(state.contacts, action),
         contactsById: contactByIdReducer(state.contactsById, action),
         totalContacts: action.total,
         lastUpdated: action.receivedAt,

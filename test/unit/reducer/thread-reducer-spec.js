@@ -11,6 +11,7 @@ describe('Reducer Thread Reducer', () => {
       isFetching: false,
       didInvalidate: false,
       threads: [],
+      totalThreads: 0,
     });
   });
 

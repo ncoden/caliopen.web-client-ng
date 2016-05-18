@@ -1,7 +1,8 @@
 {
   "general": {
     "action": {
-      "close": "Close"
+      "close": "Close",
+      "load_more": "Load more"
     }
   },
   "navigation": {

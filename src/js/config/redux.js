@@ -52,6 +52,7 @@ export function ReduxConfig($ngReduxProvider) {
     'ngUiRouterMiddleware',
     'contactMiddleware',
     'tabMiddleware',
+    'threadMiddleware',
     thunk,
     promise,
     logger,

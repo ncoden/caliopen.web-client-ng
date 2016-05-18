@@ -46,12 +46,18 @@ export class ContactsActions {
     };
   }
 
-  fetchContacts() {
+  fetchContacts(offset = 0, limit = 1000) {
     return dispatch => {
       dispatch(this.requestContacts());
 
-      return this.ContactRepository.findAll()
+      return this.ContactRepository.findAll(offset, limit)
         .then(json => dispatch(this.receiveContacts(json)));
+    };
+  }
+
+  loadMoreContacts() {
+    return {
+      type: action.LOAD_MORE_CONTACTS,
     };
   }
 

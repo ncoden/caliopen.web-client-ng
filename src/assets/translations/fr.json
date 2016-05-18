@@ -1,7 +1,8 @@
 {
   "general": {
     "action": {
-      "close": "Fermer"
+      "close": "Fermer",
+      "load_more": "Charger plus"
     }
   },
   "navigation": {

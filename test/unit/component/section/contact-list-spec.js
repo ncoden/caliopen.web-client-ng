@@ -1,6 +1,6 @@
 import { ContactListController } from '../../../../src/js/component/section/contact-list.js';
 
-describe('component Contacts', () => {
+describe('component Contact list', () => {
   let getController;
 
   beforeEach(() => {
@@ -30,6 +30,7 @@ describe('component Contacts', () => {
   it('has contacts', inject(($rootScope, $httpBackend) => {
     const $scope = $rootScope.$new();
     const ctrl = getController($scope, { });
+    ctrl.$onInit();
     $httpBackend.flush();
 
     expect(ctrl.contacts).toEqual([{ foo: 'bar' }]);

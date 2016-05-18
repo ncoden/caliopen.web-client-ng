@@ -55,12 +55,18 @@ export class DiscussionsActions {
     };
   }
 
-  fetchThreads() {
+  fetchThreads(offset = 0, limit = 20) {
     return dispatch => {
-      dispatch(this.requestThreads());
+      dispatch(this.requestThreads(offset, limit));
 
-      return this.ThreadRepository.findAll()
+      return this.ThreadRepository.findAll(offset, limit)
         .then(json => dispatch(this.receiveThreads(json)));
+    };
+  }
+
+  loadMoreThreads() {
+    return {
+      type: action.LOAD_MORE_THREADS,
     };
   }
 
