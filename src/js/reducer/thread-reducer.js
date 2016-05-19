@@ -11,12 +11,39 @@ function messagesByThreadsIdReducer(state = {}, action = {}) {
   return Object.assign({}, state, { [action.threadId]: action.messages });
 }
 
+function threadIdsReducer(state = [], action = {}) {
+  if (action.type === actions.RECEIVER_THREADS) {
+    const threadIds = state.slice();
+
+    return threadIds
+      .concat(action.threads.map(thread => thread.thread_id))
+      .reduce((prev, curr) => {
+        if (prev.indexOf(curr) === -1) {
+          prev.push(curr);
+        }
+
+        return prev;
+      }, []);
+  }
+
+  return state;
+}
+
+export function hasMore(state) {
+  return state.totalThreads > state.threads.length;
+}
+
+export function getNextOffset(state) {
+  return state.threads.length;
+}
+
 export function threadReducer(state = {
   threadsById: {},
   messagesByThreadsId: {},
   isFetching: false,
   didInvalidate: false,
   threads: [],
+  totalThreads: 0,
 }, action = {}) {
   switch (action.type) {
     case actions.REQUEST_THREADS:
@@ -29,7 +56,7 @@ export function threadReducer(state = {
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
-        threads: action.threads.map(thread => thread.thread_id),
+        threads: threadIdsReducer(state.threads, action),
         threadsById: threadByIdReducer(state.threadsById, action),
         totalThreads: action.total,
         lastUpdated: action.receivedAt,

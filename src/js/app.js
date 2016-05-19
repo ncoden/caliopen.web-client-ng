@@ -38,6 +38,7 @@ import { TranslateConfig } from './config/translate.js';
 import { BaseUrlFactory, ApiUrlFactory, ApiInterceptorConfig } from './config/server.js';
 import { contactMiddleware } from './middleware/contact-middleware.js';
 import { tabMiddleware } from './middleware/tab-middleware.js';
+import { threadMiddleware } from './middleware/thread-middleware.js';
 
 app
   .config(FlashAlertConfig)
@@ -50,6 +51,7 @@ app
   .factory('ApiUrl', ApiUrlFactory)
   .factory('contactMiddleware', contactMiddleware)
   .factory('tabMiddleware', tabMiddleware)
+  .factory('threadMiddleware', threadMiddleware)
   ;
 
 import { MomentConfig } from './config/moment.js';

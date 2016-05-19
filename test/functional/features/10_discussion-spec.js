@@ -21,6 +21,8 @@ describe('Discussions', () => {
     expect(element(by.xpath('//co-discussions-thread[1]')).getText())
       .toContain('test@caliopen.local, zoidberg@caliopen.local');
     expect(element.all(by.css('co-discussions-thread')).count()).toEqual(2);
+    expect(element(by.cssContainingText('co-discussions a', 'Load more')).isPresent())
+      .toBe(false);
   });
 
   describe('thread', () => {

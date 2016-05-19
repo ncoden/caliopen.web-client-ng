@@ -30,6 +30,7 @@ describe('component Discussions', () => {
   it('has threads', inject(($rootScope, $httpBackend) => {
     const $scope = $rootScope.$new();
     const ctrl = getController($scope, { });
+    ctrl.$onInit();
     $httpBackend.flush();
 
     expect(ctrl.threads).toEqual([{ foo: 'bar' }]);

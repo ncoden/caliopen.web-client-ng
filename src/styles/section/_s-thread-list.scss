@@ -52,6 +52,11 @@
     text-align: right;
   }
 
+  &__load-more {
+    padding-top: $co-margin;
+    text-align: center;
+  }
+
   @include breakpoint(medium) {
     &__col-indexes { display: block; }
     &__col-dates { display: block; }

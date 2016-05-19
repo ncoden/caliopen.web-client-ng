@@ -11,8 +11,8 @@ export class ContactRepository {
     this.ApiUrl = ApiUrl;
   }
 
-  findAll() {
-    return this.$http.get(`${this.ApiUrl}/contacts`)
+  findAll(offset = 0, limit = 1000) {
+    return this.$http.get(`${this.ApiUrl}/contacts`, { params: { offset, limit } })
       .then(response => response.data);
   }
 

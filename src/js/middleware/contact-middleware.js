@@ -1,4 +1,5 @@
 import * as actions from '../action/action-types.js';
+import { getNextOffset } from '../reducer/contact-reducer.js';
 
 export function contactMiddleware(ContactsActions) {
   'ngInject';
@@ -12,6 +13,11 @@ export function contactMiddleware(ContactsActions) {
 
     if (requireContactRefreshActions.indexOf(action.type) !== -1) {
       store.dispatch(ContactsActions.fetchContact(action.contactId));
+    }
+
+    if (action.type === actions.LOAD_MORE_CONTACTS) {
+      const offset = getNextOffset(store.getState().contactReducer);
+      store.dispatch(ContactsActions.fetchContacts(offset));
     }
 
     return result;

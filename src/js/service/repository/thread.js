@@ -5,8 +5,8 @@ export class ThreadRepository {
     this.ApiUrl = ApiUrl;
   }
 
-  findAll() {
-    return this.$http.get(`${this.ApiUrl}/threads`)
+  findAll(offset = 0, limit = 20) {
+    return this.$http.get(`${this.ApiUrl}/threads`, { params: { offset, limit } })
       .then(response => response.data);
   }
 
