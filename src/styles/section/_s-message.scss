@@ -29,16 +29,8 @@
     }
   }
 
-  &__indexes {
-    display: none;
-  }
-
   &__body {
     padding: 0 $co-margin;
     white-space: pre-wrap;
-  }
-
-  @include breakpoint(medium) {
-    &__indexes { display: block; }
   }
 }
