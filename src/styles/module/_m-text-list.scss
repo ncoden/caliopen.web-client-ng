@@ -6,8 +6,12 @@
 
   &__item {
     color: $co-color__fg__text--low;
-    font-size: 1rem;
-    line-height: 1.33rem;
+    font-size: $co-font__size;
+    line-height: $co-font__line-height;
+
+    &--large {
+      line-height: $co-component__height;
+    }
 
     &--link {
       cursor: pointer;

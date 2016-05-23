@@ -100,7 +100,7 @@ export const ContactComponent = {
             {{ 'contact.contact_details'|translate }}
           </h3>
 
-          <button class="m-subtitle__m-inline-button m-link m-link--button pull-right"
+          <button class="m-link m-link--button pull-right"
             ng-class="{ 'active': !!$ctrl.editMode }"
             ng-click="$ctrl.editMode = !$ctrl.editMode">
             <i class="fa fa-edit"></i>
@@ -110,7 +110,7 @@ export const ContactComponent = {
 
         <ul class="m-text-list s-contact__m-contact-detail-list">
           <li ng-repeat="email in $ctrl.contact.emails|orderBy:'address'"
-              class="m-text-list__item">
+              class="m-text-list__item m-text-list__item--large">
             <span class="m-text-line">
               <span class="m-text-list__icon fa fa-envelope"></span>
               <span ng-switch="!!email.is_primary">
@@ -119,7 +119,7 @@ export const ContactComponent = {
               </span>
               <small><em>{{ ('contact.email_type.' + email.type)|translate}}</em></small>
               <button ng-if="$ctrl.editMode" ng-click="$ctrl.deleteContactDetail('email', email)"
-                      class="m-inline-button m-inline-button--alert"><i class="fa fa-remove"></i>
+                      class="m-link m-link--button m-link--alert"><i class="fa fa-remove"></i>
                 <span class="show-for-sr">{{ 'contact.action.delete_contact_detail'|translate }}</span>
               </button>
             </span>
@@ -130,25 +130,25 @@ export const ContactComponent = {
           </li>
 
           <li ng-repeat="phone in $ctrl.contact.phones"
-            class="m-text-list__item">
+            class="m-text-list__item m-text-list__item--large">
             <span class="m-text-line">
               <span class="m-text-list__icon fa fa-phone"></span>
               {{ phone.number }}
               <button ng-if="$ctrl.editMode" ng-click="$ctrl.deleteContactDetail('phone', phone)"
-                      class="m-inline-button m-inline-button--alert"><i class="fa fa-remove"></i>
+                      class="m-link m-link--button m-link--alert"><i class="fa fa-remove"></i>
                 <span class="show-for-sr">{{ 'contact.action.delete_contact_detail'|translate }}</span>
               </button>
             </span>
           </li>
 
           <li ng-repeat="im in $ctrl.contact.ims"
-            class="m-text-list__item">
+            class="m-text-list__item m-text-list__item--large">
             <span class="m-text-line">
               <span class="m-text-list__icon fa fa-comment"></span>
               {{ im.address }}
               <small><em>{{ ('contact.im_type.' + im.type)|translate }}</em></small>
               <button ng-if="$ctrl.editMode" ng-click="$ctrl.deleteContactDetail('im', im)"
-                      class="m-inline-button m-inline-button--alert"><i class="fa fa-remove"></i>
+                      class="m-link m-link--button m-link--alert"><i class="fa fa-remove"></i>
                 <span class="show-for-sr">{{ 'contact.action.delete_contact_detail'|translate }}</span>
               </button>
             </span>
@@ -166,7 +166,7 @@ export const ContactComponent = {
             </adddress>
             <small><em>({{ address.label }} {{ ('contact.address_type.' + address.type)|translate}})</em></small>
             <button ng-if="$ctrl.editMode" ng-click="$ctrl.deleteContactDetail('address', address)"
-                    class="m-inline-button m-inline-button--alert"><i class="fa fa-remove"></i>
+                    class="m-link m-link--button m-link--alert"><i class="fa fa-remove"></i>
               <span class="show-for-sr">{{ 'contact.action.delete_contact_detail'|translate }}</span>
             </button>
           </li>
@@ -182,7 +182,7 @@ export const ContactComponent = {
         </div>
         <ul class="m-text-list">
           <li ng-repeat="identity in $ctrl.contact.identities"
-            class="m-text-list__item">
+            class="m-text-list__item m-text-list__item--large">
             <span class="m-text-line">
               <span class="m-text-list__icon fa fa-at"></span>
               {{ identity }}
