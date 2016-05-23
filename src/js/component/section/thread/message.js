@@ -26,10 +26,6 @@ export const ThreadMessageComponent = {
 
         <div class="s-message__col-about">
           <i ng-if="$ctrl.thread.file_attached" class="fa fa-paperclip"></i>
-          <span class="s-message__indexes">
-            <i class="fa fa-exclamation-triangle"></i> {{ $ctrl.message.importance_level }}
-            <i class="fa fa-eye"></i> {{ $ctrl.message.privacy_index }}
-          </span>
         </div>
       </div>
 

@@ -57,16 +57,6 @@ export const DiscussionsThreadComponent = {
       <div class="s-thread-list__col-file">
         <i ng-if="$ctrl.thread.file_attached" class="fa fa-paperclip"></i>
       </div>
-      <div class="s-thread-list__col-indexes">
-        <span class="m-text-word">
-          <i class="fa fa-exclamation-triangle"></i>
-          {{ $ctrl.thread.importance_level }}
-        </span>
-        <span class="m-text-word">
-          <i class="fa fa-eye"></i>
-          {{ $ctrl.thread.privacy_index }}
-        </span>
-      </div>
       <div class="s-thread-list__col-dates">
         <time title="{{ $ctrl.fakeDate | amDateFormat: 'LLL' }}">
           <span class="m-text-word">{{ $ctrl.fakeDate | amDateFormat: 'll' }}</span>
