@@ -47,7 +47,7 @@ export const LayoutApplicationWrapperComponent = {
           <co-layout-importance-level-slider></co-layout-importance-level-slider>
         </div>
         <div class="l-body__col-content">
-          <co-layout-tab-list currentApplication=currentApplication remove="closeTab"></co-layout-tab-list>
+          <co-layout-tab-list></co-layout-tab-list>
           <div class="l-body__content" ng-switch="$ctrl.currentStateName">
             <div ng-switch-when="front.discussions">
               <co-discussions></co-discussions>

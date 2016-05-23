@@ -25,6 +25,7 @@ $m-tab__height: 2.6rem !default;
     overflow: hidden;
     text-overflow: ellipsis;
     color: inherit;
+    white-space: nowrap;
 
     &:hover   { color: $co-color__fg__text--high; }
     &:active  { color: $co-color__fg__text--lower; }
