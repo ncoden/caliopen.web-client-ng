@@ -1,22 +1,12 @@
-import { TabListController } from '../module/tab-list.js';
+import { TabListController } from '../../module/tab-list.js';
 
-export const LayoutTabListComponent = {
+export const LayoutNavigationAltTabListComponent = {
   controller: TabListController,
   /* eslint-disable max-len */
   template: `
-    <ul class="m-menu hide-for-small-only">
-      <li class="m-menu__item m-tab"
-        ng-class="{ 'is-active': ($ctrl.currentApplicationRoute | isState) }">
-        <a href ng-click="$ctrl.selectCurrentApplication()"
-          class="m-tab__link"
-        >
-          <i class="fa" ng-class="$ctrl.currentApplicationIcon"></i>
-          {{ $ctrl.currentApplicationKey | translate }}
-        </a>
-      </li>
-
+    <ul class="m-menu">
       <li ng-repeat="tab in $ctrl.tabs"
-        class="m-menu__item m-tab"
+        class="m-menu__item m-menu--vertical__item"
         ui-sref-active-eq="is-active"
       >
         <span ng-switch="tab.type">

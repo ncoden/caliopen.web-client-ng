@@ -48,7 +48,9 @@ export const LayoutNavigationAltComponent = {
             {{ 'header.menu.contacts'|translate}}
           </a>
         </li>
-        <li class="m-menu__separator show-for-medium"></li>
+      </ul>
+      <co-layout-navigation-alt-tab-list></co-layout-navigation-alt-tab-list>
+      <ul class="m-menu">
         <li class="m-menu__item m-menu--vertical__item">
           <a
             class="m-menu__item-content m-link"

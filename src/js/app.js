@@ -102,6 +102,7 @@ app
 import { LayoutApplicationSwitcherComponent } from './component/layout/header/application-switcher.js'; // eslint-disable-line max-len
 import { LayoutSearchFieldComponent } from './component/layout/header/search-field.js';
 import { LayoutUserMenuComponent } from './component/layout/header/user-menu.js';
+import { LayoutNavigationAltTabListComponent } from './component/layout/navigation-alt/tab-list.js';
 import { LayoutApplicationWrapperComponent } from './component/layout/application-wrapper.js';
 import { LayoutFlashMessageListComponent } from './component/layout/flash-message-list.js';
 import { LayoutHeaderComponent } from './component/layout/header.js';
@@ -129,6 +130,7 @@ app
   .component('coLayoutApplicationSwitcher', LayoutApplicationSwitcherComponent)
   .component('coLayoutSearchField', LayoutSearchFieldComponent)
   .component('coLayoutUserMenu', LayoutUserMenuComponent)
+  .component('coLayoutNavigationAltTabList', LayoutNavigationAltTabListComponent)
   .component('coLayoutApplicationWrapper', LayoutApplicationWrapperComponent)
   .component('coLayoutFlashMessageList', LayoutFlashMessageListComponent)
   .component('coLayoutHeader', LayoutHeaderComponent)

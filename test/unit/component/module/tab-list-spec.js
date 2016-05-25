@@ -1,4 +1,4 @@
-import { LayoutTabListController } from '../../../../src/js/component/layout/tab-list.js';
+import { TabListController } from '../../../../src/js/component/module/tab-list.js';
 
 describe('component Layout TabList', () => {
   let getController;
@@ -7,7 +7,7 @@ describe('component Layout TabList', () => {
 
   beforeEach(() => {
     angular.module('caliopenApp-test', ['caliopenApp'])
-      .controller('LayoutTabListController', LayoutTabListController);
+      .controller('TabListController', TabListController);
     angular.mock.module('caliopenApp-test', ($translateProvider, $provide) => {
       $translateProvider.translations('en', {});
       $translateProvider.preferredLanguage('en');
@@ -22,7 +22,7 @@ describe('component Layout TabList', () => {
   beforeEach(inject(($controller, $state, $ngRedux, TabsActions) => {
     getController = (scope, bindToController = {}) =>
       $controller(
-        'LayoutTabListController',
+        'TabListController',
         { $scope: scope, $state, $ngRedux, TabsActions },
         bindToController);
 
