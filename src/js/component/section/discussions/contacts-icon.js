@@ -25,7 +25,7 @@ export const DiscussionsContactsIconComponent = {
   /* eslint-disable max-len */
   template: `
     <div class="m-avatars">
-      <div ng-repeat="letterClass in $ctrl.lettersStylesheetClass" class="m-avatars__letter" ng-class="[letterClass, $ctrl.iconClass]"></div>
+      <div ng-repeat="letterClass in $ctrl.lettersStylesheetClass track by $index" class="m-avatars__letter" ng-class="[letterClass, $ctrl.iconClass]"></div>
     </div>`,
     /* eslint-enable max-len */
 };
