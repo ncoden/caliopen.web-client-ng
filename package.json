@@ -31,7 +31,7 @@
     "angular-sanitize": "~1.5.0",
     "angular-translate": "^2.8.1",
     "angular-translate-loader-static-files": "^2.8.1",
-    "angular-ui-router": "^0.2.15",
+    "angular-ui-router": "^0.3.0",
     "angular-ui-slider": "^0.3.0",
     "babel-core": "^6.2.1",
     "babel-loader": "^6.2.0",
@@ -73,7 +73,7 @@
     "phantomjs": "^1.9.19",
     "protractor": "^3.2.0",
     "redux": "^3.0.4",
-    "redux-ui-router": "^0.5.1",
+    "redux-ui-router": "^0.5.2",
     "reselect": "^2.0.1",
     "webpack": "^1.12.9"
   },
