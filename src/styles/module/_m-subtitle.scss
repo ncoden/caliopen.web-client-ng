@@ -1,4 +1,4 @@
-$m-subtitle__height: 2.6rem !default;
+$m-subtitle__height: $co-component__height !default;
 
 .m-subtitle {
   display: block;
@@ -10,10 +10,6 @@ $m-subtitle__height: 2.6rem !default;
     color: $co-color__fg__text--lower;
     font-size: 1rem;
     font-weight: bold;
-  }
-
-  &__m-inline-button {
-    line-height: $m-subtitle__height - rem-calc($m-inline-button__border-size * 2);
   }
 
   &--hr {

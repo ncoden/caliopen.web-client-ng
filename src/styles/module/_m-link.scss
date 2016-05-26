@@ -18,10 +18,23 @@
     color: $co-color__fg__text;
     cursor: default;
   }
+
+  @each $name, $color in $caliopen-palette {
+    &--#{$name} {
+      $color-hover: scale-color($color, $lightness: -50%);
+      color: $color;
+
+      &:hover,
+      &:focus {
+        background-color: $color-hover;
+        color: $co-color__fg__text--high;
+      }
+    }
+  }
 }
 
 @mixin m-link--button {
-  display: block;
+  display: inline-block;
   padding: 0 1rem;
   line-height: inherit;
 }
