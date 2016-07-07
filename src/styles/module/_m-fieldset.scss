@@ -1,0 +1,6 @@
+.m-fieldset {
+
+  &__legend {
+    margin-bottom: map-get($co-form__spacing, 'small');
+  }
+}

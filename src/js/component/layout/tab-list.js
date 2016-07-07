@@ -37,6 +37,14 @@ export const LayoutTabListComponent = {
             <i class="fa fa-user"></i>
             {{$ctrl.getContact(tab.item.contact_id).title|limitTo:200}}
           </a>
+
+          <a ng-switch-when="draft-message"
+            ui-sref="front.discussions.draft({ messageId: tab.item.message_id })"
+            class="m-tab__link"
+          >
+            <i class="fa fa-envelope-o"></i>
+            {{'messages.compose.title'|translate}}
+          </a>
         </span>
 
         <a href ng-click="$ctrl.remove(tab)" class="m-tab__button">

@@ -1,5 +1,6 @@
 const TAB_ROUTES_CONFIG = {
   thread: { route: 'front.discussions.thread', itemAssoc: { threadId: 'thread_id' } },
+  'draft-message': { route: 'front.discussions.draft', itemAssoc: { messageId: 'message_id' } },
   contact: { route: 'front.contacts.contact', itemAssoc: { contactId: 'contact_id' } },
 };
 

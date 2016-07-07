@@ -1,0 +1,43 @@
+.m-recipient {
+
+  &__m-dropdown {
+    min-width: 18rem;
+  }
+
+  &__row-protocol {
+    @include flex-grid-row;
+  }
+
+  &__col-protocol-identifier {
+    @include flex-grid-column(shrink, 0);
+  }
+
+  &__col-protocol-comparison {
+    @include flex-grid-column($gutter: 0);
+    color: $co-color__primary--higher;
+
+
+    &--high {
+      color: $co-color__privacy;
+    }
+
+    &--low {
+      color: darken($co-color__privacy, 20%);
+    }
+  }
+
+  &__col-protocol-comparison-icon {
+    margin-left: $co-component__spacing;
+    line-height: inherit;
+  }
+
+  &__row-actions {
+    @include flex-grid-row;
+    @include flex-align($x: center);
+  }
+
+  &__col-edit,
+  &__col-remove {
+    @include flex-grid-column(shrink, 0);
+  }
+}

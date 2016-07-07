@@ -1,0 +1,25 @@
+.m-ui-select {
+  background-color: $co-color__fg__back;
+
+  &__match {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  &__input {
+    @include m-link;
+    padding-right: map-get($co-form__spacing, 'small');
+    padding-left: map-get($co-form__spacing, 'medium');
+  }
+
+  &__choices {
+    background-color: $co-color__fg__back;
+    box-shadow: $co-shadow;
+  }
+
+  &__option {
+    @include m-link;
+    padding-right: map-get($co-form__spacing, 'small');
+    padding-left: map-get($co-form__spacing, 'medium');
+  }
+}

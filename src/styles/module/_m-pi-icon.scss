@@ -1,0 +1,18 @@
+.m-pi-icon {
+  color: $co-color__privacy;
+}
+
+.m-pi-progress {
+  border-radius: $co-radius;
+  background-color: $co-color__fg__back--higher;
+
+  &__progress-meter {
+    border-top-left-radius: $co-radius;
+    border-bottom-left-radius: $co-radius;
+    background-color: $co-color__privacy;
+  }
+
+  &--disabled__progress-meter {
+    background-color: $co-color__fg__text--low;
+  }
+}

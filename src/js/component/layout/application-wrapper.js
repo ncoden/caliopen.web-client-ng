@@ -1,4 +1,6 @@
 import { createSelector } from 'reselect';
+import { stateGo } from 'redux-ui-router';
+import { v1 as uuidV1 } from 'uuid';
 
 const routerSelector = createSelector(
   state => state.router,
@@ -6,12 +8,30 @@ const routerSelector = createSelector(
 );
 
 class LayoutApplicationWrapperController {
-  constructor($scope, $state, $ngRedux, ApplicationHelper) {
+  constructor($scope, $state, $ngRedux, ApplicationHelper, TabsActions, DraftMessageActions) {
     'ngInject';
+    this.$ngRedux = $ngRedux;
+    this.TabsActions = TabsActions;
+    this.DraftMessageActions = DraftMessageActions;
     $scope.$on('$destroy', $ngRedux.connect(routerSelector)(this));
     $scope.$on('$destroy', $ngRedux.connect(() => ({
       currentApplication: ApplicationHelper.getCurrentInfos().name,
     }))(this));
+  }
+
+  draftMessage() {
+    const messageId = uuidV1();
+    this.$ngRedux.dispatch((dispatch) => {
+      dispatch(this.DraftMessageActions.createDraftMessage(messageId));
+      const tab = {
+        type: 'draft-message',
+        item: {
+          message_id: messageId,
+        },
+      };
+      dispatch(this.TabsActions.selectOrAdd(tab));
+      dispatch(stateGo('front.discussions.draft', { messageId }));
+    });
   }
 }
 
@@ -23,7 +43,7 @@ export const LayoutApplicationWrapperComponent = {
       <div class="l-topbar">
         <div class="l-topbar__col-action" ng-switch="$ctrl.currentApplication">
           <a ng-switch-when="discussions"
-            ui-sref="front.discussions.create"
+            ng-click="$ctrl.draftMessage()"
             class="button"
             title="{{ 'header.menu.compose'|translate }}">
             <i class="fa fa-plus"></i>
@@ -54,6 +74,9 @@ export const LayoutApplicationWrapperComponent = {
             </div>
             <div ng-switch-when="front.discussions.thread">
               <co-thread></co-thread>
+            </div>
+            <div ng-switch-when="front.discussions.draft">
+              <co-discussion-draft></co-discussion-draft>
             </div>
             <div ng-switch-when="front.contacts">
               <co-contact-list></co-contact-list>

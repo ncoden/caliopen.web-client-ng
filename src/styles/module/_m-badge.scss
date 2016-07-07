@@ -1,4 +1,7 @@
 $m-badge__height: 1.5rem !default;
+$m-badge__font-size: ($m-badge__height / 2) !default;
+$m-badge--large__height: $co-component__height !default;
+$m-badge--large__font-size: $co-font__size !default;
 
 .m-badge {
   display: inline-block;
@@ -16,5 +19,11 @@ $m-badge__height: 1.5rem !default;
   &--low {
     background: $co-color__fg__back--lower;
     color: $co-color__fg__text--lower;
+  }
+
+  &--large {
+    height: $m-badge--large__height;
+    font-size: $m-badge--large__font-size;
+    line-height: $m-badge--large__height;
   }
 }

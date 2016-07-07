@@ -58,7 +58,7 @@
 // @include foundation-grid;
 // @include foundation-flex-grid;
 // @include foundation-typography;
-@include foundation-forms;
+// @include foundation-forms;
 @include foundation-button;
 // @include foundation-accordion;
 // @include foundation-accordion-menu;
@@ -78,7 +78,7 @@
 @include foundation-off-canvas;
 // @include foundation-orbit;
 // @include foundation-pagination;
-// @include foundation-progress-bar;
+@include foundation-progress-bar;
 // @include foundation-slider;
 // @include foundation-sticky;
 // @include foundation-reveal;
@@ -90,5 +90,5 @@
 // @include foundation-tooltip;
 // @include foundation-top-bar;
 @include foundation-visibility-classes;
-// @include foundation-float-classes;
+@include foundation-float-classes;
 // @include foundation-flex-classes;

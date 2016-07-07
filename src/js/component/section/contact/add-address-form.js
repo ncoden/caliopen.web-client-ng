@@ -44,8 +44,8 @@ export const AddAddressFormComponent = {
   template: `
     <form ng-submit="$ctrl.addContactDetail()"
       class="s-contact-detail-form" name="address_form">
-      <fieldset>
-        <legend>
+      <fieldset class="m-fieldset">
+        <legend class="m-fieldset__legend">
           <span class="m-text-list__icon fa fa-map-marker"></span>
           {{ 'contact.address_form.legend'|translate}}
         </legend>
@@ -55,23 +55,23 @@ export const AddAddressFormComponent = {
           </div>
           <div class="s-contact-detail-form__group s-contact-detail-form__group--medium">
             <label for="address_form_street" class="_sr-only">{{ 'contact.address_form.street.label'|translate }}</label>
-            <input ng-model="$ctrl.contactDetail.street" type="text" class="m-text-field m-text-field--dark s-contact__m-text-field" id="address_form_street" />
+            <input ng-model="$ctrl.contactDetail.street" type="text" class="m-text-field m-text-field--dark m-text-field--expanded m-text-field--bottom-space" id="address_form_street" />
           </div>
           <div class="s-contact-detail-form__group s-contact-detail-form__group--shrink">
             <label for="address_form_postal_code" class="_sr-only">{{ 'contact.address_form.postal_code.label'|translate }}</label>
-            <input ng-model="$ctrl.contactDetail.postal_code" type="text" class="m-text-field m-text-field--dark s-contact__m-text-field" id="address_form_postal_code" />
+            <input ng-model="$ctrl.contactDetail.postal_code" type="text" class="m-text-field m-text-field--dark m-text-field--expanded m-text-field--bottom-space" id="address_form_postal_code" />
           </div>
           <div class="s-contact-detail-form__group s-contact-detail-form__group--medium">
             <label for="address_form_city" class="_sr-only">{{ 'contact.address_form.city.label'|translate }}</label>
-            <input ng-model="$ctrl.contactDetail.city" type="text" class="m-text-field m-text-field--dark s-contact__m-text-field" id="address_form_city" />
+            <input ng-model="$ctrl.contactDetail.city" type="text" class="m-text-field m-text-field--dark m-text-field--expanded m-text-field--bottom-space" id="address_form_city" />
           </div>
           <div class="s-contact-detail-form__group s-contact-detail-form__group--medium">
             <label for="address_form_country" class="_sr-only">{{ 'contact.address_form.country.label'|translate }}</label>
-            <input ng-model="$ctrl.contactDetail.country" type="text" class="m-text-field m-text-field--dark s-contact__m-text-field" id="address_form_country" />
+            <input ng-model="$ctrl.contactDetail.country" type="text" class="m-text-field m-text-field--dark m-text-field--expanded m-text-field--bottom-space" id="address_form_country" />
           </div>
           <div class="s-contact-detail-form__group s-contact-detail-form__group--medium">
             <label for="address_form_region" class="_sr-only">{{ 'contact.address_form.region.label'|translate }}</label>
-            <input ng-model="$ctrl.contactDetail.region" type="text" class="m-text-field m-text-field--dark s-contact__m-text-field" id="address_form_region" />
+            <input ng-model="$ctrl.contactDetail.region" type="text" class="m-text-field m-text-field--dark m-text-field--expanded m-text-field--bottom-space" id="address_form_region" />
           </div>
           <div class="s-contact-detail-form__group s-contact-detail-form__group--shrink">
             <label for="address_form_type" class="_sr-only">{{ 'contact.address_form.type.label'|translate }}</label>

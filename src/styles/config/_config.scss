@@ -2,9 +2,11 @@ $co-margin: 1.5rem;
 $co-radius: .125rem;
 
 $co-font__size: 1rem;
+$co-font__size--small: .75rem;
 $co-font__line-height: 1.4rem;
 
 $co-component__height: 2.6rem;
+$co-component__spacing: .5rem;
 
 $co-form__width: (
   small:  10rem,  // 160 px
@@ -23,3 +25,5 @@ $co-form__spacing: (
   medium: .9375rem, // 15 px
   large:  1.5625rem // 25 px
 );
+
+$co-animation__box-transition: box-shadow .5s, border-color .25s ease-in-out !default;

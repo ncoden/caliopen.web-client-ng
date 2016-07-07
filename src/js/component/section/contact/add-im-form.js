@@ -44,8 +44,8 @@ export const AddImFormComponent = {
   template: `
     <form ng-submit="$ctrl.addContactDetail()"
       class="s-contact-detail-form" name="im_form">
-      <fieldset>
-        <legend>
+      <fieldset class="m-fieldset">
+        <legend class="m-fieldset__legend">
           <span class="m-text-list__icon fa fa-comment"></span>
           {{ 'contact.im_form.legend'|translate}}
         </legend>
@@ -55,14 +55,14 @@ export const AddImFormComponent = {
           </div>
           <div class="s-contact-detail-form__group s-contact-detail-form__group--medium">
             <label for="im_form_address" class="sr-only">{{ 'contact.im_form.address.label'|translate }}</label>
-            <input ng-model="$ctrl.contactDetail.address" type="email" class="m-text-field m-text-field--dark s-contact__m-text-field" id="im_form_address" required />
+            <input ng-model="$ctrl.contactDetail.address" type="email" class="m-text-field m-text-field--dark m-text-field--expanded" id="im_form_address" required />
           </div>
           <div class="s-contact-detail-form__group s-contact-detail-form__group--shrink">
             <label for="im_form_type" class="sr-only">{{ 'contact.im_form.im_type.label'|translate }}</label>
             <select ng-model="$ctrl.contactDetail.type"
               ng-options="('contact.im_type.' + imType)|translate for imType in $ctrl.imTypes"
               required="required"
-              class="m-text-field m-text-field--dark s-contact__m-text-field" id="im_form_type">
+              class="m-text-field m-text-field--dark" id="im_form_type">
             </select>
           </div>
           <div class="s-contact-detail-form__button">

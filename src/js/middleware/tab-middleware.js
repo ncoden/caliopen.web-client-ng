@@ -27,6 +27,7 @@ export function tabMiddleware(TabsActions, ApplicationHelper, $state, TabHelper)
     const actionsRequiresTabOnReloading = [
       actions.RECEIVER_CONTACT,
       actions.RECEIVER_THREAD,
+      actions.CREATE_DRAFT_MESSAGE,
     ];
     if (actionsRequiresTabOnReloading.indexOf(action.type) !== -1
       && nextState.tabReducer.tabs.length === 0) {
@@ -39,7 +40,6 @@ export function tabMiddleware(TabsActions, ApplicationHelper, $state, TabHelper)
             },
           }));
           break;
-        default:
         case actions.RECEIVER_THREAD:
           store.dispatch(TabsActions.addTab({
             type: 'thread',
@@ -47,6 +47,8 @@ export function tabMiddleware(TabsActions, ApplicationHelper, $state, TabHelper)
               thread_id: action.thread.thread_id,
             },
           }));
+          break;
+        default:
           break;
       }
     }

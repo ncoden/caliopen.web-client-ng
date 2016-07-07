@@ -4,3 +4,14 @@
     outline: none;
   }
 }
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+legend {
+  max-width: 100%;
+  margin: 0;
+}
