@@ -35,20 +35,6 @@ export const ContactListContactComponent = {
         {{ $ctrl.contact.title }}
       </div>
       <div class="s-contact-list__col-datas">
-        <span class="m-text-line">
-          {{ $ctrl.contact.emails[0] }}
-        </span>
-        <span class="dropdown">
-          <span class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="caret"></span>
-          </span>
-          <ul class="dropdown-menu pull-right">
-            <li ng-repeat="email in $ctrl.contact.emails">
-              <i class="fa fa-envelope"></i>
-              {{email.address}}
-            </li>
-          </ul>
-        </span>
       </div>
     </div>`,
   /* eslint-enable max-len */
