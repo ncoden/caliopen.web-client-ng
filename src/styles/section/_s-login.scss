@@ -1,3 +1,5 @@
+$s-login__width: 300px;
+
 .s-login {
   position: absolute;
   top: 50%;
@@ -5,9 +7,14 @@
   left: 0;
   margin-top: -150px;
 
+  &__callout {
+    max-width: $s-login__width;
+    margin: 0 auto 1rem;
+  }
+
   &__form {
     display: block;
-    max-width: 300px;
+    max-width: $s-login__width;
     margin: auto;
   }
 
