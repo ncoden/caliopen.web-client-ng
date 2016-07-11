@@ -1,6 +1,6 @@
-import * as action from './action-types.js';
+import * as actions from './action-types.js';
 
-export class ContactsActions {
+export default class ContactsActions {
   constructor(ContactRepository) {
     'ngInject';
     this.ContactRepository = ContactRepository;
@@ -8,14 +8,14 @@ export class ContactsActions {
 
   requestContact(contactId) {
     return {
-      type: action.REQUEST_CONTACT,
+      type: actions.REQUEST_CONTACT,
       contactId,
     };
   }
 
   receiveContact(contactId, json) {
     return {
-      type: action.RECEIVER_CONTACT,
+      type: actions.RECEIVER_CONTACT,
       contactId,
       contact: json.contacts,
       receiveAt: Date.now(),
@@ -24,13 +24,13 @@ export class ContactsActions {
 
   requestContacts() {
     return {
-      type: action.REQUEST_CONTACTS,
+      type: actions.REQUEST_CONTACTS,
     };
   }
 
   receiveContacts(json) {
     return {
-      type: action.RECEIVER_CONTACTS,
+      type: actions.RECEIVER_CONTACTS,
       contacts: json.contacts,
       total: json.total,
       receiveAt: Date.now(),
@@ -57,14 +57,14 @@ export class ContactsActions {
 
   loadMoreContacts() {
     return {
-      type: action.LOAD_MORE_CONTACTS,
+      type: actions.LOAD_MORE_CONTACTS,
     };
   }
 
   addContactDetail(contactId, contactDetailType, contactDetail) {
     return dispatch => {
       dispatch({
-        type: action.ADD_CONTACT_DETAIL,
+        type: actions.ADD_CONTACT_DETAIL,
         contactId,
         contactDetailType,
         contactDetail,
@@ -79,7 +79,7 @@ export class ContactsActions {
 
   addContactDetailSucceeded(contactId, contactDetailType, contactDetail) {
     return {
-      type: action.ADD_CONTACT_DETAIL_SUCCEEDED,
+      type: actions.ADD_CONTACT_DETAIL_SUCCEEDED,
       contactId,
       contactDetailType,
       contactDetail,
@@ -88,7 +88,7 @@ export class ContactsActions {
 
   addContactDetailFailed(contactId, contactDetailType, errors) {
     return {
-      type: action.ADD_CONTACT_DETAIL_FAILED,
+      type: actions.ADD_CONTACT_DETAIL_FAILED,
       contactId,
       contactDetailType,
       errors,
@@ -98,7 +98,7 @@ export class ContactsActions {
   deleteContactDetail(contactDetailType, contactId, contactDetail) {
     return dispatch => {
       dispatch({
-        type: action.DELETE_CONTACT_DETAIL,
+        type: actions.DELETE_CONTACT_DETAIL,
         contactDetailType,
         contactDetail,
       });
@@ -113,7 +113,7 @@ export class ContactsActions {
 
   deleteContactDetailSucceeded(contactId, contactDetailType, contactDetail) {
     return {
-      type: action.DELETE_CONTACT_DETAIL_SUCCEEDED,
+      type: actions.DELETE_CONTACT_DETAIL_SUCCEEDED,
       contactId,
       contactDetailType,
       contactDetail,
@@ -122,7 +122,7 @@ export class ContactsActions {
 
   deleteContactDetailFailed(contactId, contactDetailType, errors) {
     return {
-      type: action.DELETE_CONTACT_DETAIL_FAILED,
+      type: actions.DELETE_CONTACT_DETAIL_FAILED,
       contactId,
       contactDetailType,
       errors,
@@ -132,14 +132,14 @@ export class ContactsActions {
   fetchProtocols(contactId, source) {
     return dispatch => {
       dispatch({
-        type: action.REQUEST_CONTACT_PROTOCOLS,
+        type: actions.REQUEST_CONTACT_PROTOCOLS,
         contactId,
       });
 
       return this.ContactRepository
         .findProtocolsByContactId(contactId, source)
         .then(({ protocols }) => dispatch({
-          type: action.RECEIVER_CONTACT_PROTOCOLS,
+          type: actions.RECEIVER_CONTACT_PROTOCOLS,
           contactId,
           protocols,
         }));

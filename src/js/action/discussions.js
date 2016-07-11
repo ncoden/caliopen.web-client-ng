@@ -1,6 +1,6 @@
-import * as action from './action-types.js';
+import * as actions from './action-types.js';
 
-export class DiscussionsActions {
+export default class DiscussionsActions {
   constructor(ThreadRepository, MessageRepository) {
     'ngInject';
     this.ThreadRepository = ThreadRepository;
@@ -9,14 +9,14 @@ export class DiscussionsActions {
 
   requestMessages(threadId) {
     return {
-      type: action.REQUEST_MESSAGES,
+      type: actions.REQUEST_MESSAGES,
       threadId,
     };
   }
 
   receiveMessages(threadId, json) {
     return {
-      type: action.RECEIVER_MESSAGES,
+      type: actions.RECEIVER_MESSAGES,
       threadId,
       messages: json.messages,
       total: json.total,
@@ -26,14 +26,14 @@ export class DiscussionsActions {
 
   requestThread(threadId) {
     return {
-      type: action.REQUEST_THREAD,
+      type: actions.REQUEST_THREAD,
       threadId,
     };
   }
 
   receiveThread(threadId, json) {
     return {
-      type: action.RECEIVER_THREAD,
+      type: actions.RECEIVER_THREAD,
       threadId,
       thread: json.thread,
       receiveAt: Date.now(),
@@ -42,13 +42,13 @@ export class DiscussionsActions {
 
   requestThreads() {
     return {
-      type: action.REQUEST_THREADS,
+      type: actions.REQUEST_THREADS,
     };
   }
 
   receiveThreads(json) {
     return {
-      type: action.RECEIVER_THREADS,
+      type: actions.RECEIVER_THREADS,
       threads: json.threads,
       total: json.total,
       receiveAt: Date.now(),
@@ -66,7 +66,7 @@ export class DiscussionsActions {
 
   loadMoreThreads() {
     return {
-      type: action.LOAD_MORE_THREADS,
+      type: actions.LOAD_MORE_THREADS,
     };
   }
 

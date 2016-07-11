@@ -120,7 +120,7 @@ export function getAvailableContactDetails(contact) {
   }
 }
 
-export function contactReducer(state = {
+export default function contactReducer(state = {
   isFetching: false,
   didInvalidate: false,
   contacts: [],

@@ -1,29 +1,29 @@
-import * as action from './action-types.js';
+import * as actions from './action-types.js';
 
-export class TabsActions {
+export default class TabsActions {
   requestTabs() {
     return {
-      type: action.REQUEST_TABS,
+      type: actions.REQUEST_TABS,
     };
   }
 
   addTab(tab) {
     return {
-      type: action.ADD_TAB,
+      type: actions.ADD_TAB,
       tab,
     };
   }
 
   selectOrAdd(tab) {
     return {
-      type: action.SELECT_OR_ADD_TAB,
+      type: actions.SELECT_OR_ADD_TAB,
       tab,
     };
   }
 
   removeTab(tab) {
     return {
-      type: action.REMOVE_TAB,
+      type: actions.REMOVE_TAB,
       tab,
     };
   }

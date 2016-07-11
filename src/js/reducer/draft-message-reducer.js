@@ -23,7 +23,7 @@ function draftMessagesByIdReducer(state = {}, action = {}) {
   });
 }
 
-export function draftMessageReducer(state = {
+export default function draftMessageReducer(state = {
   draftMessagesById: {},
 }, action = {}) {
   switch (action.type) {
