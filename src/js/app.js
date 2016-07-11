@@ -1,7 +1,7 @@
 // jQuery must be loaded before angular
 import 'jquery';
 import angular from 'angular';
-import 'jquery-ui/slider';
+import 'jquery-ui/ui/widgets/slider';
 import 'foundation-sites';
 import 'babel-polyfill';
 import ngSanitize from 'angular-sanitize';
