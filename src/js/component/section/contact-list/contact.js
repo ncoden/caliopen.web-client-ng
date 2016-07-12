@@ -15,7 +15,7 @@ export class ContactListContactController {
           contact_id: this.contact.contact_id,
         },
       }));
-      dispatch(stateGo('front.contacts.contact', { contactId: this.contact.contact_id }));
+      dispatch(stateGo('front.contact', { contactId: this.contact.contact_id }));
     });
   }
 }

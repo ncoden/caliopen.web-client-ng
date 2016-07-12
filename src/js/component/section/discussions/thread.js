@@ -28,7 +28,7 @@ export class DiscussionsThreadController {
         },
       };
       dispatch(this.TabsActions.selectOrAdd(tab));
-      dispatch(stateGo('front.discussions.thread', { threadId: this.thread.thread_id }));
+      dispatch(stateGo('front.thread', { threadId: this.thread.thread_id }));
     });
   }
 }

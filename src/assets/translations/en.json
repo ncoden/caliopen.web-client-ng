@@ -33,6 +33,11 @@
       "moto": "CaliOpen, Be Good"
     }
   },
+  "application_switcher": {
+    "action": {
+      "choose": "Choose an application"
+    }
+  },
   "messages": {
     "index": {
       "title": "Messages",

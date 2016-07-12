@@ -17,7 +17,9 @@ describe('Contact', () => {
   it('list', () => {
     browser.get('/');
     switchApplication.switch('Contacts');
-    expect(element(by.css('co-layout-tab-list')).getText()).toContain('Contacts');
+    const appSwitcher = element(by.css('co-layout-navigation-application-switcher'));
+    expect(appSwitcher.element(by.cssContainingText('.m-tab__link', 'Discussions')).isPresent())
+      .toBe(true);
   });
 
   describe('contact card', () => {
@@ -25,7 +27,11 @@ describe('Contact', () => {
       browser.get('/');
       switchApplication.switch('Contacts');
       element(by.cssContainingText('co-contact-list-contact', 'zoidberg')).click();
-      expect(element(by.css('co-layout-tab-list')).getText()).toContain('Contacts');
+      expect(
+        element(by.cssContainingText('co-layout-navigation-tab-list .m-tab__link', 'zoidberg'))
+          .isPresent()
+      ).toBe(true);
+      expect(element(by.cssContainingText('co-contact .m-contact-card__title', 'zoidberg')).isPresent()).toBe(true);
     });
 
     describe('edit contact details', () => {

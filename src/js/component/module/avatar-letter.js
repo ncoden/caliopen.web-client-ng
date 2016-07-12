@@ -1,15 +1,15 @@
-export class avatarLetterController {
+export class AvatarLetterController {
   constructor(ContactHelper) {
     'ngInject';
     this.contactLetterStylesheetClass = ContactHelper.getContactStylesheetClass(this.contact);
   }
 }
 
-export const avatarLetterComponent = {
+export const AvatarLetterComponent = {
   bindings: {
     contact: '<',
   },
-  controller: avatarLetterController,
+  controller: AvatarLetterController,
   template: `
     <div class="m-avatar m-avatar--small">
       <div

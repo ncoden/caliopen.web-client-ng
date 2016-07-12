@@ -21,15 +21,15 @@ export function RouterConfig($stateProvider, $urlRouterProvider) {
         '@': uiView,
       },
     })
-    .state('front.discussions.thread', {
-      url: 'threads/{threadId}',
+    .state('front.thread', {
+      url: '/threads/{threadId}',
       views: {
         '@': uiView,
       },
     })
     // TODO: API needs to support draft
-    .state('front.discussions.draft', {
-      url: 'thread-draft/{messageId}',
+    .state('front.draft', {
+      url: '/thread-draft/{messageId}',
       views: {
         '@': uiView,
       },
@@ -40,8 +40,8 @@ export function RouterConfig($stateProvider, $urlRouterProvider) {
         '@': uiView,
       },
     })
-    .state('front.contacts.contact', {
-      url: '/{contactId}',
+    .state('front.contact', {
+      url: '/contacts/{contactId}',
       views: {
         '@': uiView,
       },

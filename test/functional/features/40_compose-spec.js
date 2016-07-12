@@ -1,5 +1,4 @@
 const userUtil = require('../utils/user-util.js');
-const switchApplication = require('../utils/switch-application.js');
 const isTestEnv = process.env.NODE_ENV === 'test';
 
 describe('Compose', () => {
@@ -17,9 +16,9 @@ describe('Compose', () => {
   describe('new message', () => {
     it('should render a form', () => {
       browser.get('/');
-      switchApplication.switch('Discussions');
       element(by.cssContainingText('.l-topbar__col-action a', 'Compose')).click();
-      expect(element(by.css('co-layout-tab-list')).getText()).toContain('Compose Message');
+      expect(element(by.css('co-layout-navigation-tab-list')).getText())
+        .toContain('Compose Message');
       expect(element(by.css('co-discussion-draft co-recipient-list')).isPresent()).toBe(true);
       expect(element(by.css('co-discussion-draft .s-discussion-draft__body-input')).isPresent())
         .toBe(true);
@@ -28,7 +27,6 @@ describe('Compose', () => {
     it('should add a known recipient', () => {
       const searchTerms = 'bender';
       browser.get('/');
-      switchApplication.switch('Discussions');
       element(by.cssContainingText('.l-topbar__col-action a', 'Compose')).click();
       element(by.css('co-recipient-list .m-recipient-list__search-input'))
         .sendKeys(searchTerms, protractor.Key.ENTER);
@@ -40,7 +38,6 @@ describe('Compose', () => {
     it('should change known recipient\'s protocol', () => {
       const contact = 'bender';
       browser.get('/');
-      switchApplication.switch('Discussions');
       element(by.cssContainingText('.l-topbar__col-action a', 'Compose')).click();
       element(by.css('co-recipient-list .m-recipient-list__search-input'))
         .sendKeys(contact, protractor.Key.ENTER);
@@ -63,7 +60,6 @@ describe('Compose', () => {
     it('should add an unknown recipient', () => {
       const address = 'foo@bar.tld';
       browser.get('/');
-      switchApplication.switch('Discussions');
       element(by.cssContainingText('.l-topbar__col-action a', 'Compose')).click();
       element(by.css('co-recipient-list .m-recipient-list__search-input'))
         .sendKeys(address, protractor.Key.ENTER);
@@ -76,7 +72,6 @@ describe('Compose', () => {
     it('should change unknown recipient protocol', () => {
       const address = 'foo@bar.tld';
       browser.get('/');
-      switchApplication.switch('Discussions');
       element(by.cssContainingText('.l-topbar__col-action a', 'Compose')).click();
       element(by.css('co-recipient-list .m-recipient-list__search-input'))
         .sendKeys(address, protractor.Key.ENTER);
@@ -90,7 +85,6 @@ describe('Compose', () => {
 
     it('should remove a recipient', () => {
       browser.get('/');
-      switchApplication.switch('Discussions');
       element(by.cssContainingText('.l-topbar__col-action a', 'Compose')).click();
       element(by.css('co-recipient-list .m-recipient-list__search-input'))
         .sendKeys('bender', protractor.Key.ENTER);

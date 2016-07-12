@@ -3,19 +3,32 @@ export const ApplicationRoutes = {
   contacts: 'front.contacts',
 };
 
+const APPLICATION_ICONS = {
+  discussions: 'fa-comments',
+  contacts: 'fa-users',
+};
+
 export class ApplicationHelper {
-  constructor($state) {
-    'ngInject';
-    this.$state = $state;
-  }
-
-  getCurrentInfos() {
-    const name = Object.keys(ApplicationRoutes)
-      .find(currentName => this.$state.includes(ApplicationRoutes[currentName]));
-
+  getInfos(name) {
     return ({
       name,
       route: ApplicationRoutes[name],
+      icon: APPLICATION_ICONS[name],
     });
+  }
+
+  getInfosFromRoute(route) {
+    const applicationName = Object.keys(ApplicationRoutes)
+      .find((name) => ApplicationRoutes[name] === route);
+
+    if (!!applicationName) {
+      return this.getInfos(applicationName);
+    }
+
+    return undefined;
+  }
+
+  getApplications() {
+    return Object.keys(ApplicationRoutes).map((applicationName) => this.getInfos(applicationName));
   }
 }

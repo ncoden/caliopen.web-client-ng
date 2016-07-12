@@ -5,13 +5,28 @@ const userSelector = createSelector(
   user => ({ user })
 );
 
+const applicationSelector = createSelector(
+  (state, props) => props.ApplicationHelper.getInfos(state.applicationReducer.applicationName),
+  (currentApplication) => ({ currentApplication })
+);
+
 class NavigationAltController {
   constructor($scope, $ngRedux, ApplicationHelper) {
     'ngInject';
-    $scope.$on('$destroy', $ngRedux.connect(() => ({
-      currentApplication: ApplicationHelper.getCurrentInfos().name,
+    this.$ngRedux = $ngRedux;
+    this.ApplicationHelper = ApplicationHelper;
+    $scope.$on('$destroy', $ngRedux.connect((state) => applicationSelector(state, {
+      ApplicationHelper,
     }))(this));
     $scope.$on('$destroy', $ngRedux.connect(userSelector)(this));
+  }
+
+  $onInit() {
+    this.applications = this.ApplicationHelper.getApplications();
+  }
+
+  isCurrentApplication(application) {
+    return angular.equals(application, this.currentApplication);
   }
 }
 
@@ -30,22 +45,15 @@ export const LayoutNavigationAltComponent = {
         </div>
       </div>
       <ul class="m-menu">
-        <li class="m-menu__item m-menu--vertical__item">
-          <a ui-sref="front.discussions"
+        <li ng-repeat="application in $ctrl.applications"
+            class="m-menu__item m-menu--vertical__item"
+        >
+          <a ui-sref="{{ application.route }}"
             class="m-menu__item-content m-link"
-            ng-class="{'is-active': ($ctrl.currentApplication === 'discussions')}"
+            ng-class="{'is-active': $ctrl.isCurrentApplication(application)}"
           >
             <i class="fa fa-envelope"></i>
-            {{ 'header.menu.discussions'|translate}}
-          </a>
-        </li>
-        <li class="m-menu__item m-menu--vertical__item">
-          <a ui-sref="front.contacts"
-            class="m-menu__item-content m-link"
-            ng-class="{'is-active': ($ctrl.currentApplication === 'contacts')}"
-          >
-            <i class="fa fa-users"></i>
-            {{ 'header.menu.contacts'|translate}}
+            {{ ('header.menu.' + application.name)|translate }}
           </a>
         </li>
       </ul>

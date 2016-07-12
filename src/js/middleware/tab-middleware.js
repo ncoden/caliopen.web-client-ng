@@ -17,7 +17,8 @@ export function tabMiddleware(TabsActions, ApplicationHelper, $state, TabHelper)
     if (action.type === actions.REMOVE_TAB) {
       const { route, params } = TabHelper.getRouteAndParamsForTab(action.tab);
       if ($state.is(route, params)) {
-        store.dispatch(stateGo(ApplicationHelper.getCurrentInfos().route));
+        const applicationName = store.getState().applicationReducer.applicationName;
+        store.dispatch(stateGo(ApplicationHelper.getInfos(applicationName).route));
       }
     }
 

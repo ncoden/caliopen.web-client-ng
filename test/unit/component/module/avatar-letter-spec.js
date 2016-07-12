@@ -1,13 +1,13 @@
 // eslint-disable-next-line max-len
-import { avatarLetterController } from '../../../../src/js/component/module/avatar-letter.js';
+import { AvatarLetterController } from '../../../../src/js/component/module/avatar-letter.js';
 
 describe('component AvatarLetter', () => {
   let getController;
 
   beforeEach(() => {
     angular.module('caliopenApp-test', ['caliopenApp'])
-      .controller('avatarLetterController', avatarLetterController);
-    angular.mock.module('caliopenApp-test', ($provide, $translateProvider) => {
+      .controller('AvatarLetterController', AvatarLetterController);
+    angular.mock.module('caliopenApp-test', ($provide) => {
       $provide.decorator('$httpBackend', ($delegate, ApiUrl) => {
         $delegate.whenRoute('GET', `${ApiUrl}/me`).respond(200, { });
 
@@ -18,7 +18,7 @@ describe('component AvatarLetter', () => {
 
   beforeEach(inject(($controller, ContactHelper) => {
     getController = (bindToController = {}) =>
-      $controller('avatarLetterController', { ContactHelper }, bindToController);
+      $controller('AvatarLetterController', { ContactHelper }, bindToController);
   }));
 
   it('has css class', () => {

@@ -40,6 +40,7 @@
   margin: 0;
   padding: 0;
 
+  &__item--is-active { color: $co-color__fg__text--high; }
   &__item-content {
     display: block;
     padding: 0 1rem;

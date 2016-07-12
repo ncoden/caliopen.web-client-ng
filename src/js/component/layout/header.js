@@ -32,11 +32,6 @@ export const LayoutHeaderComponent = {
           </a>
         </div>
 
-        <div class="l-header__application-switcher">
-          <co-layout-application-switcher ng-if="$ctrl.session.isAuthenticated">
-          </co-layout-application-switcher>
-        </div>
-
         <div class="l-header__search-toggler show-for-small-only">
           <button
             ng-click="$ctrl.searchAsDropdown = !$ctrl.searchAsDropdown"

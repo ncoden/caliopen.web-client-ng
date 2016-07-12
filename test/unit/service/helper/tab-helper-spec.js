@@ -9,7 +9,7 @@ describe('Service Helper TabHelper', () => {
         type: 'thread',
         item: { thread_id: '$p3ci4l' },
       })).toEqual({
-        route: 'front.discussions.thread',
+        route: 'front.thread',
         params: { threadId: '$p3ci4l' },
       });
     });

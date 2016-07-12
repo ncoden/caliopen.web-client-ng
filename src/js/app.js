@@ -39,6 +39,7 @@ import { RouterConfig } from './config/router.js';
 import { TranslateConfig } from './config/translate.js';
 import { BaseUrlFactory, ApiUrlFactory, ApiInterceptorConfig } from './config/server.js';
 import { uiSelectCfg } from './config/ui-select.js';
+import { applicationMiddleware } from './middleware/application-middleware.js';
 import { contactMiddleware } from './middleware/contact-middleware.js';
 import { tabMiddleware } from './middleware/tab-middleware.js';
 import { threadMiddleware } from './middleware/thread-middleware.js';
@@ -54,6 +55,7 @@ app
   .config(uiSelectCfg)
   .factory('BaseUrl', BaseUrlFactory)
   .factory('ApiUrl', ApiUrlFactory)
+  .factory('applicationMiddleware', applicationMiddleware)
   .factory('contactMiddleware', contactMiddleware)
   .factory('tabMiddleware', tabMiddleware)
   .factory('threadMiddleware', threadMiddleware)
@@ -71,6 +73,7 @@ app
   ;
 
 // services
+import ApplicationActions from './action/application.js';
 import ContactsActions from './action/contacts.js';
 import DiscussionsActions from './action/discussions.js';
 import DraftMessageActions from './action/draft-message.js';
@@ -86,6 +89,7 @@ import { ThreadRepository } from './service/repository/thread.js';
 import { UserRepository } from './service/repository/user.js';
 
 app
+  .service('ApplicationActions', ApplicationActions)
   .service('ContactsActions', ContactsActions)
   .service('DiscussionsActions', DiscussionsActions)
   .service('DraftMessageActions', DraftMessageActions)
@@ -112,7 +116,6 @@ app
 
 // components
 // -- layout
-import { LayoutApplicationSwitcherComponent } from './component/layout/header/application-switcher.js'; // eslint-disable-line max-len
 import { LayoutSearchFieldComponent } from './component/layout/header/search-field.js';
 import { LayoutUserMenuComponent } from './component/layout/header/user-menu.js';
 import { LayoutNavigationAltTabListComponent } from './component/layout/navigation-alt/tab-list.js';
@@ -120,11 +123,12 @@ import { LayoutApplicationWrapperComponent } from './component/layout/applicatio
 import { LayoutFlashMessageListComponent } from './component/layout/flash-message-list.js';
 import { LayoutHeaderComponent } from './component/layout/header.js';
 import { LayoutImportanceLevelSliderComponent } from './component/layout/importance-level-slider.js'; // eslint-disable-line max-len
+import { LayoutNavigationApplicationSwitcherComponent } from './component/layout/navigation/application-switcher.js'; // eslint-disable-line max-len
+import { LayoutNavigationTabListComponent } from './component/layout/navigation/tab-list.js';
 import { LayoutNavigationAltComponent } from './component/layout/navigation-alt.js';
 import { LayoutPrivacyIndexSliderComponent } from './component/layout/privacy-index-slider.js';
-import { LayoutTabListComponent } from './component/layout/tab-list.js';
 // -- module
-import { avatarLetterComponent } from './component/module/avatar-letter.js';
+import { AvatarLetterComponent } from './component/module/avatar-letter.js';
 import { RecipientListComponent } from './component/module/recipient-list.js';
 import { RecipientComponent } from './component/module/recipient-list/recipient.js';
 // -- section
@@ -143,7 +147,6 @@ import { ThreadMessageComponent } from './component/section/thread/message.js';
 
 app
   // -- layout
-  .component('coLayoutApplicationSwitcher', LayoutApplicationSwitcherComponent)
   .component('coLayoutSearchField', LayoutSearchFieldComponent)
   .component('coLayoutUserMenu', LayoutUserMenuComponent)
   .component('coLayoutNavigationAltTabList', LayoutNavigationAltTabListComponent)
@@ -151,11 +154,12 @@ app
   .component('coLayoutFlashMessageList', LayoutFlashMessageListComponent)
   .component('coLayoutHeader', LayoutHeaderComponent)
   .component('coLayoutImportanceLevelSlider', LayoutImportanceLevelSliderComponent)
+  .component('coLayoutNavigationApplicationSwitcher', LayoutNavigationApplicationSwitcherComponent)
+  .component('coLayoutNavigationTabList', LayoutNavigationTabListComponent)
   .component('coLayoutNavigationAlt', LayoutNavigationAltComponent)
   .component('coLayoutPrivacyIndexSlider', LayoutPrivacyIndexSliderComponent)
-  .component('coLayoutTabList', LayoutTabListComponent)
   // -- module
-  .component('coAvatarLetter', avatarLetterComponent)
+  .component('coAvatarLetter', AvatarLetterComponent)
   .component('coRecipientList', RecipientListComponent)
   .component('coRecipient', RecipientComponent)
   // -- section

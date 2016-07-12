@@ -2,6 +2,13 @@ import { createSelector } from 'reselect';
 import { stateGo } from 'redux-ui-router';
 import { v1 as uuidV1 } from 'uuid';
 
+const applicationSelector = createSelector(
+  state => state.applicationReducer,
+  (applicationReducer) => ({
+    applicationName: applicationReducer.applicationName,
+  })
+);
+
 const routerSelector = createSelector(
   state => state.router,
   payload => ({ currentStateName: payload.currentState.name })
@@ -14,9 +21,7 @@ class LayoutApplicationWrapperController {
     this.TabsActions = TabsActions;
     this.DraftMessageActions = DraftMessageActions;
     $scope.$on('$destroy', $ngRedux.connect(routerSelector)(this));
-    $scope.$on('$destroy', $ngRedux.connect(() => ({
-      currentApplication: ApplicationHelper.getCurrentInfos().name,
-    }))(this));
+    $scope.$on('$destroy', $ngRedux.connect(applicationSelector)(this));
   }
 
   draftMessage() {
@@ -30,7 +35,7 @@ class LayoutApplicationWrapperController {
         },
       };
       dispatch(this.TabsActions.selectOrAdd(tab));
-      dispatch(stateGo('front.discussions.draft', { messageId }));
+      dispatch(stateGo('front.draft', { messageId }));
     });
   }
 }
@@ -41,7 +46,7 @@ export const LayoutApplicationWrapperComponent = {
   template: `
     <section role="main">
       <div class="l-topbar">
-        <div class="l-topbar__col-action" ng-switch="$ctrl.currentApplication">
+        <div class="l-topbar__col-action" ng-switch="$ctrl.applicationName">
           <a ng-switch-when="discussions"
             ng-click="$ctrl.draftMessage()"
             class="button"
@@ -50,7 +55,7 @@ export const LayoutApplicationWrapperComponent = {
             {{ 'header.menu.compose'|translate }}
           </a>
           <a ng-switch-when="contacts"
-            ui-sref="front.contacts.create"
+            ui-sref="front.create"
             class="button"
             title="{{ 'header.menu.compose'|translate }}">
             <i class="fa fa-plus"></i>
@@ -67,21 +72,21 @@ export const LayoutApplicationWrapperComponent = {
           <co-layout-importance-level-slider></co-layout-importance-level-slider>
         </div>
         <div class="l-body__col-content">
-          <co-layout-tab-list></co-layout-tab-list>
+          <co-layout-navigation-tab-list></co-layout-navigation-tab-list>
           <div class="l-body__content" ng-switch="$ctrl.currentStateName">
             <div ng-switch-when="front.discussions">
               <co-discussions></co-discussions>
             </div>
-            <div ng-switch-when="front.discussions.thread">
+            <div ng-switch-when="front.thread">
               <co-thread></co-thread>
             </div>
-            <div ng-switch-when="front.discussions.draft">
+            <div ng-switch-when="front.draft">
               <co-discussion-draft></co-discussion-draft>
             </div>
             <div ng-switch-when="front.contacts">
               <co-contact-list></co-contact-list>
             </div>
-            <div ng-switch-when="front.contacts.contact">
+            <div ng-switch-when="front.contact">
               <co-contact></co-contact>
             </div>
           </div>
