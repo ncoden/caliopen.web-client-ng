@@ -16,6 +16,8 @@ function tabsReducer(state = [], action = {}) {
   }
 }
 
-export const tabReducer = combineReducers({
+const tabReducer = combineReducers({
   tabs: tabsReducer,
 });
+
+export default tabReducer;

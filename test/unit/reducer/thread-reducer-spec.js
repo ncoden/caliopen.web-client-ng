@@ -1,4 +1,4 @@
-import { threadReducer } from '../../../src/js/reducer/thread-reducer.js';
+import threadReducer from '../../../src/js/reducer/thread-reducer.js';
 import * as actions from '../../../src/js/action/action-types.js';
 
 describe('Reducer Thread Reducer', () => {
@@ -50,14 +50,14 @@ describe('Reducer Thread Reducer', () => {
       type: actions.RECEIVER_THREAD,
       thread: { thread_id: 2, name: 'barbar' },
     };
-    const state = threadReducer(Object.assign({}, initialState, {
+    const state = threadReducer({ ...initialState,
       threadsById: {
         1: { thread_id: 1, name: 'foo' },
         2: { thread_id: 2, name: 'bar' },
         4: { thread_id: 4, name: 'baz' },
       },
       threads: [1, 2, 4],
-    }), action);
+    }, action);
     expect(state.threadsById).toEqual({
       1: { thread_id: 1, name: 'foo' },
       2: { thread_id: 2, name: 'barbar' },

@@ -1,6 +1,6 @@
-import * as action from './action-types.js';
+import * as actions from './action-types.js';
 
-export class UserActions {
+export default class UserActions {
 
   constructor(UserRepository) {
     'ngInject';
@@ -9,7 +9,7 @@ export class UserActions {
 
   requestUser() {
     return {
-      type: action.REQUEST_USER,
+      type: actions.REQUEST_USER,
     };
   }
 
@@ -23,7 +23,7 @@ export class UserActions {
 
   receiveUser(user) {
     return {
-      type: action.RECEIVE_USER,
+      type: actions.RECEIVE_USER,
       user,
     };
   }

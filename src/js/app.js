@@ -71,11 +71,11 @@ app
   ;
 
 // services
-import { ContactsActions } from './action/contacts.js';
-import { DiscussionsActions } from './action/discussions.js';
-import { DraftMessageActions } from './action/draft-message.js';
-import { TabsActions } from './action/tabs.js';
-import { UserActions } from './action/user.js';
+import ContactsActions from './action/contacts.js';
+import DiscussionsActions from './action/discussions.js';
+import DraftMessageActions from './action/draft-message.js';
+import TabsActions from './action/tabs.js';
+import UserActions from './action/user.js';
 import { ApplicationHelper } from './service/helper/application-helper.js';
 import { ContactHelper } from './service/helper/contact-helper.js';
 import { FlashMessageHelper } from './service/helper/flash-message-helper.js';

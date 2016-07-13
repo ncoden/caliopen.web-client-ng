@@ -37,7 +37,7 @@ export function getNextOffset(state) {
   return state.threads.length;
 }
 
-export function threadReducer(state = {
+export default function threadReducer(state = {
   threadsById: {},
   messagesByThreadsId: {},
   isFetching: false,
