@@ -33,7 +33,6 @@ $l-header__margin: ($co-margin / 2) !default;
     height: $co-font__line-height;
   }
 
-  &__application-switcher,
   &__search,
   &__user {
     display: none;
@@ -64,11 +63,9 @@ $l-header__margin: ($co-margin / 2) !default;
 
   @include breakpoint(medium) {
     &__brand { @include flex-grid-column(shrink); }
-    &__application-switcher { @include flex-grid-column(shrink); }
     &__search { @include flex-grid-column; }
     &__user { @include flex-grid-column(shrink); }
 
-    &__application-switcher,
     &__search,
     &__user {
       display: block;

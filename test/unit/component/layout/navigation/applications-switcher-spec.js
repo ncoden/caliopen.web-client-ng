@@ -1,12 +1,12 @@
 // eslint-disable-next-line max-len
-import { LayoutApplicationSwitcherController } from '../../../../../src/js/component/layout/header/application-switcher.js';
+import { ApplicationSwitcherController } from '../../../../../src/js/component/layout/navigation/application-switcher.js';
 
-describe('component Layout Application Switcher', () => {
+describe('component Layout Navigation Application Switcher', () => {
   let getController;
 
   beforeEach(() => {
     angular.module('caliopenApp-test', ['caliopenApp'])
-      .controller('LayoutApplicationSwitcherController', LayoutApplicationSwitcherController);
+      .controller('ApplicationSwitcherController', ApplicationSwitcherController);
     angular.mock.module('caliopenApp-test', ($provide, $translateProvider) => {
       $translateProvider.translations('en', {});
       $translateProvider.preferredLanguage('en');
@@ -19,11 +19,15 @@ describe('component Layout Application Switcher', () => {
   });
 
   beforeEach(inject(($controller, $ngRedux) => {
-    getController = (scope, bindToController = {}) =>
-      $controller(
-        'LayoutApplicationSwitcherController',
+    getController = (scope, bindToController = {}) => {
+      const ctrl = $controller(
+        'ApplicationSwitcherController',
         { $scope: scope, $ngRedux },
         bindToController);
+      ctrl.$onInit();
+
+      return ctrl;
+    };
   }));
 
   it('application is set', inject(($rootScope) => {
@@ -31,6 +35,14 @@ describe('component Layout Application Switcher', () => {
     const ctrl = getController(scope, { });
     $rootScope.$digest();
 
-    expect(ctrl.currentApplication).toEqual('discussions');
+    expect(ctrl.currentApplication.name).toEqual('discussions');
+  }));
+
+  it('applications is set', inject(($rootScope) => {
+    const scope = $rootScope.$new();
+    const ctrl = getController(scope, { });
+    $rootScope.$digest();
+
+    expect(ctrl.applications.length).toEqual(2);
   }));
 });

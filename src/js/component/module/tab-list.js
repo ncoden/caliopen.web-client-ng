@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import { stateGo } from 'redux-ui-router';
 
 const tabsSelector = createSelector(
   state => state.tabReducer.tabs,
@@ -12,10 +11,14 @@ const userSelector = createSelector(
   user => ({ user })
 );
 
-const APPLICATION_ICONS = {
-  discussions: 'fa-comments',
-  contacts: 'fa-users',
-};
+const applicationSelector = createSelector(
+  [
+    (state, props) => props.ApplicationHelper.getInfos(state.applicationReducer.applicationName),
+  ],
+  (applicationInfos) => ({
+    application: { ...applicationInfos },
+  })
+);
 
 export class TabListController {
   constructor($scope, $state, $ngRedux, TabsActions, ApplicationHelper) {
@@ -23,15 +26,9 @@ export class TabListController {
     this.$state = $state;
     this.$ngRedux = $ngRedux;
     this.TabsActions = TabsActions;
-    $scope.$on('$destroy', $ngRedux.connect(() => {
-      const { name, route } = ApplicationHelper.getCurrentInfos();
-
-      return {
-        currentApplicationIcon: APPLICATION_ICONS[name],
-        currentApplicationKey: `header.menu.${name}`,
-        currentApplicationRoute: route,
-      };
-    })(this));
+    $scope.$on('$destroy', $ngRedux.connect((state) => applicationSelector(state, {
+      ApplicationHelper,
+    }))(this));
     $scope.$on('$destroy', $ngRedux.connect(tabsSelector)(this));
     $scope.$on('$destroy', $ngRedux.connect(userSelector)(this));
     $ngRedux.dispatch(TabsActions.requestTabs());
@@ -39,10 +36,6 @@ export class TabListController {
 
   remove(tab) {
     this.$ngRedux.dispatch(this.TabsActions.removeTab(tab));
-  }
-
-  selectCurrentApplication() {
-    return this.$ngRedux.dispatch(stateGo(this.currentApplicationRoute));
   }
 
   getThread(threadId) {

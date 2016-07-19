@@ -17,33 +17,44 @@ describe('Service Helper ApplicationHelper', () => {
   });
 
   let applicationHelper;
-  let $state;
-  let $rootScope;
 
-  beforeEach(inject((_ApplicationHelper_, _$state_, _$rootScope_) => {
+  beforeEach(inject((_ApplicationHelper_) => {
     applicationHelper = _ApplicationHelper_;
-    $state = _$state_;
-    $rootScope = _$rootScope_;
   }));
 
-  describe('getCurrentInfos', () => {
-    it('give default state infos', () => {
-      $rootScope.$digest();
-
-      expect(applicationHelper.getCurrentInfos()).toEqual({
+  describe('getInfos', () => {
+    it('give infos', () => {
+      expect(applicationHelper.getInfos('discussions')).toEqual({
         name: 'discussions',
         route: 'front.discussions',
+        icon: 'fa-comments',
       });
     });
 
-    it('give current state infos', () => {
-      $state.go('front.contacts');
-      $rootScope.$digest();
-
-      expect(applicationHelper.getCurrentInfos()).toEqual({
+    it('give infos', () => {
+      expect(applicationHelper.getInfos('contacts')).toEqual({
         name: 'contacts',
         route: 'front.contacts',
+        icon: 'fa-users',
       });
     });
+  });
+
+  describe('getInfosFromRoute', () => {
+    it('retrieves an app', () => {
+      expect(applicationHelper.getInfosFromRoute('front.contacts')).toEqual({
+        name: 'contacts',
+        route: 'front.contacts',
+        icon: 'fa-users',
+      });
+    });
+
+    it('does not retrieve an app', () => {
+      expect(applicationHelper.getInfosFromRoute('front.contact')).toEqual(undefined);
+    });
+  });
+
+  it('getApplications', () => {
+    expect(applicationHelper.getApplications().length).toEqual(2);
   });
 });

@@ -52,7 +52,7 @@ describe('component Contact Add Im Form', () => {
 
   it('init form', inject(($rootScope, $ngRedux) => {
     const $scope = $rootScope.$new();
-    $ngRedux.dispatch(stateGo('front.contacts.contact', { contactId: contact.contact_id }));
+    $ngRedux.dispatch(stateGo('front.contact', { contactId: contact.contact_id }));
     $rootScope.$digest();
     const ctrl = getController($scope, { contact });
 
@@ -62,7 +62,7 @@ describe('component Contact Add Im Form', () => {
 
   it('add im', inject(($rootScope, $ngRedux, $httpBackend, ApiUrl) => {
     const $scope = $rootScope.$new();
-    $ngRedux.dispatch(stateGo('front.contacts.contact', { contactId: contact.contact_id }));
+    $ngRedux.dispatch(stateGo('front.contact', { contactId: contact.contact_id }));
     $rootScope.$digest();
     const ctrl = getController($scope, { contact });
     ctrl.contactDetail = successfulContactDetail;
@@ -82,7 +82,7 @@ describe('component Contact Add Im Form', () => {
 
   it('fails to add im', inject(($rootScope, $ngRedux, $httpBackend) => {
     const $scope = $rootScope.$new();
-    $ngRedux.dispatch(stateGo('front.contacts.contact', { contactId: contact.contact_id }));
+    $ngRedux.dispatch(stateGo('front.contact', { contactId: contact.contact_id }));
     $rootScope.$digest();
     const ctrl = getController($scope, { contact });
     expect(ctrl.loading).toBe(false);

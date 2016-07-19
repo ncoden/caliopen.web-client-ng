@@ -1,18 +1,14 @@
-import { TabListController } from '../module/tab-list.js';
+import { TabListController } from '../../module/tab-list.js';
 
-export const LayoutTabListComponent = {
+export const LayoutNavigationTabListComponent = {
   controller: TabListController,
   /* eslint-disable max-len */
   template: `
     <ul class="m-menu hide-for-small-only">
       <li class="m-menu__item m-tab"
-        ng-class="{ 'is-active': ($ctrl.currentApplicationRoute | isState) }">
-        <a href ng-click="$ctrl.selectCurrentApplication()"
-          class="m-tab__link"
-        >
-          <i class="fa" ng-class="$ctrl.currentApplicationIcon"></i>
-          {{ $ctrl.currentApplicationKey | translate }}
-        </a>
+          ng-class="{ 'is-active': ($ctrl.application.route | isState) }"
+      >
+        <co-layout-navigation-application-switcher></co-layout-navigation-application-switcher>
       </li>
 
       <li ng-repeat="tab in $ctrl.tabs"
@@ -21,7 +17,7 @@ export const LayoutTabListComponent = {
       >
         <span ng-switch="tab.type">
           <a ng-switch-when="thread"
-            ui-sref="front.discussions.thread({ threadId: tab.item.thread_id })"
+            ui-sref="front.thread({ threadId: tab.item.thread_id })"
             title="{{$ctrl.getThread(tab.item.thread_id)|threadContacts:$ctrl.user}}"
             class="m-tab__link"
           >
@@ -30,7 +26,7 @@ export const LayoutTabListComponent = {
           </a>
 
           <a ng-switch-when="contact"
-            ui-sref="front.contacts.contact({ contactId: tab.item.contact_id })"
+            ui-sref="front.contact({ contactId: tab.item.contact_id })"
             title="{{$ctrl.getContact(tab.item.contact_id).title}}"
             class="m-tab__link"
           >
@@ -39,7 +35,7 @@ export const LayoutTabListComponent = {
           </a>
 
           <a ng-switch-when="draft-message"
-            ui-sref="front.discussions.draft({ messageId: tab.item.message_id })"
+            ui-sref="front.draft({ messageId: tab.item.message_id })"
             class="m-tab__link"
           >
             <i class="fa fa-envelope-o"></i>
