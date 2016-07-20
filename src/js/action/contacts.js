@@ -9,31 +9,36 @@ export default class ContactsActions {
   requestContact(contactId) {
     return {
       type: actions.REQUEST_CONTACT,
-      contactId,
+      payload: { contactId },
     };
   }
 
   receiveContact(contactId, json) {
     return {
-      type: actions.RECEIVER_CONTACT,
-      contactId,
-      contact: json.contacts,
-      receiveAt: Date.now(),
+      type: actions.RECEIVE_CONTACT,
+      payload: {
+        contactId,
+        contact: json.contacts,
+        receiveAt: Date.now(),
+      },
     };
   }
 
   requestContacts() {
     return {
       type: actions.REQUEST_CONTACTS,
+      payload: {},
     };
   }
 
   receiveContacts(json) {
     return {
-      type: actions.RECEIVER_CONTACTS,
-      contacts: json.contacts,
-      total: json.total,
-      receiveAt: Date.now(),
+      type: actions.RECEIVE_CONTACTS,
+      payload: {
+        contacts: json.contacts,
+        total: json.total,
+        receiveAt: Date.now(),
+      },
     };
   }
 
@@ -58,6 +63,7 @@ export default class ContactsActions {
   loadMoreContacts() {
     return {
       type: actions.LOAD_MORE_CONTACTS,
+      payload: {},
     };
   }
 
@@ -65,9 +71,11 @@ export default class ContactsActions {
     return dispatch => {
       dispatch({
         type: actions.ADD_CONTACT_DETAIL,
-        contactId,
-        contactDetailType,
-        contactDetail,
+        payload: {
+          contactId,
+          contactDetailType,
+          contactDetail,
+        },
       });
 
       return this.ContactRepository.addContactDetail(contactId, contactDetailType, contactDetail)
@@ -80,18 +88,22 @@ export default class ContactsActions {
   addContactDetailSucceeded(contactId, contactDetailType, contactDetail) {
     return {
       type: actions.ADD_CONTACT_DETAIL_SUCCEEDED,
-      contactId,
-      contactDetailType,
-      contactDetail,
+      payload: {
+        contactId,
+        contactDetailType,
+        contactDetail,
+      },
     };
   }
 
   addContactDetailFailed(contactId, contactDetailType, errors) {
     return {
       type: actions.ADD_CONTACT_DETAIL_FAILED,
-      contactId,
-      contactDetailType,
-      errors,
+      payload: {
+        contactId,
+        contactDetailType,
+        errors,
+      },
     };
   }
 
@@ -99,8 +111,10 @@ export default class ContactsActions {
     return dispatch => {
       dispatch({
         type: actions.DELETE_CONTACT_DETAIL,
-        contactDetailType,
-        contactDetail,
+        payload: {
+          contactDetailType,
+          contactDetail,
+        },
       });
 
       return this.ContactRepository.deleteContactDetail(contactDetailType, contactId, contactDetail)
@@ -114,18 +128,22 @@ export default class ContactsActions {
   deleteContactDetailSucceeded(contactId, contactDetailType, contactDetail) {
     return {
       type: actions.DELETE_CONTACT_DETAIL_SUCCEEDED,
-      contactId,
-      contactDetailType,
-      contactDetail,
+      payload: {
+        contactId,
+        contactDetailType,
+        contactDetail,
+      },
     };
   }
 
   deleteContactDetailFailed(contactId, contactDetailType, errors) {
     return {
       type: actions.DELETE_CONTACT_DETAIL_FAILED,
-      contactId,
-      contactDetailType,
-      errors,
+      payload: {
+        contactId,
+        contactDetailType,
+        errors,
+      },
     };
   }
 
@@ -133,15 +151,19 @@ export default class ContactsActions {
     return dispatch => {
       dispatch({
         type: actions.REQUEST_CONTACT_PROTOCOLS,
-        contactId,
+        payload: {
+          contactId,
+        },
       });
 
       return this.ContactRepository
         .findProtocolsByContactId(contactId, source)
         .then(({ protocols }) => dispatch({
-          type: actions.RECEIVER_CONTACT_PROTOCOLS,
-          contactId,
-          protocols,
+          type: actions.RECEIVE_CONTACT_PROTOCOLS,
+          payload: {
+            contactId,
+            protocols,
+          },
         }));
     };
   }

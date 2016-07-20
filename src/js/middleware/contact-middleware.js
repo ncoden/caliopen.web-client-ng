@@ -12,7 +12,7 @@ export function contactMiddleware(ContactsActions) {
     ];
 
     if (requireContactRefreshActions.indexOf(action.type) !== -1) {
-      store.dispatch(ContactsActions.fetchContact(action.contactId));
+      store.dispatch(ContactsActions.fetchContact(action.payload.contactId));
     }
 
     if (action.type === actions.LOAD_MORE_CONTACTS) {

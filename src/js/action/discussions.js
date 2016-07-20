@@ -10,48 +10,55 @@ export default class DiscussionsActions {
   requestMessages(threadId) {
     return {
       type: actions.REQUEST_MESSAGES,
-      threadId,
+      payload: { threadId },
     };
   }
 
   receiveMessages(threadId, json) {
     return {
-      type: actions.RECEIVER_MESSAGES,
-      threadId,
-      messages: json.messages,
-      total: json.total,
-      receiveAt: Date.now(),
+      type: actions.RECEIVE_MESSAGES,
+      payload: {
+        threadId,
+        messages: json.messages,
+        total: json.total,
+        receiveAt: Date.now(),
+      },
     };
   }
 
   requestThread(threadId) {
     return {
       type: actions.REQUEST_THREAD,
-      threadId,
+      payload: { threadId },
     };
   }
 
   receiveThread(threadId, json) {
     return {
-      type: actions.RECEIVER_THREAD,
-      threadId,
-      thread: json.thread,
-      receiveAt: Date.now(),
+      type: actions.RECEIVE_THREAD,
+      payload: {
+        threadId,
+        thread: json.thread,
+        receiveAt: Date.now(),
+      },
     };
   }
 
   requestThreads() {
     return {
       type: actions.REQUEST_THREADS,
+      payload: {},
     };
   }
 
   receiveThreads(json) {
     return {
-      type: actions.RECEIVER_THREADS,
-      threads: json.threads,
-      total: json.total,
-      receiveAt: Date.now(),
+      type: actions.RECEIVE_THREADS,
+      payload: {
+        threads: json.threads,
+        total: json.total,
+        receiveAt: Date.now(),
+      },
     };
   }
 
@@ -67,6 +74,7 @@ export default class DiscussionsActions {
   loadMoreThreads() {
     return {
       type: actions.LOAD_MORE_THREADS,
+      payload: {},
     };
   }
 
