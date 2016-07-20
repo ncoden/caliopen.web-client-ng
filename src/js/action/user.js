@@ -10,6 +10,7 @@ export default class UserActions {
   requestUser() {
     return {
       type: actions.REQUEST_USER,
+      payload: {},
     };
   }
 
@@ -24,7 +25,7 @@ export default class UserActions {
   receiveUser(user) {
     return {
       type: actions.RECEIVE_USER,
-      user,
+      payload: { user },
     };
   }
 }

@@ -4,15 +4,17 @@ export default class DraftMessageActions {
   createDraftMessage(messageId) {
     return {
       type: actions.CREATE_DRAFT_MESSAGE,
-      messageId,
+      payload: { messageId },
     };
   }
 
   updateDraftMessage(messageId, message) {
     return {
       type: actions.UPDATE_DRAFT_MESSAGE,
-      messageId,
-      message,
+      payload: {
+        messageId,
+        message,
+      },
     };
   }
 }

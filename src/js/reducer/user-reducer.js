@@ -9,7 +9,7 @@ export default function userReducer(state = {}, action) {
     case actions.RECEIVE_USER:
       return Object.assign({}, state, {
         isFetching: false,
-        user: action.user,
+        user: action.payload.user,
       });
     default:
       return state;

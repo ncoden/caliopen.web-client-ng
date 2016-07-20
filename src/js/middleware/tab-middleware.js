@@ -7,15 +7,15 @@ export function tabMiddleware(TabsActions, ApplicationHelper, $state, TabHelper)
   return store => next => action => {
     if (action.type === actions.SELECT_OR_ADD_TAB) {
       const foundTab = store.getState().tabReducer.tabs
-        .find((tab) => angular.toJson(action.tab) === angular.toJson(tab));
+        .find((tab) => angular.toJson(action.payload.tab) === angular.toJson(tab));
 
       if (!foundTab) {
-        store.dispatch(TabsActions.addTab(action.tab));
+        store.dispatch(TabsActions.addTab(action.payload.tab));
       }
     }
 
     if (action.type === actions.REMOVE_TAB) {
-      const { route, params } = TabHelper.getRouteAndParamsForTab(action.tab);
+      const { route, params } = TabHelper.getRouteAndParamsForTab(action.payload.tab);
       if ($state.is(route, params)) {
         const applicationName = store.getState().applicationReducer.applicationName;
         store.dispatch(stateGo(ApplicationHelper.getInfos(applicationName).route));
@@ -26,26 +26,26 @@ export function tabMiddleware(TabsActions, ApplicationHelper, $state, TabHelper)
 
     const nextState = store.getState();
     const actionsRequiresTabOnReloading = [
-      actions.RECEIVER_CONTACT,
-      actions.RECEIVER_THREAD,
+      actions.RECEIVE_CONTACT,
+      actions.RECEIVE_THREAD,
       actions.CREATE_DRAFT_MESSAGE,
     ];
     if (actionsRequiresTabOnReloading.indexOf(action.type) !== -1
       && nextState.tabReducer.tabs.length === 0) {
       switch (action.type) {
-        case actions.RECEIVER_CONTACT:
+        case actions.RECEIVE_CONTACT:
           store.dispatch(TabsActions.addTab({
             type: 'contact',
             item: {
-              contact_id: action.contact.contact_id,
+              contact_id: action.payload.contact.contact_id,
             },
           }));
           break;
-        case actions.RECEIVER_THREAD:
+        case actions.RECEIVE_THREAD:
           store.dispatch(TabsActions.addTab({
             type: 'thread',
             item: {
-              thread_id: action.thread.thread_id,
+              thread_id: action.payload.thread.thread_id,
             },
           }));
           break;

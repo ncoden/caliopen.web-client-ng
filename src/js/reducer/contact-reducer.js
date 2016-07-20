@@ -10,12 +10,12 @@ function contactDetailFormReducer(state = {
       return Object.assign({}, state, {
         loading: true,
         errors: [],
-        contactDetail: action.contactDetail,
+        contactDetail: action.payload.contactDetail,
       });
     case actions.ADD_CONTACT_DETAIL_FAILED:
       return Object.assign({}, state, {
         loading: false,
-        errors: action.errors,
+        errors: action.payload.errors,
       });
     case actions.ADD_CONTACT_DETAIL_SUCCEEDED:
       return Object.assign({}, state, {
@@ -30,8 +30,8 @@ function contactDetailFormReducer(state = {
 
 function contactDetailFormsReducer(state = {}, action) {
   return Object.assign({}, state, {
-    [`${action.contactDetailType}Form`]: contactDetailFormReducer(
-      state[`${action.contactDetailType}Form`],
+    [`${action.payload.contactDetailType}Form`]: contactDetailFormReducer(
+      state[`${action.payload.contactDetailType}Form`],
       action),
   });
 }
@@ -42,7 +42,10 @@ function contactDetailFormsByIdReducer(state = {}, action) {
     case actions.ADD_CONTACT_DETAIL_FAILED:
     case actions.ADD_CONTACT_DETAIL_SUCCEEDED:
       return Object.assign({}, state, {
-        [action.contactId]: contactDetailFormsReducer(state[action.contactId], action),
+        [action.payload.contactId]: contactDetailFormsReducer(
+          state[action.payload.contactId],
+          action
+        ),
       });
     default:
       return state;
@@ -51,8 +54,8 @@ function contactDetailFormsByIdReducer(state = {}, action) {
 
 function protocolsReducer(state = [], action) {
   switch (action.type) {
-    case actions.RECEIVER_CONTACT_PROTOCOLS:
-      return action.protocols;
+    case actions.RECEIVE_CONTACT_PROTOCOLS:
+      return action.payload.protocols;
     default:
       return state;
   }
@@ -60,10 +63,10 @@ function protocolsReducer(state = [], action) {
 
 function protocolsByIdReducer(state = {}, action) {
   switch (action.type) {
-    case actions.RECEIVER_CONTACT_PROTOCOLS:
+    case actions.RECEIVE_CONTACT_PROTOCOLS:
     case actions.REQUEST_CONTACT_PROTOCOLS:
       return Object.assign({}, state, {
-        [action.contactId]: protocolsReducer(state[action.contactId], action),
+        [action.payload.contactId]: protocolsReducer(state[action.payload.contactId], action),
       });
     default:
       return state;
@@ -71,17 +74,20 @@ function protocolsByIdReducer(state = {}, action) {
 }
 
 function contactByIdReducer(state = {}, action = {}) {
-  return action.contacts.reduce((previousState, contact) => Object.assign({}, previousState, {
-    [contact.contact_id]: contact,
-  }), state);
+  return action
+    .payload
+    .contacts
+    .reduce((previousState, contact) => Object.assign({}, previousState, {
+      [contact.contact_id]: contact,
+    }), state);
 }
 
 function contactIdsReducer(state = [], action = {}) {
-  if (action.type === actions.RECEIVER_CONTACTS) {
+  if (action.type === actions.RECEIVE_CONTACTS) {
     const ids = state.slice();
 
     return ids
-      .concat(action.contacts.map(contact => contact.contact_id))
+      .concat(action.payload.contacts.map(contact => contact.contact_id))
       .reduce((prev, curr) => {
         if (prev.indexOf(curr) === -1) {
           prev.push(curr);
@@ -134,14 +140,17 @@ export default function contactReducer(state = {
       return Object.assign({}, state, {
         isFetching: true,
         didInvalidate: false,
-        selectedContact: action.contactId,
+        selectedContact: action.payload.contactId,
       });
-    case actions.RECEIVER_CONTACT:
+    case actions.RECEIVE_CONTACT:
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
-        contactsById: contactByIdReducer(state.contactsById, { contacts: [action.contact] }),
-        lastUpdated: action.receivedAt,
+        contactsById: contactByIdReducer(
+          state.contactsById,
+          { payload: { contacts: [action.payload.contact] } }
+        ),
+        lastUpdated: action.payload.receivedAt,
       });
     case actions.REQUEST_CONTACTS:
       return Object.assign({}, state, {
@@ -149,14 +158,14 @@ export default function contactReducer(state = {
         didInvalidate: false,
         selectedContact: undefined,
       });
-    case actions.RECEIVER_CONTACTS:
+    case actions.RECEIVE_CONTACTS:
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
         contacts: contactIdsReducer(state.contacts, action),
         contactsById: contactByIdReducer(state.contactsById, action),
-        totalContacts: action.total,
-        lastUpdated: action.receivedAt,
+        totalContacts: action.payload.total,
+        lastUpdated: action.payload.receivedAt,
       });
     case actions.ADD_CONTACT_DETAIL:
     case actions.ADD_CONTACT_DETAIL_FAILED:
@@ -169,7 +178,7 @@ export default function contactReducer(state = {
         isFetching: true,
         protocolsById: protocolsByIdReducer(state.protocolsById, action),
       });
-    case actions.RECEIVER_CONTACT_PROTOCOLS:
+    case actions.RECEIVE_CONTACT_PROTOCOLS:
       return Object.assign({}, state, {
         isFetching: false,
         protocolsById: protocolsByIdReducer(state.protocolsById, action),

@@ -6,11 +6,11 @@ function tabsReducer(state = [], action = {}) {
   switch (action.type) {
     case actions.ADD_TAB:
       addState = state.slice();
-      addState.push(action.tab);
+      addState.push(action.payload.tab);
 
       return addState;
     case actions.REMOVE_TAB:
-      return state.filter(currentTab => currentTab !== action.tab);
+      return state.filter(currentTab => currentTab !== action.payload.tab);
     default:
       return state;
   }
