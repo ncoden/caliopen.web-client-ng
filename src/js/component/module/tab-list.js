@@ -2,8 +2,7 @@ import { createSelector } from 'reselect';
 
 const tabsSelector = createSelector(
   state => state.tabReducer.tabs,
-  state => state.tabReducer.selected,
-  (tabs, selectedTab) => ({ tabs, selectedTab })
+  (tabs) => ({ tabs })
 );
 
 const userSelector = createSelector(

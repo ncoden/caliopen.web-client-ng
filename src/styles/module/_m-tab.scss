@@ -1,20 +1,10 @@
-$m-tab__height: 2.6rem !default;
-
 .m-tab {
-  margin-right: .25rem;
-
-  border-bottom: .25rem solid $co-color__bg__back;
-  background-color: $co-color__fg__back;
-
-  color: $co-color__fg__text--low;
   white-space: nowrap;
 
   &__link,
   &__button {
     display: inline-block;
     vertical-align: middle;
-
-    line-height: $m-tab__height;
     text-decoration: none;
   }
 
@@ -37,11 +27,5 @@ $m-tab__height: 2.6rem !default;
 
     &:hover   { color: $co-color__primary--high; }
     &:active  { color: $co-color__primary--lower; }
-  }
-
-  &.is-active {
-    border-bottom-color: transparent;
-    color: $co-color__fg__text--higher;
-    cursor: default;
   }
 }

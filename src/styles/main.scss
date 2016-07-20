@@ -33,6 +33,7 @@
 @import 'module/m-menu';
 
 @import 'module/m-action-bar';
+@import 'module/m-application-switcher';
 @import 'module/m-avatar';
 @import 'module/m-avatars';
 @import 'module/m-badge';
@@ -43,8 +44,10 @@
 @import 'module/m-dropdown';
 @import 'module/m-fieldset';
 @import 'module/m-flash-message';
+@import 'module/m-horizontal-scroll';
 @import 'module/m-letter';
 @import 'module/m-loading';
+@import 'module/m-navbar';
 @import 'module/m-panel';
 @import 'module/m-pi-icon';
 @import 'module/m-postal-address';
@@ -65,7 +68,7 @@
 @import 'layout/l-body';
 @import 'layout/l-flash-message-list';
 @import 'layout/l-nav-alt';
-@import 'layout/l-navigation-application-switcher';
+@import 'layout/l-navbar';
 
 // sections
 @import 'section/s-login';

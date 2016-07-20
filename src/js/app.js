@@ -178,7 +178,9 @@ app
   ;
 
 import { GetFocusDirective } from './directive/get-focus.js';
+import { HorizontalScrollDirective } from './directive/horizontal-scroll.js';
 
 app
   .directive('getFocus', GetFocusDirective)
+  .directive('horizontalScroll', HorizontalScrollDirective)
   ;
