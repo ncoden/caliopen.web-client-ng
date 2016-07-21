@@ -166,8 +166,8 @@ export class ContactRepository {
 
   deleteContactDetail(type, contactId, contactDetail) {
     const typePath = ASSOC_DETAIL_TYPE_PATH[type];
-    const address = contactDetail.address;
-    const url = `${this.ApiUrl}/contacts/${contactId}/${typePath}/${address}`;
+    const id = contactDetail[`${type}_id`];
+    const url = `${this.ApiUrl}/contacts/${contactId}/${typePath}/${id}`;
 
     return this.$http
       .delete(url, { responseType: 'json' })

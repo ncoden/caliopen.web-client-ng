@@ -1,5 +1,6 @@
 import 'jquery';
 import angular from 'angular';
+import {v1 as uuidV1} from 'uuid';
 
 import { moduleName } from '../../src/js/app.js';
 import ngMockE2E from 'angular-mocks/ngMockE2E';
@@ -14,6 +15,8 @@ app.run(function mockApi ($httpBackend, ApiUrl) {
   'ngInject';
   const internalServerErrorResponse = [500, 'Internal Server Error', { 'Content-Type': 'text/plain' }];
 
+  // beware: thread coll doesn't have "contacts" info anymore
+  // cf. https://github.com/CaliOpen/Caliopen/issues/31
   const threadColl = {"total": 2, "threads": [{"tags": [], "text": "<p>It's okay, Bender. I like cooking too. You, minion. Lift my arm. AFTER H=\r\nIM! I don't know what you did, Fry, but once again, you screwed up! Now all\r\nthe planets are gonna start cracking wise abo", "date_update": null, "privacy_index": 1, "contacts": [{"type": "to", "contact_id": "1039cdcc-1f6f-4b5d-9c8a-5d7c711f357f", "address": "test@caliopen.local"}, {"type": "from", "contact_id": "0ba2e346-e4f8-4c45-9adc-eeb1d42f07e0", "address": "zoidberg@caliopen.local"}], "date_insert": "2016-05-09T15:01:42.588000", "thread_id": "cd53e13a-267d-4d9c-97ee-d0fc59c64200", "total_count": 1, "attachment_count": 0, "importance_level": 0, "unread_count": 1}, {"tags": [], "text": "Shut up and take my money! Leela, are you alright? You got wanged on the he=\r\nad. Bender, you risked your life to save me! Spare me your space age techno=\r\nbabble, Attila the Hun! Now that the, uh, ga", "date_update": null, "privacy_index": 25, "contacts": [{"type": "to", "contact_id": "1039cdcc-1f6f-4b5d-9c8a-5d7c711f357f", "address": "test@caliopen.local"}, {"type": "from", "contact_id": "0ba2e346-e4f8-4c45-9adc-eeb1d42f07e0", "address": "zoidberg@caliopen.local"}], "date_insert": "2016-05-09T15:01:42.489000", "thread_id": "46d30c27-6cd8-407b-8536-fda4196c20ca", "total_count": 2, "attachment_count": 0, "importance_level": 0, "unread_count": 2}]};
   const threadById = {
     threads: {
@@ -81,6 +84,7 @@ app.run(function mockApi ($httpBackend, ApiUrl) {
       }
 
       const email = Object.assign({
+        "email_id": uuidV1(),
         "is_primary": 0,
         "date_update": null,
         "label": null,
@@ -95,7 +99,7 @@ app.run(function mockApi ($httpBackend, ApiUrl) {
     });
   $httpBackend.whenPOST(/.*/).passThrough();
 
-  $httpBackend.whenRoute('DELETE', `${ApiUrl}/contacts/:contact_id/emails/:email_address`)
+  $httpBackend.whenRoute('DELETE', `${ApiUrl}/contacts/:contact_id/emails/:email_id`)
     .respond((method, url, data, headers, params) => {
       const currentContact = contactById[params.contact_id];
 
@@ -103,13 +107,13 @@ app.run(function mockApi ($httpBackend, ApiUrl) {
         return internalServerErrorResponse;
       }
 
-      const emailToDel = currentContact.contacts.emails.find((email) => email.address === params.email_address);
+      const emailToDel = currentContact.contacts.emails.find((email) => email.email_id === params.email_id);
 
       if (!emailToDel) {
         return internalServerErrorResponse;
       }
 
-      currentContact.contacts.emails = currentContact.contacts.emails.filter((email) => email.address !== params.email_address);
+      currentContact.contacts.emails = currentContact.contacts.emails.filter((email) => email.email_id !== params.email_id);
 
       return [201, {"result": "ok"}];
     });
