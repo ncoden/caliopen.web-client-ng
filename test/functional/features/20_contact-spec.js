@@ -68,7 +68,7 @@ describe('Contact', () => {
         element(by.cssContainingText('select#email_form_type option', type)).click();
         element(by.cssContainingText('co-add-email-form button', 'Add')).click();
         expect(element(by.css('.s-contact__col-datas-online')).getText()).toContain(email);
-        element(by.cssContainingText('co-contact li', email))
+        element(by.cssContainingText('.s-contact__m-contact-detail-list li', email))
           .element(by.cssContainingText('button', 'Delete')).click();
         expect(element(by.css('.s-contact__col-datas-online')).getText()).not.toContain(email);
       });

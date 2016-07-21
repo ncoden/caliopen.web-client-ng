@@ -85,13 +85,6 @@ export const ContactComponent = {
           </div>
         </p>
 
-        <p>
-          <div ng-repeat="address in $ctrl.contact.addresses">
-            <span class="fa fa-home"></span>
-            {{ address }}
-          </div>
-        </p>
-
       </div>
       <div class="s-contact__col-datas-online">
 
@@ -160,7 +153,7 @@ export const ContactComponent = {
           <li ng-repeat="address in $ctrl.contact.addresses"
             class="m-text-list__item m-text-line">
             <span class="m-text-list__icon fa fa-map-marker"></span>
-            <address>
+            <address class="m-postal-address">
               {{ address.street }}, {{ address.postal_code }} {{ address.city }}
               {{ address.country }} {{ address.region }}
             </adddress>
