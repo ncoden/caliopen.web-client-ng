@@ -75,7 +75,7 @@
     "phantomjs": "^1.9.19",
     "protractor": "^3.2.0",
     "redux": "^3.0.4",
-    "redux-ui-router": "^0.5.2",
+    "redux-ui-router": "^0.6.0",
     "reselect": "^2.0.1",
     "ui-select": "^0.18.0",
     "uuid": "^2.0.2",
