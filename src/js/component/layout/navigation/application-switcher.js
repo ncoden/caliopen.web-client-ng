@@ -56,7 +56,8 @@ export const LayoutNavigationApplicationSwitcherComponent = {
   controller: ApplicationSwitcherController,
   /* eslint-disable max-len */
   template: `
-    <span class="l-navigation-application-switcher" ng-class="{ 'l-navigation-application-switcher--is-open': !!$ctrl.isDropdownOpen}">
+    <span class="m-application-switcher m-navbar__item"
+          ng-class="{'m-application-switcher--is-open': !!$ctrl.isDropdownOpen, 'm-navbar__item--is-active': ($ctrl.currentApplication.route|isState)}">
       <a ng-repeat="application in $ctrl.applications"
          ng-show="$ctrl.isCurrentApplication(application)"
          ui-sref="{{ application.route }}"
@@ -66,7 +67,7 @@ export const LayoutNavigationApplicationSwitcherComponent = {
         {{ ('header.menu.' + application.name)|translate }}
       </a>
       <a href data-toggle="co-application-switcher__dropdown"
-        class="dropdown-float-right l-navigation-application-switcher__toggler m-link m-link--button"
+        class="dropdown-float-right m-application-switcher__toggler m-link m-link--button"
       >
         <span class="show-for-sr" aria-label>{{'application_switcher.action.choose'|translate}}</span>
         <span class="fa fa-caret-down"
@@ -74,7 +75,7 @@ export const LayoutNavigationApplicationSwitcherComponent = {
         ></span>
       </a>
       <ul id="co-application-switcher__dropdown"
-        class="l-navigation-application-switcher__dropdown  m-menu bottom"
+        class="m-application-switcher__dropdown  m-menu bottom"
         data-close-on-click="true"
       >
         <li ng-repeat="application in $ctrl.applications"

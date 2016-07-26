@@ -1,0 +1,11 @@
+.l-navbar {
+  @include flex-grid-row($width: none);
+
+  &__application-switcher {
+    @include flex-grid-column(shrink, 0);
+  }
+
+  &__tab-list {
+    @include flex-grid-column($gutter: 0);
+  }
+}

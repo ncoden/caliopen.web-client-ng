@@ -72,7 +72,14 @@ export const LayoutApplicationWrapperComponent = {
           <co-layout-importance-level-slider></co-layout-importance-level-slider>
         </div>
         <div class="l-body__col-content">
-          <co-layout-navigation-tab-list></co-layout-navigation-tab-list>
+          <div class="l-navbar m-navbar hide-for-small-only">
+            <div class="l-navbar__application-switcher">
+              <co-layout-navigation-application-switcher></co-layout-navigation-application-switcher>
+            </div>
+            <div class="l-navbar__tab-list">
+              <co-layout-navigation-tab-list></co-layout-navigation-tab-list>
+            </div>
+          </div>
           <div class="l-body__content" ng-switch="$ctrl.currentStateName">
             <div ng-switch-when="front.discussions">
               <co-discussions></co-discussions>

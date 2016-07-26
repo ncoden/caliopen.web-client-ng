@@ -1,0 +1,28 @@
+$m-navbar__height: $co-component__height !default;
+
+.m-navbar {
+  &__item-container,
+  &__item {
+    margin-right: .25rem;
+  }
+
+  &__item {
+    border-bottom: .25rem solid $co-color__bg__back;
+    background-color: $co-color__fg__back;
+
+    color: $co-color__fg__text--low;
+
+    &--is-active {
+      border-bottom-color: transparent;
+      color: $co-color__fg__text--higher;
+    }
+
+    &--last {
+      margin-right: 0;
+    }
+  }
+
+  &__content {
+    line-height: $m-navbar__height;
+  }
+}

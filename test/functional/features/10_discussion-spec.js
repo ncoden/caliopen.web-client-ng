@@ -28,10 +28,14 @@ describe('Discussions', () => {
   describe('thread', () => {
     it('render and contacts describes the thread', () => {
       browser.get('/');
-      expect(element(by.xpath('//co-layout-navigation-tab-list')).getText())
-        .toContain('Discussions');
+      expect(
+        element(by.cssContainingText(
+          'co-layout-navigation-application-switcher .m-tab__link',
+          'Discussions'
+        )).isPresent()
+      ).toBe(true);
       element(by.xpath('//co-discussions-thread[1]')).click();
-      expect(element(by.css('.m-tab.is-active .m-tab__link')).getText())
+      expect(element(by.css('.m-tab.m-navbar__item--is-active .m-tab__link')).getText())
         .toContain('test@caliopen.local, zoidberg@caliopen.local');
     });
   });

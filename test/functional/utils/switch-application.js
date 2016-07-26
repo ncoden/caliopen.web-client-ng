@@ -5,7 +5,7 @@ module.exports = {
       .element(by.css('a[data-toggle="co-application-switcher__dropdown"]'))
       .click();
     appSwitcherElement
-      .element(by.cssContainingText('.l-navigation-application-switcher__dropdown', application))
+      .element(by.cssContainingText('.m-application-switcher__dropdown', application))
       .click();
     if (!!goToList) {
       appSwitcherElement.element(by.cssContainingText('a', application)).click();
