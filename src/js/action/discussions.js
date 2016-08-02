@@ -93,4 +93,14 @@ export default class DiscussionsActions {
         .then(json => dispatch(this.receiveThread(threadId, json)));
     };
   }
+
+  invalidateThreads() {
+    return dispatch => {
+      dispatch({
+        type: actions.INVALIDATE_THREADS,
+        payload: {},
+      });
+      dispatch(this.fetchThreads());
+    };
+  }
 }

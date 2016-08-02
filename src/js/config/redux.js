@@ -50,6 +50,7 @@ export function ReduxConfig($ngReduxProvider) {
 
   $ngReduxProvider.createStoreWith(reducers, [
     'ngUiRouterMiddleware',
+    'apiFiltersMiddleware',
     'applicationMiddleware',
     'contactMiddleware',
     'tabMiddleware',

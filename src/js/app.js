@@ -8,7 +8,7 @@ import ngSanitize from 'angular-sanitize';
 import uiRouter from 'angular-ui-router';
 import translate from 'angular-translate';
 import 'angular-translate-loader-static-files';
-import uiSlider from 'angular-ui-slider';
+import rzSlider from './directive/rzslider.js';
 import uiSelect from 'ui-select';
 import ngRedux from 'ng-redux';
 import reduxUiRouter from 'redux-ui-router';
@@ -22,7 +22,7 @@ const app = angular.module(moduleName, [
   uiRouter,
   translate,
   ngSanitize,
-  uiSlider,
+  rzSlider,
   uiSelect,
   ngRedux,
   reduxUiRouter,
@@ -39,6 +39,7 @@ import { RouterConfig } from './config/router.js';
 import { TranslateConfig } from './config/translate.js';
 import { BaseUrlFactory, ApiUrlFactory, ApiInterceptorConfig } from './config/server.js';
 import { uiSelectCfg } from './config/ui-select.js';
+import { apiFiltersMiddleware } from './middleware/api-filters-middleware.js';
 import { applicationMiddleware } from './middleware/application-middleware.js';
 import { contactMiddleware } from './middleware/contact-middleware.js';
 import { tabMiddleware } from './middleware/tab-middleware.js';
@@ -55,6 +56,7 @@ app
   .config(uiSelectCfg)
   .factory('BaseUrl', BaseUrlFactory)
   .factory('ApiUrl', ApiUrlFactory)
+  .factory('apiFiltersMiddleware', apiFiltersMiddleware)
   .factory('applicationMiddleware', applicationMiddleware)
   .factory('contactMiddleware', contactMiddleware)
   .factory('tabMiddleware', tabMiddleware)
@@ -65,14 +67,17 @@ app
 import { MomentConfig } from './config/moment.js';
 import { uiSelectTemplate } from './config/ui-select.js';
 import { UserConfig } from './config/user.js';
+import { SliderConfig } from './config/slider.js';
 
 app
   .run(MomentConfig)
   .run(uiSelectTemplate)
   .run(UserConfig)
+  .run(SliderConfig)
   ;
 
 // services
+import ApiFiltersActions from './action/api-filters.js';
 import ApplicationActions from './action/application.js';
 import ContactsActions from './action/contacts.js';
 import DiscussionsActions from './action/discussions.js';
@@ -89,6 +94,7 @@ import { ThreadRepository } from './service/repository/thread.js';
 import { UserRepository } from './service/repository/user.js';
 
 app
+  .service('ApiFiltersActions', ApiFiltersActions)
   .service('ApplicationActions', ApplicationActions)
   .service('ContactsActions', ContactsActions)
   .service('DiscussionsActions', DiscussionsActions)
@@ -122,11 +128,11 @@ import { LayoutNavigationAltTabListComponent } from './component/layout/navigati
 import { LayoutApplicationWrapperComponent } from './component/layout/application-wrapper.js';
 import { LayoutFlashMessageListComponent } from './component/layout/flash-message-list.js';
 import { LayoutHeaderComponent } from './component/layout/header.js';
-import { LayoutImportanceLevelSliderComponent } from './component/layout/importance-level-slider.js'; // eslint-disable-line max-len
 import { LayoutNavigationApplicationSwitcherComponent } from './component/layout/navigation/application-switcher.js'; // eslint-disable-line max-len
+import { LayoutNavigationSlidersContainerComponent } from './component/layout/navigation/sliders-container.js'; // eslint-disable-line max-len
+import { LayoutNavigationSlidersComponent } from './component/layout/navigation/sliders.js';
 import { LayoutNavigationTabListComponent } from './component/layout/navigation/tab-list.js';
 import { LayoutNavigationAltComponent } from './component/layout/navigation-alt.js';
-import { LayoutPrivacyIndexSliderComponent } from './component/layout/privacy-index-slider.js';
 // -- module
 import { AvatarLetterComponent } from './component/module/avatar-letter.js';
 import { RecipientListComponent } from './component/module/recipient-list.js';
@@ -153,11 +159,11 @@ app
   .component('coLayoutApplicationWrapper', LayoutApplicationWrapperComponent)
   .component('coLayoutFlashMessageList', LayoutFlashMessageListComponent)
   .component('coLayoutHeader', LayoutHeaderComponent)
-  .component('coLayoutImportanceLevelSlider', LayoutImportanceLevelSliderComponent)
   .component('coLayoutNavigationApplicationSwitcher', LayoutNavigationApplicationSwitcherComponent)
+  .component('coLayoutNavigationSlidersContainer', LayoutNavigationSlidersContainerComponent)
+  .component('coLayoutNavigationSliders', LayoutNavigationSlidersComponent)
   .component('coLayoutNavigationTabList', LayoutNavigationTabListComponent)
   .component('coLayoutNavigationAlt', LayoutNavigationAltComponent)
-  .component('coLayoutPrivacyIndexSlider', LayoutPrivacyIndexSliderComponent)
   // -- module
   .component('coAvatarLetter', AvatarLetterComponent)
   .component('coRecipientList', RecipientListComponent)

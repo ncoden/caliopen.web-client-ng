@@ -41,7 +41,6 @@ export default function threadReducer(state = {
   threadsById: {},
   messagesByThreadsId: {},
   isFetching: false,
-  didInvalidate: false,
   threads: [],
   totalThreads: 0,
 }, action = {}) {
@@ -49,13 +48,11 @@ export default function threadReducer(state = {
     case actions.REQUEST_THREADS:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false,
         selectedThread: undefined,
       });
     case actions.RECEIVE_THREADS:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
         threads: threadIdsReducer(state.threads, action),
         threadsById: threadByIdReducer(state.threadsById, action),
         totalThreads: action.payload.total,
@@ -84,6 +81,14 @@ export default function threadReducer(state = {
         isFetchingMessages: false,
         messagesByThreadsId: messagesByThreadsIdReducer(state.messagesByThreadsId, action),
       });
+    case actions.INVALIDATE_THREADS:
+      return {
+        ...state,
+        threadsById: {},
+        messagesByThreadsId: {},
+        threads: [],
+        totalThreads: 0,
+      };
     default:
       return state;
   }

@@ -8,4 +8,19 @@
   &__tab-list {
     @include flex-grid-column($gutter: 0);
   }
+
+  &__sliders-toggle {
+    @include flex-grid-column(shrink, 0);
+  }
+
+  &__sliders-container {
+    height: 50vh;
+    margin: 1rem;
+    white-space: nowrap;
+  }
+
+  &__slider {
+    display: inline-block;
+    margin: 0 .5rem;
+  }
 }

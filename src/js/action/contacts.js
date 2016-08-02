@@ -167,4 +167,14 @@ export default class ContactsActions {
         }));
     };
   }
+
+  invalidateContacts() {
+    return dispatch => {
+      dispatch({
+        type: actions.INVALIDATE_CONTACTS,
+        payload: {},
+      });
+      dispatch(this.fetchContacts());
+    };
+  }
 }
