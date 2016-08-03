@@ -62,15 +62,9 @@ export const LayoutApplicationWrapperComponent = {
             {{ 'header.menu.create_user'|translate }}
           </a>
         </div>
-        <div class="l-topbar__col-slider">
-          <co-layout-privacy-index-slider></co-layout-privacy-index-slider>
-        </div>
       </div>
 
       <div class="l-body">
-        <div class="l-body__col-slider">
-          <co-layout-importance-level-slider></co-layout-importance-level-slider>
-        </div>
         <div class="l-body__col-content">
           <div class="l-navbar m-navbar hide-for-small-only">
             <div class="l-navbar__application-switcher">
@@ -78,6 +72,9 @@ export const LayoutApplicationWrapperComponent = {
             </div>
             <div class="l-navbar__tab-list">
               <co-layout-navigation-tab-list></co-layout-navigation-tab-list>
+            </div>
+            <div class="l-navbar__sliders-toggle">
+              <co-layout-navigation-sliders-container></co-layout-navigation-sliders-container>
             </div>
           </div>
           <div class="l-body__content" ng-switch="$ctrl.currentStateName">

@@ -128,7 +128,6 @@ export function getAvailableContactDetails(contact) {
 
 export default function contactReducer(state = {
   isFetching: false,
-  didInvalidate: false,
   contacts: [],
   contactsById: {},
   contactDetailFormsById: {},
@@ -139,13 +138,11 @@ export default function contactReducer(state = {
     case actions.REQUEST_CONTACT:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false,
         selectedContact: action.payload.contactId,
       });
     case actions.RECEIVE_CONTACT:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
         contactsById: contactByIdReducer(
           state.contactsById,
           { payload: { contacts: [action.payload.contact] } }
@@ -155,13 +152,11 @@ export default function contactReducer(state = {
     case actions.REQUEST_CONTACTS:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false,
         selectedContact: undefined,
       });
     case actions.RECEIVE_CONTACTS:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
         contacts: contactIdsReducer(state.contacts, action),
         contactsById: contactByIdReducer(state.contactsById, action),
         totalContacts: action.payload.total,
@@ -183,6 +178,13 @@ export default function contactReducer(state = {
         isFetching: false,
         protocolsById: protocolsByIdReducer(state.protocolsById, action),
       });
+    case actions.INVALIDATE_CONTACTS:
+      return {
+        ...state,
+        contacts: [],
+        contactsById: {},
+        totalContacts: 0,
+      };
     default:
       return state;
   }

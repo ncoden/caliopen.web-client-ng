@@ -53,7 +53,7 @@ export const LayoutNavigationTabListComponent = {
         </ul>
       </div>
       <a href horizontal-scroll-anchor="right"
-        class="m-horizontal-scroll__anchor m-navbar__item m-navbar__item--last m-navbar__content m-link m-link--button"
+        class="m-horizontal-scroll__anchor m-navbar__item m-navbar__content m-link m-link--button"
       >
         <span class="fa fa-arrow-right"></span>
       </a>

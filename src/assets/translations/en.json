@@ -171,6 +171,9 @@
     }
   },
   "settings": {
+    "action": {
+      "toggle_filter_sliders": "Toggle filter settings"
+    },
     "account": {
       "title": "About Me",
       "menu": {

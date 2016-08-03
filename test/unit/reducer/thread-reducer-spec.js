@@ -9,7 +9,6 @@ describe('Reducer Thread Reducer', () => {
       threadsById: {},
       messagesByThreadsId: {},
       isFetching: false,
-      didInvalidate: false,
       threads: [],
       totalThreads: 0,
     });

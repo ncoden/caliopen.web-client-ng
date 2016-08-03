@@ -88,7 +88,7 @@ export const DiscussionDraftComponent = {
           </div>
           <div class="s-discussion-draft__pi">
             <label title="{{ 'messages.compose.privacy_index.title'|translate }}"
-                   class="s-discussion-draft__pi-label m-pi-icon fa fa-shield"></label>
+                   class="s-discussion-draft__pi-label m-text--privacy fa fa-shield"></label>
             <div class="s-discussion-draft__m-pi-progress m-pi-progress progress"
                  role="progressbar" tabindex="0" aria-valuenow="0" aria-valuemin="0"
                  aria-valuemax="100"

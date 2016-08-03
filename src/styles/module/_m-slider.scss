@@ -1,89 +1,93 @@
-@mixin m-slider($color, $direction) {
-  $m-slider-width: 10px;
-  $m-strip-size: 2px;
+$m-slider-width: 10px;
+$m-strip-size: 2px;
 
-  .ui-slider-vertical,
-  .ui-slider-vertical .ui-slider-range {
-    width: $m-slider-width;
-  }
-
-  .ui-slider-horizontal,
-  .ui-slider-horizontal .ui-slider-range {
-    height: $m-slider-width;
-  }
-
-  .ui-slider-range {
-    border-radius: $m-slider-width;
-
-    background:
-      linear-gradient(
-        to $direction,
-        darken($color, 30),
-        lighten($color, 1)
-      );
-  }
-
-  .ui-widget-content {
-    @include u-gradient-striped(darken($color, 20));
-
-    border-radius: $m-slider-width;
-    background-size: 3px 3px;
-  }
-
-  .ui-slider-range {
-    background: none;
-    background-image: linear-gradient(
-      to $direction,
+@mixin m-slider($color) {
+  &__range {
+    background: linear-gradient(
+      to top,
       darken($color, 30),
       lighten($color, 1)
     );
     box-shadow: none;
   }
+
+  &__full-bar {
+    // 8px is correct on both firefox/chrome :(
+    @include u-gradient-striped($color: darken($color, 20), $size: 8px);
+  }
 }
 
-.ui-slider {
+.m-slider {
   position: relative;
-}
 
-.ui-slider-range {
-  position: absolute;
-}
-
-.ui-slider-horizontal {
-  .ui-slider-handle {
-    top: -5px;
+  &,
+  &__full-bar,
+  &__tick-list {
+    width: $m-slider-width;
+    height: 100%;
   }
-}
 
-.ui-slider-vertical {
-  height: 100%;
-  .ui-slider-handle {
+  &__full-bar,
+  &__tick-list {
+    position: absolute;
+  }
+
+  &__full-bar {
+    border-radius: $m-slider-width;
+  }
+
+  &__range {
+    position: absolute;
+    bottom: 0;
+    width: $m-slider-width;
+    border-radius: $m-slider-width;
+  }
+
+  &__tick-list {
+    display: flex;
+    list-style-type: none;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__tick {
+    vertical-align: middle;
+    height: 1px;
+    background-color: $co-color__fg__back;
+  }
+
+  &__handle {
+    display: inline-block;
+    position: absolute;
     left: -5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 0 20px 20px;
+    outline: none;
+    background-color: $co-color__fg__text--high;
+
+    &--top {
+      margin-bottom: -15px;
+      transform: rotateZ(-135deg);
+    }
+
+    &--bottom {
+      margin-bottom: -5px;
+      transform: rotateZ(45deg);
+    }
   }
-}
 
-.ui-slider-handle {
-  border-radius: 0 20px 20px 20px;
-  background-color: white;
-  display: inline-block;
-  height: 20px;
-  outline: none;
-  position: absolute;
-  width: 20px;
-}
+  &__label {
+    display: none;
+  }
 
-.ui-slider-vertical .ui-slider-handle:first-of-type {
-  margin-bottom: -20px;
-  transform: rotateZ(45deg);
-}
-.ui-slider-vertical .ui-slider-handle:last-of-type {
-  margin-bottom: -5px;
-  transform: rotateZ(-135deg);
-}
-.ui-slider-horizontal .ui-slider-handle:first-of-type {
-  margin-left: -15px;
-  transform: rotateZ(135deg);
-}
-.ui-slider-horizontal .ui-slider-handle:last-of-type {
-  transform: rotateZ(-45deg);
+  &--privacy {
+    @include m-slider($co-color__privacy);
+  }
+
+  &--importance {
+    @include m-slider($co-color__importance);
+  }
 }
