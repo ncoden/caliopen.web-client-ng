@@ -16,7 +16,7 @@ describe('Compose', () => {
   describe('new message', () => {
     it('should render a form', () => {
       browser.get('/');
-      element(by.cssContainingText('.l-topbar__col-action a', 'Compose')).click();
+      element(by.cssContainingText('co-layout-call-to-action a', 'Compose')).click();
       expect(element(by.css('co-layout-navigation-tab-list')).getText())
         .toContain('Compose Message');
       expect(element(by.css('co-discussion-draft co-recipient-list')).isPresent()).toBe(true);
@@ -27,7 +27,7 @@ describe('Compose', () => {
     it('should add a known recipient', () => {
       const searchTerms = 'bender';
       browser.get('/');
-      element(by.cssContainingText('.l-topbar__col-action a', 'Compose')).click();
+      element(by.cssContainingText('co-layout-call-to-action a', 'Compose')).click();
       element(by.css('co-recipient-list .m-recipient-list__search-input'))
         .sendKeys(searchTerms, protractor.Key.ENTER);
 
@@ -38,7 +38,7 @@ describe('Compose', () => {
     it('should change known recipient\'s protocol', () => {
       const contact = 'bender';
       browser.get('/');
-      element(by.cssContainingText('.l-topbar__col-action a', 'Compose')).click();
+      element(by.cssContainingText('co-layout-call-to-action a', 'Compose')).click();
       element(by.css('co-recipient-list .m-recipient-list__search-input'))
         .sendKeys(contact, protractor.Key.ENTER);
       element(by.cssContainingText('co-recipient', contact)).click();
@@ -60,7 +60,7 @@ describe('Compose', () => {
     it('should add an unknown recipient', () => {
       const address = 'foo@bar.tld';
       browser.get('/');
-      element(by.cssContainingText('.l-topbar__col-action a', 'Compose')).click();
+      element(by.cssContainingText('co-layout-call-to-action a', 'Compose')).click();
       element(by.css('co-recipient-list .m-recipient-list__search-input'))
         .sendKeys(address, protractor.Key.ENTER);
 
@@ -72,7 +72,7 @@ describe('Compose', () => {
     it('should change unknown recipient protocol', () => {
       const address = 'foo@bar.tld';
       browser.get('/');
-      element(by.cssContainingText('.l-topbar__col-action a', 'Compose')).click();
+      element(by.cssContainingText('co-layout-call-to-action a', 'Compose')).click();
       element(by.css('co-recipient-list .m-recipient-list__search-input'))
         .sendKeys(address, protractor.Key.ENTER);
       element(by.cssContainingText('co-recipient', address)).click();
@@ -85,7 +85,7 @@ describe('Compose', () => {
 
     it('should remove a recipient', () => {
       browser.get('/');
-      element(by.cssContainingText('.l-topbar__col-action a', 'Compose')).click();
+      element(by.cssContainingText('co-layout-call-to-action a', 'Compose')).click();
       element(by.css('co-recipient-list .m-recipient-list__search-input'))
         .sendKeys('bender', protractor.Key.ENTER);
       element(by.css('co-recipient-list .m-recipient-list__search-input'))

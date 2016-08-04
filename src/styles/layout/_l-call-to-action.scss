@@ -1,0 +1,7 @@
+.l-call-to-action {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  // trick to prevent too easily hide buttons
+  padding: $co-margin $co-margin / 2 $co-margin / 2 $co-margin;
+}

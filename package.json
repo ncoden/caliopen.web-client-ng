@@ -25,6 +25,7 @@
   "devDependencies": {
     "angular": "~1.5.0",
     "angular-flash-alert": "^2.3.0",
+    "angular-hammer": "^2.2.0",
     "angular-loading-bar": "^0.9.0",
     "angular-mocks": "~1.5.0",
     "angular-moment": "^0.10.3",
