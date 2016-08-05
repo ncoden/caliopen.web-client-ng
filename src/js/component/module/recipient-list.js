@@ -210,6 +210,7 @@ export const RecipientListComponent = {
                ng-keydown="$ctrl.onSearchKeydown($event)"
                ng-keyup="$ctrl.onSearchKeyup($event)"
                ng-focus="$ctrl.searchOpened = true"
+               ng-blur="$ctrl.searchOpened = false"
                get-focus="co-recipient-list.search.focus" />
         <ul class="m-recipient-list__search-results m-dropdown m-menu m-menu--vertical"
             ng-class="{ 'is-open': !!$ctrl.searchResults.length && $ctrl.searchOpened }"
