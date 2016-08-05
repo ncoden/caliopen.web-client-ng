@@ -14,10 +14,8 @@
       "discussions": "Discussions",
       "messages": "Messages",
       "contacts": "Contacts",
-      "compose": "Compose",
       "action_default": "Action",
       "action_dropdown": "Other Actions",
-      "create_user": "New Contact",
       "account": "Account",
       "search": "Search",
       "toggle-navigation": "Toggle navigation",
@@ -205,6 +203,14 @@
       "username": "Username",
       "password": "Password",
       "submit": "Go"
+    }
+  },
+  "call-to-action": {
+    "action": {
+      "compose": "Compose",
+      "create_contact": "New Contact",
+      "compose_contact": "Message",
+      "reply": "Reply"
     }
   }
 }

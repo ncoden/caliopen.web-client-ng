@@ -1,0 +1,21 @@
+.m-call-to-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  visibility: hidden;
+
+  &:focus,
+  &:hover {
+    visibility: visible;
+  }
+
+  &__btn {
+    box-shadow: $co-shadow;
+    text-align: right;
+
+    &--principal {
+      font-size: 1em;
+      visibility: visible;
+    }
+  }
+}

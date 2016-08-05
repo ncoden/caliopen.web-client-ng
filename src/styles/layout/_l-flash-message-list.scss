@@ -1,6 +1,6 @@
 .l-flash-message-list {
   position: fixed;
+  top: 55px; //cf. header
   right: 0;
-  bottom: 0;
   padding-right: $co-margin / 2;
 }

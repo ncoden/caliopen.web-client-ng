@@ -13,6 +13,7 @@ import uiSelect from 'ui-select';
 import ngRedux from 'ng-redux';
 import reduxUiRouter from 'redux-ui-router';
 import angularFlashAlert from 'angular-flash-alert';
+import angularHammer from 'angular-hammer';
 import angularLoadingBar from 'angular-loading-bar';
 import angularMoment from 'angular-moment';
 
@@ -27,6 +28,7 @@ const app = angular.module(moduleName, [
   ngRedux,
   reduxUiRouter,
   angularFlashAlert,
+  angularHammer,
   angularLoadingBar,
   angularMoment.name,
 ]);
@@ -84,6 +86,7 @@ import DiscussionsActions from './action/discussions.js';
 import DraftMessageActions from './action/draft-message.js';
 import TabsActions from './action/tabs.js';
 import UserActions from './action/user.js';
+import { CaliopenDiscussion } from './service/caliopen/discussion.js';
 import { ApplicationHelper } from './service/helper/application-helper.js';
 import { ContactHelper } from './service/helper/contact-helper.js';
 import { FlashMessageHelper } from './service/helper/flash-message-helper.js';
@@ -101,6 +104,7 @@ app
   .service('DraftMessageActions', DraftMessageActions)
   .service('TabsActions', TabsActions)
   .service('UserActions', UserActions)
+  .service('CaliopenDiscussion', CaliopenDiscussion)
   .service('ApplicationHelper', ApplicationHelper)
   .service('ContactHelper', ContactHelper)
   .service('FlashMessageHelper', FlashMessageHelper)
@@ -126,6 +130,7 @@ import { LayoutSearchFieldComponent } from './component/layout/header/search-fie
 import { LayoutUserMenuComponent } from './component/layout/header/user-menu.js';
 import { LayoutNavigationAltTabListComponent } from './component/layout/navigation-alt/tab-list.js';
 import { LayoutApplicationWrapperComponent } from './component/layout/application-wrapper.js';
+import { LayoutsCallToActionComponent } from './component/layout/call-to-action.js';
 import { LayoutFlashMessageListComponent } from './component/layout/flash-message-list.js';
 import { LayoutHeaderComponent } from './component/layout/header.js';
 import { LayoutNavigationApplicationSwitcherComponent } from './component/layout/navigation/application-switcher.js'; // eslint-disable-line max-len
@@ -157,6 +162,7 @@ app
   .component('coLayoutUserMenu', LayoutUserMenuComponent)
   .component('coLayoutNavigationAltTabList', LayoutNavigationAltTabListComponent)
   .component('coLayoutApplicationWrapper', LayoutApplicationWrapperComponent)
+  .component('coLayoutCallToAction', LayoutsCallToActionComponent)
   .component('coLayoutFlashMessageList', LayoutFlashMessageListComponent)
   .component('coLayoutHeader', LayoutHeaderComponent)
   .component('coLayoutNavigationApplicationSwitcher', LayoutNavigationApplicationSwitcherComponent)
