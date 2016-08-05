@@ -22,7 +22,7 @@ export class CallToActionController {
     const ACTIONS = [
       {
         route: 'front.contacts',
-        picto: 'fa fa-plus',
+        picto: 'fa fa-user',
         label: 'call-to-action.action.create_contact',
         application: 'contacts',
         action: () => this.FlashMessageHelper.info(
@@ -64,12 +64,12 @@ export class CallToActionController {
         return action;
       }
 
-      if (this.applicationName === action.application) {
+      if (!prev && this.applicationName === action.application) {
         return action;
       }
 
       return prev;
-    });
+    }, undefined);
 
     this.availableActions = ACTIONS.filter(
       action =>
