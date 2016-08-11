@@ -19,7 +19,7 @@ export function ApiUrlFactory(BaseUrl) {
 
 export function ApiInterceptorConfig($httpProvider) {
   'ngInject';
-  $httpProvider.interceptors.push(($q, $rootScope, $window, BaseUrl, FlashMessageHelper) => {
+  $httpProvider.interceptors.push(($q, $rootScope, $window, BaseUrl, FlashMessage) => {
     'ngInject';
 
     return {
@@ -29,7 +29,7 @@ export function ApiInterceptorConfig($httpProvider) {
             $window.location.href = BaseUrl; // eslint-disable-line no-param-reassign
             break;
           case 500:
-            FlashMessageHelper.alert('Internal Server Error');
+            FlashMessage.alert('Internal Server Error');
             break;
           default:
             break;

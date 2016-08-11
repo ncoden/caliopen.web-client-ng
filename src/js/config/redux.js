@@ -17,21 +17,6 @@ const promise = store => next => action => {
 };
 
 /**
- * Logs all actions and states after they are dispatched.
- */
-const logger = store => next => action => {
-  /* eslint-disable no-console */
-  console.group(action.type);
-  console.info('dispatching', action);
-  const result = next(action);
-  console.log('next state', store.getState());
-  console.groupEnd(action.type);
-  /* eslint-enable no-console */
-
-  return result;
-};
-
-/**
  * Sends crash reports as state is updated and listeners are notified.
  */
 const crashReporter = () => next => action => {
@@ -45,7 +30,7 @@ const crashReporter = () => next => action => {
   }
 };
 
-export function ReduxConfig($ngReduxProvider) {
+export function ReduxConfig($ngReduxProvider, devToolsServiceProvider) {
   'ngInject';
 
   $ngReduxProvider.createStoreWith(reducers, [
@@ -57,7 +42,7 @@ export function ReduxConfig($ngReduxProvider) {
     'threadMiddleware',
     thunk,
     promise,
-    logger,
     crashReporter,
-  ]);
+  ], [devToolsServiceProvider.instrument()]
+  );
 }

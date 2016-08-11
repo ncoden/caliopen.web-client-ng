@@ -1,7 +1,7 @@
 import * as actions from '../action/action-types.js';
 
 export function apiFiltersMiddleware($state, $http, DiscussionsActions, ContactsActions,
-  FlashMessageHelper) {
+  FlashMessage) {
   'ngInject';
 
   const applyApiFilterHeader = (header, range) => {
@@ -28,7 +28,7 @@ export function apiFiltersMiddleware($state, $http, DiscussionsActions, Contacts
     }
 
     if (isApiFilteringAction) {
-      FlashMessageHelper.info(
+      FlashMessage.info(
         'The filtering feature is not yet available. '
         // + 'Actually you can filter contact list by privacy.' // or not; I can't see it working
         , { timeout: 10000 }
@@ -36,8 +36,8 @@ export function apiFiltersMiddleware($state, $http, DiscussionsActions, Contacts
     }
 
     const statesActions = {
-      'front.discussions': () => DiscussionsActions.invalidateThreads(),
-      'front.contacts': () => ContactsActions.invalidateContacts(),
+      discussions: () => DiscussionsActions.invalidateThreads(),
+      'contact-list': () => ContactsActions.invalidateContacts(),
     };
     const stateRequiresAction = Object.keys(statesActions)
       .find(state => $state.is(state));

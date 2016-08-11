@@ -15,13 +15,13 @@ describe('Discussions', () => {
 
   it('list', () => {
     browser.get('/');
-    const appSwitcher = element(by.css('co-layout-navigation-application-switcher'));
+    const appSwitcher = element(by.css('application-switcher'));
     expect(appSwitcher.element(by.cssContainingText('.m-tab__link', 'Discussions')).isPresent())
       .toBe(true);
-    expect(element(by.xpath('//co-discussions-thread[1]')).getText())
+    expect(element(by.xpath('//thread-item[1]')).getText())
       .toContain('test@caliopen.local, zoidberg@caliopen.local');
-    expect(element.all(by.css('co-discussions-thread')).count()).toEqual(2);
-    expect(element(by.cssContainingText('co-discussions a', 'Load more')).isPresent())
+    expect(element.all(by.css('thread-item')).count()).toEqual(2);
+    expect(element(by.cssContainingText('discussions a', 'Load more')).isPresent())
       .toBe(false);
   });
 
@@ -30,11 +30,11 @@ describe('Discussions', () => {
       browser.get('/');
       expect(
         element(by.cssContainingText(
-          'co-layout-navigation-application-switcher .m-tab__link',
+          'application-switcher .m-tab__link',
           'Discussions'
         )).isPresent()
       ).toBe(true);
-      element(by.xpath('//co-discussions-thread[1]')).click();
+      element(by.xpath('//thread-item[1]')).click();
       expect(element(by.css('.m-tab.m-navbar__item--is-active .m-tab__link')).getText())
         .toContain('test@caliopen.local, zoidberg@caliopen.local');
     });
