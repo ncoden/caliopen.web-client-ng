@@ -21,7 +21,7 @@ const config = {
   htmlMainTest: 'test/functional/index.html',
   jsMain: 'src/js/app.js',
   jsMainTest: 'test/functional/app_test.js',
-  jsFiles: 'src/js/**/*.js',
+  jsFiles: ['src/js/**/*.js', '!src/js/**/*.spec.js'],
   scssMain: 'src/styles/main.scss',
   scssFiles: [
     'src/styles/**/*.scss',
@@ -43,6 +43,7 @@ const config = {
   ],
   cssVendors: [
     './node_modules/angular-loading-bar/src/loading-bar.css',
+    './node_modules/ng-redux-dev-tools/dist/ng-redux-dev-tools.css',
     './node_modules/ui-select/dist/select.css',
   ],
   assetsVendorsNamespace: '',

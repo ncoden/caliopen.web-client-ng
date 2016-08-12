@@ -1,6 +1,6 @@
 module.exports = {
   switch: (application, goToList) => {
-    const appSwitcherElement = element(by.css('co-layout-navigation-application-switcher'));
+    const appSwitcherElement = element(by.css('application-switcher'));
     appSwitcherElement
       .element(by.css('a[data-toggle="co-application-switcher__dropdown"]'))
       .click();

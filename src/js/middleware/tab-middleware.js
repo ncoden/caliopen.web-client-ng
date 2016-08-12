@@ -1,7 +1,7 @@
 import * as actions from '../action/action-types.js';
 import { stateGo } from 'redux-ui-router';
 
-export function tabMiddleware(TabsActions, ApplicationHelper, $state, TabHelper) {
+export function tabMiddleware(TabsActions, ApplicationManager, $state, TabHelper) {
   'ngInject';
 
   return store => next => action => {
@@ -18,7 +18,7 @@ export function tabMiddleware(TabsActions, ApplicationHelper, $state, TabHelper)
       const { route, params } = TabHelper.getRouteAndParamsForTab(action.payload.tab);
       if ($state.is(route, params)) {
         const applicationName = store.getState().applicationReducer.applicationName;
-        store.dispatch(stateGo(ApplicationHelper.getInfos(applicationName).route));
+        store.dispatch(stateGo(ApplicationManager.getInfos(applicationName).route));
       }
     }
 

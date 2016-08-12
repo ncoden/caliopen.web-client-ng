@@ -1,7 +1,7 @@
 import * as actions from '../action/action-types.js';
 import { stateGo } from 'redux-ui-router';
 
-export function applicationMiddleware($state, ApplicationHelper, ApplicationActions) {
+export function applicationMiddleware($state, ApplicationManager, ApplicationActions) {
   'ngInject';
 
   return store => next => action => {
@@ -9,7 +9,7 @@ export function applicationMiddleware($state, ApplicationHelper, ApplicationActi
 
 
     if (action.type === '@@reduxUiRouter/$stateChangeStart') {
-      const nextApplication = ApplicationHelper.getInfosFromRoute(action.payload.toState.name);
+      const nextApplication = ApplicationManager.getInfosFromRoute(action.payload.toState.name);
 
       if (!!nextApplication) {
         store.dispatch(ApplicationActions.switchApplication(nextApplication.name));
@@ -19,8 +19,8 @@ export function applicationMiddleware($state, ApplicationHelper, ApplicationActi
     let redirectToRoute;
 
     if (action.type === actions.SWITCH_APPLICATION) {
-      if ($state.is(ApplicationHelper.getInfos(applicationName).route)) {
-        redirectToRoute = ApplicationHelper.getInfos(action.payload.applicationName).route;
+      if ($state.is(ApplicationManager.getInfos(applicationName).route)) {
+        redirectToRoute = ApplicationManager.getInfos(action.payload.applicationName).route;
       }
     }
 

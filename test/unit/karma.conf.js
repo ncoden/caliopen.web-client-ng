@@ -1,27 +1,27 @@
-module.exports = function(config) {
+module.exports = function karmaConfig(config) {
   config.set({
     frameworks: ['jasmine'],
     files: [
       '../../src/js/app.js',
       '../../node_modules/angular-mocks/angular-mocks.js',
-      './**/*-spec.js'
+      '../../src/js/**/*.spec.js',
     ],
     preprocessors: {
-      '../../src/js/app.js': [ 'webpack' ],
-      './**/*-spec.js': [ 'webpack' ]
+      '../../src/js/app.js': ['webpack'],
+      '../../src/js/**/*.spec.js': ['webpack'],
     },
-    browsers: ['PhantomJS'],
+    browsers: ['Firefox', 'PhantomJS'],
     webpack: {
       module: {
         loaders: [
           { test: /jquery\.js$/, loader: 'expose?jQuery' },
-          { test: /\.js/, exclude: /node_modules/, loader: 'babel' }
-        ]
+          { test: /\.js/, exclude: /node_modules/, loader: 'babel' },
+        ],
       },
-      watch: true
+      watch: true,
     },
     webpackServer: {
-      noInfo: true
-    }
+      noInfo: true,
+    },
   });
 };
