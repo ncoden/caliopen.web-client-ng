@@ -62,6 +62,8 @@ $l-header__margin: ($co-margin / 2) !default;
   }
 
   @include breakpoint(medium) {
+    margin-bottom: 0;
+    &__wrapper { box-shadow: none; }
     &__brand { @include flex-grid-column(shrink); }
     &__search { @include flex-grid-column; }
     &__user { @include flex-grid-column(shrink); }
