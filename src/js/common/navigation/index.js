@@ -8,6 +8,7 @@ import SlidersContainerComponent from './sliders/sliders-container.component.js'
 import SlidersComponent from './sliders/sliders.component.js';
 import TabListComponent from './tab-list/tab-list.component.js';
 import HorizontalScrollDirective from './tab-list/horizontal-scroll.directive.js';
+import stickyNavbarClassDirective from './sticky-navbar-class.directive.js';
 
 const navigation = angular.module('navigation', [ngRedux, applicationManager, slider])
   .component('navigation', NavigationComponent)
@@ -16,6 +17,7 @@ const navigation = angular.module('navigation', [ngRedux, applicationManager, sl
   .component('sliders', SlidersComponent)
   .component('tabList', TabListComponent)
   .directive('horizontalScroll', HorizontalScrollDirective)
+  .directive('stickyNavbarClass', stickyNavbarClassDirective)
   .name;
 
 export default navigation;
