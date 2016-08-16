@@ -5,7 +5,7 @@ function stickyNavbarClassDirective($document, $window) {
     link: (scope, element, attr) => {
       const cssClass = attr.stickyNavbarClass;
 
-      $document.on('scroll', () => {
+      const onScrollHandler = () => {
         const scrollSize = $document[0].documentElement.scrollTop || $window.scrollY;
 
         if (scrollSize < 10) {
@@ -13,7 +13,10 @@ function stickyNavbarClassDirective($document, $window) {
         } else {
           element.addClass(cssClass);
         }
-      });
+      };
+
+      $document.on('scroll', onScrollHandler);
+      scope.$on('$destroy', () => $document.off('scroll', onScrollHandler));
     },
   };
 }

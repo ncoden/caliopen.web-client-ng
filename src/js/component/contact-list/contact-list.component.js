@@ -27,7 +27,7 @@ const ContactListComponent = {
   controller: ContactListController,
   /* eslint-disable max-len */
   template: `
-    <ul class="s-contact-list m-block-list">
+    <ul class="s-contact-list m-block-list" infinite-scroll="$ctrl.loadMore()">
       <li ng-repeat="contact in $ctrl.contacts" class="m-block-list__item">
         <contact-item contact="contact"></contact-item>
       </li>
