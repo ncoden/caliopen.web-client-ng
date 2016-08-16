@@ -5,11 +5,6 @@ const tabsSelector = createSelector(
   (tabs) => ({ tabs })
 );
 
-const userSelector = createSelector(
-  state => state.userReducer.user,
-  user => ({ user })
-);
-
 const applicationSelector = createSelector(
   [
     (state, props) => props.ApplicationManager.getInfos(state.applicationReducer.applicationName),
@@ -29,20 +24,11 @@ export class TabListController {
       ApplicationManager,
     }))(this));
     $scope.$on('$destroy', $ngRedux.connect(tabsSelector)(this));
-    $scope.$on('$destroy', $ngRedux.connect(userSelector)(this));
     $ngRedux.dispatch(TabsActions.requestTabs());
   }
 
   remove(tab) {
     this.$ngRedux.dispatch(this.TabsActions.removeTab(tab));
-  }
-
-  getThread(threadId) {
-    return this.$ngRedux.getState().threadReducer.threadsById[threadId];
-  }
-
-  getContact(contactId) {
-    return this.$ngRedux.getState().contactReducer.contactsById[contactId];
   }
 }
 
@@ -64,33 +50,7 @@ const TabListComponent = {
             class="m-tab m-navbar__item"
             ui-sref-active-eq="m-navbar__item--is-active"
           >
-            <span ng-switch="tab.type">
-              <a ng-switch-when="thread"
-                ui-sref="thread({ threadId: tab.item.thread_id })"
-                title="{{$ctrl.getThread(tab.item.thread_id)|threadContacts:$ctrl.user}}"
-                class="m-tab__link m-navbar__content"
-              >
-                <i class="fa fa-comments-o"></i>
-                {{$ctrl.getThread(tab.item.thread_id)|threadContacts:$ctrl.user|limitTo:200}}
-              </a>
-
-              <a ng-switch-when="contact"
-                ui-sref="contact({ contactId: tab.item.contact_id })"
-                title="{{$ctrl.getContact(tab.item.contact_id).title}}"
-                class="m-tab__link m-navbar__content"
-              >
-                <i class="fa fa-user"></i>
-                {{$ctrl.getContact(tab.item.contact_id).title|limitTo:200}}
-              </a>
-
-              <a ng-switch-when="draft-message"
-                ui-sref="discussion-draft({ messageId: tab.item.message_id })"
-                class="m-tab__link m-navbar__content"
-              >
-                <i class="fa fa-envelope-o"></i>
-                {{'messages.compose.title'|translate}}
-              </a>
-            </span>
+            <nav-tab tab="tab" link-stylesheet="m-navbar__content"></nav-tab>
 
             <a href ng-click="$ctrl.remove(tab)" class="m-tab__button m-navbar__content">
               <i class="fa fa-close"></i>
