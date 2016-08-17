@@ -6,6 +6,7 @@ const threadsSelector = createSelector(
   payload => ({
     hasMore: hasMore(payload),
     threads: payload.threads.map(threadId => payload.threadsById[threadId]),
+    isFetching: payload.isFetching,
   })
 );
 
@@ -31,6 +32,7 @@ const DiscussionsComponent = {
   controller: DiscussionsController,
   /* eslint-disable max-len */
   template: `
+    <spinner loading="$ctrl.isFetching"></spinner>
     <ul class="s-thread-list m-block-list" infinite-scroll="$ctrl.loadMore()">
       <li ng-repeat="thread in $ctrl.threads" class="m-block-list__item">
         <thread-item thread="thread"></thread-item>

@@ -1,12 +1,14 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import avatarLetter from '../../common/avatar-letter';
+import spinner from '../../common/spinner';
 import ThreadComponent from './thread.component.js';
 import MessageComponent from './message/message.component.js';
 
 const thread = angular.module('thread', [
   uiRouter,
   avatarLetter,
+  spinner,
 ])
   .component('thread', ThreadComponent)
   .component('threadMessage', MessageComponent)
