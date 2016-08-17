@@ -1,5 +1,9 @@
 export function threadContactsFilter() {
   return (thread, user) => {
+    if (!thread) {
+      return '';
+    }
+
     let contacts = thread.contacts
       .filter(contact => contact.contact_id !== user.contact_id)
       .map(contact => contact.address)

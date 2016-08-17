@@ -16,7 +16,7 @@ const discussionDraft = angular.module('discussionDraft', [
     'ngInject';
     $stateProvider
       .state('discussion-draft', {
-        url: '/discussion-draft/{messageId}',
+        url: '/discussion-draft/{message_id}',
         views: {
           '@': {
             template: '<discussion-draft></discussion-draft>',

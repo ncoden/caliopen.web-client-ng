@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 
 const messageDraftSelector = createSelector(
   (state) => state.draftMessageReducer.draftMessagesById,
-  (state) => state.router.currentParams.messageId,
+  (state) => state.router.currentParams.message_id,
   (draftMessageReducer, messageId) => draftMessageReducer[messageId]
 );
 const DEFAULT_PI = 50;

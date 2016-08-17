@@ -1,7 +1,7 @@
 import * as actions from '../action/action-types.js';
 import { stateGo } from 'redux-ui-router';
 
-export function tabMiddleware(TabsActions, ApplicationManager, $state, TabHelper) {
+export function tabMiddleware(TabsActions, ApplicationManager, $state) {
   'ngInject';
 
   return store => next => action => {
@@ -15,44 +15,41 @@ export function tabMiddleware(TabsActions, ApplicationManager, $state, TabHelper
     }
 
     if (action.type === actions.REMOVE_TAB) {
-      const { route, params } = TabHelper.getRouteAndParamsForTab(action.payload.tab);
-      if ($state.is(route, params)) {
+      const { routeName, routeParams } = action.payload.tab;
+      if ($state.is(routeName, routeParams)) {
         const applicationName = store.getState().applicationReducer.applicationName;
         store.dispatch(stateGo(ApplicationManager.getInfos(applicationName).route));
       }
     }
 
     const result = next(action);
-
     const nextState = store.getState();
-    const actionsRequiresTabOnReloading = [
-      actions.RECEIVE_CONTACT,
-      actions.RECEIVE_THREAD,
-      actions.CREATE_DRAFT_MESSAGE,
+
+    const addOrSelectTab = ({ routeName, routeParams }) => {
+      store.dispatch(TabsActions.selectOrAdd({ routeName, routeParams }));
+    };
+
+    const registeredRoutesName = [
+      'thread',
+      'contact',
+      'discussion-draft',
+      'account',
     ];
-    if (actionsRequiresTabOnReloading.indexOf(action.type) !== -1
-      && nextState.tabReducer.tabs.length === 0) {
-      switch (action.type) {
-        case actions.RECEIVE_CONTACT:
-          store.dispatch(TabsActions.addTab({
-            type: 'contact',
-            item: {
-              contact_id: action.payload.contact.contact_id,
-            },
-          }));
-          break;
-        case actions.RECEIVE_THREAD:
-          store.dispatch(TabsActions.addTab({
-            type: 'thread',
-            item: {
-              thread_id: action.payload.thread.thread_id,
-            },
-          }));
-          break;
-        default:
-          break;
+
+    const tabRouteHandler = (currentAction, reduxState) => {
+      const routeName = reduxState.router.currentState.name;
+      if (
+        currentAction.type === '@@reduxUiRouter/$stateChangeSuccess'
+        && registeredRoutesName.indexOf(routeName) !== -1
+      ) {
+        addOrSelectTab({
+          routeName,
+          routeParams: reduxState.router.currentParams,
+        });
       }
-    }
+    };
+
+    tabRouteHandler(action, nextState);
 
     return result;
   };

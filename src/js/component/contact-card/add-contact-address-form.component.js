@@ -4,7 +4,7 @@ const ADDRESS_TYPES = ['work', 'home', 'other'];
 
 const addressFormSelector = createSelector(
   state => state.contactReducer.contactDetailFormsById,
-  state => state.router.currentParams.contactId,
+  state => state.router.currentParams.contact_id,
   (contactDetailState, contactId) => {
     if (!!contactDetailState[contactId] && contactDetailState[contactId].addressForm) {
       return contactDetailState[contactId].addressForm;

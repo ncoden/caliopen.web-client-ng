@@ -92,7 +92,6 @@ import DiscussionsActions from './action/discussions.js';
 import DraftMessageActions from './action/draft-message.js';
 import TabsActions from './action/tabs.js';
 import UserActions from './action/user.js';
-import { TabHelper } from './service/helper/tab-helper.js';
 import { ContactRepository } from './service/repository/contact.js';
 import { MessageRepository } from './service/repository/message.js';
 import { ThreadRepository } from './service/repository/thread.js';
@@ -106,7 +105,6 @@ app
   .service('DraftMessageActions', DraftMessageActions)
   .service('TabsActions', TabsActions)
   .service('UserActions', UserActions)
-  .service('TabHelper', TabHelper)
   .service('ContactRepository', ContactRepository)
   .service('MessageRepository', MessageRepository)
   .service('ThreadRepository', ThreadRepository)
