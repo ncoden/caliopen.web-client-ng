@@ -51,9 +51,7 @@ const ContactCardComponent = {
   controller: ContactCardController,
   /* eslint-disable max-len */
   template: `
-    <div ng-if="$ctrl.isFetching" class="m-loading">
-      <span class="m-loading__icon">
-    </div>
+    <spinner loading="$ctrl.isFetching"></spinner>
     <div ng-if="!$ctrl.isFetching" class="s-contact">
       <div class="s-contact__col-datas-irl">
 

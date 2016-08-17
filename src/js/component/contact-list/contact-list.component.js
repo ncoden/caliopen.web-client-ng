@@ -2,7 +2,10 @@ import { createSelector } from 'reselect';
 
 const contactsSelector = createSelector(
   state => state.contactReducer,
-  payload => ({ contacts: payload.contacts.map(contactId => payload.contactsById[contactId]) })
+  payload => ({
+    contacts: payload.contacts.map(contactId => payload.contactsById[contactId]),
+    isFetching: payload.isFetching,
+  })
 );
 
 export class ContactListController {
@@ -27,6 +30,7 @@ const ContactListComponent = {
   controller: ContactListController,
   /* eslint-disable max-len */
   template: `
+    <spinner loading="$ctrl.isFetching"></spinner>
     <ul class="s-contact-list m-block-list" infinite-scroll="$ctrl.loadMore()">
       <li ng-repeat="contact in $ctrl.contacts" class="m-block-list__item">
         <contact-item contact="contact"></contact-item>
