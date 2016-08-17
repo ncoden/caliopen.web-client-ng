@@ -42,7 +42,7 @@ describe('component Contact Add Email Form', () => {
   }));
 
   it('init form', inject(($rootScope, $ngRedux) => {
-    $ngRedux.dispatch(stateGo('contact', { contactId: contact.contact_id }));
+    $ngRedux.dispatch(stateGo('contact', { contact_id: contact.contact_id }));
     $rootScope.$digest();
     const ctrl = $componentController('addContactEmailForm', null, { contact });
 
@@ -51,7 +51,7 @@ describe('component Contact Add Email Form', () => {
 
 
   it('add email', inject(($rootScope, $ngRedux, $httpBackend, ApiUrl) => {
-    $ngRedux.dispatch(stateGo('contact', { contactId: contact.contact_id }));
+    $ngRedux.dispatch(stateGo('contact', { contact_id: contact.contact_id }));
     $rootScope.$digest();
     const ctrl = $componentController('addContactEmailForm', null, { contact });
     ctrl.contactDetail.address = successfulAddress;
@@ -70,7 +70,7 @@ describe('component Contact Add Email Form', () => {
   }));
 
   it('fails to add email', inject(($rootScope, $ngRedux, $httpBackend) => {
-    $ngRedux.dispatch(stateGo('contact', { contactId: contact.contact_id }));
+    $ngRedux.dispatch(stateGo('contact', { contact_id: contact.contact_id }));
     $rootScope.$digest();
     const ctrl = $componentController('addContactEmailForm', null, { contact });
     expect(ctrl.loading).toBe(false);

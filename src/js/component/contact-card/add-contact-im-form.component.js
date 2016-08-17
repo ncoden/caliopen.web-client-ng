@@ -4,7 +4,7 @@ const IM_TYPES = ['work', 'home', 'other', 'netmeeting'];
 
 const imFormSelector = createSelector(
   state => state.contactReducer.contactDetailFormsById,
-  state => state.router.currentParams.contactId,
+  state => state.router.currentParams.contact_id,
   (contactDetailState, contactId) => {
     if (!!contactDetailState[contactId] && contactDetailState[contactId].imForm) {
       return contactDetailState[contactId].imForm;

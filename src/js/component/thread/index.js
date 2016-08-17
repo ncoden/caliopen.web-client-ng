@@ -14,7 +14,7 @@ const thread = angular.module('thread', [
     'ngInject';
     $stateProvider
       .state('thread', {
-        url: '/threads/{threadId}',
+        url: '/threads/{thread_id}',
         views: {
           '@': {
             template: '<thread></thread>',

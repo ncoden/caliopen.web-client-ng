@@ -13,12 +13,12 @@ describe('component Layout TabList', () => {
   beforeEach(angular.mock.inject((_$componentController_) => {
     $componentController = _$componentController_;
     fakeTab1 = {
-      type: 'thread',
-      item: { thread_id: 'foo' },
+      routeName: 'thread',
+      routeParams: { thread_id: 'foo' },
     };
     fakeTab2 = {
-      type: 'contact',
-      item: { contact_id: 'bar' },
+      routeName: 'contact',
+      routeParams: { contact_id: 'bar' },
     };
   }));
 

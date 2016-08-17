@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 
 const contactSelector = createSelector(
   state => state.contactReducer,
-  state => state.router.currentParams.contactId,
+  state => state.router.currentParams.contact_id,
   (contactReducer, contactId) => ({
     contact: (contactReducer.contactsById[contactId] || {}),
     isFetching: contactReducer.isFetching,
@@ -10,7 +10,7 @@ const contactSelector = createSelector(
 );
 
 const routerSelector = createSelector(
-  state => state.router.currentParams.contactId,
+  state => state.router.currentParams.contact_id,
   contactId => ({ contactId })
 );
 

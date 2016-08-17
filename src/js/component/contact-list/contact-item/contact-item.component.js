@@ -1,22 +1,8 @@
-import { stateGo } from 'redux-ui-router';
-
 export class ContactItemController {
   constructor($ngRedux, TabsActions) {
     'ngInject';
     this.$ngRedux = $ngRedux;
     this.TabsActions = TabsActions;
-  }
-
-  showContact() {
-    this.$ngRedux.dispatch(dispatch => {
-      dispatch(this.TabsActions.selectOrAdd({
-        type: 'contact',
-        item: {
-          contact_id: this.contact.contact_id,
-        },
-      }));
-      dispatch(stateGo('contact', { contactId: this.contact.contact_id }));
-    });
   }
 }
 
@@ -27,7 +13,9 @@ const ContactItemComponent = {
   controller: ContactItemController,
   /* eslint-disable max-len */
   template: `
-    <div ng-click="$ctrl.showContact()" class="s-contact-list__contact m-block-list__item-content m-block-list__item-content--link">
+    <div ui-sref="contact({ contact_id: $ctrl.contact.contact_id })"
+      class="s-contact-list__contact m-block-list__item-content m-block-list__item-content--link"
+    >
       <div class="s-contact-list__col-avatar">
         <avatar-letter contact="$ctrl.contact"></avatar-letter>
       </div>

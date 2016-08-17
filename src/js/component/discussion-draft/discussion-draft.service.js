@@ -13,15 +13,13 @@ class DiscussionDraftService {
     const messageId = uuidV1();
     this.$ngRedux.dispatch((dispatch) => {
       dispatch(this.DraftMessageActions.createDraftMessage(messageId));
-      const tab = {
-        type: 'draft-message',
-        item: {
-          message_id: messageId,
-        },
+      const routeName = 'discussion-draft';
+      const routeParams = {
+        message_id: messageId,
       };
-      dispatch(this.TabsActions.selectOrAdd(tab));
+      dispatch(this.TabsActions.selectOrAdd({ routeName, routeParams }));
       if (redirect) {
-        dispatch(stateGo('discussion-draft', { messageId }));
+        dispatch(stateGo(routeName, routeParams));
       }
     });
   }

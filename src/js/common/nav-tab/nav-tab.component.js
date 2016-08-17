@@ -32,27 +32,27 @@ const NavTabComponent = {
   },
   controller: NavTabController,
   template: `
-    <span ng-switch="$ctrl.tab.type">
+    <span ng-switch="$ctrl.tab.routeName">
       <a ng-switch-when="thread"
-        ui-sref="thread({ threadId: $ctrl.tab.item.thread_id })"
-        title="{{$ctrl.getThread($ctrl.tab.item.thread_id)|threadContacts:$ctrl.user}}"
+        ui-sref="thread($ctrl.tab.routeParams)"
+        title="{{$ctrl.getThread($ctrl.tab.routeParams.thread_id)|threadContacts:$ctrl.user}}"
         class="m-tab__link" ng-class="$ctrl.linkStylesheet"
       >
         <i class="fa fa-comments-o"></i>
-        {{$ctrl.getThread($ctrl.tab.item.thread_id)|threadContacts:$ctrl.user|limitTo:200}}
+        {{$ctrl.getThread($ctrl.tab.routeParams.thread_id)|threadContacts:$ctrl.user|limitTo:200}}
       </a>
 
       <a ng-switch-when="contact"
-        ui-sref="contact({ contactId: $ctrl.tab.item.contact_id })"
-        title="{{$ctrl.getContact($ctrl.tab.item.contact_id).title}}"
+        ui-sref="contact($ctrl.tab.routeParams)"
+        title="{{$ctrl.getContact($ctrl.tab.routeParams.contact_id).title}}"
         class="m-tab__link" ng-class="$ctrl.linkStylesheet"
       >
         <i class="fa fa-user"></i>
-        {{$ctrl.getContact($ctrl.tab.item.contact_id).title|limitTo:200}}
+        {{$ctrl.getContact($ctrl.tab.routeParams.contact_id).title|limitTo:200}}
       </a>
 
-      <a ng-switch-when="draft-message"
-        ui-sref="discussion-draft({ messageId: $ctrl.tab.item.message_id })"
+      <a ng-switch-when="discussion-draft"
+        ui-sref="discussion-draft($ctrl.tab.routeParams)"
         class="m-tab__link" ng-class="$ctrl.linkStylesheet"
       >
         <i class="fa fa-envelope-o"></i>

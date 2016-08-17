@@ -1,4 +1,3 @@
-import { stateGo } from 'redux-ui-router';
 import { createSelector } from 'reselect';
 
 const userSelector = createSelector(
@@ -18,19 +17,6 @@ export class ThreadItemController {
 
     $scope.$on('$destroy', $ngRedux.connect(userSelector)(this));
   }
-
-  showThread() {
-    this.$ngRedux.dispatch(dispatch => {
-      const tab = {
-        type: 'thread',
-        item: {
-          thread_id: this.thread.thread_id,
-        },
-      };
-      dispatch(this.TabsActions.selectOrAdd(tab));
-      dispatch(stateGo('thread', { threadId: this.thread.thread_id }));
-    });
-  }
 }
 
 const ThreadItemComponent = {
@@ -39,7 +25,7 @@ const ThreadItemComponent = {
   },
   controller: ThreadItemController,
   template: `
-    <div ng-click="$ctrl.showThread()"
+    <div ui-sref="thread({ thread_id: $ctrl.thread.thread_id })"
       class="s-thread-list__thread m-block-list__item-content m-block-list__item-content--link"
       ng-class="{ 's-thread-list__thread--unread': $ctrl.hasUnread }"
     >

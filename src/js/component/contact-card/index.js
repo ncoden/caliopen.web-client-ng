@@ -20,7 +20,7 @@ const contact = angular.module('contact', [
     'ngInject';
     $stateProvider
       .state('contact', {
-        url: '/contacts/{contactId}',
+        url: '/contacts/{contact_id}',
         views: {
           '@': {
             template: '<contact-card></contact-card>',
