@@ -2,9 +2,10 @@ import * as actions from './action-types.js';
 
 export default class UserActions {
 
-  constructor(UserRepository) {
+  constructor(UserRepository, ContactsActions) {
     'ngInject';
     this.UserRepository = UserRepository;
+    this.ContactsActions = ContactsActions;
   }
 
   requestUser() {
@@ -26,6 +27,20 @@ export default class UserActions {
     return {
       type: actions.RECEIVE_USER,
       payload: { user },
+    };
+  }
+
+  updateUserContact(contact) {
+    return dispatch => {
+      dispatch(this.ContactsActions.updateContact(contact));
+      dispatch(this.invalidate());
+    };
+  }
+
+  invalidate() {
+    return {
+      type: actions.INVALIDATE_USER,
+      payload: {},
     };
   }
 }

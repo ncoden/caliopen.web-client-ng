@@ -57,7 +57,7 @@ const ContactCardComponent = {
 
         <div class="s-contact__m-contact-card m-contact-card">
           <div class="s-contact__m-contact-card__m-avatar_ m-contact-card__m-avatar_">
-            <avatar-letter contact="$ctrl.contact"></avatar-letter>
+            <avatar-letter contact="$ctrl.contact" props="{ size: 'xlarge' }"></avatar-letter>
           </div>
           <h3 class="m-contact-card__title">
             {{ $ctrl.contact.title }}
@@ -93,7 +93,8 @@ const ContactCardComponent = {
 
           <button class="m-link m-link--button pull-right"
             ng-class="{ 'active': !!$ctrl.editMode }"
-            ng-click="$ctrl.editMode = !$ctrl.editMode">
+            ng-click="$ctrl.editMode = !$ctrl.editMode"
+          >
             <i class="fa fa-edit"></i>
             <span class="show-for-sr">{{ 'contact.action.edit_contact_details'|translate }}</span>
           </button>

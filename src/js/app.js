@@ -15,6 +15,7 @@ import ngReduxDevTools from 'ng-redux-dev-tools';
 
 import flashMessage from './common/flash-message';
 import layout from './common/layout';
+import account from './component/account';
 import contactCard from './component/contact-card';
 import contactList from './component/contact-list';
 import discussionDraft from './component/discussion-draft';
@@ -36,6 +37,7 @@ const app = angular.module(moduleName, [
 
   flashMessage,
   layout,
+  account,
   contactCard,
   contactList,
   discussionDraft,
@@ -56,6 +58,8 @@ import { applicationMiddleware } from './middleware/application-middleware.js';
 import { contactMiddleware } from './middleware/contact-middleware.js';
 import { tabMiddleware } from './middleware/tab-middleware.js';
 import { threadMiddleware } from './middleware/thread-middleware.js';
+import { userMiddleware } from './middleware/user-middleware.js';
+import { remoteIdentityMiddleware } from './middleware/remote-identity-middleware.js';
 import { protocolsConfig } from './config/protocols-config.js';
 
 app
@@ -71,6 +75,8 @@ app
   .factory('contactMiddleware', contactMiddleware)
   .factory('tabMiddleware', tabMiddleware)
   .factory('threadMiddleware', threadMiddleware)
+  .factory('userMiddleware', userMiddleware)
+  .factory('remoteIdentityMiddleware', remoteIdentityMiddleware)
   .value('protocolsConfig', protocolsConfig)
   ;
 
@@ -91,6 +97,7 @@ import ContactsActions from './action/contacts.js';
 import DiscussionsActions from './action/discussions.js';
 import DraftMessageActions from './action/draft-message.js';
 import TabsActions from './action/tabs.js';
+import RemoteIdentityActions from './action/remote-identity.js';
 import UserActions from './action/user.js';
 import { ContactRepository } from './service/repository/contact.js';
 import { MessageRepository } from './service/repository/message.js';
@@ -104,6 +111,7 @@ app
   .service('DiscussionsActions', DiscussionsActions)
   .service('DraftMessageActions', DraftMessageActions)
   .service('TabsActions', TabsActions)
+  .service('RemoteIdentityActions', RemoteIdentityActions)
   .service('UserActions', UserActions)
   .service('ContactRepository', ContactRepository)
   .service('MessageRepository', MessageRepository)

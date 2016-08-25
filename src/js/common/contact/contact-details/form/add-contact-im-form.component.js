@@ -32,12 +32,14 @@ export class AddContactDetailFormController {
     this.$ngRedux.dispatch(
       this.ContactsActions.addContactDetail(this.contact.contact_id, 'im', this.contactDetail)
     );
+    this.onAdd({ $event: { type: 'im', contactDetail: this.contactDetail } });
   }
 }
 
 const AddContactImFormComponent = {
   bindings: {
     contact: '<',
+    onAdd: '&',
   },
   controller: AddContactDetailFormController,
   /* eslint-disable max-len */

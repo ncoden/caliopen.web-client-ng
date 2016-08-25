@@ -10,7 +10,8 @@ module.exports = function karmaConfig(config) {
       '../../src/js/app.js': ['webpack'],
       '../../src/js/**/*.spec.js': ['webpack'],
     },
-    browsers: ['Firefox', 'PhantomJS'],
+    // browsers: ['Firefox', 'PhantomJS'],
+    browsers: ['PhantomJS'],
     webpack: {
       module: {
         loaders: [

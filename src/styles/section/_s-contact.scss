@@ -19,7 +19,6 @@
   }
 
   &__m-contact-card {
-    @include m-contact-card--size(large);
     margin-bottom: $co-margin;
     word-break: break-word;
   }
@@ -38,7 +37,6 @@
 
     &__m-contact-card {
       @include m-contact-card--vertical;
-      @include m-contact-card--size(xlarge);
       text-align: center;
     }
   }

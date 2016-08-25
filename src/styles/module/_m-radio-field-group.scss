@@ -1,0 +1,7 @@
+.m-radio-field-group {
+  &--bottom-space { margin: 0 0 map-get($co-form__spacing, 'medium'); }
+
+  &__entry {
+    display: block;
+  }
+}

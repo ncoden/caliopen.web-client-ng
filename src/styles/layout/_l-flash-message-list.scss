@@ -2,5 +2,6 @@
   position: fixed;
   top: 55px; //cf. header
   right: 0;
+  z-index: $l-z-index__flash-message;
   padding-right: $co-margin / 2;
 }
