@@ -27,12 +27,17 @@ describe('Contact', () => {
       browser.get('/');
       switchApplication.switch('Contacts');
       element(by.cssContainingText('contact-item', 'zoidberg')).click();
+
+      const contact = element(by.css('contact-card'));
+      expect(contact.element(by.css('avatar-letter')).isPresent()).toBe(true);
+      expect(contact.element(by.css('contact-title')).getText()).toEqual('zoidberg');
       expect(
         element(by.cssContainingText('tab-list .m-tab__link', 'zoidberg'))
           .isPresent()
       ).toBe(true);
       expect(
-        element(by.cssContainingText('contact-card .m-contact-card__title', 'zoidberg')).isPresent()
+        contact.element(by.cssContainingText('contact-title', 'zoidberg'))
+          .isPresent()
       ).toBe(true);
     });
 
@@ -41,10 +46,13 @@ describe('Contact', () => {
         browser.get('/');
         switchApplication.switch('Contacts');
         element(by.cssContainingText('contact-item', 'bender')).click();
-        element(by.cssContainingText('contact-card button', 'Edit')).click();
-        expect(element(by.css('form[name=email_form]')).isPresent()).toBe(true);
-        expect(element(by.css('form[name=address_form]')).isPresent()).toBe(true);
-        expect(element(by.css('form[name=im_form]')).isPresent()).toBe(true);
+
+        const contact = element(by.css('contact-card'));
+        contact.element(by.cssContainingText('contact-details button', 'Edit')).click();
+
+        expect(contact.element(by.css('form[name=email_form]')).isPresent()).toBe(true);
+        expect(contact.element(by.css('form[name=address_form]')).isPresent()).toBe(true);
+        expect(contact.element(by.css('form[name=im_form]')).isPresent()).toBe(true);
       });
 
       it('fails to add an email', () => {
@@ -52,27 +60,42 @@ describe('Contact', () => {
         browser.get('/');
         switchApplication.switch('Contacts');
         element(by.cssContainingText('contact-item', 'bender')).click();
-        element(by.cssContainingText('contact-card button', 'Edit')).click();
-        element(by.css('input#email_form_address')).sendKeys(email);
-        element(by.cssContainingText('add-contact-email-form button', 'Add')).click();
-        expect(element(by.css('add-contact-email-form .callout.alert')).getText())
+        const contact = element(by.css('contact-card'));
+        contact.element(by.cssContainingText('contact-details button', 'Edit')).click();
+        const emailForm = contact.element(by.css('add-contact-email-form'));
+
+        emailForm
+          .element(by.cssContainingText('.s-contact-detail-form__group', 'Address'))
+          .element(by.css('input')).sendKeys(email);
+
+        emailForm.element(by.cssContainingText('button', 'Add')).click();
+        expect(emailForm.element(by.css('.callout.alert')).getText())
           .toEqual('type is missing');
       });
 
-      it('success to add and remove an email', () => {
+      fit('success to add and remove an email', () => {
         const email = 'foo@bar.tld';
         const type = 'Professional';
         browser.get('/');
         switchApplication.switch('Contacts');
         element(by.cssContainingText('contact-item', 'bender')).click();
-        element(by.cssContainingText('contact-card button', 'Edit')).click();
-        element(by.css('input#email_form_address')).sendKeys(email);
-        element(by.cssContainingText('select#email_form_type option', type)).click();
-        element(by.cssContainingText('add-contact-email-form button', 'Add')).click();
-        expect(element(by.css('.s-contact__col-datas-online')).getText()).toContain(email);
-        element(by.cssContainingText('.s-contact__m-contact-detail-list li', email))
+        const contact = element(by.css('contact-card'));
+        contact.element(by.cssContainingText('contact-details button', 'Edit')).click();
+        const emailForm = contact.element(by.css('add-contact-email-form'));
+
+        emailForm
+          .element(by.cssContainingText('.s-contact-detail-form__group', 'Address'))
+          .element(by.css('input')).sendKeys(email);
+        emailForm
+          .element(by.cssContainingText('.s-contact-detail-form__group', 'Type'))
+          .element(by.cssContainingText('select option', type)).click();
+
+        emailForm.element(by.cssContainingText('button', 'Add')).click();
+        expect(contact.element(by.css('contact-details')).getText()).toContain(email);
+        contact.element(by.cssContainingText('contact-details button', 'Edit')).click();
+        contact.element(by.cssContainingText('contact-details li', email))
           .element(by.cssContainingText('button', 'Delete')).click();
-        expect(element(by.css('.s-contact__col-datas-online')).getText()).not.toContain(email);
+        expect(contact.element(by.css('contact-details')).getText()).not.toContain(email);
       });
     });
   });

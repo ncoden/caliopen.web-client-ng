@@ -1,6 +1,5 @@
 .s-contact {
-  @include flex-grid-row;
-  max-width: none;
+  @include flex-grid-row($width: none);
   background-color: $co-color__fg__back--low;
 
   &__col-datas-irl {
@@ -14,17 +13,23 @@
     @include flex-grid-column(12, 0);
   }
 
-  &__m-contact-detail-list {
-    padding: 0 $co-margin;
+  &__avatar {
+    float: left;
   }
 
-  &__m-contact-card {
-    margin-bottom: $co-margin;
-    word-break: break-word;
+  &__title {
+    @include clearfix;
   }
 
-  &__message-button {
-    margin: 0;
+  &__contact-summary {
+    position: relative;
+  }
+
+  &__contact-summary-edit-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    line-height: $co-component__height;
   }
 
   &__m-subtitle {
@@ -32,13 +37,31 @@
   }
 
   @include breakpoint(medium) {
+    @include m-contact-main--vertical;
+
     &__col-datas-irl { @include flex-grid-size(5); }
     &__col-datas-online { @include flex-grid-size(7); }
 
-    &__m-contact-card {
-      @include m-contact-card--vertical;
+    &__title,
+    &__avatar {
       text-align: center;
     }
+
+    &__summary-form { @include flex-grid-row($width: none); }
+
+    &__field-group--large,
+    &__save-button-container {
+      @include flex-grid-column(12);
+    }
+
+    &__field-group--medium { @include flex-grid-column(6); }
+    &__field-group--small { @include flex-grid-column(3); }
+    &__field-group--shrink { @include flex-grid-column(shrink); }
+
+    &__save-button {
+      display: inline-block;
+    }
+
   }
 
   @include breakpoint(large) {

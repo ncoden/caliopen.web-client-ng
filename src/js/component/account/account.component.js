@@ -144,6 +144,7 @@ const AccountComponent = {
           props="$ctrl.contactDetailsProps"
           on-add-contact-detail="$ctrl.addContactDetail($event)"
           on-delete-contact-detail="$ctrl.deleteContactDetail($event)"
+          allow-connect-remote-entity="true"
           on-connect-remote-identity="$ctrl.connectRemoteIdentity($event)"
           on-disconnect-remote-identity="$ctrl.disconnectRemoteIdentity($event)"
           remote-identities="$ctrl.remoteIdentities"

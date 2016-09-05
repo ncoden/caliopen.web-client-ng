@@ -8,6 +8,7 @@ const ContactDetailsComponent = {
     props: '<',
     onAddContactDetail: '&',
     onDeleteContactDetail: '&',
+    allowConnectRemoteEntity: '<?',
     onConnectRemoteIdentity: '&?',
     onDisconnectRemoteIdentity: '&?',
     remoteIdentities: '<?',
@@ -16,6 +17,7 @@ const ContactDetailsComponent = {
     <contact-details-container
       contact="$ctrl.contact"
       on-delete-contact-detail="$ctrl.onDeleteContactDetail({ $event: $event })"
+      allow-connect-remote-entity="$ctrl.allowConnectRemoteEntity"
       on-connect-remote-identity="$ctrl.onConnectRemoteIdentity({ $event: $event })"
       on-disconnect-remote-identity="$ctrl.onDisconnectRemoteIdentity({ $event: $event })"
       remote-identities="$ctrl.remoteIdentities"

@@ -32,6 +32,10 @@
     line-height: $co-component__height;
   }
 
+  &__m-subtitle {
+    padding: 0 $co-margin;
+  }
+
   &__remote-identity-fetching-panel {
     @include flex-grid-row;
   }
@@ -43,13 +47,8 @@
   @include breakpoint(medium) {
     @include m-contact-main--vertical;
 
-    &__col-datas-irl {
-      @include flex-grid-size(5);
-    }
-
-    &__col-datas-online {
-      @include flex-grid-size(7);
-    }
+    &__col-datas-irl { @include flex-grid-size(5); }
+    &__col-datas-online { @include flex-grid-size(7); }
 
     &__title,
     &__avatar {
@@ -67,17 +66,9 @@
       @include flex-grid-column(12);
     }
 
-    &__field-group--medium {
-      @include flex-grid-column(6);
-    }
-
-    &__field-group--small {
-      @include flex-grid-column(3);
-    }
-
-    &__field-group--shrink {
-      @include flex-grid-column(shrink);
-    }
+    &__field-group--medium { @include flex-grid-column(6); }
+    &__field-group--small { @include flex-grid-column(3); }
+    &__field-group--shrink { @include flex-grid-column(shrink); }
 
     &__save-button {
       display: inline-block;
