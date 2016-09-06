@@ -8,7 +8,7 @@ function threadByIdReducer(state = {}, action = {}) {
 }
 
 function messagesByThreadsIdReducer(state = {}, action = {}) {
-  return Object.assign({}, state, { [action.payload.threadId]: action.payload.messages });
+  return { ...state, [action.payload.threadId]: action.payload.messages };
 }
 
 function threadIdsReducer(state = [], action = {}) {
@@ -43,51 +43,57 @@ export default function threadReducer(state = {
   isFetching: false,
   threads: [],
   totalThreads: 0,
+  didInvalidate: false,
 }, action = {}) {
   switch (action.type) {
     case actions.REQUEST_THREADS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: true,
         selectedThread: undefined,
-      });
+      };
     case actions.RECEIVE_THREADS:
-      return Object.assign({}, state, {
+      return { ...state,
         isFetching: false,
-        threads: threadIdsReducer(state.threads, action),
-        threadsById: threadByIdReducer(state.threadsById, action),
+        threads: threadIdsReducer(
+          state.didInvalidate === true ? [] : state.threads,
+          action
+        ),
+        threadsById: threadByIdReducer(
+          state.didInvalidate === true ? {} : state.threadsById,
+          action
+        ),
         totalThreads: action.payload.total,
         lastUpdated: action.payload.receivedAt,
-      });
+        didInvalidate: false,
+      };
     case actions.REQUEST_THREAD:
-      return Object.assign({}, state, {
+      return { ...state,
         isFetching: true,
         selectedThread: action.payload.threadId,
-      });
+      };
     case actions.RECEIVE_THREAD:
-      return Object.assign({}, state, {
+      return { ...state,
         isFetching: false,
         threadsById: threadByIdReducer(
           state.threadsById,
           { payload: { threads: [action.payload.thread] } }
         ),
-      });
+      };
     case actions.REQUEST_MESSAGES:
-      return Object.assign({}, state, {
+      return { ...state,
         isFetchingMessages: true,
         selectedThread: action.payload.threadId,
-      });
+      };
     case actions.RECEIVE_MESSAGES:
-      return Object.assign({}, state, {
+      return { ...state,
         isFetchingMessages: false,
         messagesByThreadsId: messagesByThreadsIdReducer(state.messagesByThreadsId, action),
-      });
+      };
     case actions.INVALIDATE_THREADS:
       return {
         ...state,
-        threadsById: {},
-        messagesByThreadsId: {},
-        threads: [],
-        totalThreads: 0,
+        didInvalidate: true,
       };
     default:
       return state;
