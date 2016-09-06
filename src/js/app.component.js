@@ -1,4 +1,17 @@
+class AppController {
+  constructor($ngRedux, ApiFiltersActions) {
+    'ngInject';
+    this.$ngRedux = $ngRedux;
+    this.ApiFiltersActions = ApiFiltersActions;
+  }
+
+  $onInit() {
+    this.$ngRedux.dispatch(this.ApiFiltersActions.init());
+  }
+}
+
 const AppComponent = {
+  controller: AppController,
   template: `
     <off-canvas>
       <left><navigation-alt></navigation-alt></left>

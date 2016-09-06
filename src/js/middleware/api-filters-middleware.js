@@ -1,5 +1,8 @@
 import * as actions from '../action/action-types.js';
 
+const HEADER_PI = 'X-Caliopen-PI';
+const HEADER_IL = 'X-Caliopen-IL';
+
 export function apiFiltersMiddleware($state, $http, DiscussionsActions, ContactsActions,
   FlashMessage) {
   'ngInject';
@@ -19,31 +22,32 @@ export function apiFiltersMiddleware($state, $http, DiscussionsActions, Contacts
       actions.UPDATE_IMPORTANCE_LEVEL_RANGE,
     ].indexOf(action.type) !== -1;
 
-    if (action.type === actions.UPDATE_PRIVACY_INDEX_RANGE) {
-      applyApiFilterHeader('X-Caliopen-PI', store.getState().apiFiltersReducer.privacyIndexRange);
+    if (action.type === actions.INIT_API_FILTERS) {
+      applyApiFilterHeader(HEADER_PI, store.getState().apiFiltersReducer.privacyIndexRange);
+      applyApiFilterHeader(HEADER_IL, store.getState().apiFiltersReducer.importanceLevelRange);
     }
 
     if (action.type === actions.UPDATE_IMPORTANCE_LEVEL_RANGE) {
-  // applyApiFilterHeader('X-Caliopen-IL', store.getState().apiFiltersReducer.importanceLevelRange);
-    }
-
-    if (isApiFilteringAction) {
       FlashMessage.info(
-        'The filtering feature is not yet available. '
-        // + 'Actually you can filter contact list by privacy.' // or not; I can't see it working
+        'Filtering by importance is not yet available.'
         , { timeout: 10000 }
       );
     }
 
-    const statesActions = {
-      discussions: () => DiscussionsActions.invalidateThreads(),
-      'contact-list': () => ContactsActions.invalidateContacts(),
-    };
-    const stateRequiresAction = Object.keys(statesActions)
-      .find(state => $state.is(state));
+    if (action.type === actions.UPDATE_PRIVACY_INDEX_RANGE && $state.is('contact-list')) {
+      FlashMessage.info(
+        'Filtering by privacy index is not yet available on contact list.'
+        , { timeout: 10000 }
+      );
+    }
 
-    if (isApiFilteringAction && stateRequiresAction) {
-      store.dispatch(statesActions[stateRequiresAction]());
+    if (isApiFilteringAction) {
+      applyApiFilterHeader(HEADER_PI, store.getState().apiFiltersReducer.privacyIndexRange);
+      applyApiFilterHeader(HEADER_IL, store.getState().apiFiltersReducer.importanceLevelRange);
+      store.dispatch((dispatch) => {
+        dispatch(DiscussionsActions.invalidateThreads());
+        dispatch(ContactsActions.invalidateContacts());
+      });
     }
 
     return result;

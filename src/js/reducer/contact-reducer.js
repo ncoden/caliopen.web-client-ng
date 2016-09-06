@@ -7,33 +7,37 @@ function contactDetailFormReducer(state = {
 }, action) {
   switch (action.type) {
     case actions.ADD_CONTACT_DETAIL:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: true,
         errors: [],
         contactDetail: action.payload.contactDetail,
-      });
+      };
     case actions.ADD_CONTACT_DETAIL_FAILED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
         errors: action.payload.errors,
-      });
+      };
     case actions.ADD_CONTACT_DETAIL_SUCCEEDED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
         errors: [],
         contactDetail: {},
-      });
+      };
     default:
       return state;
   }
 }
 
 function contactDetailFormsReducer(state = {}, action) {
-  return Object.assign({}, state, {
+  return {
+    ...state,
     [`${action.payload.contactDetailType}Form`]: contactDetailFormReducer(
       state[`${action.payload.contactDetailType}Form`],
       action),
-  });
+  };
 }
 
 function contactDetailFormsByIdReducer(state = {}, action) {
@@ -41,12 +45,13 @@ function contactDetailFormsByIdReducer(state = {}, action) {
     case actions.ADD_CONTACT_DETAIL:
     case actions.ADD_CONTACT_DETAIL_FAILED:
     case actions.ADD_CONTACT_DETAIL_SUCCEEDED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         [action.payload.contactId]: contactDetailFormsReducer(
           state[action.payload.contactId],
           action
         ),
-      });
+      };
     default:
       return state;
   }
@@ -65,9 +70,10 @@ function protocolsByIdReducer(state = {}, action) {
   switch (action.type) {
     case actions.RECEIVE_CONTACT_PROTOCOLS:
     case actions.REQUEST_CONTACT_PROTOCOLS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         [action.payload.contactId]: protocolsReducer(state[action.payload.contactId], action),
-      });
+      };
     default:
       return state;
   }
@@ -133,57 +139,70 @@ export default function contactReducer(state = {
   contactDetailFormsById: {},
   protocolsById: {},
   totalContacts: 0,
+  didInvalidate: false,
 }, action = {}) {
   switch (action.type) {
     case actions.REQUEST_CONTACT:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: true,
         selectedContact: action.payload.contactId,
-      });
+      };
     case actions.RECEIVE_CONTACT:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
         contactsById: contactByIdReducer(
           state.contactsById,
           { payload: { contacts: [action.payload.contact] } }
         ),
         lastUpdated: action.payload.receivedAt,
-      });
+      };
     case actions.REQUEST_CONTACTS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: true,
         selectedContact: undefined,
-      });
+      };
     case actions.RECEIVE_CONTACTS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
-        contacts: contactIdsReducer(state.contacts, action),
-        contactsById: contactByIdReducer(state.contactsById, action),
+        contacts: contactIdsReducer(
+          state.didInvalidate === true ? [] : state.contacts,
+          action
+        ),
+        contactsById: contactByIdReducer(
+          state.didInvalidate === true ? {} : state.contactsById,
+          action
+        ),
         totalContacts: action.payload.total,
         lastUpdated: action.payload.receivedAt,
-      });
+        didInvalidate: false,
+      };
     case actions.ADD_CONTACT_DETAIL:
     case actions.ADD_CONTACT_DETAIL_FAILED:
     case actions.ADD_CONTACT_DETAIL_SUCCEEDED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         contactDetailFormsById: contactDetailFormsByIdReducer(state.contactDetailFormsById, action),
-      });
+      };
     case actions.REQUEST_CONTACT_PROTOCOLS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: true,
         protocolsById: protocolsByIdReducer(state.protocolsById, action),
-      });
+      };
     case actions.RECEIVE_CONTACT_PROTOCOLS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
         protocolsById: protocolsByIdReducer(state.protocolsById, action),
-      });
+      };
     case actions.INVALIDATE_CONTACTS:
       return {
         ...state,
-        contacts: [],
-        contactsById: {},
-        totalContacts: 0,
+        didInvalidate: true,
       };
     default:
       return state;

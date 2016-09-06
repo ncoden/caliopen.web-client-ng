@@ -118,7 +118,7 @@ Scopes for [conventional changelog](https://github.com/ajoslin/conventional-chan
 | user        | All about end user                                  |
 | design      | All about design & UX                               |
 | wording     | All about l10n or i18n                              |
-| pi-imp      | All about Privacy index or Importance level         |
+| PI/IL       | All about Privacy index or Importance level         |
 | build       | All about tooling (used with **chore**)             |
 | test        | All about tests (used with  **chore**)              |
 
