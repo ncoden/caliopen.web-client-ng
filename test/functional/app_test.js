@@ -31,11 +31,20 @@ app.run(function mockApi ($httpBackend, ApiUrl) {
 
   const contactColl = {"total": 4, "contacts": [{"family_name": "bender", "tags": null, "given_name": null, "contact_id": "92d3727a-eefc-4537-b879-85f1c9d197bb", "title": "bender"}, {"family_name": "zoidberg", "tags": null, "given_name": null, "contact_id": "0ba2e346-e4f8-4c45-9adc-eeb1d42f07e0", "title": "zoidberg"}, {"family_name": "Doe", "tags": null, "given_name": "John", "contact_id": "19c3ce42-e3ba-46e7-984f-4c3e8de11c05", "title": "John Doe"}, {"family_name": "test", "tags": null, "given_name": null, "contact_id": "1039cdcc-1f6f-4b5d-9c8a-5d7c711f357f", "title": "test"}]};
   const contactById = {
-    '92d3727a-eefc-4537-b879-85f1c9d197bb': {"contacts": {"addresses": [], "privacy_features": {}, "phones": [], "contact_id": "92d3727a-eefc-4537-b879-85f1c9d197bb", "date_insert": "2016-05-09T15:01:42.381000", "identities": [], "user_id": "344489c3-fc63-4e41-b490-5f4dd317aa50", "title": "bender", "additional_name": null, "date_update": null, "organizations": [], "ims": [], "given_name": null, "name_prefix": null, "tags": [], "deleted": 0, "privacy_index": 0, "groups": [], "infos": {}, "emails": [{"is_primary": 0, "date_update": null, "label": null, "address": "bender@caliopen.local", "date_insert": "2016-05-09T15:01:42.116000", "type": "other"}], "family_name": "bender", "name_suffix": null, "avatar": "avatar.png", "public_keys": []}},
-    '0ba2e346-e4f8-4c45-9adc-eeb1d42f07e0': {"contacts": {"addresses": [], "privacy_features": {}, "phones": [], "contact_id": "0ba2e346-e4f8-4c45-9adc-eeb1d42f07e0", "date_insert": "2016-05-09T15:01:43.381000", "identities": [], "user_id": "344489c3-fc63-4e41-b490-5f4dd317aa50", "title": "zoidberg", "additional_name": null, "date_update": null, "organizations": [], "ims": [], "given_name": null, "name_prefix": null, "tags": [], "deleted": 0, "privacy_index": 0, "groups": [], "infos": {}, "emails": [{"is_primary": 0, "date_update": null, "label": null, "address": "zoidberg@caliopen.local", "date_insert": "2016-05-09T15:01:43.116000", "type": "other"}], "family_name": "zoidberg", "name_suffix": null, "avatar": "avatar.png", "public_keys": []}},
+    '92d3727a-eefc-4537-b879-85f1c9d197bb': {"contacts": {"addresses": [], "privacy_features": {}, "phones": [], "contact_id": "92d3727a-eefc-4537-b879-85f1c9d197bb", "date_insert": "2016-05-09T15:01:42.381000", "identities": [], "user_id": "344489c3-fc63-4e41-b490-5f4dd317aa50", "title": "bender", "additional_name": null, "date_update": null, "organizations": [], "ims": [], "given_name": null, "name_prefix": null, "tags": [], "deleted": 0, "privacy_index": 0, "groups": [], "infos": {}, "emails": [{"email_id": "93f03145-4398-4bd4-9bd5-00000001", "is_primary": 0, "date_update": null, "label": null, "address": "bender@caliopen.local", "date_insert": "2016-05-09T15:01:42.116000", "type": "other"}], "family_name": "bender", "name_suffix": null, "avatar": "avatar.png", "public_keys": []}},
+    '0ba2e346-e4f8-4c45-9adc-eeb1d42f07e0': {"contacts": {"addresses": [], "privacy_features": {}, "phones": [], "contact_id": "0ba2e346-e4f8-4c45-9adc-eeb1d42f07e0", "date_insert": "2016-05-09T15:01:43.381000", "identities": [], "user_id": "344489c3-fc63-4e41-b490-5f4dd317aa50", "title": "zoidberg", "additional_name": null, "date_update": null, "organizations": [], "ims": [], "given_name": null, "name_prefix": null, "tags": [], "deleted": 0, "privacy_index": 0, "groups": [], "infos": {}, "emails": [{"email_id": "93f03145-4398-4bd4-9bd5-00000002", "is_primary": 0, "date_update": null, "label": null, "address": "zoidberg@caliopen.local", "date_insert": "2016-05-09T15:01:43.116000", "type": "other"}], "family_name": "zoidberg", "name_suffix": null, "avatar": "avatar.png", "public_keys": []}},
+    '19c3ce42-e3ba-46e7-984f-4c3e8de11c05': {"contacts": {
+      "addresses": [], "privacy_features": {}, "phones": [], "contact_id": "19c3ce42-e3ba-46e7-984f-4c3e8de11c05", "date_insert": "2016-05-09T15:01:40.034000", "identities": [], "user_id": "344489c3-fc63-4e41-b490-5f4dd317aa50", "title": "John Doe", "additional_name": null, "date_update": null, "organizations": [], "ims": [], "given_name": "John", "name_prefix": null, "tags": [], "deleted": 0, "privacy_index": 0, "groups": [], "infos": {},
+      "emails": [{"email_id": "93f03145-4398-4bd4-9bd5-00000100", "is_primary": 0, "date_update": null, "label": null, "address": "contact@john.doe", "date_insert": "2016-05-09T15:01:43.116000", "type": "other"}],
+      "family_name": "Doe", "name_suffix": null, "avatar": "avatar.png", "public_keys": []
+    }},
   }
-  const me = {"family_name": null, "user_id": "344489c3-fc63-4e41-b490-5f4dd317aa50", "name": "test@caliopen.local", "privacy_features": {}, "main_user_id": null, "privacy_index": 0, "date_insert": "2016-05-09T15:01:39.924000", "contact": {"addresses": [], "privacy_features": {}, "phones": [], "contact_id": "19c3ce42-e3ba-46e7-984f-4c3e8de11c05", "date_insert": "2016-05-09T15:01:40.034000", "identities": [], "user_id": "344489c3-fc63-4e41-b490-5f4dd317aa50", "title": "John Doe", "additional_name": null, "date_update": null, "organizations": [], "ims": [], "given_name": "John", "name_prefix": null, "tags": [], "deleted": 0, "privacy_index": 0, "groups": [], "infos": {}, "emails": [], "family_name": "Doe", "name_suffix": null, "avatar": "avatar.png", "public_keys": []}, "params": {}, "given_name": null};
+  const me = {"family_name": null, "user_id": "344489c3-fc63-4e41-b490-5f4dd317aa50", "name": "test@caliopen.local", "privacy_features": {}, "main_user_id": null, "privacy_index": 0, "date_insert": "2016-05-09T15:01:39.924000",
+    "contact": contactById['19c3ce42-e3ba-46e7-984f-4c3e8de11c05'].contacts,
+    "params": {}, "given_name": null};
 
+  //-----------------------
+  //-GET-------------------
   $httpBackend.whenRoute('GET', `${ApiUrl}/me`).respond(me);
 
   $httpBackend.whenRoute('GET', `${ApiUrl}/threads/:thread_id/messages`).respond((method, url, data, headers, params) => {
@@ -64,7 +73,8 @@ app.run(function mockApi ($httpBackend, ApiUrl) {
   $httpBackend.whenRoute('GET', `${ApiUrl}/contacts`).respond(contactColl);
 
   $httpBackend.whenGET(/.*/).passThrough();
-
+  //-----------------------
+  //-POST------------------
   $httpBackend.whenRoute('POST', `${ApiUrl}/contacts/:contact_id/emails`)
     .respond((method, url, data, headers, params) => {
       const payload = JSON.parse(data);
@@ -98,7 +108,11 @@ app.run(function mockApi ($httpBackend, ApiUrl) {
       return [201, { "addresses": email }];
     });
   $httpBackend.whenPOST(/.*/).passThrough();
-
+  //-----------------------
+  //-PUT-------------------
+  $httpBackend.whenPUT(/.*/).passThrough();
+  //-----------------------
+  //-DELETE----------------
   $httpBackend.whenRoute('DELETE', `${ApiUrl}/contacts/:contact_id/emails/:email_id`)
     .respond((method, url, data, headers, params) => {
       const currentContact = contactById[params.contact_id];
@@ -118,5 +132,6 @@ app.run(function mockApi ($httpBackend, ApiUrl) {
       return [201, {"result": "ok"}];
     });
   $httpBackend.whenDELETE(/.*/).passThrough();
+  //-----------------------
 });
 /* eslint-enable */

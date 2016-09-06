@@ -1,0 +1,6 @@
+@mixin o-hr-text($background-color: $co-color__fg__back--higher, $border-color: $co-color__fg__border--lower) {
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: $border-color;
+  background-color: $background-color;
+}

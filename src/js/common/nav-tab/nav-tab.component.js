@@ -58,6 +58,13 @@ const NavTabComponent = {
         <i class="fa fa-envelope-o"></i>
         {{'messages.compose.title'|translate}}
       </a>
+      <a ng-switch-when="account"
+        ui-sref="account"
+        class="m-tab__link" ng-class="$ctrl.linkStylesheet"
+      >
+        <i class="fa fa-user"></i>
+        {{'account.title'|translate}}
+      </a>
     </span>
   `,
 };

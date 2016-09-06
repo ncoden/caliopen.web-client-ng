@@ -14,7 +14,44 @@ describe('component AvatarLetter', () => {
   it('has css class', () => {
     const bindings = { contact: { title: 'Prof. Farnsworth' } };
     const ctrl = $componentController('avatarLetter', null, bindings);
+    ctrl.$onInit();
 
-    expect(ctrl.contactLetterStylesheetClass).toEqual('m-letter--p');
+    expect(ctrl.letterStylesheet).toEqual('m-letter--p');
+  });
+
+  describe('getBlockModifierStylesheet()', () => {
+    it('has no modifiers', () => {
+      const bindings = { contact: { title: 'Prof. Farnsworth' } };
+      const ctrl = $componentController('avatarLetter', null, bindings);
+      ctrl.$onInit();
+
+      expect(ctrl.getBlockModifierStylesheet()).toEqual('');
+    });
+
+    it('has modifier', () => {
+      const bindings = { contact: { title: 'Prof. Farnsworth' }, props: { size: 'small' } };
+      const ctrl = $componentController('avatarLetter', null, bindings);
+      ctrl.$onInit();
+
+      expect(ctrl.getBlockModifierStylesheet()).toEqual('m-avatar--small');
+    });
+  });
+
+  describe('getElementModifierStylesheet()', () => {
+    it('has no modifiers', () => {
+      const bindings = { contact: { title: 'Prof. Farnsworth' } };
+      const ctrl = $componentController('avatarLetter', null, bindings);
+      ctrl.$onInit();
+
+      expect(ctrl.getElementModifierStylesheet()).toEqual('');
+    });
+
+    it('has modifier', () => {
+      const bindings = { contact: { title: 'Prof. Farnsworth' }, props: { size: 'xlarge' } };
+      const ctrl = $componentController('avatarLetter', null, bindings);
+      ctrl.$onInit();
+
+      expect(ctrl.getElementModifierStylesheet()).toEqual('m-avatar--xlarge__letter');
+    });
   });
 });

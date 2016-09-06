@@ -40,6 +40,8 @@ export function ReduxConfig($ngReduxProvider, devToolsServiceProvider) {
     'contactMiddleware',
     'tabMiddleware',
     'threadMiddleware',
+    'userMiddleware',
+    'remoteIdentityMiddleware',
     thunk,
     promise,
     crashReporter,

@@ -16,14 +16,6 @@
   }
 }
 
-@mixin m-contact-card--size($size) {
-  &__m-avatar_ {
-    .m-avatar {
-      @include m-avatar--size($size);
-    }
-  }
-}
-
 .m-contact-card {
   &__title {
     display: block;
@@ -34,4 +26,26 @@
 
   &--horizontal { @include m-contact-card--horizontal; }
   &--vertical  { @include m-contact-card--vertical; }
+}
+
+@mixin m-contact-main--horizontal {
+  &__avatar {
+    float: left;
+    margin-right: $co-margin;
+  }
+}
+@mixin m-contact-main--vertical {
+  &__avatar {
+    float: none;
+    margin-right: 0;
+  }
+}
+
+.m-contact-main {
+  &__title {
+    display: block;
+    color: $co-color__fg__text--high;
+  }
+
+  @include m-contact-main--horizontal;
 }

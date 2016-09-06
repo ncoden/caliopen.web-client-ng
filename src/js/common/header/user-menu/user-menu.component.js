@@ -42,6 +42,13 @@ const UserMenuComponent = {
         </li>
         <li class="m-menu__separator show-for-medium"></li>
         <li class="l-header__m-menu__item m-menu__item m-menu--vertical__item">
+          <a class="l-header__m-menu__item-content m-menu__item-content m-link"
+             ui-sref="account"
+          >
+            {{'header.menu.account'|translate}}
+          </a>
+        </li>
+        <li class="l-header__m-menu__item m-menu__item m-menu--vertical__item">
           <a
             class="l-header__m-menu__item-content m-menu__item-content m-link"
             href="/auth/logout"

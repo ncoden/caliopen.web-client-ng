@@ -3,6 +3,7 @@ $m-subtitle__height: $co-component__height !default;
 .m-subtitle {
   display: block;
   margin-bottom: 1rem;
+  padding: 0 $co-margin;
   line-height: $m-subtitle__height;
 
   &__text {

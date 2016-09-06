@@ -53,11 +53,16 @@ describe('component Contact Add Email Form', () => {
   it('add email', inject(($rootScope, $ngRedux, $httpBackend, ApiUrl) => {
     $ngRedux.dispatch(stateGo('contact', { contact_id: contact.contact_id }));
     $rootScope.$digest();
-    const ctrl = $componentController('addContactEmailForm', null, { contact });
+    const bindings = {
+      contact,
+      onAdd: jasmine.createSpy('onAdd'),
+    };
+    const ctrl = $componentController('addContactEmailForm', null, bindings);
     ctrl.contactDetail.address = successfulAddress;
     expect(ctrl.loading).toBe(false);
 
     ctrl.addContactDetail();
+    expect(bindings.onAdd).toHaveBeenCalled();
     expect(ctrl.loading).toBe(true);
 
     $httpBackend.expectGET(`${ApiUrl}/contacts/${contact.contact_id}`)
@@ -72,7 +77,11 @@ describe('component Contact Add Email Form', () => {
   it('fails to add email', inject(($rootScope, $ngRedux, $httpBackend) => {
     $ngRedux.dispatch(stateGo('contact', { contact_id: contact.contact_id }));
     $rootScope.$digest();
-    const ctrl = $componentController('addContactEmailForm', null, { contact });
+    const bindings = {
+      contact,
+      onAdd: jasmine.createSpy('onAdd'),
+    };
+    const ctrl = $componentController('addContactEmailForm', null, bindings);
     expect(ctrl.loading).toBe(false);
     expect(ctrl.errors.length).toEqual(0);
 
@@ -82,6 +91,7 @@ describe('component Contact Add Email Form', () => {
       is_primary: 1,
     };
     ctrl.addContactDetail();
+    expect(bindings.onAdd).toHaveBeenCalled();
     expect(ctrl.loading).toBe(true);
 
     $httpBackend.flush();

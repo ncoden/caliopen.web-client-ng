@@ -33,12 +33,14 @@ export class AddContactDetailFormController {
       this.ContactsActions
         .addContactDetail(this.contact.contact_id, 'address', this.contactDetail)
     );
+    this.onAdd({ $event: { type: 'address', contactDetail: this.contactDetail } });
   }
 }
 
 const AddContactAddressFormComponent = {
   bindings: {
     contact: '<',
+    onAdd: '&',
   },
   controller: AddContactDetailFormController,
   /* eslint-disable max-len */

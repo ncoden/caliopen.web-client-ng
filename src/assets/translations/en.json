@@ -23,7 +23,8 @@
       "account": "Account",
       "settings": "Settings",
       "signin": "Log In",
-      "signout": "Log Out"
+      "signout": "Log Out",
+      "account": "Account"
     }
   },
   "application": {
@@ -153,6 +154,41 @@
       }
     }
   },
+  "remote_identity": {
+    "form_legend": "Connect an email server",
+    "form": {
+      "login": {
+        "label": "Login"
+      },
+      "password": {
+        "label": "Password"
+      },
+      "protocol": {
+        "label": "Protocol"
+      },
+      "incomming_mail_server": {
+        "label": "Incoming mail server"
+      },
+      "port": {
+        "label": "Port"
+      }
+    },
+    "fetch_method": {
+      "from_now": "Only all messages from now",
+      "fetch_all": "All messages from now and the historical"
+    },
+    "action": {
+      "next": "Next",
+      "back": "Previous",
+      "finish": "Finish",
+      "disconnect": "Disconnect",
+      "cancel": "Cancel"
+    },
+    "feedback": {
+      "errors_in_form": "Some errors are present in the protocol connect form.",
+      "loading_messages": "Loading your messages, please wait."
+    }
+  },
   "contacts": {
     "tags": {
       "all": "All contacts",
@@ -166,6 +202,31 @@
     },
     "new": {
       "title": "Create Contact"
+    }
+  },
+  "account": {
+    "title": "Account",
+    "primary_email_label": "Primary email:",
+    "action": {
+      "is_primary": "is primary",
+      "connect_identity": "Connect platform"
+    }
+  },
+  "contact_card_summary": {
+    "form": {
+      "firstname": {
+        "label": "Firstname"
+      },
+      "lastname": {
+        "label": "Lastname"
+      },
+      "birthday": {
+        "label": "Birthday"
+      }
+    },
+    "action": {
+      "save": "Save",
+      "edit_contact": "Edit"
     }
   },
   "settings": {

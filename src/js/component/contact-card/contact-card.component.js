@@ -30,18 +30,52 @@ const routerSelector = createSelector(
 class ContactCardController {
   constructor($scope, $ngRedux, ContactsActions) {
     'ngInject';
+    this.$scope = $scope;
     this.$ngRedux = $ngRedux;
     this.ContactsActions = ContactsActions;
-    $scope.$on('$destroy', $ngRedux.connect(contactSelector)(this));
-    $scope.$on('$destroy', $ngRedux.connect(routerSelector)((payload) => {
+  }
+
+  $onInit() {
+    this.contactCardSummaryProps = {
+      avatar: {
+        size: 'xlarge',
+      },
+      container: {
+        stylesheets: {
+          block: 's-contact__contact-summary',
+          editButton: 's-contact__contact-summary-edit-button',
+          avatar: 's-contact__avatar',
+          title: 's-contact__title',
+        },
+      },
+      stylesheets: {
+        summaryForm: 's-contact__summary-form',
+        firstnameField: 's-contact__field-group--medium',
+        lastnameField: 's-contact__field-group--medium',
+        birthdayField: 's-contact__field-group--shrink',
+        saveBtn: 's-contact__save-button',
+        saveBtnContainer: 's-contact__save-button-container',
+      },
+    };
+
+    this.$scope.$on('$destroy', this.$ngRedux.connect(contactSelector)(this));
+    this.$scope.$on('$destroy', this.$ngRedux.connect(routerSelector)((payload) => {
       if (!!payload.contactId) {
-        $ngRedux.dispatch(ContactsActions.fetchContact(payload.contactId));
+        this.$ngRedux.dispatch(this.ContactsActions.fetchContact(payload.contactId));
       }
     }));
     this.editMode = false;
   }
 
-  deleteContactDetail(type, entity) {
+  updateMainInfo({ contact }) {
+    this.$ngRedux.dispatch(this.ContactsActions.updateContact(contact));
+  }
+
+  addContactDetail() {
+    // TODO: manage redux dispatch here
+  }
+
+  deleteContactDetail({ type, entity }) {
     const contactId = this.contact.contact_id;
     this.$ngRedux.dispatch(this.ContactsActions.deleteContactDetail(type, contactId, entity));
   }
@@ -55,22 +89,11 @@ const ContactCardComponent = {
     <div ng-if="!$ctrl.isFetching" class="s-contact">
       <div class="s-contact__col-datas-irl">
 
-        <div class="s-contact__m-contact-card m-contact-card">
-          <div class="s-contact__m-contact-card__m-avatar_ m-contact-card__m-avatar_">
-            <avatar-letter contact="$ctrl.contact"></avatar-letter>
-          </div>
-          <h3 class="m-contact-card__title">
-            {{ $ctrl.contact.title }}
-            <span class="m-badge">
-              <span class="fa fa-lock"></span>
-              <!-- Privacy Index -->
-            </span>
-          </h3>
-
-          <button class="s-contact__message-button button small">
-            {{ 'contact.message'|translate }}
-          </button>
-        </div>
+        <contact-card-summary
+          contact="$ctrl.contact"
+          props="$ctrl.contactCardSummaryProps"
+          on-change="$ctrl.updateMainInfo($event)"
+        ></contact-card-summary>
 
         <div class="m-subtitle">
           <h3 class="m-subtitle__text">
@@ -85,86 +108,13 @@ const ContactCardComponent = {
 
       </div>
       <div class="s-contact__col-datas-online">
-
-        <div class="s-contact__m-subtitle m-subtitle m-subtitle--hr">
-          <h3 class="m-subtitle__text">
-            {{ 'contact.contact_details'|translate }}
-          </h3>
-
-          <button class="m-link m-link--button pull-right"
-            ng-class="{ 'active': !!$ctrl.editMode }"
-            ng-click="$ctrl.editMode = !$ctrl.editMode">
-            <i class="fa fa-edit"></i>
-            <span class="show-for-sr">{{ 'contact.action.edit_contact_details'|translate }}</span>
-          </button>
-        </div>
-
-        <ul class="m-text-list s-contact__m-contact-detail-list">
-          <li ng-repeat="email in $ctrl.contact.emails|orderBy:'address'"
-              class="m-text-list__item m-text-list__item--large">
-            <span class="m-text-line">
-              <span class="m-text-list__icon fa fa-envelope"></span>
-              <span ng-switch="!!email.is_primary">
-                <span ng-switch-when="true" ng-title="'contact.primary'|translate"><strong>{{ email.address }}</strong></span>
-                <span ng-switch-default>{{ email.address }}</span>
-              </span>
-              <small><em>{{ ('contact.email_type.' + email.type)|translate}}</em></small>
-              <button ng-if="$ctrl.editMode" ng-click="$ctrl.deleteContactDetail('email', email)"
-                      class="m-link m-link--button m-link--alert"><i class="fa fa-remove"></i>
-                <span class="show-for-sr">{{ 'contact.action.delete_contact_detail'|translate }}</span>
-              </button>
-            </span>
-          </li>
-
-          <li ng-if="!!$ctrl.editMode" class="m-text-list__item">
-            <add-contact-email-form contact="$ctrl.contact"></add-contact-email-form>
-          </li>
-
-          <li ng-repeat="phone in $ctrl.contact.phones"
-            class="m-text-list__item m-text-list__item--large">
-            <span class="m-text-line">
-              <span class="m-text-list__icon fa fa-phone"></span>
-              {{ phone.number }}
-              <button ng-if="$ctrl.editMode" ng-click="$ctrl.deleteContactDetail('phone', phone)"
-                      class="m-link m-link--button m-link--alert"><i class="fa fa-remove"></i>
-                <span class="show-for-sr">{{ 'contact.action.delete_contact_detail'|translate }}</span>
-              </button>
-            </span>
-          </li>
-
-          <li ng-repeat="im in $ctrl.contact.ims"
-            class="m-text-list__item m-text-list__item--large">
-            <span class="m-text-line">
-              <span class="m-text-list__icon fa fa-comment"></span>
-              {{ im.address }}
-              <small><em>{{ ('contact.im_type.' + im.type)|translate }}</em></small>
-              <button ng-if="$ctrl.editMode" ng-click="$ctrl.deleteContactDetail('im', im)"
-                      class="m-link m-link--button m-link--alert"><i class="fa fa-remove"></i>
-                <span class="show-for-sr">{{ 'contact.action.delete_contact_detail'|translate }}</span>
-              </button>
-            </span>
-          </li>
-          <li ng-if="!!$ctrl.editMode" class="m-text-list__item">
-            <add-contact-im-form contact="$ctrl.contact"></add-contact-im-form>
-          </li>
-
-          <li ng-repeat="address in $ctrl.contact.addresses"
-            class="m-text-list__item m-text-line">
-            <span class="m-text-list__icon fa fa-map-marker"></span>
-            <address class="m-postal-address">
-              {{ address.street }}, {{ address.postal_code }} {{ address.city }}
-              {{ address.country }} {{ address.region }}
-            </adddress>
-            <small><em>({{ address.label }} {{ ('contact.address_type.' + address.type)|translate}})</em></small>
-            <button ng-if="$ctrl.editMode" ng-click="$ctrl.deleteContactDetail('address', address)"
-                    class="m-link m-link--button m-link--alert"><i class="fa fa-remove"></i>
-              <span class="show-for-sr">{{ 'contact.action.delete_contact_detail'|translate }}</span>
-            </button>
-          </li>
-          <li ng-if="!!$ctrl.editMode" class="m-text-list__item">
-            <add-contact-address-form contact="$ctrl.contact"></add-contact-address-form>
-          </li>
-        </ul>
+        <contact-details
+          contact="$ctrl.contact"
+          props="$ctrl.contactDetailsProps"
+          on-add-contact-detail="$ctrl.addContactDetail($event)"
+          on-delete-contact-detail="$ctrl.deleteContactDetail($event)"
+          allow-connect-remote-entity="false"
+        ></contact-details>
 
         <div class="s-contact__m-subtitle m-subtitle m-subtitle--hr">
           <h3 class="m-subtitle__text">
@@ -173,7 +123,8 @@ const ContactCardComponent = {
         </div>
         <ul class="m-text-list">
           <li ng-repeat="identity in $ctrl.contact.identities"
-            class="m-text-list__item m-text-list__item--large">
+            class="m-text-list__item m-text-list__item--large"
+          >
             <span class="m-text-line">
               <span class="m-text-list__icon fa fa-at"></span>
               {{ identity }}

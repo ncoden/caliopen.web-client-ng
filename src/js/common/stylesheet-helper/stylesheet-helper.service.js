@@ -1,5 +1,9 @@
 class StylesheetHelper {
   getContactStylesheetClass(contact, defaultLetter = 'none') {
+    if (!contact) {
+      return this.getStylesheetClass(defaultLetter);
+    }
+
     const title = contact.title || contact.address;
     let letter = defaultLetter;
 
@@ -8,7 +12,7 @@ class StylesheetHelper {
     }
 
     if ('abcdefghijklmnopqrstuvwxyz'.indexOf(letter) === -1) {
-      letter = 'none';
+      letter = defaultLetter;
     }
 
     return this.getStylesheetClass(letter);

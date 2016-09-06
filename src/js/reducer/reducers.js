@@ -7,6 +7,7 @@ import draftMessageReducer from './draft-message-reducer.js';
 import tabReducer from './tab-reducer.js';
 import threadReducer from './thread-reducer.js';
 import userReducer from './user-reducer.js';
+import remoteIdentityReducer from './remote-identity-reducer.js';
 
 const reducers = combineReducers({
   router,
@@ -17,6 +18,7 @@ const reducers = combineReducers({
   tabReducer,
   threadReducer,
   userReducer,
+  remoteIdentityReducer,
 });
 
 export default reducers;

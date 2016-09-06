@@ -1,0 +1,21 @@
+.m-remote-identity {
+  background-color: $co-color__fg__back--high;
+
+  &__title {
+    @include o-hr-text($background-color: $co-color__fg__back--higher);
+    margin: 0;
+    padding-left: $co-component__spacing;
+    font-weight: bold;
+  }
+
+  &__fetching-panel {
+  }
+
+  &__fetching-panel-text {
+    text-align: center;
+  }
+
+  &__form {
+    padding-top: $co-component__spacing;
+  }
+}

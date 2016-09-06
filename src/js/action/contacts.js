@@ -67,6 +67,36 @@ export default class ContactsActions {
     };
   }
 
+  updateContact(contact) {
+    return dispatch => {
+      dispatch({
+        type: actions.UPDATE_CONTACT,
+        payload: { contact },
+      });
+
+      return this.ContactRepository.updateContact(contact.contact_id, contact)
+        .then(json => dispatch(this.updateContactSuceed(json)))
+        .catch(json => dispatch(this.updateContactFailed(contact, json.errors)));
+    };
+  }
+
+  updateContactSuceed(payload) {
+    return {
+      type: actions.UPDATE_CONTACT_SUCCEED,
+      payload: { contact: payload.contact },
+    };
+  }
+
+  updateContactFailed(contact, errors) {
+    return {
+      type: actions.UPDATE_CONTACT_FAILED,
+      payload: {
+        contact,
+        errors,
+      },
+    };
+  }
+
   addContactDetail(contactId, contactDetailType, contactDetail) {
     return dispatch => {
       dispatch({

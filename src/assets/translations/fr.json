@@ -22,7 +22,8 @@
       "account": "Compte",
       "settings": "Paramètres",
       "signin": "Se connecter",
-      "signout": "Se déconnecter"
+      "signout": "Se déconnecter",
+      "account": "Compte"
     }
   },
   "application": {
@@ -152,6 +153,41 @@
       }
     }
   },
+  "remote_identity": {
+    "form_legend": "Connecter un serveur d'email",
+    "form": {
+      "login": {
+        "label": "Login"
+      },
+      "password": {
+        "label": "Mot de passe"
+      },
+      "protocol": {
+        "label": "Protocol"
+      },
+      "incomming_mail_server": {
+        "label": "Serveur de mails"
+      },
+      "port": {
+        "label": "Port"
+      }
+    },
+    "fetch_method": {
+      "from_now": "Seulement les messages à partir de maintenant",
+      "fetch_all": "Tous les messages à partir de maintenant ainsi que les anciens"
+    },
+    "action": {
+      "next": "Suivant",
+      "back": "Retour",
+      "finish": "Terminer",
+      "disconnect": "Déconnecter",
+      "cancel": "Annuler"
+    },
+    "feedback": {
+      "errors_in_form": "Des erreurs sont présentes dans le formulaire de connexion de protocol.",
+      "loading_messages": "Chargement en cours de vos messages, merci de patienter."
+    }
+  },
   "contacts": {
     "tags": {
       "all": "Tous les contacts",
@@ -165,6 +201,34 @@
     },
     "new": {
       "title": "Créer un Contact"
+    }
+  },
+  "account": {
+    "title": "Account",
+    "primary_email_label": "Email principal :",
+    "action": {
+      "is_primary": "est principale",
+      "connect_identity": "Connecter la plateforme"
+    }
+  },
+  "contact_card_summary": {
+    "form": {
+      "firstname": {
+        "label": "Prénom"
+      },
+      "lastname": {
+        "label": "Nom"
+      },
+      "birthday": {
+        "label": "Anniversaire"
+      }
+    },
+    "action": {
+      "save": "Enregistrer",
+      "edit_contact": "Edit"
+    },
+    "feedback": {
+      "errors_in_form": "Des erreurs sont présentes dans le formulaire de connection"
     }
   },
   "settings": {

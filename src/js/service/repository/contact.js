@@ -182,4 +182,9 @@ export class ContactRepository {
     return this.$http.get(`${this.ApiUrl}/contacts/${contactId}/protocols`)
       .then(response => response.data);
   }
+
+  updateContact(contactId, contact) {
+    return this.$http.put(`${this.ApiUrl}/contacts/${contactId}`, { contact })
+      .then(response => response.data);
+  }
 }

@@ -37,7 +37,11 @@ const NavigationAltComponent = {
     <div class="l-nav-alt">
       <div class="l-nav-alt__user">
         <div class="l-nav-alt__avatar">
-          <avatar-letter ng-if="$ctrl.user.contact" contact="$ctrl.user.contact"></avatar-letter>
+          <avatar-letter
+            ng-if="$ctrl.user.contact"
+            contact="$ctrl.user.contact"
+            props="{ size: 'small' }"
+          ></avatar-letter>
         </div>
         <div class="l-nav-alt__user-name">
           <div>{{ $ctrl.user.contact.title }}</div>

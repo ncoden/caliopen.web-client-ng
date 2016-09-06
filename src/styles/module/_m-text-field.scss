@@ -1,4 +1,4 @@
-.m-text-field {
+@mixin input-text {
   @include o-form-element;
 
   &,
@@ -6,4 +6,16 @@
   &--light { @include o-form-element--light; }
   &--expanded { width: 100%; }
   &--bottom-space { margin: 0 0 map-get($co-form__spacing, 'medium'); }
+}
+
+.m-text-field {
+  @include input-text;
+}
+
+.m-text-field-group {
+  &__label { }
+
+  &__input {
+    @include input-text
+  }
 }
