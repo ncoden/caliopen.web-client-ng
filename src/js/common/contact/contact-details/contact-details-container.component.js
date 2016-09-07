@@ -1,4 +1,8 @@
 class ContactDetailsContainerController {
+  $onInit() {
+    this.connectEmailMode = [];
+  }
+
   getRemoteIdentity(identityType, identityId) {
     return this.remoteIdentities
       .find(
@@ -48,7 +52,7 @@ const ContactDetailsContainerComponent = {
               </span>
               <small><em>{{ ('contact.email_type.' + email.type)|translate}}</em></small>
               <button ng-if="!!$ctrl.allowConnectRemoteEntity"
-                ng-click="$ctrl.connectEmailMode = !$ctrl.connectEmailMode"
+                ng-click="$ctrl.connectEmailMode[$index] = !$ctrl.connectEmailMode[$index]"
                 class="m-link m-link--button"
                 ng-class="{'m-link--success':$ctrl.getRemoteIdentity('email',email.email_id).connected}"
               >
@@ -66,7 +70,7 @@ const ContactDetailsContainerComponent = {
                 </span>
               </button>
             </span>
-            <span ng-if="!!$ctrl.connectEmailMode && !!$ctrl.allowConnectRemoteEntity">
+            <span ng-if="!!$ctrl.connectEmailMode[$index] && !!$ctrl.allowConnectRemoteEntity">
               <remote-identity-email
                 remote-identity="$ctrl.getRemoteIdentity('email', email.email_id)"
                 contact-sub-object-id="email.email_id"
