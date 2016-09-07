@@ -40,6 +40,11 @@ export class RecipientListController {
     this.searchResults = [];
     this.activeSearchResultIndex = 0;
     this.searchOpened = false;
+    this.id = uuidV1();
+    this.searchInputElementsSelectors = [
+      `#${this.id}`,
+      `#${this.id} .m-recipient-list__search-input`,
+    ];
   }
 
   addRecipient(recipient) {
@@ -69,6 +74,8 @@ export class RecipientListController {
 
       this.isContactFetching = isContactFetching;
     });
+
+    this.searchOpened = false;
   }
 
   addUnknownRecipient(identifier) {
@@ -105,6 +112,7 @@ export class RecipientListController {
   editRecipient(recipient) {
     this.removeRecipient(recipient);
     this.searchTerms = recipient.searchTerms;
+    this.searchOpened = true;
   }
 
   eventuallyEditRecipient() {
@@ -182,6 +190,14 @@ export class RecipientListController {
 
     this.onRecipientsChange({ recipients: this.recipients });
   }
+
+  handleSearchInputFocus() {
+    this.searchOpened = true;
+  }
+
+  dropdownClosed() {
+    this.searchOpened = false;
+  }
 }
 
 const RecipientListComponent = {
@@ -192,7 +208,7 @@ const RecipientListComponent = {
   controller: RecipientListController,
   /* eslint-disable max-len */
   template: `
-    <div class="m-recipient-list" ng-click="$ctrl.focusSearch($event)">
+    <div id="{{ $ctrl.id }}" class="m-recipient-list" ng-click="$ctrl.focusSearch($event)">
       <label ng-if="!$ctrl.recipients.length" class="m-recipient-list__placeholder">
         {{ 'messages.compose.form.to.label'|translate }}
       </label>
@@ -209,27 +225,31 @@ const RecipientListComponent = {
                ng-change="$ctrl.search($ctrl.searchTerms)"
                ng-keydown="$ctrl.onSearchKeydown($event)"
                ng-keyup="$ctrl.onSearchKeyup($event)"
-               ng-focus="$ctrl.searchOpened = true"
-               ng-blur="$ctrl.searchOpened = false"
+               ng-focus="$ctrl.handleSearchInputFocus()"
                get-focus="recipient-list.search.focus" />
-        <ul class="m-recipient-list__search-results m-dropdown m-menu m-menu--vertical"
-            ng-class="{ 'is-open': !!$ctrl.searchResults.length && $ctrl.searchOpened }"
+
+        <dropdown
+          is-visible="!!$ctrl.searchResults.length && $ctrl.searchOpened"
+          ignore-click-selectors="$ctrl.searchInputElementsSelectors"
+          on-close="$ctrl.dropdownClosed()"
         >
-          <li ng-repeat="contact in $ctrl.searchResults"
-              class="m-menu__item m-menu--vertical__item"
-          >
-            <a ng-click="$ctrl.addKnownRecipient(contact, $ctrl.searchTerms)"
-               class="m-menu__item-content m-link m-recipient-list__search-result"
-               ng-class="{'is-active': $index === $ctrl.activeSearchResultIndex}"
+          <ul class="m-menu m-menu--vertical">
+            <li ng-repeat="contact in $ctrl.searchResults"
+                class="m-menu__item m-menu--vertical__item"
             >
-              <span class="m-recipient-list__search-result-title">{{ contact.title }}</span>
-              <span class="m-recipient-list__search-result-info">
-                <protocol-icon protocol="{ type: 'email' }"></protocol-icon>
-                <i>{{ contact.emails[0].address }}</i>
-              </SPAN>
-            </a>
-          </li>
-        </ul>
+              <a ng-click="$ctrl.addKnownRecipient(contact, $ctrl.searchTerms)"
+                 class="m-menu__item-content m-link m-recipient-list__search-result"
+                 ng-class="{'is-active': $index === $ctrl.activeSearchResultIndex}"
+              >
+                <span class="m-recipient-list__search-result-title">{{ contact.title }}</span>
+                <span class="m-recipient-list__search-result-info">
+                  <protocol-icon protocol="{ type: 'email' }"></protocol-icon>
+                  <i>{{ contact.emails[0].address }}</i>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </dropdown>
       </div>
     </div>
   `,
