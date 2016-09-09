@@ -26,6 +26,9 @@ $co-form__spacing: (
   large:  1.5625rem // 25 px
 );
 
+$co-grid__gutter: 30px;
+$co-grid__gutter--small: 20px;
+
 $co-animation__box-transition: box-shadow .15s, border-color .15s ease-in-out !default;
 $co-animation__margin-transition: margin .15s, padding .15s ease !default;
 

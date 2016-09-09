@@ -36,6 +36,11 @@
       "choose": "Choisir une application"
     }
   },
+  "thread": {
+    "feedback": {
+      "thread-not-found": "La discussion n'existe pas ou a été masqué par le filtrage par importance ou confidentialité. Vous pouvez fermer cet onglet ou changer la portée de l'importance ou de la confidentialité."
+    }
+  },
   "messages": {
     "index": {
       "title": "Messages",
@@ -81,6 +86,9 @@
           "label": "Contenu :",
           "placeholder": "Entrer un message"
         }
+      },
+      "feedback": {
+        "draft-not-found": "Le brouillon n'existe plus. Vous pouvez fermer cet onglet et peut être voulez-vous en créer un nouveau :"
       }
     }
   },
@@ -93,6 +101,9 @@
       "edit_contact_details": "Éditer les coordonnées",
       "add_contact_detail": "Ajouter",
       "delete_contact_detail": "Supprimer"
+    },
+    "feedback": {
+      "contact-not-found": "Le contact n'existe pas ou a été masqué par le filtrage par importance ou confidentialité. Vous pouvez fermer cet onglet ou changer la portée de l'importance ou de la confidentialité."
     },
     "email_type": {
       "work": "Professionel",
@@ -274,6 +285,14 @@
       "create_contact": "New Contact",
       "compose_contact": "Message",
       "reply": "Reply"
+    }
+  },
+  "not-found": {
+    "title": "Erreur 404",
+    "sub-title": "Désolé, nous n'avons pas trouvé la page que vous cherchez, alors voici une licorne :",
+    "still-lost": "Toujours perdu ?",
+    "action": {
+      "back-to-home": "Retour à l'accueil"
     }
   }
 }

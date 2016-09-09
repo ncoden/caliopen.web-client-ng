@@ -4,7 +4,7 @@ const contactSelector = createSelector(
   state => state.contactReducer,
   state => state.router.currentParams.contact_id,
   (contactReducer, contactId) => ({
-    contact: (contactReducer.contactsById[contactId] || {}),
+    contact: contactReducer.contactsById[contactId],
     isFetching: contactReducer.isFetching,
   })
 );
@@ -86,7 +86,12 @@ const ContactCardComponent = {
   /* eslint-disable max-len */
   template: `
     <spinner loading="$ctrl.isFetching"></spinner>
-    <div ng-if="!$ctrl.isFetching" class="s-contact">
+    <not-found ng-if="!$ctrl.isFetching && !$ctrl.contact">
+      <message>
+        <p>{{ 'contact.feedback.contact-not-found'|translate }}</p>
+      </message>
+    </not-found>
+    <div ng-if="!$ctrl.isFetching && !!$ctrl.contact" class="s-contact">
       <div class="s-contact__col-datas-irl">
 
         <contact-card-summary

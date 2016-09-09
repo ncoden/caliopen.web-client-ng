@@ -156,4 +156,57 @@ describe('Reducer Thread Reducer', () => {
     });
     expect(state.threads).toEqual([1, 2]);
   });
+
+  describe('reduce THREAD_NOT_FOUND', () => {
+    it('reduce known id', () => {
+      const livingState = threadReducer(initialState, {
+        type: actions.RECEIVE_THREADS,
+        payload: {
+          threads: [
+            { thread_id: '1', name: 'foo' },
+            { thread_id: '2', name: 'bar' },
+            { thread_id: '4', name: 'baz' },
+          ],
+        },
+      });
+
+      const action = {
+        type: actions.THREAD_NOT_FOUND,
+        payload: { threadId: '2' },
+      };
+      const state = threadReducer({ ...livingState, isFetching: true }, action);
+      expect(state.isFetching).toEqual(false);
+      expect(state.threadsById).toEqual({
+        1: { thread_id: '1', name: 'foo' },
+        4: { thread_id: '4', name: 'baz' },
+      });
+      expect(state.threads.sort()).toEqual(['1', '4']);
+    });
+
+    it('reduce unknown id', () => {
+      const livingState = threadReducer(initialState, {
+        type: actions.RECEIVE_THREADS,
+        payload: {
+          threads: [
+            { thread_id: '1', name: 'foo' },
+            { thread_id: '2', name: 'bar' },
+            { thread_id: '4', name: 'baz' },
+          ],
+        },
+      });
+
+      const action = {
+        type: actions.THREAD_NOT_FOUND,
+        payload: { threadId: '3' },
+      };
+      const state = threadReducer({ ...livingState, isFetching: true }, action);
+      expect(state.isFetching).toEqual(false);
+      expect(state.threadsById).toEqual({
+        1: { thread_id: '1', name: 'foo' },
+        2: { thread_id: '2', name: 'bar' },
+        4: { thread_id: '4', name: 'baz' },
+      });
+      expect(state.threads.sort()).toEqual(['1', '2', '4']);
+    });
+  });
 });

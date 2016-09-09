@@ -6,13 +6,15 @@ const threadSelector = createSelector(
   (threadState, threadId) => {
     if (!!threadState.messagesByThreadsId[threadId]) {
       return {
+        thread: threadState.threadsById[threadId],
         messages: threadState.messagesByThreadsId[threadId],
         isFetching: threadState.isFetching,
       };
     }
 
     return { messages: [], isFetching: true };
-  });
+  }
+);
 
 const threadIdSelector = createSelector(
   state => state.router.currentParams.thread_id,
@@ -37,7 +39,12 @@ const ThreadComponent = {
   /* eslint-disable max-len */
   template: `
     <spinner loading="$ctrl.isFetching"></spinner>
-    <ul class="m-block-list">
+    <not-found ng-if="!$ctrl.isFetching && !$ctrl.thread">
+      <message>
+        <p>{{ 'thread.feedback.thread-not-found'|translate }}</p>
+      </message>
+    </not-found>
+    <ul class="m-block-list" ng-if="!!$ctrl.thread">
       <li ng-repeat="message in $ctrl.messages" class="m-block-list__item">
         <thread-message message="message"></thread-message>
       </li>

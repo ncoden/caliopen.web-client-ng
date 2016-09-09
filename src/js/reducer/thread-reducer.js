@@ -95,6 +95,15 @@ export default function threadReducer(state = {
         ...state,
         didInvalidate: true,
       };
+    case actions.THREAD_NOT_FOUND:
+      return {
+        ...state,
+        isFetching: false,
+        threadsById: Object.keys(state.threadsById)
+          .filter(id => id !== action.payload.threadId)
+          .reduce((prev, id) => ({ ...prev, [id]: state.threadsById[id] }), {}),
+        threads: state.threads.filter(id => id !== action.payload.threadId),
+      };
     default:
       return state;
   }

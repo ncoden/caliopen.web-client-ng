@@ -37,6 +37,11 @@
       "choose": "Choose an application"
     }
   },
+  "thread": {
+    "feedback": {
+      "thread-not-found": "The discussion does not exist or is hidden by privacy or importance filtering. You can close this tab or change privacy or importance ranges."
+    }
+  },
   "messages": {
     "index": {
       "title": "Messages",
@@ -82,6 +87,9 @@
           "label": "Body:",
           "placeholder": "Enter a message"
         }
+      },
+      "feedback": {
+        "draft-not-found": "The draft does not exist anymore. You can close this tab and you may want to create a new draft:"
       }
     }
   },
@@ -94,6 +102,9 @@
       "edit_contact_details": "Edit contact details",
       "add_contact_detail": "Add",
       "delete_contact_detail": "Delete"
+    },
+    "feedback": {
+      "contact-not-found": "The contact does not exist or is hidden by privacy or importance filtering. You can close this tab or change privacy or importance ranges."
     },
     "email_type": {
       "work": "Professional",
@@ -272,6 +283,14 @@
       "create_contact": "New Contact",
       "compose_contact": "Message",
       "reply": "Reply"
+    }
+  },
+  "not-found": {
+    "title": "Error 404",
+    "sub-title": "Sorry, we didn't find the page your are looking for, so here is a unicorn:",
+    "still-lost": "Still lost ?",
+    "action": {
+      "back-to-home": "Back to homepage"
     }
   }
 }
