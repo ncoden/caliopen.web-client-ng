@@ -4,6 +4,7 @@ import uiRouter from 'angular-ui-router';
 import avatarLetter from '../../common/avatar-letter';
 import contactCommon from '../../common/contact';
 import spinner from '../../common/spinner';
+import notFound from '../../common/not-found';
 import ContactCardComponent from './contact-card.component.js';
 
 const contact = angular.module('contact', [
@@ -12,6 +13,7 @@ const contact = angular.module('contact', [
   avatarLetter,
   contactCommon,
   spinner,
+  notFound,
 ])
   .component('contactCard', ContactCardComponent)
   .config(($stateProvider, $urlRouterProvider) => {

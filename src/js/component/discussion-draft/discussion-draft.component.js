@@ -9,12 +9,13 @@ const DEFAULT_PI = 50;
 const SAVE_BODY_THROTTLE = 2 * 1000;
 
 export class DiscussionDraftController {
-  constructor($scope, $ngRedux, $timeout, DraftMessageActions) {
+  constructor($scope, $ngRedux, $timeout, DraftMessageActions, DiscussionDraft) {
     'ngInject';
     this.$scope = $scope;
     this.$ngRedux = $ngRedux;
     this.$timeout = $timeout;
     this.DraftMessageActions = DraftMessageActions;
+    this.DiscussionDraft = DiscussionDraft;
   }
 
   $onInit() {
@@ -65,6 +66,10 @@ export class DiscussionDraftController {
       )
     );
   }
+
+  compose() {
+    this.DiscussionDraft.newDraft();
+  }
 }
 
 const DiscussionDraftComponent = {
@@ -72,11 +77,23 @@ const DiscussionDraftComponent = {
   /* eslint-disable max-len */
   template: `
     <div class="s-discussion-draft">
-      <div class="s-discussion-draft__m-flash-message m-flash-message m-flash-message--warning">
-        This feature is not yet available. Fake contacts will popup like Bender or Zoidberg.<br/>
-        Please enjoy the UI/UX and give feedbacks; Thanks.
-      </div>
+      <not-found ng-if="!$ctrl.draftMessage">
+        <message>
+          <p>{{ 'messages.compose.feedback.draft-not-found'|translate }}</p>
+          <div>
+            <button type="button" class="button" ng-click="$ctrl.compose()">
+              <span class="fa fa-plus"></span>
+              <span class="">{{ 'call-to-action.action.compose'|translate }}</span>
+            </a>
+          </div>
+        </message>
+      </not-found>
+
       <form ng-if="!!$ctrl.draftMessage">
+        <div class="s-discussion-draft__m-flash-message m-flash-message m-flash-message--warning">
+          This feature is not yet available. Fake contacts will popup like Bender or Zoidberg.<br/>
+          Please enjoy the UI/UX and give feedbacks; Thanks.
+        </div>
         <div class="s-discussion-draft__top-row">
           <div class="s-discussion-draft__m-action-bar m-action-bar hide-for-small-only">
             <button class="button primary m-action-bar__button">
@@ -130,7 +147,6 @@ const DiscussionDraftComponent = {
           </div>
         </div>
       </form>
-      <div ng-if="!$ctrl.draftMessage">A 404 page has not been found (literally)</div>
     </div>`,
   /* eslint-enable max-len */
 };

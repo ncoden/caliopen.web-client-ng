@@ -1,8 +1,9 @@
 import * as actions from './action-types.js';
 
 export default class DiscussionsActions {
-  constructor(ThreadRepository, MessageRepository) {
+  constructor($q, ThreadRepository, MessageRepository) {
     'ngInject';
+    this.$q = $q;
     this.ThreadRepository = ThreadRepository;
     this.MessageRepository = MessageRepository;
   }
@@ -90,7 +91,12 @@ export default class DiscussionsActions {
     return dispatch => {
       dispatch(this.requestThread(threadId));
       this.ThreadRepository.find(threadId)
-        .then(json => dispatch(this.receiveThread(threadId, json)));
+        .then(json => dispatch(this.receiveThread(threadId, json)))
+        .catch(json => dispatch(this.handleApiError({
+          resource: 'thread',
+          id: threadId,
+          response: json,
+        })));
     };
   }
 
@@ -101,6 +107,23 @@ export default class DiscussionsActions {
         payload: {},
       });
       dispatch(this.fetchThreads());
+    };
+  }
+
+  handleApiError({ resource, response, ...params }) {
+    if (resource === 'thread' && response.status === 404) {
+      return this.threadNotFound(params.id);
+    }
+
+    return this.$q.reject(response);
+  }
+
+  threadNotFound(threadId) {
+    return {
+      type: actions.THREAD_NOT_FOUND,
+      payload: {
+        threadId,
+      },
     };
   }
 }

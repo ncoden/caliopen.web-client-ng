@@ -204,6 +204,15 @@ export default function contactReducer(state = {
         ...state,
         didInvalidate: true,
       };
+    case actions.CONTACT_NOT_FOUND:
+      return {
+        ...state,
+        isFetching: false,
+        contactsById: Object.keys(state.contactsById)
+          .filter(id => id !== action.payload.contactId)
+          .reduce((prev, id) => ({ ...prev, [id]: state.contactsById[id] }), {}),
+        contacts: state.contacts.filter(id => id !== action.payload.contactId),
+      };
     default:
       return state;
   }

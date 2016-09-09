@@ -1,8 +1,9 @@
 import * as actions from './action-types.js';
 
 export default class ContactsActions {
-  constructor(ContactRepository) {
+  constructor($q, ContactRepository) {
     'ngInject';
+    this.$q = $q;
     this.ContactRepository = ContactRepository;
   }
 
@@ -47,7 +48,29 @@ export default class ContactsActions {
       dispatch(this.requestContact(contactId));
 
       return this.ContactRepository.findByContactId(contactId)
-        .then(json => dispatch(this.receiveContact(contactId, json)));
+        .then(json => dispatch(this.receiveContact(contactId, json)))
+        .catch(json => dispatch(this.handleApiError({
+          resource: 'contact',
+          id: contactId,
+          response: json,
+        })));
+    };
+  }
+
+  handleApiError({ resource, response, ...params }) {
+    if (resource === 'contact' && response.status === 404) {
+      return this.contactNotFound(params.id);
+    }
+
+    return this.$q.reject(response);
+  }
+
+  contactNotFound(contactId) {
+    return {
+      type: actions.CONTACT_NOT_FOUND,
+      payload: {
+        contactId,
+      },
     };
   }
 
