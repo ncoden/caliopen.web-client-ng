@@ -32,6 +32,7 @@ const config = {
     './src/assets/@(fonts)/**/*',
     './src/assets/@(images)/**/*',
     './src/assets/@(translations)/**/*',
+    './src/assets/favicon.ico',
   ],
 
   scssVendorsNamespace: '',
