@@ -44,6 +44,10 @@
     @include flex-grid-column;
   }
 
+  &__openpgp {
+    margin-top: $co-margin;
+  }
+
   @include breakpoint(medium) {
     @include m-contact-main--vertical;
 

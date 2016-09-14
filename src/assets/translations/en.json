@@ -221,6 +221,31 @@
     "action": {
       "is_primary": "is primary",
       "connect_identity": "Connect platform"
+    },
+    "openpgp": {
+      "title": "PGP private keys",
+      "action": {
+        "edit-keys": "Edit and add keys",
+        "switch-generate-key": "Generate key",
+        "switch-import-raw-key": "Import key",
+        "create": "Create",
+        "add": "Add"
+      },
+      "has-passphrase": "Enable passphrase",
+      "form": {
+        "email": {
+          "label": "Email"
+        },
+        "public-key": {
+          "label": "Public key"
+        },
+        "private-key": {
+          "label": "Private key"
+        },
+        "passphrase": {
+          "label": "Passphrase"
+        }
+      }
     }
   },
   "contact_card_summary": {
@@ -250,15 +275,6 @@
         "profile": "Profile",
         "privacy": "Privacy",
         "security": "Security"
-      },
-      "profile": {
-        "default": "This is the user profile forusername"
-      },
-      "privacy": {
-        "default": "This is the privacy settings forusername"
-      },
-      "security": {
-        "default": "This is the security settings forusername"
       }
     },
     "app": {
@@ -291,6 +307,34 @@
     "still-lost": "Still lost ?",
     "action": {
       "back-to-home": "Back to homepage"
+    }
+  },
+  "openpgp": {
+    "private-key": "Private key",
+    "public-key": "Public key",
+    "status": {
+      "valid": "Valid",
+      "invalid": "Invalid",
+      "expired": "Expired",
+      "revoked": "Revoked",
+      "no_self_cert": "???"
+    },
+    "action": {
+      "toggle-details": "Toggle details",
+      "remove-key": "Remove"
+    },
+    "feedback": {
+      "unable-read-public-key": "Unable to read public key",
+      "unable-read-private-key": "Unable to read private key",
+      "fingerprints-not-match": "Fingerprints do not match"
+    },
+    "details": {
+      "algorithm": "Algorithm",
+      "key-size": "Key size",
+      "status": "Status",
+      "creation": "Creation",
+      "expiration": "Expiration",
+      "identities": "Identities"
     }
   }
 }

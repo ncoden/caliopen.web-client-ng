@@ -73,7 +73,7 @@ describe('Contact', () => {
           .toEqual('type is missing');
       });
 
-      fit('success to add and remove an email', () => {
+      it('success to add and remove an email', () => {
         const email = 'foo@bar.tld';
         const type = 'Professional';
         browser.get('/');

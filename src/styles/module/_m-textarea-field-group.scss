@@ -1,0 +1,21 @@
+.m-textarea-field-group {
+
+  &__label { }
+
+  &__textarea {
+    @include o-form-element;
+  }
+
+  &,
+  &--dark {
+    &__textarea { @include o-form-element--dark; }
+  }
+
+  &--light {
+    &__textarea { @include o-form-element--light; }
+  }
+
+  &--expanded {
+    &__textarea { width: 100%; }
+  }
+}

@@ -24,15 +24,21 @@ const ContactDetailsComponent = {
       edit-mode="$ctrl.editMode"
       props="$ctrl.props"
     >
-      <edit-button>
-        <button class="m-link m-link--button pull-right"
-          ng-class="{ 'active': !!$ctrl.editMode }"
-          ng-click="$ctrl.editMode = !$ctrl.editMode"
-        >
-          <i class="fa fa-edit"></i>
-          <span class="show-for-sr">{{ 'contact.action.edit_contact_details'|translate }}</span>
-        </button>
-      </edit-button>
+      <contact-details-title>
+        <subtitle props="{ hr: true }">
+          <text>{{ 'contact.contact_details'|translate }}</text>
+          <actions>
+            <button class="m-link m-link--button pull-right"
+              ng-class="{ 'active': !!$ctrl.editMode }"
+              ng-click="$ctrl.editMode = !$ctrl.editMode"
+            >
+              <i class="fa fa-edit"></i>
+              <span class="show-for-sr">{{ 'contact.action.edit_contact_details'|translate }}</span>
+            </button>
+          </actions>
+        </subtitle>
+      </contact-details-title>
+
       <email-form>
         <add-contact-email-form
           contact="$ctrl.contact"

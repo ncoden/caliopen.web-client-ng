@@ -4,11 +4,11 @@
 }
 
 .m-loading {
+  display: inline-block;
   padding: ($co-margin / 2);
 
   color: $co-color__fg__text--higher;
   font-size: 1rem;
-  text-align: center;
 
   &__icon,
   &-icon {

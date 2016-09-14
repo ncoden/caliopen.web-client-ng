@@ -1,3 +1,5 @@
+import 'angular-translate-handler-log';
+
 export function TranslateConfig($translateProvider) {
   'ngInject';
   $translateProvider
@@ -7,4 +9,5 @@ export function TranslateConfig($translateProvider) {
     suffix: '.json',
   });
   $translateProvider.preferredLanguage('en');
+  $translateProvider.useMissingTranslationHandlerLog();
 }

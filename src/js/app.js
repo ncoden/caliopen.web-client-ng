@@ -56,6 +56,7 @@ import { uiSelectCfg } from './config/ui-select.js';
 import { apiFiltersMiddleware } from './middleware/api-filters-middleware.js';
 import { applicationMiddleware } from './middleware/application-middleware.js';
 import { contactMiddleware } from './middleware/contact-middleware.js';
+import { openPGPMiddleware } from './middleware/openpgp-middleware.js';
 import { tabMiddleware } from './middleware/tab-middleware.js';
 import { threadMiddleware } from './middleware/thread-middleware.js';
 import { userMiddleware } from './middleware/user-middleware.js';
@@ -73,6 +74,7 @@ app
   .factory('apiFiltersMiddleware', apiFiltersMiddleware)
   .factory('applicationMiddleware', applicationMiddleware)
   .factory('contactMiddleware', contactMiddleware)
+  .factory('openPGPMiddleware', openPGPMiddleware)
   .factory('tabMiddleware', tabMiddleware)
   .factory('threadMiddleware', threadMiddleware)
   .factory('userMiddleware', userMiddleware)
@@ -96,13 +98,16 @@ import ApplicationActions from './action/application.js';
 import ContactsActions from './action/contacts.js';
 import DiscussionsActions from './action/discussions.js';
 import DraftMessageActions from './action/draft-message.js';
+import OpenPGPActions from './action/openpgp.js';
 import TabsActions from './action/tabs.js';
 import RemoteIdentityActions from './action/remote-identity.js';
 import UserActions from './action/user.js';
 import { ContactRepository } from './service/repository/contact.js';
 import { MessageRepository } from './service/repository/message.js';
+import { OpenPGPKeychainRepository } from './service/repository/openpgp-keychain.js';
 import { ThreadRepository } from './service/repository/thread.js';
 import { UserRepository } from './service/repository/user.js';
+import LocalStorageHelper from './service/local-storage-helper.js';
 
 app
   .service('ApiFiltersActions', ApiFiltersActions)
@@ -110,13 +115,16 @@ app
   .service('ContactsActions', ContactsActions)
   .service('DiscussionsActions', DiscussionsActions)
   .service('DraftMessageActions', DraftMessageActions)
+  .service('OpenPGPActions', OpenPGPActions)
   .service('TabsActions', TabsActions)
   .service('RemoteIdentityActions', RemoteIdentityActions)
   .service('UserActions', UserActions)
   .service('ContactRepository', ContactRepository)
   .service('MessageRepository', MessageRepository)
+  .service('OpenPGPKeychainRepository', OpenPGPKeychainRepository)
   .service('ThreadRepository', ThreadRepository)
   .service('UserRepository', UserRepository)
+  .service('LocalStorageHelper', LocalStorageHelper)
   ;
 
 // filters

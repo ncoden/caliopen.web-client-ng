@@ -38,6 +38,7 @@ export function ReduxConfig($ngReduxProvider, devToolsServiceProvider) {
     'apiFiltersMiddleware',
     'applicationMiddleware',
     'contactMiddleware',
+    'openPGPMiddleware',
     'tabMiddleware',
     'threadMiddleware',
     'userMiddleware',

@@ -4,23 +4,10 @@
 }
 
 .m-flash-message {
+  @include o-callout;
   width: 16rem;
-  margin-bottom: $co-margin / 2;
-  padding: $co-margin / 2;
-
-  border: 1px solid $co-color__fg__border;
-  border-radius: $co-radius;
-  background-color: $co-color__fg__back;
-  box-shadow: $co-shadow;
-
-  color: $co-color__fg__text;
 
   &__button {
     float: right;
   }
-
-  &--success { @include _m-flash-message--type($co-color__success); }
-  &--info    { @include _m-flash-message--type($co-color__info); }
-  &--warning { @include _m-flash-message--type($co-color__warning); }
-  &--alert   { @include _m-flash-message--type($co-color__alert); }
 }

@@ -137,6 +137,10 @@ const AccountComponent = {
           </span>
         </div>
 
+        <div class="s-account__openpgp">
+          <account-openpgp-keys user="$ctrl.user"></account-openpgp-keys>
+        </div>
+
       </div>
       <div class="s-contact__col-datas-online">
         <contact-details

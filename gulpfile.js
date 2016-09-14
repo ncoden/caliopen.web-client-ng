@@ -33,6 +33,7 @@ const config = {
     './src/assets/@(images)/**/*',
     './src/assets/@(translations)/**/*',
     './src/assets/favicon.ico',
+    './node_modules/@(openpgp)/dist/*.min.js',
   ],
 
   scssVendorsNamespace: '',

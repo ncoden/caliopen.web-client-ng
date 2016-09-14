@@ -2,7 +2,8 @@
   "general": {
     "action": {
       "close": "Fermer",
-      "load_more": "Charger plus"
+      "load_more": "Charger plus",
+      "remove": "Supprimer"
     }
   },
   "navigation": {
@@ -220,6 +221,31 @@
     "action": {
       "is_primary": "est principale",
       "connect_identity": "Connecter la plateforme"
+    },
+    "openpgp": {
+      "title": "clés privées PGP",
+      "action": {
+        "edit-keys": "Éditer et ajoueter des clés",
+        "switch-generate-key": "Génerer des clés",
+        "switch-import-raw-key": "Importer des clés",
+        "create": "Créer",
+        "add": "Ajouter"
+      },
+      "has-passphrase": "Activer la passphrase",
+      "form": {
+        "email": {
+          "label": "Email"
+        },
+        "public-key": {
+          "label": "Clé publique"
+        },
+        "private-key": {
+          "label": "Clé privée"
+        },
+        "passphrase": {
+          "label": "Passphrase"
+        }
+      }
     }
   },
   "contact_card_summary": {
@@ -237,9 +263,6 @@
     "action": {
       "save": "Enregistrer",
       "edit_contact": "Edit"
-    },
-    "feedback": {
-      "errors_in_form": "Des erreurs sont présentes dans le formulaire de connection"
     }
   },
   "settings": {
@@ -252,15 +275,6 @@
         "profile": "Profil",
         "privacy": "Vie privée",
         "security": "Securité"
-      },
-      "profile": {
-        "default": "This is the user profile for {username}"
-      },
-      "privacy": {
-        "default": "This is the privacy settings for {username}"
-      },
-      "security": {
-        "default": "This is the security settings for {username}"
       }
     },
     "app": {
@@ -272,19 +286,19 @@
   },
   "login": {
     "form": {
-      "errorlabel": "Error",
-      "title": "Sign In",
-      "username": "Username",
-      "password": "Password",
-      "submit": "Go"
+      "errorlabel": "Erreur",
+      "title": "Connexion",
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "submit": "Envoyer"
     }
   },
   "call-to-action": {
     "action": {
-      "compose": "Compose",
-      "create_contact": "New Contact",
+      "compose": "Composer",
+      "create_contact": "Nouveau contact",
       "compose_contact": "Message",
-      "reply": "Reply"
+      "reply": "Répondre"
     }
   },
   "not-found": {
@@ -293,6 +307,34 @@
     "still-lost": "Toujours perdu ?",
     "action": {
       "back-to-home": "Retour à l'accueil"
+    }
+  },
+  "openpgp": {
+    "private-key": "Clé privée",
+    "public-key": "Clé publique",
+    "status": {
+      "valid": "Valide",
+      "invalid": "Invalide",
+      "expired": "Expirée",
+      "revoked": "Revoquée",
+      "no_self_cert": "???"
+    },
+    "action": {
+      "toggle-details": "Afficher les détails",
+      "remove-key": "Supprimer"
+    },
+    "feedback": {
+      "unable-read-public-key": "Impossible de lire la clé publique",
+      "unable-read-private-key": "mpossible de lire la clé privée",
+      "fingerprints-not-match": "Les empreintes ne correspondent pas"
+    },
+    "details": {
+      "algorithm": "Algorithme",
+      "key-size": "Taille de la clé",
+      "status": "Statut",
+      "creation": "Création",
+      "expiration": "Expiration",
+      "identities": "Identités"
     }
   }
 }

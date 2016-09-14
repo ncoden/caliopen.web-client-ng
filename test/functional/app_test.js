@@ -1,6 +1,6 @@
 import 'jquery';
 import angular from 'angular';
-import {v1 as uuidV1} from 'uuid';
+import { v1 as uuidV1 } from 'uuid';
 
 import { moduleName } from '../../src/js/app.js';
 import ngMockE2E from 'angular-mocks/ngMockE2E';
