@@ -111,11 +111,16 @@ describe('Account', () => {
       const ignoreSync = browser.ignoreSynchronization;
       browser.ignoreSynchronization = true;
       remoteIdentityElement.element(by.cssContainingText('button', 'Finish')).click();
-
       expect(element(by.css('flash-message')).getText()).toContain(
         'Connecting to a protocol is not yet implemented. Data fetching is fake actually.'
       );
       expect(element(by.css('.m-remote-identity__fetching-panel')).isPresent()).toBe(true);
+      const EC = protractor.ExpectedConditions;
+      browser.wait(
+        EC.stalenessOf(element(by.css('.m-remote-identity__fetching-panel'))),
+        20 * 1000,
+        'fetching should disappear within 20s'
+      );
       browser.ignoreSynchronization = false;
       expect(
         element(by.cssContainingText('contact-details button.m-link--success', 'Connect platform'))
@@ -150,7 +155,7 @@ describe('Account', () => {
 
       const EC = protractor.ExpectedConditions;
       browser.wait(EC.stalenessOf(pgpManager.element(by.cssContainingText('button', 'Create'))
-        .element(by.css('.m-loading'))), 30 * 1000, 'key should be created within 20 seconds');
+        .element(by.css('.m-loading'))), 60 * 1000, 'key should be created within 60 seconds');
 
       const pgpList = pgpManager.all(by.css('openpgp-key'));
       expect(pgpList.count()).toEqual(1);
