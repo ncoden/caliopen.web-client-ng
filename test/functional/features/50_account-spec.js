@@ -1,3 +1,4 @@
+const fs = require('fs');
 const userUtil = require('../utils/user-util.js');
 const isTestEnv = process.env.NODE_ENV === 'test';
 
@@ -110,11 +111,16 @@ describe('Account', () => {
       const ignoreSync = browser.ignoreSynchronization;
       browser.ignoreSynchronization = true;
       remoteIdentityElement.element(by.cssContainingText('button', 'Finish')).click();
-
       expect(element(by.css('flash-message')).getText()).toContain(
         'Connecting to a protocol is not yet implemented. Data fetching is fake actually.'
       );
       expect(element(by.css('.m-remote-identity__fetching-panel')).isPresent()).toBe(true);
+      const EC = protractor.ExpectedConditions;
+      browser.wait(
+        EC.stalenessOf(element(by.css('.m-remote-identity__fetching-panel'))),
+        20 * 1000,
+        'fetching should disappear within 20s'
+      );
       browser.ignoreSynchronization = false;
       expect(
         element(by.cssContainingText('contact-details button.m-link--success', 'Connect platform'))
@@ -126,6 +132,125 @@ describe('Account', () => {
         .isPresent()
       ).toBe(false);
       browser.ignoreSynchronization = ignoreSync;
+    });
+  });
+
+  describe('manage pgp keys', () => {
+    const publicKeyArmored = fs.readFileSync(`${__dirname}/../../fixtures/john.pub.asc`, 'utf8');
+    const privateKeyArmored = fs.readFileSync(`${__dirname}/../../fixtures/john.priv.asc`, 'utf8');
+
+    it('generate a pgp key pair without passphrase then delete', () => {
+      browser.get('/');
+      userUtil.showAccount();
+
+      const pgpManager = element(by.css('account-openpgp-keys'));
+
+      pgpManager.element(by.cssContainingText('button', 'Edit')).click();
+      pgpManager.element(by.cssContainingText('button', 'Create')).click();
+
+      expect(
+        pgpManager.element(by.cssContainingText('button', 'Create'))
+          .element(by.css('.m-loading')).isPresent()
+      ).toBe(true);
+
+      const EC = protractor.ExpectedConditions;
+      browser.wait(EC.stalenessOf(pgpManager.element(by.cssContainingText('button', 'Create'))
+        .element(by.css('.m-loading'))), 60 * 1000, 'key should be created within 60 seconds');
+
+      const pgpList = pgpManager.all(by.css('openpgp-key'));
+      expect(pgpList.count()).toEqual(1);
+      const pgpKey = pgpList.get(0);
+
+      pgpKey.element(by.cssContainingText('.m-link', 'Toggle details')).click();
+      const publicKeyField = pgpKey.element(
+        by.cssContainingText('textarea-field-group', 'Public key')
+      ).element(by.css('textarea'));
+      const privateKeyField = pgpKey.element(
+        by.cssContainingText('textarea-field-group', 'Private key')
+      ).element(by.css('textarea'));
+      expect(publicKeyField.getAttribute('value'))
+        .toContain('-----BEGIN PGP PUBLIC KEY BLOCK-----');
+      expect(privateKeyField.getAttribute('value'))
+        .toContain('-----BEGIN PGP PRIVATE KEY BLOCK-----');
+
+      pgpKey.element(by.cssContainingText('button', 'Remove')).click();
+
+      expect(pgpManager.all(by.css('openpgp-key')).count()).toEqual(0);
+    });
+
+    it('fail to import unreadable key pair', () => {
+      browser.get('/');
+      userUtil.showAccount();
+
+      const pgpManager = element(by.css('account-openpgp-keys'));
+
+      pgpManager.element(by.cssContainingText('button', 'Edit')).click();
+      pgpManager.element(by.cssContainingText('.m-link', 'Import key')).click();
+
+      const pgpForm = pgpManager.element(by.css('account-openpgp-key-form'));
+
+      pgpForm.element(by.cssContainingText('textarea-field-group', 'Public key'))
+        .element(by.css('textarea')).sendKeys('foo');
+      pgpForm.element(by.cssContainingText('textarea-field-group', 'Private key'))
+        .element(by.css('textarea')).sendKeys('bar');
+      pgpForm.element(by.cssContainingText('button', 'Add')).click();
+      expect(pgpForm.getText()).toContain('Unable to read public key');
+      expect(pgpForm.getText()).toContain('Unable to read private key');
+
+      const pgpList = pgpManager.all(by.css('openpgp-key'));
+      expect(pgpList.count()).toEqual(0);
+    });
+
+    it('import a pgp key pair then delete', () => {
+      browser.get('/');
+      userUtil.showAccount();
+
+      const pgpManager = element(by.css('account-openpgp-keys'));
+
+      pgpManager.element(by.cssContainingText('button', 'Edit')).click();
+      pgpManager.element(by.cssContainingText('.m-link', 'Import key')).click();
+
+      const pgpForm = pgpManager.element(by.css('account-openpgp-key-form'));
+
+      // -------------
+      // ASCII too long and requires this hack to prevent jasmine timeout error
+      const publicKeyTextarea = browser
+        .findElement(by.cssContainingText('textarea-field-group', 'Public key'))
+        .findElement(by.css('textarea'));
+      const privateKeyTextarea = browser
+        .findElement(by.cssContainingText('textarea-field-group', 'Private key'))
+        .findElement(by.css('textarea'));
+      browser.executeScript(
+        'arguments[0].value = arguments[1]', publicKeyTextarea, publicKeyArmored
+      );
+      browser.executeScript(
+        'arguments[0].value = arguments[1]', privateKeyTextarea, privateKeyArmored
+      );
+      // trigger angular change
+      publicKeyTextarea.sendKeys(' ');
+      privateKeyTextarea.sendKeys(' ');
+      // -------------
+      pgpForm.element(by.cssContainingText('button', 'Add')).click();
+
+      const pgpList = pgpManager.all(by.css('openpgp-key'));
+      expect(pgpList.count()).toEqual(1);
+      const pgpKey = pgpList.get(0);
+
+      pgpKey.element(by.cssContainingText('.m-link', 'Toggle details')).click();
+      const publicKeyField = pgpKey.element(
+        by.cssContainingText('textarea-field-group', 'Public key')
+      ).element(by.css('textarea'));
+      const privateKeyField = pgpKey.element(
+        by.cssContainingText('textarea-field-group', 'Private key')
+      ).element(by.css('textarea'));
+      expect(publicKeyField.getAttribute('value'))
+        .toContain('-----BEGIN PGP PUBLIC KEY BLOCK-----');
+      expect(privateKeyField.getAttribute('value'))
+        .toContain('-----BEGIN PGP PRIVATE KEY BLOCK-----');
+
+      pgpKey.element(by.cssContainingText('button', 'Remove')).click();
+
+      expect(pgpManager.all(by.css('openpgp-key')).count()).toEqual(0);
     });
   });
 });

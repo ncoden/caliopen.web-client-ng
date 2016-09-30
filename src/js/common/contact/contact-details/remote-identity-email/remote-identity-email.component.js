@@ -138,8 +138,8 @@ const RemoteIdentityEmailComponent = {
         ng-class="$ctrl.props.stylesheets.fetchingPanel"
       >
         <div ng-class="$ctrl.props.stylesheets.fetchingPanelContent">
-          <spinner loading="true"></spinner>
           <p class="m-remote-identity__fetching-panel-text">
+            <spinner loading="true"></spinner>
             {{ 'remote_identity.feedback.loading_messages'|translate }}
           </p>
           <button type="button"

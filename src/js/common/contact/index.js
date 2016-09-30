@@ -2,6 +2,7 @@ import angular from 'angular';
 import avatarLetter from '../avatar-letter';
 import flashMessage from '../flash-message';
 import form from '../form';
+import subtitle from '../subtitle';
 import RemoteIdentityEmailComponent
   from './contact-details/remote-identity-email/remote-identity-email.component.js';
 import ContactCardSummaryComponent from './contact-card-summary/contact-card-summary.component.js';
@@ -21,6 +22,7 @@ const contact = angular.module('contact-common', [
   avatarLetter,
   flashMessage,
   form,
+  subtitle,
 ])
   .component('remoteIdentityEmail', RemoteIdentityEmailComponent)
   .component('contactCardSummary', ContactCardSummaryComponent)

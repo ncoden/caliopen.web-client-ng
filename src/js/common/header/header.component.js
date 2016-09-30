@@ -36,7 +36,7 @@ const HeaderComponent = {
           <button
             ng-click="$ctrl.searchAsDropdown = !$ctrl.searchAsDropdown"
             class="l-header__m-link m-link m-link--button"
-            aria-label="{{ 'header.menu.toggle-search-dropdown'|translate }}"
+            aria-label="{{ 'header.menu.toggle-search-form'|translate }}"
           ><span class="fa fa-search"></span></button>
         </div>
 

@@ -1,0 +1,13 @@
+.m-account-openpgp-form {
+  &__main {
+    line-height: $co-component__height;
+  }
+
+  &__field-group {
+    margin-bottom: $co-margin;
+  }
+
+  &__switch-mode-container {
+    display: inline-block;
+  }
+}

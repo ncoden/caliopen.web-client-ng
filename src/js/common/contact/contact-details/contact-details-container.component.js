@@ -24,7 +24,7 @@ const ContactDetailsContainerComponent = {
     props: '<',
   },
   transclude: {
-    'edit-button': 'editButton',
+    'contact-details-title': 'contactDetailsTitle',
     'email-form': 'emailForm',
     'im-form': 'imForm',
     'address-form': 'addressForm',
@@ -32,12 +32,7 @@ const ContactDetailsContainerComponent = {
   /* eslint-disable max-len */
   template: `
     <div class="m-contact-details">
-      <div class="m-subtitle m-subtitle--hr">
-        <h3 class="m-subtitle__text">
-          {{ 'contact.contact_details'|translate }}
-        </h3>
-        <span ng-transclude="edit-button"></span>
-      </div>
+      <div ng-transclude="contact-details-title"></div>
 
       <div class="m-contact-details__list">
         <ul class="m-text-list">
